@@ -1,0 +1,1189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blood Grouping Test Manufacturing â Beginner-Friendly Guide</title>
+<style>
+  :root {
+    --primary: #1a5276;
+    --primary-light: #eaf2f8;
+    --primary-dark: #0e2f44;
+    --accent: #e67e22;
+    --accent-light: #fef3e5;
+    --blue: #2980b9;
+    --blue-light: #eaf4fb;
+    --red: #c0392b;
+    --red-light: #fbeaea;
+    --green: #1a6b4a;
+    --green-light: #e8f5ee;
+    --gray: #7f8c8d;
+    --bg: #fafbfc;
+    --card: #ffffff;
+    --text: #2c3e50;
+    --border: #e0e4e8;
+    --shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    font-size: 17px;
+  }
+
+  /* ââ Hero ââ */
+  .hero {
+    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 60%, #2471a3 100%);
+    color: white;
+    padding: 60px 24px 50px;
+    text-align: center;
+  }
+  .hero h1 { font-size: 2.2rem; margin-bottom: 12px; font-weight: 700; }
+  .hero p { font-size: 1.1rem; opacity: 0.92; max-width: 700px; margin: 0 auto 18px; }
+  .hero .badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.35);
+    border-radius: 20px;
+    padding: 6px 18px;
+    font-size: 0.9rem;
+  }
+
+  /* ââ Container ââ */
+  .container { max-width: 900px; margin: 0 auto; padding: 24px 18px 60px; }
+
+  /* ââ Controls ââ */
+  .controls {
+    display: flex; gap: 10px; margin-bottom: 24px; flex-wrap: wrap;
+  }
+  .controls button {
+    background: var(--primary); color: white; border: none;
+    border-radius: 6px; padding: 8px 18px; font-size: 0.92rem;
+    cursor: pointer; transition: background 0.2s;
+  }
+  .controls button:hover { background: var(--primary-dark); }
+
+  /* ââ Sections ââ */
+  .section {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 16px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+  .section-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 22px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s;
+  }
+  .section-header:hover { background: var(--primary-light); }
+  .section-header h2 {
+    font-size: 1.15rem; font-weight: 600; color: var(--primary);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-header .num {
+    background: var(--primary);
+    color: white;
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.85rem; font-weight: 700;
+    flex-shrink: 0;
+  }
+  .section-header .arrow {
+    font-size: 1.3rem; color: var(--gray);
+    transition: transform 0.3s;
+  }
+  .section.open .section-header .arrow { transform: rotate(180deg); }
+  .section-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+  }
+  .section.open .section-body { max-height: 80000px; }
+  .section-content { padding: 0 22px 22px; }
+
+  /* ââ Callouts ââ */
+  .callout {
+    border-radius: 8px;
+    padding: 16px 18px;
+    margin: 16px 0;
+    font-size: 0.97rem;
+  }
+  .callout-why { background: var(--blue-light); border-left: 4px solid var(--blue); }
+  .callout-key { background: var(--accent-light); border-left: 4px solid var(--accent); }
+  .callout-warn { background: var(--red-light); border-left: 4px solid var(--red); }
+  .callout-tip { background: var(--green-light); border-left: 4px solid var(--green); }
+  .callout strong { display: block; margin-bottom: 4px; }
+
+  /* ââ Jargon tooltips ââ */
+  .jargon {
+    border-bottom: 2px dashed var(--blue);
+    cursor: help;
+    position: relative;
+  }
+  .jargon .tip {
+    display: none;
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: #2c3e50;
+    color: #fff;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    width: 280px;
+    z-index: 100;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+    text-align: left;
+    font-weight: normal;
+  }
+  .jargon:hover .tip { display: block; }
+
+  /* ââ Tables ââ */
+  .comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 0.93rem;
+  }
+  .comparison-table th {
+    background: var(--primary);
+    color: white;
+    padding: 10px 14px;
+    text-align: left;
+    font-weight: 600;
+  }
+  .comparison-table td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .comparison-table tr:nth-child(even) { background: #f8f9fa; }
+  .comparison-table tr:hover { background: var(--primary-light); }
+
+  /* ââ YouTube ââ */
+  .yt-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #c0392b;
+    color: white;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    margin: 4px 4px 4px 0;
+    transition: background 0.2s;
+  }
+  .yt-link:hover { background: #a93226; }
+  .yt-links { margin: 12px 0; display: flex; flex-wrap: wrap; gap: 6px; }
+
+  /* ââ SVG Diagrams ââ */
+  .diagram-container {
+    margin: 20px 0;
+    text-align: center;
+    overflow-x: auto;
+  }
+  .diagram-container svg { max-width: 100%; height: auto; }
+  .diagram-label {
+    font-size: 0.85rem; color: var(--gray);
+    text-align: center; margin-top: 6px;
+  }
+
+  /* ââ Glossary ââ */
+  .glossary-search {
+    width: 100%;
+    padding: 10px 16px;
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    font-size: 1rem;
+    margin-bottom: 16px;
+    transition: border-color 0.2s;
+  }
+  .glossary-search:focus { outline: none; border-color: var(--primary); }
+  .glossary-grid { display: grid; grid-template-columns: 1fr; gap: 8px; }
+  .glossary-item {
+    background: var(--primary-light);
+    border-radius: 8px;
+    padding: 12px 16px;
+  }
+  .glossary-item strong { color: var(--primary); }
+
+  /* ââ Misc ââ */
+  h3 { color: var(--primary); margin: 24px 0 10px; font-size: 1.08rem; }
+  h4 { color: var(--primary-dark); margin: 18px 0 8px; font-size: 1rem; }
+  p { margin-bottom: 12px; }
+  ul, ol { margin: 10px 0 14px 22px; }
+  li { margin-bottom: 6px; }
+  a { color: var(--blue); }
+
+  @media (max-width: 600px) {
+    .hero h1 { font-size: 1.6rem; }
+    .section-header { padding: 14px 16px; }
+    .section-content { padding: 0 16px 16px; }
+    .jargon .tip { width: 220px; font-size: 0.8rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ââââââââââââââââ HERO ââââââââââââââââ -->
+<div class="hero">
+  <h1>Blood Grouping Test Manufacturing</h1>
+  <p>An interactive, beginner-friendly guide to manufacturing monoclonal blood grouping reagents (Anti-A, Anti-B, Anti-D) â from hybridoma science to commercial-scale production for the Indian market.</p>
+  <span class="badge">Based on: Levram Life Sciences Technology Transfer Report &bull; 59 pages &bull; 175 references</span>
+</div>
+
+<div class="container">
+
+  <!-- ââ Controls ââ -->
+  <div class="controls">
+    <button onclick="toggleAll(true)">Expand All</button>
+    <button onclick="toggleAll(false)">Collapse All</button>
+    <button onclick="document.getElementById('glossary-section').scrollIntoView({behavior:'smooth'})">Jump to Glossary</button>
+  </div>
+
+<!-- ââââââââââââââââââââââââââââââââââââââââ
+     â  SECTION 1 â BIG PICTURE            â
+     ââââââââââââââââââââââââââââââââââââââââ -->
+<div class="section open">
+  <div class="section-header" onclick="toggleSection(this)">
+    <h2><span class="num">1</span> The Big Picture â Why Blood Grouping Matters</h2>
+    <span class="arrow">&#9662;</span>
+  </div>
+  <div class="section-body"><div class="section-content">
+
+    <p>Every time a patient receives a blood transfusion, a laboratory must first determine their <span class="jargon">blood group<span class="tip">A classification of blood based on the presence or absence of specific antigens (sugar or protein markers) on the surface of red blood cells.</span></span>. If you give someone the wrong type of blood, their immune system attacks the foreign red cells â a potentially fatal reaction called a <span class="jargon">transfusion reaction<span class="tip">An immune response triggered when a patient receives incompatible blood. Antibodies in the patient's plasma destroy the donor's red cells, potentially causing kidney failure, shock, and death.</span></span>.</p>
+
+    <p>Blood grouping reagents are the specialized antibody solutions that laboratories use to perform these tests. The two most important systems are <strong>ABO</strong> (discovered in 1900) and <strong>Rh</strong> (discovered in 1940). Together, they give us the familiar labels like "A+", "O-", and "AB+".</p>
+
+    <div class="callout callout-why">
+      <strong>Why does this matter commercially?</strong>
+      The global blood grouping reagents market was valued at USD 2.27 billion in 2024 and is projected to reach USD 4.51 billion by 2033 (CAGR 7.94%). India's market alone is estimated at $150-200 million, growing at 9-11% CAGR â faster than any other major region.
+    </div>
+
+    <p>This guide walks you through the entire chain: the biology of blood group antigens, how monoclonal antibodies are manufactured via <span class="jargon">hybridoma technology<span class="tip">A lab method for producing large quantities of identical (monoclonal) antibodies by fusing antibody-producing B cells with immortal cancer cells (myeloma), creating a cell line that grows forever and secretes one specific antibody.</span></span>, how to scale up production in bioreactors, the four major testing platforms, quality control, regulatory pathways (CDSCO, FDA, CE), and the competitive landscape in India.</p>
+
+    <!-- SVG: Overview flow -->
+    <div class="diagram-container">
+      <svg viewBox="0 0 780 110" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, sans-serif">
+        <defs>
+          <marker id="ah1" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#1a5276"/></marker>
+        </defs>
+        <!-- Boxes -->
+        <rect x="0" y="20" width="120" height="55" rx="8" fill="#eaf2f8" stroke="#1a5276" stroke-width="1.5"/>
+        <text x="60" y="44" text-anchor="middle" font-size="11" fill="#1a5276" font-weight="600">Blood Group</text>
+        <text x="60" y="60" text-anchor="middle" font-size="11" fill="#1a5276" font-weight="600">Antigens</text>
+
+        <line x1="120" y1="47" x2="148" y2="47" stroke="#1a5276" stroke-width="1.5" marker-end="url(#ah1)"/>
+
+        <rect x="150" y="20" width="120" height="55" rx="8" fill="#eaf2f8" stroke="#1a5276" stroke-width="1.5"/>
+        <text x="210" y="44" text-anchor="middle" font-size="11" fill="#1a5276" font-weight="600">Monoclonal</text>
+        <text x="210" y="60" text-anchor="middle" font-size="11" fill="#1a5276" font-weight="600">Antibodies</text>
+
+        <line x1="270" y1="47" x2="298" y2="47" stroke="#1a5276" stroke-width="1.5" marker-end="url(#ah1)"/>
+
+        <rect x="300" y="20" width="120" height="55" rx="8" fill="#eaf2f8" stroke="#1a5276" stroke-width="1.5"/>
+        <text x="360" y="44" text-anchor="middle" font-size="11" fill="#1a5276" font-weight="600">Hybridoma</text>
+        <text x="360" y="60" text-anchor="middle" font-size="11" fill="#1a5276" font-weight="600">Production</text>
+
+        <line x1="420" y1="47" x2="448" y2="47" stroke="#1a5276" stroke-width="1.5" marker-end="url(#ah1)"/>
+
+        <rect x="450" y="20" width="120" height="55" rx="8" fill="#fef3e5" stroke="#e67e22" stroke-width="1.5"/>
+        <text x="510" y="44" text-anchor="middle" font-size="11" fill="#e67e22" font-weight="600">Reagent</text>
+        <text x="510" y="60" text-anchor="middle" font-size="11" fill="#e67e22" font-weight="600">Formulation</text>
+
+        <line x1="570" y1="47" x2="598" y2="47" stroke="#1a5276" stroke-width="1.5" marker-end="url(#ah1)"/>
+
+        <rect x="600" y="20" width="160" height="55" rx="8" fill="#e8f5ee" stroke="#1a6b4a" stroke-width="1.5"/>
+        <text x="680" y="44" text-anchor="middle" font-size="11" fill="#1a6b4a" font-weight="600">Testing Platforms</text>
+        <text x="680" y="60" text-anchor="middle" font-size="10" fill="#1a6b4a">Tube / Slide / Gel Card</text>
+
+        <text x="390" y="100" text-anchor="middle" font-size="10" fill="#7f8c8d">From Antigen Biology â Manufactured Reagent â Clinical Testing</text>
+      </svg>
+      <div class="diagram-label">Figure 1: End-to-end blood grouping reagent manufacturing pipeline</div>
+    </div>
+
+    <div class="yt-links">
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=ABO+blood+group+system+explained" target="_blank" rel="noopener">&#9654; ABO Blood Groups Explained</a>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=blood+grouping+test+procedure+laboratory" target="_blank" rel="noopener">&#9654; Blood Grouping Lab Demo</a>
+    </div>
+
+  </div></div>
+</div>
+
+<!-- ââââââââââââââââââââââââââââââââââââââââ
+     â  SECTION 2 â BLOOD GROUP ANTIGENS   â
+     ââââââââââââââââââââââââââââââââââââââââ -->
+<div class="section">
+  <div class="section-header" onclick="toggleSection(this)">
+    <h2><span class="num">2</span> Blood Group Antigens â ABO &amp; Rh Systems</h2>
+    <span class="arrow">&#9662;</span>
+  </div>
+  <div class="section-body"><div class="section-content">
+
+    <h3>The ABO System</h3>
+    <p>The ABO system is built on <span class="jargon">carbohydrate antigens<span class="tip">Sugar molecules attached to proteins and lipids on the red blood cell surface. Unlike most antigens (which are proteins), ABO antigens are sugars â specifically, short oligosaccharide chains.</span></span> on the red blood cell surface. Every person has a base sugar chain called the <strong>H antigen</strong>. Depending on which enzyme your genes encode, additional sugars are added:</p>
+
+    <ul>
+      <li><strong>Group A:</strong> An enzyme called <em>A-transferase</em> adds N-acetylgalactosamine (GalNAc) to the H antigen</li>
+      <li><strong>Group B:</strong> A <em>B-transferase</em> adds galactose (Gal) to the H antigen</li>
+      <li><strong>Group AB:</strong> Both enzymes are active, so both sugars are present</li>
+      <li><strong>Group O:</strong> Neither enzyme works â only the unmodified H antigen remains</li>
+    </ul>
+
+    <div class="callout callout-key">
+      <strong>Key concept â Landsteiner's Rule</strong>
+      Your plasma naturally contains antibodies against whichever ABO antigen you <em>lack</em>. A person with Group A blood has anti-B antibodies; Group O has both anti-A and anti-B. This is why ABO incompatibility can be immediately dangerous.
+    </div>
+
+    <p>There are also <strong>subtypes</strong>: A1 cells carry about 1 million A antigen copies per cell, while A2 cells carry only ~250,000. This matters because weaker subtypes can be harder to detect with poor-quality reagents.</p>
+
+    <!-- SVG: ABO antigen diagram -->
+    <div class="diagram-container">
+      <svg viewBox="0 0 700 240" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, sans-serif">
+        <!-- H antigen base -->
+        <rect x="50" y="170" width="600" height="30" rx="6" fill="#fce4ec" stroke="#c0392b" stroke-width="1"/>
+        <text x="350" y="190" text-anchor="middle" font-size="12" fill="#c0392b" font-weight="600">Red Blood Cell Membrane</text>
+
+        <!-- H chain -->
+        <rect x="120" y="130" width="80" height="30" rx="4" fill="#fff3e0" stroke="#e67e22" stroke-width="1.5"/>
+        <text x="160" y="150" text-anchor="middle" font-size="10" fill="#e67e22" font-weight="600">H antigen</text>
+        <line x1="160" y1="160" x2="160" y2="170" stroke="#e67e22" stroke-width="2"/>
+
+        <!-- Group A -->
+        <rect x="120" y="80" width="80" height="30" rx="4" fill="#e8f5ee" stroke="#1a6b4a" stroke-width="1.5"/>
+        <text x="160" y="100" text-anchor="middle" font-size="10" fill="#1a6b4a" font-weight="600">GalNAc</text>
+        <line x1="160" y1="110" x2="160" y2="130" stroke="#1a6b4a" stroke-width="2"/>
+        <text x="160" y="70" text-anchor="middle" font-size="12" fill="#1a6b4a" font-weight="700">Group A</text>
+
+        <!-- H chain for B -->
+        <rect x="310" y="130" width="80" height="30" rx="4" fill="#fff3e0" stroke="#e67e22" stroke-width="1.5"/>
+        <text x="350" y="150" text-anchor="middle" font-size="10" fill="#e67e22" font-weight="600">H antigen</text>
+        <line x1="350" y1="160" x2="350" y2="170" stroke="#e67e22" stroke-width="2"/>
+
+        <!-- Group B -->
+        <rect x="310" y="80" width="80" height="30" rx="4" fill="#eaf2f8" stroke="#1a5276" stroke-width="1.5"/>
+        <text x="350" y="100" text-anchor="middle" font-size="10" fill="#1a5276" font-weight="600">Galactose</text>
+        <line x1="350" y1="110" x2="350" y2="130" stroke="#1a5276" stroke-width="2"/>
+        <text x="350" y="70" text-anchor="middle" font-size="12" fill="#1a5276" font-weight="700">Group B</text>
+
+        <!-- H chain for O -->
+        <rect x="500" y="130" width="80" height="30" rx="4" fill="#fff3e0" stroke="#e67e22" stroke-width="1.5"/>
+        <text x="540" y="150" text-anchor="middle" font-size="10" fill="#e67e22" font-weight="600">H antigen</text>
+        <line x1="540" y1="160" x2="540" y2="170" stroke="#e67e22" stroke-width="2"/>
+        <text x="540" y="100" text-anchor="middle" font-size="11" fill="#7f8c8d" font-style="italic">No added sugar</text>
+        <text x="540" y="70" text-anchor="middle" font-size="12" fill="#7f8c8d" font-weight="700">Group O</text>
+
+        <text x="350" y="230" text-anchor="middle" font-size="10" fill="#7f8c8d">Figure 2: ABO antigens are built by adding sugars onto the H antigen base</text>
+      </svg>
+    </div>
+
+    <h3>The Rh System</h3>
+    <p>The Rh system is more complex â it involves <strong>protein antigens</strong> (not sugars) encoded by two genes: <em>RHD</em> and <em>RHCE</em>. The most clinically important is the <span class="jargon">D antigen<span class="tip">A protein embedded in the red blood cell membrane, encoded by the RHD gene. If present, a person is "Rh positive" (e.g., A+). The D antigen is the most immunogenic blood group antigen after A and B â meaning it's very likely to trigger an immune response if given to someone who lacks it.</span></span>:</p>
+
+    <ul>
+      <li><strong>Rh-positive (D+):</strong> The RHD gene produces D protein on the cell surface (~85% of people globally, ~95% in India)</li>
+      <li><strong>Rh-negative (D-):</strong> The RHD gene is absent or non-functional â no D protein</li>
+      <li><strong>Weak D:</strong> Reduced quantity of D antigen per cell â may test weakly positive or negative depending on the reagent sensitivity</li>
+      <li><strong>Partial D:</strong> The D protein is present but missing some structural parts (<span class="jargon">epitopes<span class="tip">Specific molecular shapes on an antigen that an antibody recognizes and binds to. The D antigen has ~30 known epitopes. People with partial D are missing some of these epitopes and can make antibodies against the ones they lack.</span></span>) â these patients can produce anti-D antibodies against the "missing" parts</li>
+    </ul>
+
+    <div class="callout callout-warn">
+      <strong>Clinical importance of D-typing</strong>
+      Rh-negative women who carry an Rh-positive baby can develop anti-D antibodies that attack the baby's red cells in subsequent pregnancies â a condition called hemolytic disease of the fetus/newborn (HDFN). Accurate D-typing is therefore critical for obstetric care.
+    </div>
+
+    <table class="comparison-table">
+      <tr><th>Blood Group</th><th>Antigens on RBC</th><th>Antibodies in Plasma</th><th>Can Donate To</th><th>Can Receive From</th></tr>
+      <tr><td><strong>A+</strong></td><td>A, D</td><td>Anti-B</td><td>A+, AB+</td><td>A+, A-, O+, O-</td></tr>
+      <tr><td><strong>A-</strong></td><td>A</td><td>Anti-B, Anti-D</td><td>A+, A-, AB+, AB-</td><td>A-, O-</td></tr>
+      <tr><td><strong>B+</strong></td><td>B, D</td><td>Anti-A</td><td>B+, AB+</td><td>B+, B-, O+, O-</td></tr>
+      <tr><td><strong>B-</strong></td><td>B</td><td>Anti-A, Anti-D</td><td>B+, B-, AB+, AB-</td><td>B-, O-</td></tr>
+      <tr><td><strong>AB+</strong></td><td>A, B, D</td><td>None</td><td>AB+</td><td>Universal recipient</td></tr>
+      <tr><td><strong>O-</strong></td><td>None (H only)</td><td>Anti-A, Anti-B, Anti-D</td><td>Universal donor</td><td>O-</td></tr>
+    </table>
+
+    <div class="yt-links">
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=Rh+blood+group+system+D+antigen+explained" target="_blank" rel="noopener">&#9654; Rh System & D Antigen</a>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=hemolytic+disease+newborn+Rh+incompatibility" target="_blank" rel="noopener">&#9654; HDFN & Rh Incompatibility</a>
+    </div>
+
+  </div></div>
+</div>
+
+<!-- ââââââââââââââââââââââââââââââââââââââââ
+     â  SECTION 3 â ANTIBODIES & CLONES    â
+     ââââââââââââââââââââââââââââââââââââââââ -->
+<div class="section">
+  <div class="section-header" onclick="toggleSection(this)">
+    <h2><span class="num">3</span> Monoclonal Antibodies &amp; Validated Clones</h2>
+    <span class="arrow">&#9662;</span>
+  </div>
+  <div class="section-body"><div class="section-content">
+
+    <p>Blood grouping reagents are solutions containing antibodies that specifically recognize blood group antigens. The modern standard is <span class="jargon">monoclonal antibodies<span class="tip">Antibodies produced by a single clone of cells, meaning every molecule is identical. They bind to one specific target (epitope) with consistent strength. Contrast with polyclonal antibodies (from human serum), which are a mixture of different antibodies.</span></span> â identical antibody molecules produced by engineered cell lines. They replaced the older polyclonal antisera (collected from immunized human donors), which had batch-to-batch variability and limited supply.</p>
+
+    <h3>IgM vs IgG â Two Antibody Types</h3>
+    <p>The two key antibody classes used in blood grouping are:</p>
+
+    <table class="comparison-table">
+      <tr><th>Feature</th><th>IgM</th><th>IgG</th></tr>
+      <tr><td><strong>Structure</strong></td><td>Pentamer (5 Y-shaped units joined together)</td><td>Monomer (single Y-shaped unit)</td></tr>
+      <tr><td><strong>Size</strong></td><td>~970 kDa â very large</td><td>~150 kDa â smaller</td></tr>
+      <tr><td><strong>Binding sites</strong></td><td>10 antigen-binding sites</td><td>2 antigen-binding sites</td></tr>
+      <tr><td><strong>Agglutination</strong></td><td>Excellent â large enough to bridge two red cells directly</td><td>Poor alone â too small to bridge the gap between cells</td></tr>
+      <tr><td><strong>Best for</strong></td><td>Slide &amp; tube tests (direct agglutination)</td><td>Gel card tests, weak D detection (needs Anti-Human Globulin enhancement)</td></tr>
+      <tr><td><strong>Source</strong></td><td>Murine (mouse) hybridomas</td><td>Human or human-mouse heterohybridomas</td></tr>
+    </table>
+
+    <div class="callout callout-key">
+      <strong>Why the size difference matters</strong>
+      Red blood cells naturally repel each other (negative surface charge). IgM antibodies are large enough to physically bridge two cells and clump them together (agglutination). IgG antibodies are too small â they coat the cells but can't bridge them. That's why IgG-based tests need Anti-Human Globulin (AHG/Coombs reagent) or gel card technology to make agglutination visible.
+    </div>
+
+    <h3>Validated Clones for Manufacturing</h3>
+    <p>Specific hybridoma clones have been validated in peer-reviewed literature for blood grouping reagent production:</p>
+
+    <table class="comparison-table">
+      <tr><th>Reagent</th><th>Clone Name</th><th>Isotype</th><th>Key Features</th></tr>
+      <tr><td><strong>Anti-A</strong></td><td>MH2/6D4</td><td>IgM</td><td>Well-characterized; culture supernatant meets FDA standards without purification</td></tr>
+      <tr><td><strong>Anti-A</strong></td><td>Au18Kt3F, MG3</td><td>IgM</td><td>Additional validated clones for blending</td></tr>
+      <tr><td><strong>Anti-A</strong></td><td>IHI-15</td><td>IgM</td><td>Cuban clone; validated in field trials across multiple countries</td></tr>
+      <tr><td><strong>Anti-B</strong></td><td>NB1/19.112.28</td><td>IgM</td><td>Generated by spleen-myeloma fusion; validated in manual and automated assays</td></tr>
+      <tr><td><strong>Anti-B</strong></td><td>BB2-3, SS4.5</td><td>IgM</td><td>Additional validated Anti-B clones</td></tr>
+      <tr><td><strong>Anti-D</strong></td><td>D4-B2</td><td>IgG3</td><td>Human heterohybridoma; stable in continuous culture</td></tr>
+      <tr><td><strong>Anti-D</strong></td><td>E10-C1</td><td>IgG (lambda)</td><td>Human heterohybridoma via EBV transformation + fusion</td></tr>
+    </table>
+
+    <div class="callout callout-tip">
+      <strong>Why Anti-D clones are different</strong>
+      Anti-A and Anti-B clones come from standard mouse hybridomas (mouse B cell + mouse myeloma). Anti-D clones must come from <strong>human</strong> or human-mouse heterohybridomas, because mice don't naturally make anti-D antibodies â the D antigen is unique to human red cells. Creating these heterohybridomas is more technically challenging.
+    </div>
+
+    <div class="yt-links">
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=monoclonal+antibody+production+hybridoma+technology" target="_blank" rel="noopener">&#9654; Monoclonal Antibody Production</a>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=IgM+vs+IgG+antibody+structure+function" target="_blank" rel="noopener">&#9654; IgM vs IgG Explained</a>
+    </div>
+
+  </div></div>
+</div>
+
+<!-- ââââââââââââââââââââââââââââââââââââââââ
+     â  SECTION 4 â HYBRIDOMA TECHNOLOGY   â
+     ââââââââââââââââââââââââââââââââââââââââ -->
+<div class="section">
+  <div class="section-header" onclick="toggleSection(this)">
+    <h2><span class="num">4</span> Hybridoma Technology â Making Monoclonal Antibodies</h2>
+    <span class="arrow">&#9662;</span>
+  </div>
+  <div class="section-body"><div class="section-content">
+
+    <p>Hybridoma technology (developed by K&ouml;hler and Milstein, Nobel Prize 1984) is the method used to create cell lines that produce monoclonal antibodies indefinitely. Here is the process step by step:</p>
+
+    <!-- SVG: Hybridoma process -->
+    <div class="diagram-container">
+      <svg viewBox="0 0 760 320" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, sans-serif">
+        <defs>
+          <marker id="ah2" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#1a5276"/></marker>
+        </defs>
+
+        <!-- Step 1: Immunize -->
+        <rect x="10" y="20" width="140" height="60" rx="8" fill="#fbeaea" stroke="#c0392b" stroke-width="1.5"/>
+        <text x="80" y="42" text-anchor="middle" font-size="11" fill="#c0392b" font-weight="700">1. Immunize</text>
+        <text x="80" y="58" text-anchor="middle" font-size="9" fill="#c0392b">Mouse with A/B antigens</text>
+        <text x="80" y="72" text-anchor="middle" font-size="9" fill="#c0392b">(or human donor for Anti-D)</text>
+
+        <line x1="150" y1="50" x2="178" y2="50" stroke="#1a5276" stroke-width="1.5" marker-end="url(#ah2)"/>
+
+        <!-- Step 2: Harvest spleen -->
+        <rect x="180" y="20" width="130" height="60" rx="8" fill="#eaf2f8" stroke="#1a5276" stroke-width="1.5"/>
+        <text x="245" y="42" text-anchor="middle" font-size="11" fill="#1a5276" font-weight="700">2. Harvest</text>
+        <text x="245" y="58" text-anchor="middle" font-size="9" fill="#1a5276">Spleen B cells</text>
+        <text x="245" y="72" text-anchor="middle" font-size="9" fill="#1a5276">(antibody-producing)</text>
+
+        <line x1="310" y1="50" x2="338" y2="50" stroke="#1a5276" stroke-width="1.5" marker-end="url(#ah2)"/>
+
+        <!-- Step 3: Fuse -->
+        <rect x="340" y="20" width="130" height="60" rx="8" fill="#fef3e5" stroke="#e67e22" stroke-width="1.5"/>
+        <text x="405" y="42" text-anchor="middle" font-size="11" fill="#e67e22" font-weight="700">3. Fuse with PEG</text>
+        <text x="405" y="58" text-anchor="middle" font-size="9" fill="#e67e22">B cell + Myeloma</text>
+        <text x="405" y="72" text-anchor="middle" font-size="9" fill="#e67e22">â Hybridoma</text>
+
+        <line x1="470" y1="50" x2="498" y2="50" stroke="#1a5276" stroke-width="1.5" marker-end="url(#ah2)"/>
+
+        <!-- Step 4: HAT selection -->
+        <rect x="500" y="20" width="120" height="60" rx="8" fill="#e8f5ee" stroke="#1a6b4a" stroke-width="1.5"/>
+        <text x="560" y="42" text-anchor="middle" font-size="11" fill="#1a6b4a" font-weight="700">4. HAT Select</text>
+        <text x="560" y="58" text-anchor="middle" font-size="9" fill="#1a6b4a">Only fused cells</text>
+        <text x="560" y="72" text-anchor="middle" font-size="9" fill="#1a6b4a">survive in HAT medium</text>
+
+        <line x1="620" y1="50" x2="648" y2="50" stroke="#1a5276" stroke-width="1.5" marker-end="url(#ah2)"/>
+
+        <!-- Step 5: Screen -->
+        <rect x="650" y="20" width="100" height="60" rx="8" fill="#eaf4fb" stroke="#2980b9" stroke-width="1.5"/>
+        <text x="700" y="42" text-anchor="middle" font-size="11" fill="#2980b9" font-weight="700">5. Screen</text>
+        <text x="700" y="58" text-anchor="middle" font-size="9" fill="#2980b9">Test each well</text>
+        <text x="700" y="72" text-anchor="middle" font-size="9" fill="#2980b9">for target antibody</text>
+
+        <!-- Arrow down to second row -->
+        <line x1="700" y1="80" x2="700" y2="108" stroke="#1a5276" stroke-width="1.5" marker-end="url(#ah2)"/>
+
+        <!-- Step 6: Clone -->
+        <rect x="620" y="110" width="130" height="60" rx="8" fill="#fef3e5" stroke="#e67e22" stroke-width="1.5"/>
+        <text x="685" y="132" text-anchor="middle" font-size="11" fill="#e67e22" font-weight="700">6. Limiting Dilution</text>
+        <text x="685" y="148" text-anchor="middle" font-size="9" fill="#e67e22">Clone to single-cell</text>
+        <text x="685" y="162" text-anchor="middle" font-size="9" fill="#e67e22">origin (2-3 rounds)</text>
+
+        <line x1="620" y1="140" x2="592" y2="140" stroke="#1a5276" stroke-width="1.5" marker-end="url(#ah2)"/>
+
+        <!-- Step 7: Cell Bank -->
+        <rect x="460" y="110" width="130" height="60" rx="8" fill="#eaf2f8" stroke="#1a5276" stroke-width="1.5"/>
+        <text x="525" y="132" text-anchor="middle" font-size="11" fill="#1a5276" font-weight="700">7. Cell Banking</text>
+        <text x="525" y="148" text-anchor="middle" font-size="9" fill="#1a5276">MCB: 50-100 vials</text>
+        <text x="525" y="162" text-anchor="middle" font-size="9" fill="#1a5276">WCB: 100-200 vials</text>
+
+        <line x1="460" y1="140" x2="432" y2="140" stroke="#1a5276" stroke-width="1.5" marker-end="url(#ah2)"/>
+
+        <!-- Step 8: Scale up -->
+        <rect x="280" y="110" width="150" height="60" rx="8" fill="#e8f5ee" stroke="#1a6b4a" stroke-width="1.5"/>
+        <text x="355" y="132" text-anchor="middle" font-size="11" fill="#1a6b4a" font-weight="700">8. Scale-Up</text>
+        <text x="355" y="148" text-anchor="middle" font-size="9" fill="#1a6b4a">Spinner flasks â Bioreactors</text>
+        <text x="355" y="162" text-anchor="middle" font-size="9" fill="#1a6b4a">â Production-scale</text>
+
+        <!-- Legend -->
+        <text x="380" y="210" text-anchor="middle" font-size="10" fill="#7f8c8d">Figure 3: Hybridoma development pipeline â from immunization to production</text>
+      </svg>
+    </div>
+
+    <h3>Key Steps Explained</h3>
+
+    <h4>Immunization</h4>
+    <p>For Anti-A and Anti-B: Mice are injected with purified A or B blood group antigens over several weeks. For Anti-D: Human B cells are obtained from Rh-negative individuals naturally immunized against the D antigen (e.g., through pregnancy or transfusion).</p>
+
+    <h4>Cell Fusion with PEG</h4>
+    <p><span class="jargon">PEG (polyethylene glycol)<span class="tip">A chemical that causes cell membranes to merge, fusing two cells into one. PEG (typically MW 1,500-4,000) is added briefly to a mixture of B cells and myeloma cells, creating hybrid cells that inherit properties from both parents.</span></span> is used to merge the antibody-producing B cell with an immortal <span class="jargon">myeloma<span class="tip">A cancerous plasma cell line that grows indefinitely in culture. Myelomas used for hybridoma work are specially selected to lack HGPRT enzyme (so they die in HAT medium unless they fuse with a B cell that supplies it). Common lines: SP2/0, NS0, P3X63Ag8.653.</span></span> cell. The resulting hybridoma inherits the B cell's ability to make a specific antibody AND the myeloma's ability to grow forever.</p>
+
+    <h4>HAT Selection</h4>
+    <p><span class="jargon">HAT medium<span class="tip">A culture medium containing Hypoxanthine, Aminopterin, and Thymidine. Aminopterin blocks the main DNA synthesis pathway. Only cells with the HGPRT enzyme (from the B cell) can use the backup pathway and survive. Unfused myeloma cells (lacking HGPRT) die. Unfused B cells die naturally after ~2 weeks. Only fused hybridomas survive.</span></span> selectively kills unfused myeloma cells while allowing hybridomas to survive. After 10-14 days, only hybridoma colonies remain.</p>
+
+    <h4>Limiting Dilution Cloning</h4>
+    <p>Cells are diluted so that statistically each well in a 96-well plate receives about 0.5 cells. Wells with a single colony are identified and expanded. This is repeated 2-3 times to guarantee <span class="jargon">monoclonality<span class="tip">The state of being derived from a single cell. Limiting dilution cloning ensures that every cell in a culture descends from one original hybridoma, so they all produce exactly the same antibody.</span></span> â every cell descends from one ancestor.</p>
+
+    <h4>Cell Banking</h4>
+    <p>Validated clones are frozen in liquid nitrogen as a two-tier bank: a <strong>Master Cell Bank (MCB)</strong> of 50-100 vials stored as the permanent archive, and a <strong>Working Cell Bank (WCB)</strong> of 100-200 vials used for day-to-day production. This ensures decades of consistent supply.</p>
+
+    <div class="yt-links">
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=hybridoma+technology+monoclonal+antibody+step+by+step" target="_blank" rel="noopener">&#9654; Hybridoma Technology Step-by-Step</a>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=HAT+selection+medium+hybridoma+explained" target="_blank" rel="noopener">&#9654; HAT Selection Explained</a>
+    </div>
+
+  </div></div>
+</div>
+
+<!-- ââââââââââââââââââââââââââââââââââââââââ
+     â  SECTION 5 â BIOREACTORS & SCALE-UP â
+     ââââââââââââââââââââââââââââââââââââââââ -->
+<div class="section">
+  <div class="section-header" onclick="toggleSection(this)">
+    <h2><span class="num">5</span> Cell Culture &amp; Bioreactor Scale-Up</h2>
+    <span class="arrow">&#9662;</span>
+  </div>
+  <div class="section-body"><div class="section-content">
+
+    <p>Once you have a validated hybridoma clone, you need to grow it in increasing volumes to produce enough antibody for commercial reagent manufacturing. The progression follows a well-defined ladder:</p>
+
+    <!-- SVG: Bioreactor scale-up -->
+    <div class="diagram-container">
+      <svg viewBox="0 0 760 160" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, sans-serif">
+        <defs>
+          <marker id="ah3" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#1a5276"/></marker>
+        </defs>
+
+        <rect x="0" y="30" width="100" height="65" rx="8" fill="#eaf2f8" stroke="#1a5276" stroke-width="1.5"/>
+        <text x="50" y="52" text-anchor="middle" font-size="10" fill="#1a5276" font-weight="700">T-Flask</text>
+        <text x="50" y="66" text-anchor="middle" font-size="9" fill="#1a5276">25-175 cmÂ²</text>
+        <text x="50" y="80" text-anchor="middle" font-size="8" fill="#7f8c8d">Dev only</text>
+
+        <line x1="100" y1="62" x2="118" y2="62" stroke="#1a5276" stroke-width="1.5" marker-end="url(#ah3)"/>
+
+        <rect x="120" y="30" width="110" height="65" rx="8" fill="#eaf2f8" stroke="#1a5276" stroke-width="1.5"/>
+        <text x="175" y="52" text-anchor="middle" font-size="10" fill="#1a5276" font-weight="700">Spinner Flask</text>
+        <text x="175" y="66" text-anchor="middle" font-size="9" fill="#1a5276">100-1000 mL</text>
+        <text x="175" y="80" text-anchor="middle" font-size="8" fill="#1a6b4a">Small-scale prod.</text>
+
+        <line x1="230" y1="62" x2="248" y2="62" stroke="#1a5276" stroke-width="1.5" marker-end="url(#ah3)"/>
+
+        <rect x="250" y="30" width="110" height="65" rx="8" fill="#fef3e5" stroke="#e67e22" stroke-width="1.5"/>
+        <text x="305" y="52" text-anchor="middle" font-size="10" fill="#e67e22" font-weight="700">Bench STR</text>
+        <text x="305" y="66" text-anchor="middle" font-size="9" fill="#e67e22">2-10 L</text>
+        <text x="305" y="80" text-anchor="middle" font-size="8" fill="#e67e22">Mid-scale</text>
+
+        <line x1="360" y1="62" x2="378" y2="62" stroke="#1a5276" stroke-width="1.5" marker-end="url(#ah3)"/>
+
+        <rect x="380" y="30" width="120" height="65" rx="8" fill="#fef3e5" stroke="#e67e22" stroke-width="1.5"/>
+        <text x="440" y="48" text-anchor="middle" font-size="10" fill="#e67e22" font-weight="700">miniPERM /</text>
+        <text x="440" y="62" text-anchor="middle" font-size="10" fill="#e67e22" font-weight="700">Hollow Fiber</text>
+        <text x="440" y="78" text-anchor="middle" font-size="8" fill="#e67e22">High-density continuous</text>
+
+        <line x1="500" y1="62" x2="518" y2="62" stroke="#1a5276" stroke-width="1.5" marker-end="url(#ah3)"/>
+
+        <rect x="520" y="30" width="120" height="65" rx="8" fill="#e8f5ee" stroke="#1a6b4a" stroke-width="1.5"/>
+        <text x="580" y="48" text-anchor="middle" font-size="10" fill="#1a6b4a" font-weight="700">Pilot/Production</text>
+        <text x="580" y="62" text-anchor="middle" font-size="10" fill="#1a6b4a" font-weight="700">Bioreactor</text>
+        <text x="580" y="78" text-anchor="middle" font-size="8" fill="#1a6b4a">50-200 L automated</text>
+
+        <line x1="640" y1="62" x2="658" y2="62" stroke="#1a5276" stroke-width="1.5" marker-end="url(#ah3)"/>
+
+        <rect x="660" y="30" width="90" height="65" rx="8" fill="#fbeaea" stroke="#c0392b" stroke-width="1.5"/>
+        <text x="705" y="52" text-anchor="middle" font-size="10" fill="#c0392b" font-weight="700">Full-Scale</text>
+        <text x="705" y="66" text-anchor="middle" font-size="9" fill="#c0392b">200-1000 L</text>
+        <text x="705" y="80" text-anchor="middle" font-size="8" fill="#c0392b">Commercial</text>
+
+        <text x="380" y="125" text-anchor="middle" font-size="11" fill="#1a5276" font-weight="600">Antibody concentration: 0.01-0.05 g/L (batch) â 0.3-2.0 g/L (hollow fiber/continuous)</text>
+        <text x="380" y="145" text-anchor="middle" font-size="10" fill="#7f8c8d">Figure 4: Bioreactor scale-up ladder from lab bench to commercial production</text>
+      </svg>
+    </div>
+
+    <h3>Spinner Flask Production (Starting Point)</h3>
+    <p>For a startup like Levram, spinner flask culture is the recommended starting point. A single 500 mL spinner flask can produce 350-400 mL of supernatant containing 10-50 mg/L of antibody â enough for 3,500-8,000 tube tests. The SOP involves:</p>
+    <ol>
+      <li>Thaw a WCB vial and expand through T-25 â T-75 â T-175 flasks</li>
+      <li>Inoculate spinner flask at 2-3 Ã 10âµ cells/mL in RPMI-1640 medium with 5-10% FBS</li>
+      <li>Culture at 37Â°C with 5% COâ, stirring at 60-80 rpm</li>
+      <li>Monitor daily: maintain viability &gt;85%, expect peak density at 3-5 days</li>
+      <li>Harvest when viability drops to 70-80%: centrifuge at 2000 rpm, filter through 0.22 Âµm</li>
+    </ol>
+
+    <h3>High-Density Continuous Culture (Advanced)</h3>
+    <p><span class="jargon">Hollow fiber bioreactors<span class="tip">A bioreactor containing thousands of tiny semi-permeable tubes (hollow fibers). Cells grow at very high density (10â¸-10â¹ cells/mL) in the space around the fibers, while nutrient medium flows through the fibers. Antibody accumulates in the cell compartment at concentrations 10-100Ã higher than in batch culture.</span></span> and fibrous bed bioreactors can dramatically increase productivity: achieving antibody concentrations of 0.3-2.0 g/L (vs. 0.01-0.05 g/L in batch), with continuous operation lasting weeks to months from a single inoculation.</p>
+
+    <h3>Cost Reduction Strategies</h3>
+    <ul>
+      <li><strong>Direct culture supernatant use:</strong> The biggest cost saver â use the supernatant directly as reagent without purification (saves &gt;50% cost). Requires clones with titre â¥1:256</li>
+      <li><strong>Serum-free medium:</strong> FBS represents 30-50% of medium cost. Adapting hybridomas to serum-free or low-serum (2-5%) medium saves 40-60%</li>
+      <li><strong>Local sourcing:</strong> Source media components and plasticware from Indian suppliers</li>
+    </ul>
+
+    <div class="yt-links">
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=spinner+flask+cell+culture+hybridoma" target="_blank" rel="noopener">&#9654; Spinner Flask Culture</a>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=hollow+fiber+bioreactor+antibody+production" target="_blank" rel="noopener">&#9654; Hollow Fiber Bioreactors</a>
+    </div>
+
+  </div></div>
+</div>
+
+<!-- ââââââââââââââââââââââââââââââââââââââââ
+     â  SECTION 6 â TESTING PLATFORMS      â
+     ââââââââââââââââââââââââââââââââââââââââ -->
+<div class="section">
+  <div class="section-header" onclick="toggleSection(this)">
+    <h2><span class="num">6</span> Testing Platforms â How Reagents Are Used</h2>
+    <span class="arrow">&#9662;</span>
+  </div>
+  <div class="section-body"><div class="section-content">
+
+    <p>Blood grouping reagents are manufactured for different testing formats, each suited to different clinical settings:</p>
+
+    <table class="comparison-table">
+      <tr><th>Platform</th><th>How It Works</th><th>Time</th><th>Titre Required</th><th>Best For</th></tr>
+      <tr>
+        <td><strong>Tube Test</strong></td>
+        <td>Mix reagent + red cells in a test tube, centrifuge, read agglutination</td>
+        <td>15-30 min</td>
+        <td>â¥1:256</td>
+        <td>Gold standard; blood banks &amp; hospitals</td>
+      </tr>
+      <tr>
+        <td><strong>Slide Test</strong></td>
+        <td>Drop reagent + blood on a glass slide, tilt, read clumping visually</td>
+        <td>~2 min</td>
+        <td>â¥1:512</td>
+        <td>Rapid bedside screening; emergency, POC</td>
+      </tr>
+      <tr>
+        <td><strong>Gel Card</strong></td>
+        <td>Microcolumns pre-filled with gel + reagent; cells migrate through gel during centrifugation; agglutinates trapped in gel</td>
+        <td>10-15 min</td>
+        <td>Optimized formulation</td>
+        <td>Standardized, objective reading; modern labs</td>
+      </tr>
+      <tr>
+        <td><strong>Microplate</strong></td>
+        <td>96-384 well plates; automated dispensing, incubation, reading</td>
+        <td>30-60 min</td>
+        <td>Optimized</td>
+        <td>High throughput; large blood centers, research</td>
+      </tr>
+    </table>
+
+    <div class="callout callout-why">
+      <strong>What is "titre" and why does it matter?</strong>
+      <span class="jargon">Titre<span class="tip">A measure of antibody concentration expressed as the highest dilution that still produces visible agglutination. A titre of 1:256 means you can dilute the reagent 256-fold and still see clumping. Higher titre = more concentrated = better quality reagent.</span></span> is the highest dilution of a reagent that still shows agglutination (score â¥2+). A tube test reagent needs titre â¥1:256; slide tests need â¥1:512 (because slide tests use less reagent and have shorter reaction time, so the antibody must be more concentrated).
+    </div>
+
+    <h3>Agglutination Scoring</h3>
+    <p>All testing platforms use a standardized grading system to record results:</p>
+    <table class="comparison-table">
+      <tr><th>Score</th><th>Appearance</th><th>Interpretation</th></tr>
+      <tr><td><strong>4+</strong></td><td>One solid clump, clear background</td><td>Strong positive</td></tr>
+      <tr><td><strong>3+</strong></td><td>Several large clumps, mostly clear</td><td>Positive</td></tr>
+      <tr><td><strong>2+</strong></td><td>Medium clumps, slightly hazy</td><td>Positive (minimum acceptable for titre)</td></tr>
+      <tr><td><strong>1+</strong></td><td>Small clumps, turbid background</td><td>Weak positive</td></tr>
+      <tr><td><strong>Â±</strong></td><td>Tiny clumps, very turbid</td><td>Doubtful â needs further investigation</td></tr>
+      <tr><td><strong>0</strong></td><td>No clumps, uniform suspension</td><td>Negative â no agglutination</td></tr>
+    </table>
+
+    <h3>Erythrocyte Magnetization Technology</h3>
+    <p>A newer innovation by Diagast (France) called <span class="jargon">E.M. Technology<span class="tip">Erythrocyte Magnetized Technology â red blood cells are coated with magnetic iron particles. Reagent antibodies are attached to a high-density NanoLys solution. After mixing, a magnet separates agglutinated (positive) cells from free (negative) cells. No centrifugation or washing needed. Diagast's QWALYS 3 EVO system can process 110 grouping tests per hour.</span></span> magnetizes red blood cells using iron particles. Combined with their proprietary NanoLys high-density solution, this eliminates centrifugation and washing entirely, enabling walk-away automation at up to 110 tests/hour.</p>
+
+    <h3>Recommended Product Launch Order for Levram</h3>
+    <ol>
+      <li><strong>Tube test reagents</strong> (Year 1) â regulatory gold standard, builds credibility</li>
+      <li><strong>Slide test reagents</strong> (Year 2) â large, cost-sensitive screening market</li>
+      <li><strong>Gel card-compatible reagents</strong> (Year 3) â modernizing labs, partnership potential</li>
+      <li><strong>Microplate reagents</strong> (Year 3+) â automation and research markets</li>
+    </ol>
+
+    <div class="yt-links">
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=blood+grouping+tube+test+method+laboratory" target="_blank" rel="noopener">&#9654; Tube Test Method</a>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=gel+card+blood+grouping+technique" target="_blank" rel="noopener">&#9654; Gel Card Technique</a>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=blood+group+slide+test+procedure" target="_blank" rel="noopener">&#9654; Slide Test Demo</a>
+    </div>
+
+  </div></div>
+</div>
+
+<!-- ââââââââââââââââââââââââââââââââââââââââ
+     â  SECTION 7 â MANUFACTURING SOPs     â
+     ââââââââââââââââââââââââââââââââââââââââ -->
+<div class="section">
+  <div class="section-header" onclick="toggleSection(this)">
+    <h2><span class="num">7</span> Manufacturing SOPs â Formulation, Fill &amp; Finish</h2>
+    <span class="arrow">&#9662;</span>
+  </div>
+  <div class="section-body"><div class="section-content">
+
+    <p>After harvesting antibody-rich supernatant from the bioreactor, several manufacturing steps convert it into a stable, bottled reagent product:</p>
+
+    <h3>SOP 1: Reagent Formulation &amp; Stabilization</h3>
+    <ol>
+      <li><strong>Blend supernatants</strong> (if using multiple clones): Determine optimal ratio (1:1, 2:1, or 3:1) by testing agglutination strength and specificity. Mix in a formulation tank.</li>
+      <li><strong>Add stabilizers:</strong> <span class="jargon">BSA<span class="tip">Bovine Serum Albumin â a protein added at 1-5% concentration to stabilize antibodies during storage. BSA prevents antibody denaturation (unfolding) and can enhance agglutination in some test formats.</span></span> at 1-5% (w/v) final concentration</li>
+      <li><strong>Add preservative:</strong> Sodium azide at 0.1% (w/v) â or alternatives like gentamicin (50 Âµg/mL) or ProClin</li>
+      <li><strong>Adjust pH:</strong> Measure and adjust to pH 7.0-7.4 using 0.1 M HCl or NaOH</li>
+      <li><strong>Sterile filtration:</strong> Pass through 0.22 Âµm membrane into sterile container</li>
+      <li><strong>QC testing:</strong> Titre determination, specificity panel, avidity, sterility</li>
+    </ol>
+
+    <div class="callout callout-key">
+      <strong>Acceptance criteria for formulated reagent</strong>
+      Titre â¥1:256 (tube test) or â¥1:512 (slide test) &bull; 100% specificity (positive with target, negative with non-target antigens) &bull; No growth in 14-day sterility test &bull; Stable for 12-24 months at 2-8Â°C
+    </div>
+
+    <h3>SOP 2: Filling &amp; Packaging</h3>
+    <ol>
+      <li><strong>Prepare filling area:</strong> Clean and sanitize; calibrate fill volume on filling machine</li>
+      <li><strong>Fill containers:</strong> Typically 5 mL, 10 mL, or 100 mL sterile bottles. Cap immediately after filling.</li>
+      <li><strong>Label:</strong> Product name (e.g., "Anti-A Monoclonal Blood Grouping Reagent"), lot number, expiry date, storage conditions (2-8Â°C), volume, manufacturer info, regulatory markings</li>
+      <li><strong>Quarantine &amp; release:</strong> Store at 2-8Â°C while final QC testing is completed. Release for distribution only after QC approval.</li>
+    </ol>
+
+    <p><strong>Fill volume tolerance:</strong> Â±5% of target volume &bull; <strong>Closure integrity:</strong> No leaks &bull; <strong>Label accuracy:</strong> 100% correct information</p>
+
+    <h3>SOP 3: Titre Determination (Hemagglutination Assay)</h3>
+    <p>This is the core quality test performed at multiple stages:</p>
+    <ol>
+      <li>Prepare doubling dilutions in 10-12 tubes: 1:2, 1:4, 1:8 ... up to 1:4096</li>
+      <li>Add 50 ÂµL of 3-5% red cell suspension to each tube (A1 cells for Anti-A, B cells for Anti-B, D+ cells for Anti-D)</li>
+      <li>Include positive control (undiluted antibody + cells) and negative control (saline + cells)</li>
+      <li>Incubate at room temperature for 15 minutes, centrifuge at 1000 rpm for 15-60 seconds</li>
+      <li>Gently resuspend and grade agglutination: 4+ (solid) â 0 (none)</li>
+      <li>Record titre as the highest dilution showing â¥2+ agglutination</li>
+    </ol>
+
+    <div class="yt-links">
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=hemagglutination+titre+determination+blood+bank" target="_blank" rel="noopener">&#9654; Hemagglutination Titre Assay</a>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=blood+grouping+reagent+manufacturing+process" target="_blank" rel="noopener">&#9654; Reagent Manufacturing</a>
+    </div>
+
+  </div></div>
+</div>
+
+<!-- ââââââââââââââââââââââââââââââââââââââââ
+     â  SECTION 8 â EQUIPMENT & CAPEX      â
+     ââââââââââââââââââââââââââââââââââââââââ -->
+<div class="section">
+  <div class="section-header" onclick="toggleSection(this)">
+    <h2><span class="num">8</span> Equipment &amp; Capital Investment</h2>
+    <span class="arrow">&#9662;</span>
+  </div>
+  <div class="section-body"><div class="section-content">
+
+    <p>The facility requires four main areas, each with specialized equipment. Total capital investment ranges from $285K-$875K (excluding large-scale bioreactors) depending on scale:</p>
+
+    <table class="comparison-table">
+      <tr><th>Facility Area</th><th>Key Equipment</th><th>Cost Range (USD)</th></tr>
+      <tr><td><strong>Hybridoma Development Lab</strong></td><td>Biosafety cabinets (Class II), COâ incubators, inverted microscope, centrifuge, LNâ storage, -80Â°C freezer</td><td>$60,000 - 120,000</td></tr>
+      <tr><td><strong>Small-Scale Production</strong></td><td>Large biosafety cabinets, large COâ incubators, magnetic stirrer platforms, spinner flasks (20-50), centrifuge, 0.22 Âµm filtration</td><td>$80,000 - 180,000</td></tr>
+      <tr><td><strong>Mid-Scale Production</strong></td><td>Bench bioreactor (2-10 L), miniPERM units (5-10), peristaltic pumps, gas mixing system</td><td>$50,000 - 200,000</td></tr>
+      <tr><td><strong>Large-Scale (optional)</strong></td><td>Pilot bioreactor (50-200 L), harvest/clarification system, CIP system, SCADA process control</td><td>$210,000 - 630,000</td></tr>
+      <tr><td><strong>Formulation &amp; Fill-Finish</strong></td><td>Formulation tanks (50-500 L), filling machine (1-10 mL), labeling machine, walk-in cold storage</td><td>$60,000 - 280,000</td></tr>
+      <tr><td><strong>QC Laboratory</strong></td><td>Serology centrifuge, ELISA reader, spectrophotometer, gel electrophoresis, sterility incubators, mycoplasma detection</td><td>$35,000 - 95,000</td></tr>
+    </table>
+
+    <h3>Phased Investment Strategy</h3>
+    <p>The report recommends a staged approach to minimize upfront risk:</p>
+
+    <div class="diagram-container">
+      <svg viewBox="0 0 760 130" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, sans-serif">
+        <rect x="10" y="20" width="230" height="70" rx="10" fill="#eaf2f8" stroke="#1a5276" stroke-width="2"/>
+        <text x="125" y="42" text-anchor="middle" font-size="12" fill="#1a5276" font-weight="700">Phase 1 (Year 1)</text>
+        <text x="125" y="58" text-anchor="middle" font-size="10" fill="#1a5276">Hybridoma lab + small-scale</text>
+        <text x="125" y="74" text-anchor="middle" font-size="11" fill="#c0392b" font-weight="700">$200K - $400K</text>
+
+        <rect x="265" y="20" width="230" height="70" rx="10" fill="#fef3e5" stroke="#e67e22" stroke-width="2"/>
+        <text x="380" y="42" text-anchor="middle" font-size="12" fill="#e67e22" font-weight="700">Phase 2 (Year 2)</text>
+        <text x="380" y="58" text-anchor="middle" font-size="10" fill="#e67e22">Mid-scale + formulation + fill</text>
+        <text x="380" y="74" text-anchor="middle" font-size="11" fill="#c0392b" font-weight="700">$150K - $300K</text>
+
+        <rect x="520" y="20" width="230" height="70" rx="10" fill="#e8f5ee" stroke="#1a6b4a" stroke-width="2"/>
+        <text x="635" y="42" text-anchor="middle" font-size="12" fill="#1a6b4a" font-weight="700">Phase 3 (Year 3+)</text>
+        <text x="635" y="58" text-anchor="middle" font-size="10" fill="#1a6b4a">Pilot/production bioreactors</text>
+        <text x="635" y="74" text-anchor="middle" font-size="11" fill="#c0392b" font-weight="700">$300K - $600K</text>
+
+        <text x="380" y="115" text-anchor="middle" font-size="11" fill="#1a5276" font-weight="600">Total over 3 years: $650,000 - $1,300,000</text>
+      </svg>
+    </div>
+
+    <div class="yt-links">
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=biosafety+cabinet+class+II+cell+culture+lab" target="_blank" rel="noopener">&#9654; Biosafety Cabinet Setup</a>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=pharmaceutical+filling+machine+vial+filling" target="_blank" rel="noopener">&#9654; Fill-Finish Equipment</a>
+    </div>
+
+  </div></div>
+</div>
+
+<!-- ââââââââââââââââââââââââââââââââââââââââ
+     â  SECTION 9 â QC & REGULATORY        â
+     ââââââââââââââââââââââââââââââââââââââââ -->
+<div class="section">
+  <div class="section-header" onclick="toggleSection(this)">
+    <h2><span class="num">9</span> Quality Control &amp; Regulatory Compliance</h2>
+    <span class="arrow">&#9662;</span>
+  </div>
+  <div class="section-body"><div class="section-content">
+
+    <h3>In-Process Quality Controls</h3>
+    <table class="comparison-table">
+      <tr><th>Test</th><th>When</th><th>Acceptance Criteria</th></tr>
+      <tr><td>Cell viability</td><td>Daily during culture</td><td>&gt;85% during exponential growth</td></tr>
+      <tr><td>Cell density</td><td>Daily during culture</td><td>2-15 Ã 10âµ cells/mL</td></tr>
+      <tr><td>Sterility (culture)</td><td>Each harvest</td><td>No visible contamination</td></tr>
+      <tr><td>Titre (supernatant)</td><td>Each harvest</td><td>â¥1:256 (tube) or â¥1:512 (slide)</td></tr>
+    </table>
+
+    <h3>Final Product Testing</h3>
+    <table class="comparison-table">
+      <tr><th>Test</th><th>Method</th><th>Acceptance Criteria</th></tr>
+      <tr><td>Titre</td><td>Hemagglutination (serial dilution)</td><td>â¥1:256 (tube) or â¥1:512 (slide)</td></tr>
+      <tr><td>Specificity</td><td>Panel of typed cells (A1, A2, B, O, D+, D-)</td><td>100% â positive with target, negative with non-target</td></tr>
+      <tr><td>Avidity</td><td>Saline replacement or score method</td><td>Score â¥3+ with homozygous cells</td></tr>
+      <tr><td>Sterility</td><td>USP &lt;71&gt; or equivalent</td><td>No growth in 14 days</td></tr>
+      <tr><td>Mycoplasma</td><td>PCR or culture-based</td><td>Negative</td></tr>
+      <tr><td>Endotoxin</td><td><span class="jargon">LAL assay<span class="tip">Limulus Amebocyte Lysate assay â uses extract from horseshoe crab blood cells to detect bacterial endotoxins. The lysate clots in the presence of endotoxins. Blood grouping reagents must contain less than 5 EU/mL.</span></span></td><td>&lt;5 EU/mL</td></tr>
+      <tr><td>pH</td><td>pH meter</td><td>7.0 - 7.4</td></tr>
+      <tr><td>Appearance</td><td>Visual inspection</td><td>Clear to slightly opalescent, no particulates</td></tr>
+      <tr><td>Volume</td><td>Gravimetric or volumetric</td><td>Â±5% of stated volume</td></tr>
+    </table>
+
+    <h3>Stability Testing</h3>
+    <ul>
+      <li><strong>Accelerated:</strong> 37Â°C for 7 days â must maintain titre and specificity</li>
+      <li><strong>Real-time:</strong> 2-8Â°C for intended shelf life (12-24 months), tested at 0, 3, 6, 12, 18, 24 months</li>
+      <li><strong>Freeze-thaw:</strong> 3 cycles of -20Â°C to room temperature â must maintain performance</li>
+    </ul>
+
+    <h3>Regulatory Pathways</h3>
+    <table class="comparison-table">
+      <tr><th>Market</th><th>Authority</th><th>Classification</th><th>Timeline</th><th>Estimated Fees</th></tr>
+      <tr><td><strong>India</strong></td><td>CDSCO</td><td>Class C IVD (Medical Devices Rules 2017)</td><td>6-12 months</td><td>INR 50,000-100,000</td></tr>
+      <tr><td><strong>USA</strong></td><td>FDA</td><td>Class II â 510(k) premarket notification</td><td>3-12 months</td><td>$12,000-20,000</td></tr>
+      <tr><td><strong>EU</strong></td><td>IVDR 2017/746</td><td>Class C â Notified Body assessment</td><td>6-18 months</td><td>â¬20,000-50,000</td></tr>
+      <tr><td><strong>Global</strong></td><td>WHO Prequalification</td><td>Voluntary â for UN procurement</td><td>12-24 months</td><td>Varies</td></tr>
+    </table>
+
+    <h3>Quality Management System</h3>
+    <p><span class="jargon">ISO 13485<span class="tip">An international standard for Quality Management Systems (QMS) specific to medical devices. It covers design controls, document management, supplier qualification, production controls, complaint handling, and corrective/preventive action. Certification is valid for 3 years with annual surveillance audits. Cost: $15,000-50,000 for initial certification.</span></span> certification is essential for regulatory compliance and market access. Key elements include management responsibility, resource management, product realization (design through production), and measurement/improvement. The certification process involves a gap analysis (6-12 months), followed by Stage 1 (documentation review) and Stage 2 (on-site assessment) audits.</p>
+
+    <div class="callout callout-tip">
+      <strong>GMP compliance essentials</strong>
+      Segregated facility areas (production, QC, storage) with environmental controls &bull; Trained and qualified personnel with documented training records &bull; Batch records, SOPs, validation protocols &bull; Process validation and equipment qualification (IQ/OQ/PQ) &bull; Change control and complaint handling systems
+    </div>
+
+    <div class="yt-links">
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=ISO+13485+medical+device+quality+management+system" target="_blank" rel="noopener">&#9654; ISO 13485 Overview</a>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=CDSCO+IVD+registration+India+medical+device" target="_blank" rel="noopener">&#9654; CDSCO IVD Registration</a>
+    </div>
+
+  </div></div>
+</div>
+
+<!-- ââââââââââââââââââââââââââââââââââââââââ
+     â  SECTION 10 â COST & ECONOMICS      â
+     ââââââââââââââââââââââââââââââââââââââââ -->
+<div class="section">
+  <div class="section-header" onclick="toggleSection(this)">
+    <h2><span class="num">10</span> Unit Economics &amp; Financial Projections</h2>
+    <span class="arrow">&#9662;</span>
+  </div>
+  <div class="section-body"><div class="section-content">
+
+    <h3>Cost per Test â Spinner Flask Production</h3>
+    <p>Using direct culture supernatant (no purification), the cost breakdown for a single 500 mL spinner flask batch yielding ~8,000 tube tests:</p>
+
+    <table class="comparison-table">
+      <tr><th>Item</th><th>Cost (USD)</th></tr>
+      <tr><td>Culture medium (500 mL with 5% FBS)</td><td>$5.00</td></tr>
+      <tr><td>Spinner flask (reusable, amortized)</td><td>$1.00</td></tr>
+      <tr><td>Plasticware (pipettes, tubes)</td><td>$2.00</td></tr>
+      <tr><td>Labor (technician time, 1 hour)</td><td>$10.00</td></tr>
+      <tr><td>Utilities (incubator, electricity)</td><td>$1.00</td></tr>
+      <tr><td>Filtration (0.22 Âµm)</td><td>$3.00</td></tr>
+      <tr><td>Formulation (BSA, preservative)</td><td>$4.00</td></tr>
+      <tr><td>Filling & packaging (bottles, labels)</td><td>$8.00</td></tr>
+      <tr><td>Quality control testing</td><td>$5.00</td></tr>
+      <tr><td style="font-weight:700; border-top: 2px solid var(--primary);">Total per spinner flask</td><td style="font-weight:700; border-top: 2px solid var(--primary);">$39.00</td></tr>
+      <tr><td style="color: var(--green); font-weight:700;">Cost per test</td><td style="color: var(--green); font-weight:700;">$0.0049</td></tr>
+      <tr><td style="color: var(--green); font-weight:700;">Cost per 10 mL bottle (200 tests)</td><td style="color: var(--green); font-weight:700;">$0.98</td></tr>
+    </table>
+
+    <div class="callout callout-key">
+      <strong>Massive margin potential</strong>
+      Market price for a 10 mL bottle: $5-15 (India) / $15-30 (international). Levram's production cost: $0.98 per bottle. This translates to <strong>80-95% gross margins</strong> â among the highest in the IVD industry.
+    </div>
+
+    <h3>Revenue Projections</h3>
+    <table class="comparison-table">
+      <tr><th>Year</th><th>Products</th><th>India Market Share</th><th>Revenue (USD)</th></tr>
+      <tr><td><strong>Year 1</strong></td><td>Tube test reagents (Anti-A, B, D, AB)</td><td>0.5-1%</td><td>$750K - $1.5M</td></tr>
+      <tr><td><strong>Year 2</strong></td><td>+ Slide test, RBC suspensions</td><td>2-3%</td><td>$3M - $4.5M</td></tr>
+      <tr><td><strong>Year 3</strong></td><td>+ Extended phenotyping, gel card</td><td>4-6%</td><td>$6M - $9M</td></tr>
+      <tr><td><strong>Year 4</strong></td><td>+ Microplate, export sales</td><td>6-8%</td><td>$9M - $12M</td></tr>
+      <tr><td><strong>Year 5</strong></td><td>Full portfolio, established export</td><td>8-10%</td><td>$12M - $15M</td></tr>
+    </table>
+
+    <p><strong>Break-even:</strong> Expected in Year 2 (18-24 months) &bull; <strong>5-year ROI:</strong> 200-400% &bull; <strong>Operating margin at scale (Year 3):</strong> 4-34% depending on sales/marketing spend</p>
+
+    <div class="yt-links">
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=IVD+diagnostics+business+model+India" target="_blank" rel="noopener">&#9654; IVD Business in India</a>
+    </div>
+
+  </div></div>
+</div>
+
+<!-- ââââââââââââââââââââââââââââââââââââââââ
+     â  SECTION 11 â COMPETITION            â
+     ââââââââââââââââââââââââââââââââââââââââ -->
+<div class="section">
+  <div class="section-header" onclick="toggleSection(this)">
+    <h2><span class="num">11</span> Competitive Landscape &amp; Differentiation</h2>
+    <span class="arrow">&#9662;</span>
+  </div>
+  <div class="section-body"><div class="section-content">
+
+    <h3>Price Comparison (10 mL Tube Test Reagent)</h3>
+    <table class="comparison-table">
+      <tr><th>Manufacturer</th><th>Anti-A (USD)</th><th>Anti-B (USD)</th><th>Anti-D (USD)</th><th>Presence</th></tr>
+      <tr><td>Bio-Rad (USA)</td><td>$25-30</td><td>$25-30</td><td>$30-35</td><td>Global leader, 25-30% share</td></tr>
+      <tr><td>Ortho Clinical (USA)</td><td>$22-28</td><td>$22-28</td><td>$28-33</td><td>Major player, 20-25% share</td></tr>
+      <tr><td>Diagast (France)</td><td>$20-25</td><td>$20-25</td><td>$25-30</td><td>European leader, E.M. Technology</td></tr>
+      <tr><td>Tulips Diagnostics (India)</td><td>$8-12</td><td>$8-12</td><td>$12-18</td><td>Indian leader, 15-20% India share</td></tr>
+      <tr><td>Coral Clinical (India)</td><td>$7-11</td><td>$7-11</td><td>$11-17</td><td>Indian player, 8-12% India share</td></tr>
+      <tr><td style="color: var(--green); font-weight:700;">Levram (Target)</td><td style="color: var(--green); font-weight:700;">$6-10</td><td style="color: var(--green); font-weight:700;">$6-10</td><td style="color: var(--green); font-weight:700;">$10-15</td><td style="color: var(--green);">New entrant â lowest cost</td></tr>
+    </table>
+
+    <h3>Market Segmentation & Opportunity</h3>
+    <table class="comparison-table">
+      <tr><th>Segment</th><th>Volume</th><th>Current Suppliers</th><th>Levram Opportunity</th></tr>
+      <tr><td>Large hospitals & blood banks</td><td>High volume, automation</td><td>Bio-Rad, Ortho, Diagast</td><td>Medium (compete on local service)</td></tr>
+      <tr><td>Mid-size hospitals</td><td>Moderate, mixed methods</td><td>Tulips, Coral, international</td><td><strong>High</strong> (price + quality)</td></tr>
+      <tr><td>Small hospitals & clinics</td><td>Low volume, price-sensitive</td><td>Tulips, Coral, local</td><td><strong>High</strong> (compete on price)</td></tr>
+      <tr><td>Government hospitals/blood banks</td><td>Tender-based, lowest bidder</td><td>Tulips, Coral</td><td><strong>High</strong> (price + compliance)</td></tr>
+      <tr><td>Export markets</td><td>Nepal, Bangladesh, Africa</td><td>International brands</td><td><strong>High</strong> (WHO PQ, cost advantage)</td></tr>
+    </table>
+
+    <h3>SWOT Summary for Levram</h3>
+    <table class="comparison-table">
+      <tr><th style="background: var(--green); width:50%;">Strengths</th><th style="background: var(--red);">Weaknesses</th></tr>
+      <tr>
+        <td>Low-cost manufacturing using direct supernatant &bull; Technical hybridoma expertise &bull; Vertical integration potential &bull; Customized Indian-market formulations</td>
+        <td>New entrant, no brand recognition &bull; Limited initial capacity &bull; No distribution network yet &bull; Regulatory approvals pending</td>
+      </tr>
+      <tr><th style="background: var(--blue);">Opportunities</th><th style="background: var(--accent);">Threats</th></tr>
+      <tr>
+        <td>Growing Indian market (9-11% CAGR) &bull; Expanding blood bank infrastructure &bull; Government safe-transfusion initiatives &bull; Export to Asia-Pacific and Africa &bull; Ultra-low-cost reagents for rural settings</td>
+        <td>Established competition (Tulips, Coral) &bull; Price war risk &bull; International brands reducing prices &bull; Regulatory delays &bull; Imported raw material dependence (FBS)</td>
+      </tr>
+    </table>
+
+    <h3>Differentiation Strategy</h3>
+    <ol>
+      <li><strong>Quality Leadership:</strong> "Premium quality at Indian prices" â ISO 13485, extensive clinical validation, peer-reviewed publications</li>
+      <li><strong>Technical Innovation:</strong> Proprietary clone blends optimized for Indian population variants; tropical-stable formulations for rural distribution</li>
+      <li><strong>Service Excellence:</strong> Technical training for lab personnel; rapid response support; customized validation assistance</li>
+    </ol>
+
+    <div class="yt-links">
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=blood+grouping+reagents+market+India" target="_blank" rel="noopener">&#9654; Blood Grouping Market India</a>
+    </div>
+
+  </div></div>
+</div>
+
+<!-- ââââââââââââââââââââââââââââââââââââââââ
+     â  SECTION 12 â LAUNCH ROADMAP        â
+     ââââââââââââââââââââââââââââââââââââââââ -->
+<div class="section">
+  <div class="section-header" onclick="toggleSection(this)">
+    <h2><span class="num">12</span> Implementation Roadmap &amp; Product Portfolio</h2>
+    <span class="arrow">&#9662;</span>
+  </div>
+  <div class="section-body"><div class="section-content">
+
+    <h3>5-Year Phased Roadmap</h3>
+
+    <table class="comparison-table">
+      <tr><th>Period</th><th>Milestone</th><th>Key Activities</th></tr>
+      <tr><td><strong>Months 1-6</strong></td><td>Foundation</td><td>Set up hybridoma lab &bull; Initiate clone development or licensing &bull; Recruit technical staff &bull; Begin ISO 13485 implementation</td></tr>
+      <tr><td><strong>Months 6-12</strong></td><td>Development</td><td>Complete clone selection &bull; Establish MCB/WCB &bull; Optimize culture conditions &bull; Develop formulations &bull; Initiate CDSCO registration</td></tr>
+      <tr><td><strong>Months 12-18</strong></td><td>Validation</td><td>Analytical performance studies &bull; Clinical validation at reference labs &bull; Stability studies &bull; Achieve ISO 13485 &bull; Obtain CDSCO approval</td></tr>
+      <tr><td><strong>Months 18-24</strong></td><td>Launch</td><td>Commercial launch: tube test reagents (Anti-A, B, D, AB) &bull; Scale production &bull; Build sales force &bull; Begin export market development</td></tr>
+      <tr><td><strong>Months 24-36</strong></td><td>Expansion</td><td>Launch slide test reagents &bull; Extended phenotyping products &bull; Scale to mid-scale bioreactors &bull; Pursue government tenders &bull; CE marking / WHO PQ</td></tr>
+      <tr><td><strong>Months 36-60</strong></td><td>Growth</td><td>Gel card + microplate reagents &bull; Pilot/production bioreactors (50-200 L) &bull; Export sales established &bull; Automation partnerships &bull; Target 8-10% India market share</td></tr>
+    </table>
+
+    <h3>Product Portfolio Strategy (16 Products over 5 Years)</h3>
+    <table class="comparison-table">
+      <tr><th>Phase</th><th>Products</th><th>Format</th></tr>
+      <tr><td><strong>Year 1</strong></td><td>Anti-A, Anti-B, Anti-D, Anti-AB</td><td>Tube test (10 mL & 100 mL)</td></tr>
+      <tr><td><strong>Year 2</strong></td><td>Anti-A, Anti-B, Anti-D (slide); A1 & B RBC suspensions; Anti-Human Globulin</td><td>Slide test (10 mL); ancillary</td></tr>
+      <tr><td><strong>Year 3</strong></td><td>Anti-C, Anti-c, Anti-E, Anti-e, Anti-K; Gel card reagents; Weak D Detection Kit</td><td>Extended phenotyping; gel card</td></tr>
+      <tr><td><strong>Years 4-5</strong></td><td>Proprietary gel cards; Automation-compatible reagents; Molecular typing kits (PCR-based)</td><td>Automated & molecular platforms</td></tr>
+    </table>
+
+    <h3>Distribution Strategy</h3>
+    <ul>
+      <li><strong>Years 1-2 (Direct Sales):</strong> 5-10 technical sales reps in major cities, targeting key accounts (large hospitals, blood banks, reference labs)</li>
+      <li><strong>Years 2-3 (Distributor Network):</strong> Regional distributors in 15-20 states for broader market coverage</li>
+      <li><strong>Years 2-5 (Online):</strong> E-commerce platform and partnership with medical supply platforms (Medikabazaar, Moglix)</li>
+      <li><strong>Years 3-5 (Export):</strong> Country distributors in Nepal, Bangladesh, Sri Lanka, and African markets; participation in WHO/UNICEF tenders</li>
+    </ul>
+
+    <div class="callout callout-tip">
+      <strong>Critical Success Factors</strong>
+      1. Prioritize clone validation (titre â¥1:512 in supernatant) &bull; 2. Achieve ISO 13485 before launch &bull; 3. Obtain CDSCO approval within 12 months &bull; 4. Implement GMP from the outset &bull; 5. Build credibility through clinical validation and peer-reviewed publications &bull; 6. Design for international markets (CE, WHO PQ) from day one
+    </div>
+
+    <div class="yt-links">
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=IVD+startup+India+medical+device+manufacturing" target="_blank" rel="noopener">&#9654; IVD Startup in India</a>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=blood+bank+India+government+policy" target="_blank" rel="noopener">&#9654; Blood Banking in India</a>
+    </div>
+
+  </div></div>
+</div>
+
+<!-- ââââââââââââââââââââââââââââââââââââââââââââ
+     â  GLOSSARY                                â
+     ââââââââââââââââââââââââââââââââââââââââââââ -->
+<div class="section" id="glossary-section">
+  <div class="section-header" onclick="toggleSection(this)">
+    <h2><span class="num">G</span> Searchable Glossary</h2>
+    <span class="arrow">&#9662;</span>
+  </div>
+  <div class="section-body"><div class="section-content">
+    <input type="text" class="glossary-search" id="glossarySearch" placeholder="Type to filter glossary terms..." oninput="filterGlossary()">
+    <div class="glossary-grid" id="glossaryGrid">
+
+      <div class="glossary-item"><strong>Agglutination</strong> â Clumping of red blood cells caused by antibodies cross-linking antigens on adjacent cells. The visible endpoint of all serological blood grouping tests.</div>
+      <div class="glossary-item"><strong>AHG (Anti-Human Globulin)</strong> â Also called Coombs reagent. An antibody against human IgG that bridges IgG-coated red cells, making agglutination visible. Essential for detecting weak antibodies and IgG-based reagents.</div>
+      <div class="glossary-item"><strong>Antigen</strong> â A molecular structure (sugar or protein) on the cell surface recognized by the immune system. Blood group antigens on red cells determine a person's blood type.</div>
+      <div class="glossary-item"><strong>Avidity</strong> â The overall strength of antibody-antigen binding, taking into account both the intrinsic binding affinity and the number of binding sites. Higher avidity = faster, stronger agglutination.</div>
+      <div class="glossary-item"><strong>Biosafety Cabinet (BSC)</strong> â An enclosed, ventilated workspace with HEPA-filtered airflow that protects the operator, environment, and cell cultures from contamination. Class II cabinets are standard for hybridoma work.</div>
+      <div class="glossary-item"><strong>BSA (Bovine Serum Albumin)</strong> â A protein purified from cattle blood, used as a stabilizer in blood grouping reagent formulations at 1-5% concentration to prevent antibody degradation.</div>
+      <div class="glossary-item"><strong>CDSCO</strong> â Central Drugs Standard Control Organisation â India's national regulatory authority for drugs, cosmetics, and medical devices (including IVD reagents). Equivalent to the US FDA.</div>
+      <div class="glossary-item"><strong>CE Marking</strong> â A certification mark indicating a product meets European health, safety, and environmental standards. For IVDs, governed by the In Vitro Diagnostic Regulation (IVDR) 2017/746.</div>
+      <div class="glossary-item"><strong>Clone</strong> â A population of genetically identical cells descended from a single ancestor cell. In hybridoma technology, a "clone" refers to a specific hybridoma cell line producing one unique antibody.</div>
+      <div class="glossary-item"><strong>D Antigen</strong> â The most important antigen in the Rh blood group system. A transmembrane protein encoded by the RHD gene. Its presence or absence determines Rh-positive or Rh-negative status.</div>
+      <div class="glossary-item"><strong>E.M. Technology</strong> â Erythrocyte Magnetized Technology by Diagast â red cells are coated with magnetic particles, allowing automated separation of agglutinated vs. free cells using magnets instead of centrifugation.</div>
+      <div class="glossary-item"><strong>Epitope</strong> â The specific molecular shape on an antigen that an antibody recognizes and binds to. The D antigen has approximately 30 known epitopes.</div>
+      <div class="glossary-item"><strong>FBS (Fetal Bovine Serum)</strong> â Serum collected from bovine fetuses, used as a nutrient supplement in cell culture media. Contains growth factors, hormones, and proteins. Represents 30-50% of culture medium cost.</div>
+      <div class="glossary-item"><strong>Gel Card</strong> â A small plastic card containing microcolumns filled with gel (and sometimes embedded reagent). During centrifugation, agglutinated cells are trapped in the gel while free cells pass through, creating an objective, standardized reading.</div>
+      <div class="glossary-item"><strong>GMP (Good Manufacturing Practice)</strong> â A system of quality assurance ensuring products are consistently produced and controlled according to established quality standards. Required for pharmaceutical and IVD manufacturing.</div>
+      <div class="glossary-item"><strong>H Antigen</strong> â The precursor sugar chain on red blood cells that serves as the foundation for ABO antigens. Group O individuals have only the H antigen without further modification.</div>
+      <div class="glossary-item"><strong>HAT Medium</strong> â Hypoxanthine-Aminopterin-Thymidine selection medium. Used after cell fusion to kill unfused myeloma cells (which lack HGPRT enzyme) while allowing hybridomas to survive.</div>
+      <div class="glossary-item"><strong>HDFN</strong> â Hemolytic Disease of the Fetus and Newborn â a condition where maternal antibodies (usually anti-D) cross the placenta and destroy fetal red blood cells, causing anemia, jaundice, or worse.</div>
+      <div class="glossary-item"><strong>Heterohybridoma</strong> â A hybridoma created by fusing cells from two different species (e.g., human B cells with mouse myeloma). Used for Anti-D production because mice cannot naturally produce human anti-D antibodies.</div>
+      <div class="glossary-item"><strong>Hollow Fiber Bioreactor</strong> â A high-density cell culture system using bundles of semi-permeable tubular membranes. Cells grow in the "extra-capillary" space at densities of 10â¸-10â¹ cells/mL, producing antibody at 0.3-2.0 g/L.</div>
+      <div class="glossary-item"><strong>Hybridoma</strong> â A cell line created by fusing an antibody-producing B lymphocyte with an immortal myeloma cell. It grows indefinitely and continuously secretes a single, specific monoclonal antibody.</div>
+      <div class="glossary-item"><strong>IgG</strong> â Immunoglobulin G â the most abundant antibody class in blood. Monomeric (single Y-shaped unit, ~150 kDa). Too small for direct agglutination; requires AHG or gel technology for blood grouping applications.</div>
+      <div class="glossary-item"><strong>IgM</strong> â Immunoglobulin M â a pentameric antibody (~970 kDa) with 10 binding sites. Excellent at direct agglutination due to its large size. The preferred isotype for slide and tube test blood grouping reagents.</div>
+      <div class="glossary-item"><strong>ISO 13485</strong> â International standard for Quality Management Systems specific to medical devices. Covers design, production, installation, and servicing. Certification is essential for regulatory compliance.</div>
+      <div class="glossary-item"><strong>IVD (In Vitro Diagnostic)</strong> â A medical device or reagent used for testing samples (blood, urine, tissue) outside the body ("in vitro" = in glass). Blood grouping reagents are classified as IVDs.</div>
+      <div class="glossary-item"><strong>LAL Assay</strong> â Limulus Amebocyte Lysate assay â a test using horseshoe crab blood extract to detect bacterial endotoxins. Blood grouping reagents must show &lt;5 EU/mL to pass QC.</div>
+      <div class="glossary-item"><strong>Landsteiner's Rule</strong> â The principle that your plasma contains antibodies against whichever ABO antigen your red cells lack. Discovered by Karl Landsteiner (Nobel Prize 1930).</div>
+      <div class="glossary-item"><strong>Limiting Dilution</strong> â A cloning technique where cells are diluted and distributed so each well statistically receives â¤1 cell. Colonies growing from single cells are guaranteed to be monoclonal.</div>
+      <div class="glossary-item"><strong>MCB (Master Cell Bank)</strong> â A primary stock of 50-100 frozen vials of a validated hybridoma clone, stored in liquid nitrogen as the permanent reference source. WCB vials are derived from the MCB.</div>
+      <div class="glossary-item"><strong>Monoclonal Antibody</strong> â An antibody produced by a single clone of cells, so every molecule is structurally identical and binds to one specific epitope. The gold standard for modern blood grouping reagents.</div>
+      <div class="glossary-item"><strong>Myeloma</strong> â A cancerous plasma cell line that can grow indefinitely in culture. Used as the "immortal" fusion partner in hybridoma production. Common lines: SP2/0, NS0.</div>
+      <div class="glossary-item"><strong>NanoLys</strong> â A proprietary high-density solution developed by Diagast, used in combination with E.M. Technology. It eliminates the need for washing steps in blood grouping tests.</div>
+      <div class="glossary-item"><strong>Partial D</strong> â A variant of the D antigen where the protein is present but missing certain epitopes. These individuals can produce anti-D against the epitopes they lack.</div>
+      <div class="glossary-item"><strong>PEG (Polyethylene Glycol)</strong> â A chemical fusogen (MW 1,500-4,000) used to merge cell membranes during hybridoma production. Applied briefly to B cell + myeloma mixtures to create hybrid cells.</div>
+      <div class="glossary-item"><strong>Polyclonal Antisera</strong> â Antibody-containing serum from immunized donors, containing a mixture of different antibodies. The older technology replaced by monoclonal antibodies for blood grouping.</div>
+      <div class="glossary-item"><strong>Rh System</strong> â The second most important blood group system, involving protein antigens (D, C, c, E, e) encoded by RHD and RHCE genes. Rh-positive/negative refers specifically to the D antigen.</div>
+      <div class="glossary-item"><strong>RPMI-1640</strong> â A cell culture medium originally developed at Roswell Park Memorial Institute. Widely used for hybridoma culture, supplemented with FBS, L-glutamine, and antibiotics.</div>
+      <div class="glossary-item"><strong>Sodium Azide</strong> â A chemical preservative (NaNâ) used at 0.1% concentration in blood grouping reagents to prevent microbial contamination during the product's shelf life.</div>
+      <div class="glossary-item"><strong>Specificity</strong> â The ability of a reagent to react only with its target antigen and not with other antigens. A specific Anti-A reagent agglutinates A cells but never B or O cells.</div>
+      <div class="glossary-item"><strong>Titre</strong> â The highest dilution of a reagent that still produces visible agglutination (â¥2+ score). Expressed as a ratio (e.g., 1:256). Higher titre indicates more concentrated/potent antibody.</div>
+      <div class="glossary-item"><strong>Transfusion Reaction</strong> â An adverse immune response to transfused blood. ABO-incompatible transfusions cause acute hemolytic reactions (red cell destruction) that can be fatal within minutes.</div>
+      <div class="glossary-item"><strong>WCB (Working Cell Bank)</strong> â A secondary stock of 100-200 frozen vials derived from the MCB, used for routine production. When a WCB is depleted, a new one is prepared from the MCB.</div>
+      <div class="glossary-item"><strong>Weak D</strong> â A variant where the D antigen is present but in reduced quantity on the red cell surface. May test negative with standard reagents but positive with more sensitive methods (AHG, gel card).</div>
+      <div class="glossary-item"><strong>WHO Prequalification</strong> â A voluntary quality assessment program by the World Health Organization. Products that pass gain access to UN procurement channels (UNICEF, GAVI) for developing country markets.</div>
+
+    </div>
+  </div></div>
+</div>
+
+</div><!-- /container -->
+
+<!-- ââââââââââââââââ SCRIPTS ââââââââââââââââ -->
+<script>
+function toggleSection(header) {
+  header.closest('.section').classList.toggle('open');
+}
+function toggleAll(open) {
+  document.querySelectorAll('.section').forEach(s => {
+    if (open) s.classList.add('open');
+    else s.classList.remove('open');
+  });
+}
+function filterGlossary() {
+  const q = document.getElementById('glossarySearch').value.toLowerCase();
+  document.querySelectorAll('.glossary-item').forEach(item => {
+    item.style.display = item.textContent.toLowerCase().includes(q) ? '' : 'none';
+  });
+}
+</script>
+
+</body>
+</html>
+
