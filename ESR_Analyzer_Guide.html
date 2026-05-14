@@ -1,0 +1,1569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ESR Analyzer Manufacturing Guide — Beginner-Friendly</title>
+<style>
+  :root {
+    --primary: #0d7377;
+    --primary-light: #e8f6f6;
+    --primary-dark: #095355;
+    --accent: #14919b;
+    --accent-light: #e0f4f5;
+    --blue: #2980b9;
+    --blue-light: #eaf4fb;
+    --red: #c0392b;
+    --red-light: #fbeaea;
+    --green: #1a6b4a;
+    --green-light: #e8f5ee;
+    --orange: #e67e22;
+    --orange-light: #fef3e5;
+    --gray: #7f8c8d;
+    --bg: #fafbfc;
+    --card: #ffffff;
+    --text: #2c3e50;
+    --border: #d5e0e0;
+    --shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    font-size: 17px;
+  }
+
+  /* ── Hero ── */
+  .hero {
+    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 50%, var(--accent) 100%);
+    color: white;
+    padding: 60px 24px 50px;
+    text-align: center;
+  }
+  .hero h1 { font-size: 2.2rem; margin-bottom: 12px; font-weight: 700; letter-spacing: -0.5px; }
+  .hero p { font-size: 1.1rem; opacity: 0.92; max-width: 700px; margin: 0 auto 18px; }
+  .hero .badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.18);
+    border: 1px solid rgba(255,255,255,0.35);
+    border-radius: 20px;
+    padding: 6px 18px;
+    font-size: 0.9rem;
+    margin: 4px;
+  }
+
+  /* ── Container ── */
+  .container { max-width: 920px; margin: 0 auto; padding: 24px 18px 60px; }
+
+  /* ── Controls ── */
+  .controls {
+    display: flex; gap: 10px; margin-bottom: 24px; flex-wrap: wrap;
+  }
+  .controls button {
+    background: var(--primary); color: white; border: none;
+    border-radius: 6px; padding: 8px 18px; font-size: 0.92rem;
+    cursor: pointer; transition: background 0.2s;
+  }
+  .controls button:hover { background: var(--primary-dark); }
+
+  /* ── Sections ── */
+  .section {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 16px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+  .section-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 22px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s;
+  }
+  .section-header:hover { background: var(--primary-light); }
+  .section-header h2 {
+    font-size: 1.15rem; font-weight: 600; color: var(--primary);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-header .num {
+    background: var(--primary);
+    color: white;
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.85rem; font-weight: 700;
+    flex-shrink: 0;
+  }
+  .section-header .arrow {
+    font-size: 1.3rem;
+    transition: transform 0.3s ease;
+    color: var(--primary);
+    flex-shrink: 0;
+  }
+  .section.open .section-header .arrow { transform: rotate(180deg); }
+  .section-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .section.open .section-body { max-height: 12000px; }
+  .section-content { padding: 6px 22px 26px; }
+
+  /* ── Typography ── */
+  h3 { color: var(--primary); font-size: 1.05rem; margin: 22px 0 10px; font-weight: 600; }
+  h4 { color: var(--accent); font-size: 0.98rem; margin: 16px 0 8px; font-weight: 600; }
+  p { margin-bottom: 12px; }
+  ul, ol { margin: 0 0 14px 22px; }
+  li { margin-bottom: 5px; }
+
+  /* ── Tables ── */
+  .table-wrap { overflow-x: auto; margin: 14px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.93rem; }
+  th {
+    background: var(--primary);
+    color: white;
+    padding: 10px 14px;
+    text-align: left;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); }
+  tr:nth-child(even) { background: var(--primary-light); }
+  tr:hover { background: #d0eded; }
+
+  /* ── Jargon tooltip ── */
+  .jargon {
+    border-bottom: 2px dotted var(--accent);
+    cursor: help;
+    position: relative;
+    font-weight: 500;
+  }
+  .jargon .tip {
+    display: none;
+    position: absolute;
+    bottom: 130%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #1a2a3a;
+    color: #fff;
+    padding: 8px 14px;
+    border-radius: 7px;
+    font-size: 0.82rem;
+    font-weight: 400;
+    width: max-content;
+    max-width: 320px;
+    line-height: 1.5;
+    z-index: 100;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+    pointer-events: none;
+  }
+  .jargon .tip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent;
+    border-top-color: #1a2a3a;
+  }
+  .jargon:hover .tip { display: block; }
+
+  /* ── Info boxes ── */
+  .info-box {
+    border-left: 4px solid var(--accent);
+    background: var(--accent-light);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    margin: 14px 0;
+    font-size: 0.95rem;
+  }
+  .info-box.warn {
+    border-left-color: var(--orange);
+    background: var(--orange-light);
+  }
+  .info-box.success {
+    border-left-color: var(--green);
+    background: var(--green-light);
+  }
+  .info-box strong { color: var(--primary); }
+
+  /* ── SVG diagrams ── */
+  .diagram-wrap {
+    margin: 18px 0;
+    text-align: center;
+    background: #f8fbfb;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+    overflow-x: auto;
+  }
+  .diagram-wrap svg { max-width: 100%; height: auto; }
+  .diagram-caption {
+    font-size: 0.85rem;
+    color: var(--gray);
+    margin-top: 8px;
+    font-style: italic;
+  }
+
+  /* ── Video links ── */
+  .video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 14px;
+    margin: 14px 0;
+  }
+  .video-card {
+    background: var(--primary-light);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .video-card:hover { transform: translateY(-2px); box-shadow: 0 4px 14px rgba(0,0,0,0.12); }
+  .video-card a {
+    color: var(--primary);
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 0.95rem;
+  }
+  .video-card a:hover { text-decoration: underline; }
+  .video-card p { font-size: 0.85rem; color: var(--gray); margin-top: 6px; margin-bottom: 0; }
+
+  /* ── Glossary search ── */
+  #glossarySearch {
+    width: 100%;
+    padding: 10px 16px;
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    font-size: 1rem;
+    margin-bottom: 16px;
+    transition: border-color 0.2s;
+  }
+  #glossarySearch:focus { outline: none; border-color: var(--primary); }
+  .glossary-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .glossary-item {
+    background: var(--primary-light);
+    padding: 12px 16px;
+    border-radius: 7px;
+    border-left: 3px solid var(--accent);
+  }
+  .glossary-item .term {
+    font-weight: 700;
+    color: var(--primary);
+    font-size: 0.95rem;
+  }
+  .glossary-item .def {
+    font-size: 0.9rem;
+    color: var(--text);
+    margin-top: 3px;
+  }
+
+  /* ── Step numbers ── */
+  .step {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 14px;
+    align-items: flex-start;
+  }
+  .step-num {
+    background: var(--primary);
+    color: white;
+    min-width: 32px; height: 32px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  /* ── Financial highlight ── */
+  .fin-highlight {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    margin: 16px 0;
+  }
+  .fin-card {
+    background: var(--primary-light);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+  }
+  .fin-card .value { font-size: 1.5rem; font-weight: 700; color: var(--primary); }
+  .fin-card .label { font-size: 0.82rem; color: var(--gray); margin-top: 4px; }
+
+  /* ── Print styles ── */
+  @media print {
+    .hero { padding: 30px 20px; break-after: avoid; }
+    .controls { display: none; }
+    .section { break-inside: avoid; border: 1px solid #ccc; }
+    .section-body { max-height: none !important; }
+    .section-header .arrow { display: none; }
+    .jargon .tip { display: none !important; }
+    body { font-size: 11pt; }
+    .diagram-wrap { break-inside: avoid; }
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 600px) {
+    .hero h1 { font-size: 1.5rem; }
+    .hero { padding: 40px 16px 30px; }
+    .section-content { padding: 6px 14px 20px; }
+    .section-header { padding: 14px 14px; }
+    th, td { padding: 7px 8px; font-size: 0.82rem; }
+    .fin-highlight { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ════════════════ HERO ════════════════ -->
+<div class="hero">
+  <h1>ESR Analyzer Manufacturing Guide</h1>
+  <p>A comprehensive, beginner-friendly guide to building Erythrocyte Sedimentation Rate (ESR) analyzers for the Indian diagnostic market — from photometric rheology to CDSCO approval.</p>
+  <span class="badge">Photometric Rheology Technology</span>
+  <span class="badge">Indian IVD Market</span>
+  <span class="badge">12 Detailed Sections</span>
+</div>
+
+<!-- ════════════════ MAIN ════════════════ -->
+<div class="container">
+
+  <!-- Controls -->
+  <div class="controls">
+    <button onclick="toggleAll(true)">Expand All</button>
+    <button onclick="toggleAll(false)">Collapse All</button>
+    <button onclick="window.print()">Print Guide</button>
+  </div>
+
+<!-- ═══════════════════════════════════════════════════
+     SECTION 1 — What is ESR Testing?
+     ═══════════════════════════════════════════════════ -->
+<div class="section open" id="sec1">
+  <div class="section-header" onclick="toggleSection('sec1')">
+    <h2><span class="num">1</span> What is ESR Testing?</h2>
+    <span class="arrow">&#9662;</span>
+  </div>
+  <div class="section-body">
+    <div class="section-content">
+
+      <h3>The Basics</h3>
+      <p><span class="jargon">ESR<span class="tip">Erythrocyte Sedimentation Rate — the speed at which red blood cells settle to the bottom of a standardized tube in one hour, measured in mm/hr.</span></span> stands for <strong>Erythrocyte Sedimentation Rate</strong>. It is one of the oldest and simplest laboratory tests still in wide clinical use. The test measures how fast <span class="jargon">RBCs<span class="tip">Red Blood Cells (erythrocytes) — the most abundant cells in blood, responsible for carrying oxygen. They are biconcave discs about 7 micrometers in diameter.</span></span> (red blood cells) settle to the bottom of a standardized glass tube under the influence of gravity over one hour. The result is reported in millimeters per hour (mm/hr).</p>
+
+      <h3>Historical Background</h3>
+      <p>The phenomenon of erythrocyte sedimentation was first described scientifically by <strong>Edmund Biernacki</strong> in 1897 in Poland, who noted that blood from sick patients settled faster than blood from healthy individuals. The test was later refined and standardized by <strong>Alf Westergren</strong> in 1921, who established the vertical tube method that became the reference standard worldwide. The Westergren method uses a 200mm tall tube filled with anticoagulated blood diluted with sodium citrate, and results are read after exactly 60 minutes.</p>
+
+      <h3>Why Is ESR Clinically Important?</h3>
+      <p>ESR is a <strong>non-specific marker of inflammation</strong>. When the body experiences inflammation from any cause, certain proteins in the blood (particularly <span class="jargon">fibrinogen<span class="tip">A plasma protein produced by the liver that plays a key role in blood clotting and also promotes red blood cell aggregation, which increases the ESR.</span></span> and <span class="jargon">immunoglobulins<span class="tip">Antibody proteins produced by plasma cells of the immune system. Elevated levels promote RBC aggregation and increase ESR.</span></span>) increase in concentration. These proteins cause red blood cells to stick together in stacks called <span class="jargon">rouleaux<span class="tip">Rouleaux (singular: rouleau) — stacks of red blood cells that form because of increased plasma protein concentrations. They resemble a stack of coins and settle faster than individual RBCs.</span></span>, which settle faster due to their greater mass.</p>
+
+      <p>ESR is elevated in many conditions:</p>
+      <ul>
+        <li><strong>Infections</strong> — bacterial, viral, fungal, and parasitic</li>
+        <li><strong>Autoimmune diseases</strong> — rheumatoid arthritis, systemic lupus erythematosus (SLE), polymyalgia rheumatica, temporal arteritis</li>
+        <li><strong>Cancers</strong> — especially multiple myeloma, lymphoma, and metastatic cancers</li>
+        <li><strong>Chronic kidney disease</strong> and nephrotic syndrome</li>
+        <li><strong>Tissue injury</strong> — post-surgery, trauma, or myocardial infarction</li>
+        <li><strong>Pregnancy</strong> — physiologically elevated</li>
+      </ul>
+
+      <h3>Normal Reference Ranges</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>Group</th><th>Normal ESR Range</th><th>Notes</th></tr>
+          <tr><td>Males &lt; 50 years</td><td>0–15 mm/hr</td><td>Lower due to higher hematocrit</td></tr>
+          <tr><td>Males &gt; 50 years</td><td>0–20 mm/hr</td><td>Increases with age</td></tr>
+          <tr><td>Females &lt; 50 years</td><td>0–20 mm/hr</td><td>Higher than males at same age</td></tr>
+          <tr><td>Females &gt; 50 years</td><td>0–30 mm/hr</td><td>Post-menopausal increase</td></tr>
+          <tr><td>Children</td><td>0–10 mm/hr</td><td>Generally lower in children</td></tr>
+          <tr><td>Neonates</td><td>0–2 mm/hr</td><td>Very low at birth</td></tr>
+        </table>
+      </div>
+
+      <div class="info-box">
+        <strong>Market Size:</strong> An estimated <strong>50–60 million ESR tests</strong> are performed annually in India, making it one of the most commonly ordered laboratory tests. It is routinely used alongside <span class="jargon">CRP<span class="tip">C-Reactive Protein — an acute-phase protein produced by the liver that rises rapidly during inflammation. CRP is more specific than ESR and responds faster to changes.</span></span> (C-Reactive Protein) and <span class="jargon">CBC<span class="tip">Complete Blood Count — a comprehensive blood test that measures red blood cells, white blood cells, hemoglobin, hematocrit, and platelets.</span></span> (Complete Blood Count) for monitoring inflammatory diseases.
+      </div>
+
+      <h3>Clinical Workflow</h3>
+      <p>ESR is typically ordered as part of an inflammatory disease workup. A doctor may order ESR when a patient presents with unexplained fever, joint pain, weight loss, or other signs of systemic inflammation. The result helps the clinician decide whether further investigations are needed and can be used to monitor disease activity and treatment response over time. In conditions like temporal arteritis and polymyalgia rheumatica, ESR is a primary diagnostic criterion.</p>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     SECTION 2 — Technology Overview
+     ═══════════════════════════════════════════════════ -->
+<div class="section" id="sec2">
+  <div class="section-header" onclick="toggleSection('sec2')">
+    <h2><span class="num">2</span> Technology Overview</h2>
+    <span class="arrow">&#9662;</span>
+  </div>
+  <div class="section-body">
+    <div class="section-content">
+
+      <h3>Five Methods for Measuring ESR</h3>
+      <p>Over the past century, several technologies have been developed to measure ESR. Each offers different trade-offs between speed, accuracy, automation, and cost. The table below compares them:</p>
+
+      <div class="table-wrap">
+        <table>
+          <tr>
+            <th>Method</th>
+            <th>Principle</th>
+            <th>Time</th>
+            <th>Automation</th>
+            <th>Sample Volume</th>
+            <th>Key Advantage</th>
+            <th>Key Limitation</th>
+          </tr>
+          <tr>
+            <td><strong>Westergren</strong></td>
+            <td>Gravity sedimentation in 200mm tube</td>
+            <td>60 min</td>
+            <td>Manual</td>
+            <td>1.6 mL</td>
+            <td>Gold standard reference method</td>
+            <td>Slow, labor-intensive, biohazard risk</td>
+          </tr>
+          <tr>
+            <td><strong>Photometric Rheology</strong></td>
+            <td>IR light through blood measuring RBC aggregation kinetics</td>
+            <td>20 sec</td>
+            <td>Fully automated</td>
+            <td>100–150 μL</td>
+            <td>Fastest, most automated, small sample</td>
+            <td>Higher instrument cost, correlation needed</td>
+          </tr>
+          <tr>
+            <td><strong>Modified Westergren</strong></td>
+            <td>Closed-tube gravity sedimentation with mechanical reading</td>
+            <td>20–30 min</td>
+            <td>Semi-automated</td>
+            <td>1.0 mL</td>
+            <td>Safer than manual Westergren</td>
+            <td>Still relatively slow</td>
+          </tr>
+          <tr>
+            <td><strong>Capillary / Closed-Tube</strong></td>
+            <td>Miniaturized gravity sedimentation in sealed tubes</td>
+            <td>15–30 min</td>
+            <td>Semi-automated</td>
+            <td>0.2–0.5 mL</td>
+            <td>Small sample, closed system</td>
+            <td>Limited throughput</td>
+          </tr>
+          <tr>
+            <td><strong>Microfluidic (Emerging)</strong></td>
+            <td>Lab-on-chip with micro-channels and optical detection</td>
+            <td>1–5 min</td>
+            <td>Point-of-care</td>
+            <td>10–50 μL</td>
+            <td>Minimal sample, portable</td>
+            <td>Still experimental, limited availability</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="info-box success">
+        <strong>Our Technology Choice:</strong> The Levram ESR Analyzer uses <strong>Photometric Rheology</strong>, the fastest and most advanced method available. A complete ESR result is produced in just 20 seconds from only 100–150 μL of blood, with full automation and no biohazard exposure.
+      </div>
+
+      <h3>Technology Comparison Diagram</h3>
+      <div class="diagram-wrap">
+        <svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, sans-serif">
+          <!-- Background -->
+          <rect x="0" y="0" width="800" height="380" fill="#f8fbfb" rx="8"/>
+          <text x="400" y="30" text-anchor="middle" font-size="15" font-weight="700" fill="#0d7377">ESR Measurement Methods Comparison</text>
+
+          <!-- Axes -->
+          <line x1="80" y1="50" x2="80" y2="320" stroke="#999" stroke-width="1.5"/>
+          <line x1="80" y1="320" x2="760" y2="320" stroke="#999" stroke-width="1.5"/>
+          <text x="40" y="190" text-anchor="middle" font-size="11" fill="#666" transform="rotate(-90, 40, 190)">Speed (faster →)</text>
+          <text x="420" y="355" text-anchor="middle" font-size="11" fill="#666">Automation Level (more automated →)</text>
+
+          <!-- Grid lines -->
+          <line x1="80" y1="120" x2="760" y2="120" stroke="#e0e0e0" stroke-dasharray="4"/>
+          <line x1="80" y1="190" x2="760" y2="190" stroke="#e0e0e0" stroke-dasharray="4"/>
+          <line x1="80" y1="260" x2="760" y2="260" stroke="#e0e0e0" stroke-dasharray="4"/>
+          <line x1="260" y1="50" x2="260" y2="320" stroke="#e0e0e0" stroke-dasharray="4"/>
+          <line x1="440" y1="50" x2="440" y2="320" stroke="#e0e0e0" stroke-dasharray="4"/>
+          <line x1="620" y1="50" x2="620" y2="320" stroke="#e0e0e0" stroke-dasharray="4"/>
+
+          <!-- Axis labels -->
+          <text x="75" y="125" text-anchor="end" font-size="9" fill="#888">20 sec</text>
+          <text x="75" y="195" text-anchor="end" font-size="9" fill="#888">15 min</text>
+          <text x="75" y="265" text-anchor="end" font-size="9" fill="#888">30 min</text>
+          <text x="75" y="315" text-anchor="end" font-size="9" fill="#888">60 min</text>
+          <text x="170" y="340" text-anchor="middle" font-size="9" fill="#888">Manual</text>
+          <text x="350" y="340" text-anchor="middle" font-size="9" fill="#888">Semi-Auto</text>
+          <text x="530" y="340" text-anchor="middle" font-size="9" fill="#888">Automated</text>
+          <text x="690" y="340" text-anchor="middle" font-size="9" fill="#888">POC/Emerging</text>
+
+          <!-- Westergren bubble -->
+          <circle cx="170" cy="300" r="38" fill="#c0392b" opacity="0.2" stroke="#c0392b" stroke-width="2"/>
+          <text x="170" y="296" text-anchor="middle" font-size="10" font-weight="600" fill="#c0392b">Westergren</text>
+          <text x="170" y="310" text-anchor="middle" font-size="8" fill="#c0392b">60 min, manual</text>
+
+          <!-- Modified Westergren bubble -->
+          <circle cx="350" cy="240" r="34" fill="#e67e22" opacity="0.2" stroke="#e67e22" stroke-width="2"/>
+          <text x="350" y="236" text-anchor="middle" font-size="10" font-weight="600" fill="#e67e22">Modified</text>
+          <text x="350" y="250" text-anchor="middle" font-size="8" fill="#e67e22">20 min, semi-auto</text>
+
+          <!-- Capillary bubble -->
+          <circle cx="380" cy="200" r="30" fill="#2980b9" opacity="0.2" stroke="#2980b9" stroke-width="2"/>
+          <text x="380" y="196" text-anchor="middle" font-size="10" font-weight="600" fill="#2980b9">Capillary</text>
+          <text x="380" y="210" text-anchor="middle" font-size="8" fill="#2980b9">15-30 min</text>
+
+          <!-- Photometric Rheology bubble (highlighted) -->
+          <circle cx="580" cy="100" r="44" fill="#0d7377" opacity="0.18" stroke="#0d7377" stroke-width="3"/>
+          <text x="580" y="92" text-anchor="middle" font-size="11" font-weight="700" fill="#0d7377">Photometric</text>
+          <text x="580" y="106" text-anchor="middle" font-size="11" font-weight="700" fill="#0d7377">Rheology</text>
+          <text x="580" y="120" text-anchor="middle" font-size="9" fill="#0d7377">20 sec, automated</text>
+          <!-- Star icon -->
+          <text x="618" y="72" font-size="16" fill="#0d7377">★</text>
+
+          <!-- Microfluidic bubble -->
+          <circle cx="690" cy="85" r="28" fill="#9b59b6" opacity="0.2" stroke="#9b59b6" stroke-width="2" stroke-dasharray="4"/>
+          <text x="690" y="82" text-anchor="middle" font-size="10" font-weight="600" fill="#9b59b6">Microfluidic</text>
+          <text x="690" y="96" text-anchor="middle" font-size="8" fill="#9b59b6">Emerging</text>
+
+          <text x="400" y="375" text-anchor="middle" font-size="10" fill="#999" font-style="italic">Bubble size indicates market maturity. ★ = Our chosen technology.</text>
+        </svg>
+        <div class="diagram-caption">Figure 2.1 — ESR measurement methods mapped by speed and automation level</div>
+      </div>
+
+      <h3>Why Photometric Rheology?</h3>
+      <p>Photometric rheology is the clear winner for a modern, high-throughput laboratory. It offers the fastest results (20 seconds versus 60 minutes for Westergren), requires the smallest sample volume (100–150 μL versus 1.6 mL), and eliminates biohazard risk since the sample is handled within a closed fluidic system. The method has been clinically validated to correlate well with the Westergren reference method (r &gt; 0.95 in published studies). Leading global brands like Alifax (Italy), Alcor Scientific (USA), and Diesse (Italy) all use variations of this technology.</p>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     SECTION 3 — How Photometric Rheology Works
+     ═══════════════════════════════════════════════════ -->
+<div class="section" id="sec3">
+  <div class="section-header" onclick="toggleSection('sec3')">
+    <h2><span class="num">3</span> How Photometric Rheology Works</h2>
+    <span class="arrow">&#9662;</span>
+  </div>
+  <div class="section-body">
+    <div class="section-content">
+
+      <h3>Core Principle</h3>
+      <p>Photometric rheology measures <span class="jargon">RBC aggregation<span class="tip">The process by which red blood cells clump together forming rouleaux. The rate and extent of aggregation is directly related to ESR — more aggregation means higher ESR.</span></span> kinetics using infrared light. An <span class="jargon">IR LED<span class="tip">Infrared Light-Emitting Diode — emits light at 880nm wavelength, which is well-absorbed by hemoglobin in red blood cells, making it ideal for optical blood measurements.</span></span> emitting at 880nm wavelength shines through a thin layer of blood held in a <span class="jargon">quartz flow cell<span class="tip">A small transparent chamber (typically 10×2×0.8mm cavity) made of optical-grade quartz through which blood flows and light passes for measurement.</span></span>. A <span class="jargon">photodiode<span class="tip">A semiconductor device that converts light into electrical current. The current is proportional to the intensity of light hitting the sensor.</span></span> on the other side detects how much light passes through.</p>
+
+      <p>When blood is first introduced into the flow cell, individual red blood cells scatter light, resulting in lower transmitted light (higher <span class="jargon">optical density<span class="tip">Optical Density (OD) — a logarithmic measure of how much light is absorbed or scattered by a sample. OD = -log₁₀(Transmitted / Incident light intensity).</span></span>). As RBCs begin to aggregate into rouleaux, the gaps between the stacks allow more light through, and the optical density decreases. The rate of this optical density change directly correlates with the ESR value.</p>
+
+      <h3>Optical Detection System</h3>
+      <div class="diagram-wrap">
+        <svg viewBox="0 0 820 260" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, sans-serif">
+          <rect x="0" y="0" width="820" height="260" fill="#f8fbfb" rx="8"/>
+          <text x="410" y="25" text-anchor="middle" font-size="14" font-weight="700" fill="#0d7377">Optical Detection System</text>
+
+          <!-- IR LED -->
+          <rect x="20" y="85" width="70" height="70" rx="8" fill="#c0392b" opacity="0.15" stroke="#c0392b" stroke-width="2"/>
+          <text x="55" y="115" text-anchor="middle" font-size="11" font-weight="600" fill="#c0392b">IR LED</text>
+          <text x="55" y="132" text-anchor="middle" font-size="9" fill="#c0392b">880nm</text>
+
+          <!-- Arrow 1 -->
+          <line x1="95" y1="120" x2="130" y2="120" stroke="#0d7377" stroke-width="2" marker-end="url(#arrowG)"/>
+          <!-- wavy lines for light -->
+          <path d="M100,108 Q108,103 116,108 Q124,113 132,108" stroke="#c0392b" stroke-width="1.5" fill="none" opacity="0.5"/>
+
+          <!-- Collimating Lens -->
+          <ellipse cx="155" cy="120" rx="15" ry="35" fill="#2980b9" opacity="0.15" stroke="#2980b9" stroke-width="2"/>
+          <text x="155" y="175" text-anchor="middle" font-size="9" fill="#2980b9">Collimating</text>
+          <text x="155" y="186" text-anchor="middle" font-size="9" fill="#2980b9">Lens</text>
+
+          <!-- Arrow 2 -->
+          <line x1="175" y1="120" x2="230" y2="120" stroke="#0d7377" stroke-width="2" marker-end="url(#arrowG)"/>
+          <!-- Parallel light lines -->
+          <line x1="180" y1="108" x2="225" y2="108" stroke="#e67e22" stroke-width="1" opacity="0.6"/>
+          <line x1="180" y1="120" x2="225" y2="120" stroke="#e67e22" stroke-width="1" opacity="0.6"/>
+          <line x1="180" y1="132" x2="225" y2="132" stroke="#e67e22" stroke-width="1" opacity="0.6"/>
+
+          <!-- Quartz Flow Cell -->
+          <rect x="235" y="75" width="100" height="90" rx="6" fill="#0d7377" opacity="0.1" stroke="#0d7377" stroke-width="2"/>
+          <text x="285" y="97" text-anchor="middle" font-size="10" font-weight="600" fill="#0d7377">Quartz Flow</text>
+          <text x="285" y="112" text-anchor="middle" font-size="10" font-weight="600" fill="#0d7377">Cell</text>
+          <!-- blood dots inside -->
+          <circle cx="260" cy="130" r="4" fill="#c0392b" opacity="0.5"/>
+          <circle cx="275" cy="125" r="3.5" fill="#c0392b" opacity="0.5"/>
+          <circle cx="290" cy="132" r="4" fill="#c0392b" opacity="0.5"/>
+          <circle cx="305" cy="127" r="3" fill="#c0392b" opacity="0.5"/>
+          <circle cx="268" cy="140" r="3" fill="#c0392b" opacity="0.5"/>
+          <circle cx="298" cy="142" r="3.5" fill="#c0392b" opacity="0.5"/>
+          <text x="285" y="155" text-anchor="middle" font-size="8" fill="#c0392b">(blood sample)</text>
+          <!-- Temperature label -->
+          <text x="285" y="60" text-anchor="middle" font-size="9" fill="#e67e22">Peltier: 25°C ± 0.1°C</text>
+          <line x1="285" y1="63" x2="285" y2="73" stroke="#e67e22" stroke-width="1" stroke-dasharray="2"/>
+
+          <!-- Arrow 3 -->
+          <line x1="340" y1="120" x2="390" y2="120" stroke="#0d7377" stroke-width="2" marker-end="url(#arrowG)"/>
+
+          <!-- Collecting Lens -->
+          <ellipse cx="415" cy="120" rx="15" ry="35" fill="#2980b9" opacity="0.15" stroke="#2980b9" stroke-width="2"/>
+          <text x="415" y="175" text-anchor="middle" font-size="9" fill="#2980b9">Collecting</text>
+          <text x="415" y="186" text-anchor="middle" font-size="9" fill="#2980b9">Lens</text>
+
+          <!-- Arrow 4 -->
+          <line x1="435" y1="120" x2="475" y2="120" stroke="#0d7377" stroke-width="2" marker-end="url(#arrowG)"/>
+
+          <!-- Bandpass Filter -->
+          <rect x="480" y="90" width="60" height="60" rx="4" fill="#9b59b6" opacity="0.15" stroke="#9b59b6" stroke-width="2"/>
+          <text x="510" y="116" text-anchor="middle" font-size="9" font-weight="600" fill="#9b59b6">Bandpass</text>
+          <text x="510" y="130" text-anchor="middle" font-size="9" font-weight="600" fill="#9b59b6">Filter</text>
+          <text x="510" y="143" text-anchor="middle" font-size="8" fill="#9b59b6">880nm</text>
+
+          <!-- Arrow 5 -->
+          <line x1="545" y1="120" x2="580" y2="120" stroke="#0d7377" stroke-width="2" marker-end="url(#arrowG)"/>
+
+          <!-- Photodiode -->
+          <rect x="585" y="85" width="65" height="70" rx="8" fill="#1a6b4a" opacity="0.15" stroke="#1a6b4a" stroke-width="2"/>
+          <text x="617" y="115" text-anchor="middle" font-size="10" font-weight="600" fill="#1a6b4a">Photo-</text>
+          <text x="617" y="130" text-anchor="middle" font-size="10" font-weight="600" fill="#1a6b4a">diode</text>
+
+          <!-- Arrow 6 -->
+          <line x1="655" y1="120" x2="690" y2="120" stroke="#0d7377" stroke-width="2" marker-end="url(#arrowG)"/>
+
+          <!-- TIA + ADC + MCU -->
+          <rect x="695" y="70" width="105" height="100" rx="8" fill="#0d7377" opacity="0.1" stroke="#0d7377" stroke-width="2"/>
+          <text x="747" y="95" text-anchor="middle" font-size="9" font-weight="600" fill="#0d7377">TIA (OPA128)</text>
+          <text x="747" y="110" text-anchor="middle" font-size="9" fill="#0d7377">↓</text>
+          <text x="747" y="123" text-anchor="middle" font-size="9" font-weight="600" fill="#0d7377">12-bit ADC</text>
+          <text x="747" y="138" text-anchor="middle" font-size="9" fill="#0d7377">↓</text>
+          <text x="747" y="152" text-anchor="middle" font-size="9" font-weight="600" fill="#0d7377">STM32 MCU</text>
+
+          <!-- Signal flow label -->
+          <text x="410" y="225" text-anchor="middle" font-size="10" fill="#666">Light path: IR photons → collimated beam → absorbed/scattered by blood → focused → filtered → current → voltage → digital signal → ESR value</text>
+
+          <!-- Arrow marker definition -->
+          <defs>
+            <marker id="arrowG" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+              <polygon points="0,0 8,3 0,6" fill="#0d7377"/>
+            </marker>
+          </defs>
+        </svg>
+        <div class="diagram-caption">Figure 3.1 — Optical detection system: IR LED through quartz flow cell to digital signal processing</div>
+      </div>
+
+      <h3>10-Step Measurement Workflow</h3>
+      <p>The complete measurement cycle from sample insertion to ESR result takes approximately 45 seconds, with the actual optical measurement requiring only 20 seconds:</p>
+
+      <div class="step"><span class="step-num">1</span><div><strong>Sample Loading:</strong> The operator places an EDTA blood collection tube into the tube rack on the analyzer. The rack can hold 10–20 tubes depending on the model configuration.</div></div>
+
+      <div class="step"><span class="step-num">2</span><div><strong>Barcode Scanning:</strong> A barcode reader automatically scans the label on the tube to capture the patient ID and sample details, linking the result to the correct patient in the Laboratory Information System (<span class="jargon">LIS<span class="tip">Laboratory Information System — software that manages laboratory data including patient information, test orders, results, and quality control.</span></span>).</div></div>
+
+      <div class="step"><span class="step-num">3</span><div><strong>Probe Descent:</strong> The aspiration probe (a thin stainless steel needle) descends vertically into the blood tube. A <span class="jargon">capacitive liquid level sensor<span class="tip">A sensor that detects the presence of liquid by measuring changes in electrical capacitance when the probe tip contacts the blood surface.</span></span> on the probe tip detects when it reaches the blood surface, preventing air aspiration.</div></div>
+
+      <div class="step"><span class="step-num">4</span><div><strong>Sample Aspiration:</strong> A <span class="jargon">peristaltic pump<span class="tip">A pump that moves fluid through flexible tubing by compressing the tube with rotating rollers. The fluid never contacts the pump mechanism, maintaining sterility.</span></span> draws approximately 150 μL of blood through the aspiration probe and tubing toward the flow cell. The pump uses silicone tubing and provides precise, pulsation-free flow.</div></div>
+
+      <div class="step"><span class="step-num">5</span><div><strong>Flow Cell Filling:</strong> Blood fills the quartz flow cell, which has an internal cavity of approximately 10mm × 2mm × 0.8mm. The cell is made of optical-grade quartz for maximum IR transparency. An optical sensor detects when the cell is properly filled.</div></div>
+
+      <div class="step"><span class="step-num">6</span><div><strong>Temperature Stabilization:</strong> A <span class="jargon">Peltier module<span class="tip">A thermoelectric device (TEC) that can both heat and cool by passing current through it. Used to maintain the flow cell at exactly 25°C regardless of ambient temperature.</span></span> maintains the flow cell at exactly 25.0°C ± 0.1°C. Temperature affects blood viscosity and RBC aggregation kinetics, so precise control is essential for reproducible results. An NTC thermistor provides feedback for a PID control loop.</div></div>
+
+      <div class="step"><span class="step-num">7</span><div><strong>Optical Illumination:</strong> The IR LED (880nm) illuminates the flow cell, and the photodiode on the opposite side begins measuring transmitted light intensity. The LED current is held constant at 100mA using an LM317-based constant current source for stable optical output.</div></div>
+
+      <div class="step"><span class="step-num">8</span><div><strong>Data Acquisition:</strong> Over a 20-second measurement window, the <span class="jargon">ADC<span class="tip">Analog-to-Digital Converter — converts the continuous analog voltage from the photodiode circuit into discrete digital numbers that the microcontroller can process. The 12-bit ADC provides 4096 levels of resolution.</span></span> samples the photodiode signal at 1 kHz, collecting 20,000 data points. The raw signal passes through a <span class="jargon">transimpedance amplifier<span class="tip">TIA — an electronic circuit that converts the tiny current output of the photodiode (nanoamps) into a measurable voltage. The OPA128 is a precision electrometer-grade op-amp ideal for this purpose.</span></span> (OPA128) and buffer stage (OPA2134) before digitization.</div></div>
+
+      <div class="step"><span class="step-num">9</span><div><strong>Curve Fitting:</strong> The firmware applies an exponential decay model to the optical density vs. time data using <span class="jargon">Levenberg-Marquardt<span class="tip">A numerical optimization algorithm that finds the best-fit parameters for a nonlinear equation by iteratively minimizing the sum of squared residuals between the model and the data.</span></span> nonlinear least-squares fitting. The model equation is:<br>
+      <code style="background:#e8f6f6; padding:4px 10px; border-radius:4px; font-size:0.92rem;">OD(t) = OD₀ + dOD × (1 − exp(−t / τ))</code><br>
+      where <strong>OD₀</strong> is the initial optical density, <strong>dOD</strong> is the total change in optical density, and <strong>τ</strong> (tau) is the time constant of aggregation.</div></div>
+
+      <div class="step"><span class="step-num">10</span><div><strong>ESR Calculation:</strong> The fitted parameters (τ and dOD) are plugged into a calibration equation to compute the Westergren-equivalent ESR value:<br>
+      <code style="background:#e8f6f6; padding:4px 10px; border-radius:4px; font-size:0.92rem;">ESR = a × τ + b × dOD + c</code><br>
+      The calibration constants (a, b, c) are determined during manufacturing by running a set of 20 reference samples with known Westergren ESR values and performing linear regression. The result is displayed on screen, stored in memory, and transmitted to the LIS.</div></div>
+
+      <h3>Measurement Workflow Diagram</h3>
+      <div class="diagram-wrap">
+        <svg viewBox="0 0 780 450" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, sans-serif">
+          <rect x="0" y="0" width="780" height="450" fill="#f8fbfb" rx="8"/>
+          <text x="390" y="28" text-anchor="middle" font-size="14" font-weight="700" fill="#0d7377">Measurement Workflow — 10 Steps</text>
+
+          <!-- Step boxes arranged in a flow -->
+          <!-- Row 1 -->
+          <rect x="20" y="50" width="140" height="55" rx="8" fill="#0d7377" opacity="0.12" stroke="#0d7377" stroke-width="1.5"/>
+          <circle cx="40" cy="70" r="10" fill="#0d7377"/><text x="40" y="74" text-anchor="middle" font-size="10" fill="white" font-weight="700">1</text>
+          <text x="95" y="72" text-anchor="middle" font-size="10" fill="#0d7377" font-weight="600">Sample</text>
+          <text x="95" y="86" text-anchor="middle" font-size="10" fill="#0d7377" font-weight="600">Loading</text>
+
+          <line x1="165" y1="77" x2="185" y2="77" stroke="#0d7377" stroke-width="1.5" marker-end="url(#arrowG2)"/>
+
+          <rect x="190" y="50" width="140" height="55" rx="8" fill="#0d7377" opacity="0.12" stroke="#0d7377" stroke-width="1.5"/>
+          <circle cx="210" cy="70" r="10" fill="#0d7377"/><text x="210" y="74" text-anchor="middle" font-size="10" fill="white" font-weight="700">2</text>
+          <text x="265" y="72" text-anchor="middle" font-size="10" fill="#0d7377" font-weight="600">Barcode</text>
+          <text x="265" y="86" text-anchor="middle" font-size="10" fill="#0d7377" font-weight="600">Scanning</text>
+
+          <line x1="335" y1="77" x2="355" y2="77" stroke="#0d7377" stroke-width="1.5" marker-end="url(#arrowG2)"/>
+
+          <rect x="360" y="50" width="140" height="55" rx="8" fill="#0d7377" opacity="0.12" stroke="#0d7377" stroke-width="1.5"/>
+          <circle cx="380" cy="70" r="10" fill="#0d7377"/><text x="380" y="74" text-anchor="middle" font-size="10" fill="white" font-weight="700">3</text>
+          <text x="435" y="72" text-anchor="middle" font-size="10" fill="#0d7377" font-weight="600">Probe</text>
+          <text x="435" y="86" text-anchor="middle" font-size="10" fill="#0d7377" font-weight="600">Descent</text>
+
+          <line x1="505" y1="77" x2="525" y2="77" stroke="#0d7377" stroke-width="1.5" marker-end="url(#arrowG2)"/>
+
+          <rect x="530" y="50" width="140" height="55" rx="8" fill="#0d7377" opacity="0.12" stroke="#0d7377" stroke-width="1.5"/>
+          <circle cx="550" cy="70" r="10" fill="#0d7377"/><text x="550" y="74" text-anchor="middle" font-size="10" fill="white" font-weight="700">4</text>
+          <text x="605" y="72" text-anchor="middle" font-size="10" fill="#0d7377" font-weight="600">Sample</text>
+          <text x="605" y="86" text-anchor="middle" font-size="10" fill="#0d7377" font-weight="600">Aspiration</text>
+
+          <!-- Connector down from step 4 -->
+          <line x1="670" y1="105" x2="670" y2="135" stroke="#0d7377" stroke-width="1.5"/>
+          <line x1="670" y1="135" x2="605" y2="135" stroke="#0d7377" stroke-width="1.5" marker-end="url(#arrowG2L)"/>
+
+          <!-- Row 2 -->
+          <rect x="530" y="140" width="140" height="55" rx="8" fill="#14919b" opacity="0.15" stroke="#14919b" stroke-width="1.5"/>
+          <circle cx="550" cy="160" r="10" fill="#14919b"/><text x="550" y="164" text-anchor="middle" font-size="10" fill="white" font-weight="700">5</text>
+          <text x="605" y="162" text-anchor="middle" font-size="10" fill="#14919b" font-weight="600">Flow Cell</text>
+          <text x="605" y="176" text-anchor="middle" font-size="10" fill="#14919b" font-weight="600">Filling</text>
+
+          <line x1="525" y1="167" x2="505" y2="167" stroke="#14919b" stroke-width="1.5" marker-end="url(#arrowG2L)"/>
+
+          <rect x="360" y="140" width="140" height="55" rx="8" fill="#14919b" opacity="0.15" stroke="#14919b" stroke-width="1.5"/>
+          <circle cx="380" cy="160" r="10" fill="#14919b"/><text x="380" y="164" text-anchor="middle" font-size="10" fill="white" font-weight="700">6</text>
+          <text x="435" y="162" text-anchor="middle" font-size="10" fill="#14919b" font-weight="600">Temperature</text>
+          <text x="435" y="176" text-anchor="middle" font-size="10" fill="#14919b" font-weight="600">Stabilization</text>
+
+          <line x1="355" y1="167" x2="335" y2="167" stroke="#14919b" stroke-width="1.5" marker-end="url(#arrowG2L)"/>
+
+          <rect x="190" y="140" width="140" height="55" rx="8" fill="#14919b" opacity="0.15" stroke="#14919b" stroke-width="1.5"/>
+          <circle cx="210" cy="160" r="10" fill="#14919b"/><text x="210" y="164" text-anchor="middle" font-size="10" fill="white" font-weight="700">7</text>
+          <text x="265" y="162" text-anchor="middle" font-size="10" fill="#14919b" font-weight="600">Optical</text>
+          <text x="265" y="176" text-anchor="middle" font-size="10" fill="#14919b" font-weight="600">Illumination</text>
+
+          <!-- Connector down from step 7 -->
+          <line x1="110" y1="167" x2="185" y2="167" stroke="#14919b" stroke-width="1.5"/>
+          <line x1="110" y1="167" x2="110" y2="230" stroke="#14919b" stroke-width="1.5" marker-end="url(#arrowG2D)"/>
+
+          <!-- Row 3 (measurement phase - highlighted) -->
+          <rect x="20" y="235" width="220" height="65" rx="8" fill="#0d7377" opacity="0.2" stroke="#0d7377" stroke-width="2.5"/>
+          <circle cx="45" cy="260" r="12" fill="#0d7377"/><text x="45" y="264" text-anchor="middle" font-size="11" fill="white" font-weight="700">8</text>
+          <text x="145" y="255" text-anchor="middle" font-size="11" fill="#0d7377" font-weight="700">Data Acquisition</text>
+          <text x="145" y="272" text-anchor="middle" font-size="9" fill="#0d7377">20 sec, 20,000 samples @ 1kHz</text>
+          <text x="145" y="286" text-anchor="middle" font-size="9" fill="#0d7377">OD vs time curve recorded</text>
+
+          <line x1="245" y1="267" x2="285" y2="267" stroke="#0d7377" stroke-width="2" marker-end="url(#arrowG2)"/>
+
+          <rect x="290" y="235" width="220" height="65" rx="8" fill="#0d7377" opacity="0.2" stroke="#0d7377" stroke-width="2.5"/>
+          <circle cx="315" cy="260" r="12" fill="#0d7377"/><text x="315" y="264" text-anchor="middle" font-size="11" fill="white" font-weight="700">9</text>
+          <text x="405" y="255" text-anchor="middle" font-size="11" fill="#0d7377" font-weight="700">Curve Fitting</text>
+          <text x="405" y="272" text-anchor="middle" font-size="9" fill="#0d7377">Levenberg-Marquardt algorithm</text>
+          <text x="405" y="286" text-anchor="middle" font-size="9" fill="#0d7377">OD(t) = OD₀ + dOD×(1−e^(−t/τ))</text>
+
+          <line x1="515" y1="267" x2="555" y2="267" stroke="#0d7377" stroke-width="2" marker-end="url(#arrowG2)"/>
+
+          <rect x="560" y="235" width="200" height="65" rx="8" fill="#1a6b4a" opacity="0.15" stroke="#1a6b4a" stroke-width="2.5"/>
+          <circle cx="585" cy="260" r="12" fill="#1a6b4a"/><text x="585" y="264" text-anchor="middle" font-size="11" fill="white" font-weight="700">10</text>
+          <text x="665" y="255" text-anchor="middle" font-size="11" fill="#1a6b4a" font-weight="700">ESR Result</text>
+          <text x="665" y="272" text-anchor="middle" font-size="9" fill="#1a6b4a">ESR = a×τ + b×dOD + c</text>
+          <text x="665" y="286" text-anchor="middle" font-size="9" fill="#1a6b4a">Display + LIS transmission</text>
+
+          <!-- After result: cleaning cycle -->
+          <line x1="660" y1="305" x2="660" y2="340" stroke="#999" stroke-width="1.5" stroke-dasharray="4"/>
+          <rect x="530" y="345" width="260" height="45" rx="8" fill="#e67e22" opacity="0.12" stroke="#e67e22" stroke-width="1.5" stroke-dasharray="4"/>
+          <text x="660" y="368" text-anchor="middle" font-size="10" fill="#e67e22" font-weight="600">Cleaning Cycle → DI water flush → Ready for next sample</text>
+
+          <!-- Timeline -->
+          <text x="390" y="430" text-anchor="middle" font-size="11" fill="#666" font-style="italic">Total cycle: ~45 seconds (sample to result) | Optical measurement: 20 seconds</text>
+
+          <defs>
+            <marker id="arrowG2" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0,0 8,3 0,6" fill="#0d7377"/></marker>
+            <marker id="arrowG2L" markerWidth="8" markerHeight="6" refX="0" refY="3" orient="auto"><polygon points="8,0 0,3 8,6" fill="#14919b"/></marker>
+            <marker id="arrowG2D" markerWidth="6" markerHeight="8" refX="3" refY="8" orient="auto"><polygon points="0,0 3,8 6,0" fill="#14919b"/></marker>
+          </defs>
+        </svg>
+        <div class="diagram-caption">Figure 3.2 — Complete 10-step measurement workflow from sample loading to ESR result</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     SECTION 4 — Complete Mechanical Design
+     ═══════════════════════════════════════════════════ -->
+<div class="section" id="sec4">
+  <div class="section-header" onclick="toggleSection('sec4')">
+    <h2><span class="num">4</span> Complete Mechanical Design</h2>
+    <span class="arrow">&#9662;</span>
+  </div>
+  <div class="section-body">
+    <div class="section-content">
+
+      <h3>Chassis and Enclosure</h3>
+      <p>The analyzer's outer enclosure is built from <strong>Cold-Rolled Steel (CRS)</strong>, 1.2mm thick, with a base plate of 400mm x 350mm. The sheet metal is laser-cut, brake-formed, and then <span class="jargon">powder-coated<span class="tip">A dry finishing process where electrostatically charged polymer powder is sprayed onto grounded metal, then cured in an oven at ~200°C to form a durable, even coating. More durable and environmentally friendly than liquid paint.</span></span> in white (RAL 9016) for a clean, medical-grade appearance. The top cover has ventilation slots and a hinged access panel for consumable replacement. Overall dimensions: approximately 450mm (W) x 400mm (D) x 300mm (H), weighing about 12 kg.</p>
+
+      <h3>Optical Bench</h3>
+      <p>The optical bench is the precision heart of the analyzer. It is CNC-machined from <strong>Aluminum 6061-T6</strong> billet stock to ensure precise alignment of all optical components. The bench is vibration-isolated from the main chassis using silicone rubber grommets (Shore A 40 durometer) to prevent external vibrations from affecting optical measurements. Key features:</p>
+      <ul>
+        <li>Tight-tolerance bores for LED and photodiode mounting (±0.02mm)</li>
+        <li>V-groove channels for lens alignment</li>
+        <li>Anodized black finish to minimize stray light reflections</li>
+        <li>Integrated flow cell holder with Peltier contact surface</li>
+      </ul>
+
+      <h3>Sample Handling System</h3>
+      <p>The sample handling subsystem consists of two independent motion axes:</p>
+      <ul>
+        <li><strong>Horizontal (X-axis):</strong> A <span class="jargon">NEMA 17<span class="tip">A stepper motor standard where the faceplate is 1.7 × 1.7 inches (42.3mm). NEMA 17 motors provide moderate torque (up to ~0.5 Nm) and are widely used in laboratory automation and 3D printers.</span></span> stepper motor with GT2 timing belt drives the tube rack along linear rails, positioning each tube under the aspiration probe. Resolution: 0.1mm per step.</li>
+        <li><strong>Vertical (Z-axis):</strong> A <span class="jargon">NEMA 11<span class="tip">A smaller stepper motor standard (28mm faceplate) suitable for lighter loads like raising and lowering an aspiration probe.</span></span> stepper motor with a leadscrew drives the aspiration probe up and down. The probe is a 1.2mm OD stainless steel needle with a capacitive liquid level sensor integrated into the tip.</li>
+      </ul>
+      <p>Both axes use <span class="jargon">Hall-effect sensors<span class="tip">Sensors that detect the presence of a magnet. Used as home/limit switches in motion systems — a small magnet on the moving carriage triggers the sensor at the home position.</span></span> for home position detection and have mechanical hard stops as safety limits.</p>
+
+      <h3>Flow Cell and Temperature Control</h3>
+      <p>The quartz flow cell is held in an aluminum bracket that makes direct thermal contact with a Peltier thermoelectric cooler (TEC). The Peltier module (25mm x 25mm, 15W capacity) is driven by a dedicated H-bridge circuit and PID controller to maintain 25.0°C ± 0.1°C. A heat sink with a small 40mm fan dissipates heat from the Peltier's hot side. An NTC 10kΩ thermistor embedded in the flow cell holder provides temperature feedback.</p>
+
+      <h3>Fluidic System</h3>
+      <p>The fluidic manifold is machined from <strong>Polypropylene</strong> (chemical-resistant and biocompatible) and includes a 6-port valve for routing fluids between sample aspiration, measurement, waste, and cleaning pathways. A peristaltic pump with medical-grade silicone tubing (1.6mm ID) provides contamination-free fluid handling. DI water from a 500mL reservoir is used for washing between samples. A waste container (1L capacity) collects spent samples and wash fluid, with an ultrasonic level sensor to alert when the waste container is nearly full.</p>
+
+      <h3>Key Specifications Summary</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>Parameter</th><th>Specification</th></tr>
+          <tr><td>Overall Dimensions</td><td>450 × 400 × 300 mm (W × D × H)</td></tr>
+          <tr><td>Weight</td><td>~12 kg</td></tr>
+          <tr><td>Chassis Material</td><td>1.2mm Cold-Rolled Steel, powder-coated white</td></tr>
+          <tr><td>Optical Bench</td><td>Aluminum 6061-T6, CNC-machined, black anodized</td></tr>
+          <tr><td>Flow Cell</td><td>Optical-grade quartz, 10 × 2 × 0.8 mm cavity</td></tr>
+          <tr><td>Temperature Control</td><td>Peltier TEC, 25°C ± 0.1°C, PID-controlled</td></tr>
+          <tr><td>Sample Handling</td><td>NEMA 17 + GT2 belt (X), NEMA 11 + leadscrew (Z)</td></tr>
+          <tr><td>Fluidic System</td><td>Polypropylene manifold, 6-port valve, peristaltic pump</td></tr>
+          <tr><td>Waste Container</td><td>1L with ultrasonic level sensor</td></tr>
+          <tr><td>DI Water Reservoir</td><td>500 mL</td></tr>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     SECTION 5 — Electronics Architecture
+     ═══════════════════════════════════════════════════ -->
+<div class="section" id="sec5">
+  <div class="section-header" onclick="toggleSection('sec5')">
+    <h2><span class="num">5</span> Electronics Architecture</h2>
+    <span class="arrow">&#9662;</span>
+  </div>
+  <div class="section-body">
+    <div class="section-content">
+
+      <h3>Main Controller</h3>
+      <p>The brain of the analyzer is an <span class="jargon">STM32F407VGT6<span class="tip">A 32-bit ARM Cortex-M4 microcontroller from STMicroelectronics with 168MHz clock, 1MB Flash, 192KB RAM, floating-point unit, and extensive peripherals. Widely used in industrial and medical devices.</span></span> microcontroller — an ARM Cortex-M4 running at 168 MHz with a hardware floating-point unit (essential for real-time curve fitting). It features 1MB of Flash memory for firmware and 192KB of SRAM for runtime data. The MCU interfaces with all subsystems through its rich set of peripherals: SPI, I2C, UART, ADC, timers, and GPIO.</p>
+
+      <h3>PCB Design</h3>
+      <p>The main PCB is a 4-layer board measuring 200mm x 150mm with an <span class="jargon">ENIG<span class="tip">Electroless Nickel Immersion Gold — a PCB surface finish that provides flat, solderable pads with excellent corrosion resistance. More expensive than HASL but better for fine-pitch components.</span></span> (Electroless Nickel Immersion Gold) surface finish. The 4-layer stackup provides dedicated power and ground planes for noise isolation, which is critical for the sensitive optical measurement circuit. The board is designed in KiCad and manufactured by Indian PCB vendors with IPC Class 2 compliance.</p>
+
+      <h3>Optical Signal Chain</h3>
+      <p>The optical measurement electronics are the most critical part of the design:</p>
+      <ul>
+        <li><strong>LED Driver:</strong> An LM317 regulator configured as a constant-current source delivers exactly 100mA to the 880nm IR LED. Current regulation (rather than voltage) ensures stable optical output regardless of LED forward voltage drift with temperature.</li>
+        <li><strong>Transimpedance Amplifier:</strong> An OPA128 electrometer-grade op-amp converts the photodiode's photocurrent (typically 10–500 nA) to voltage. The feedback resistor (10 MΩ) provides a gain of 10 mV/nA with ultra-low bias current (&lt;75 fA).</li>
+        <li><strong>Buffer Stage:</strong> An OPA2134 dual op-amp provides buffering and additional gain, with a low-pass filter (fc = 500 Hz) to reject high-frequency noise before the ADC.</li>
+        <li><strong>ADC:</strong> The STM32's internal 12-bit ADC (4096 levels) samples at 1 kHz. For a typical optical signal range of 0–3.3V, this provides a resolution of ~0.8 mV per LSB, sufficient for the measurement.</li>
+      </ul>
+
+      <h3>System Architecture Diagram</h3>
+      <div class="diagram-wrap">
+        <svg viewBox="0 0 800 520" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, sans-serif">
+          <rect x="0" y="0" width="800" height="520" fill="#f8fbfb" rx="8"/>
+          <text x="400" y="28" text-anchor="middle" font-size="14" font-weight="700" fill="#0d7377">System Architecture — Electronics Block Diagram</text>
+
+          <!-- Central MCU -->
+          <rect x="300" y="190" width="200" height="100" rx="12" fill="#0d7377" opacity="0.2" stroke="#0d7377" stroke-width="3"/>
+          <text x="400" y="225" text-anchor="middle" font-size="14" font-weight="700" fill="#0d7377">STM32F407VGT6</text>
+          <text x="400" y="245" text-anchor="middle" font-size="10" fill="#0d7377">ARM Cortex-M4 @ 168MHz</text>
+          <text x="400" y="260" text-anchor="middle" font-size="10" fill="#0d7377">1MB Flash | 192KB RAM | FPU</text>
+          <text x="400" y="275" text-anchor="middle" font-size="10" fill="#0d7377">FreeRTOS | 8 Tasks</text>
+
+          <!-- Optical Subsystem (top-left) -->
+          <rect x="30" y="50" width="200" height="110" rx="8" fill="#c0392b" opacity="0.1" stroke="#c0392b" stroke-width="1.5"/>
+          <text x="130" y="72" text-anchor="middle" font-size="11" font-weight="700" fill="#c0392b">Optical Subsystem</text>
+          <text x="130" y="90" text-anchor="middle" font-size="9" fill="#666">IR LED 880nm (LM317 driver)</text>
+          <text x="130" y="104" text-anchor="middle" font-size="9" fill="#666">Photodiode + TIA (OPA128)</text>
+          <text x="130" y="118" text-anchor="middle" font-size="9" fill="#666">Buffer (OPA2134)</text>
+          <text x="130" y="132" text-anchor="middle" font-size="9" fill="#666">12-bit ADC @ 1kHz</text>
+          <text x="130" y="146" text-anchor="middle" font-size="9" fill="#666">Quartz Flow Cell</text>
+          <line x1="230" y1="130" x2="300" y2="210" stroke="#c0392b" stroke-width="1.5"/>
+          <circle cx="230" cy="130" r="3" fill="#c0392b"/>
+
+          <!-- Motor Drivers (top-right) -->
+          <rect x="570" y="50" width="200" height="100" rx="8" fill="#2980b9" opacity="0.1" stroke="#2980b9" stroke-width="1.5"/>
+          <text x="670" y="72" text-anchor="middle" font-size="11" font-weight="700" fill="#2980b9">Motor Drivers</text>
+          <text x="670" y="90" text-anchor="middle" font-size="9" fill="#666">3× A4988 Stepper Drivers</text>
+          <text x="670" y="104" text-anchor="middle" font-size="9" fill="#666">NEMA 17 (X-axis rack)</text>
+          <text x="670" y="118" text-anchor="middle" font-size="9" fill="#666">NEMA 11 (Z-axis probe)</text>
+          <text x="670" y="132" text-anchor="middle" font-size="9" fill="#666">Peristaltic pump motor</text>
+          <line x1="570" y1="120" x2="500" y2="210" stroke="#2980b9" stroke-width="1.5"/>
+          <circle cx="570" cy="120" r="3" fill="#2980b9"/>
+
+          <!-- Sensors (left) -->
+          <rect x="30" y="210" width="200" height="100" rx="8" fill="#e67e22" opacity="0.1" stroke="#e67e22" stroke-width="1.5"/>
+          <text x="130" y="232" text-anchor="middle" font-size="11" font-weight="700" fill="#e67e22">Sensors</text>
+          <text x="130" y="250" text-anchor="middle" font-size="9" fill="#666">Hall-effect (home position) ×3</text>
+          <text x="130" y="264" text-anchor="middle" font-size="9" fill="#666">Capacitive (liquid level)</text>
+          <text x="130" y="278" text-anchor="middle" font-size="9" fill="#666">Ultrasonic (waste level)</text>
+          <text x="130" y="292" text-anchor="middle" font-size="9" fill="#666">NTC thermistor (temperature)</text>
+          <line x1="230" y1="260" x2="300" y2="245" stroke="#e67e22" stroke-width="1.5"/>
+          <circle cx="230" cy="260" r="3" fill="#e67e22"/>
+
+          <!-- Display (right) -->
+          <rect x="570" y="200" width="200" height="85" rx="8" fill="#9b59b6" opacity="0.1" stroke="#9b59b6" stroke-width="1.5"/>
+          <text x="670" y="222" text-anchor="middle" font-size="11" font-weight="700" fill="#9b59b6">Display &amp; UI</text>
+          <text x="670" y="240" text-anchor="middle" font-size="9" fill="#666">5" TFT LCD Touchscreen</text>
+          <text x="670" y="254" text-anchor="middle" font-size="9" fill="#666">800×480 resolution, SPI/RGB</text>
+          <text x="670" y="268" text-anchor="middle" font-size="9" fill="#666">Capacitive touch (FT5x06)</text>
+          <line x1="570" y1="245" x2="500" y2="240" stroke="#9b59b6" stroke-width="1.5"/>
+          <circle cx="570" cy="245" r="3" fill="#9b59b6"/>
+
+          <!-- Communication (bottom-right) -->
+          <rect x="570" y="340" width="200" height="100" rx="8" fill="#1a6b4a" opacity="0.1" stroke="#1a6b4a" stroke-width="1.5"/>
+          <text x="670" y="362" text-anchor="middle" font-size="11" font-weight="700" fill="#1a6b4a">Communication</text>
+          <text x="670" y="380" text-anchor="middle" font-size="9" fill="#666">USB 2.0 (data export)</text>
+          <text x="670" y="394" text-anchor="middle" font-size="9" fill="#666">Ethernet (HL7 to LIS)</text>
+          <text x="670" y="408" text-anchor="middle" font-size="9" fill="#666">RS-232 (legacy LIS)</text>
+          <text x="670" y="422" text-anchor="middle" font-size="9" fill="#666">Barcode reader (UART)</text>
+          <line x1="570" y1="380" x2="500" y2="285" stroke="#1a6b4a" stroke-width="1.5"/>
+          <circle cx="570" cy="380" r="3" fill="#1a6b4a"/>
+
+          <!-- Power Supply (bottom-left) -->
+          <rect x="30" y="370" width="200" height="100" rx="8" fill="#0d7377" opacity="0.1" stroke="#0d7377" stroke-width="1.5"/>
+          <text x="130" y="392" text-anchor="middle" font-size="11" font-weight="700" fill="#0d7377">Power Supply</text>
+          <text x="130" y="410" text-anchor="middle" font-size="9" fill="#666">100–240VAC Input</text>
+          <text x="130" y="424" text-anchor="middle" font-size="9" fill="#666">Mean Well LRS-150-12 (12V)</text>
+          <text x="130" y="438" text-anchor="middle" font-size="9" fill="#666">DC-DC: 5V, 3.3V, ±15V</text>
+          <text x="130" y="452" text-anchor="middle" font-size="9" fill="#666">Total: ~65W typical</text>
+          <line x1="230" y1="400" x2="300" y2="280" stroke="#0d7377" stroke-width="1.5"/>
+          <circle cx="230" cy="400" r="3" fill="#0d7377"/>
+
+          <!-- Temperature Control (bottom-center) -->
+          <rect x="300" y="350" width="200" height="75" rx="8" fill="#e67e22" opacity="0.1" stroke="#e67e22" stroke-width="1.5"/>
+          <text x="400" y="372" text-anchor="middle" font-size="11" font-weight="700" fill="#e67e22">Temp Control</text>
+          <text x="400" y="390" text-anchor="middle" font-size="9" fill="#666">Peltier TEC (H-bridge driver)</text>
+          <text x="400" y="404" text-anchor="middle" font-size="9" fill="#666">PID loop, 25°C ± 0.1°C</text>
+          <line x1="400" y1="350" x2="400" y2="290" stroke="#e67e22" stroke-width="1.5"/>
+          <circle cx="400" cy="350" r="3" fill="#e67e22"/>
+
+          <text x="400" y="505" text-anchor="middle" font-size="10" fill="#999" font-style="italic">All subsystems connect to the central STM32F407 MCU via SPI, I2C, UART, ADC, and GPIO interfaces.</text>
+        </svg>
+        <div class="diagram-caption">Figure 5.1 — System architecture showing all electronic subsystems connected to the central MCU</div>
+      </div>
+
+      <h3>Motor Control</h3>
+      <p>Three <span class="jargon">A4988<span class="tip">A popular microstepping driver IC from Allegro Microsystems that can drive bipolar stepper motors at up to 2A per coil with 1/16 microstepping. Widely used in 3D printers and laboratory automation.</span></span> stepper motor driver ICs control the three motors (X-axis, Z-axis, and peristaltic pump). Each driver supports 1/16 microstepping for smooth, precise motion. Current limiting is set via a reference voltage to match each motor's rated current.</p>
+
+      <h3>Power Supply</h3>
+      <p>The analyzer accepts universal AC input (100–240 VAC, 50/60 Hz) and uses a <strong>Mean Well LRS-150-12</strong> enclosed switching power supply to generate the main 12V DC rail (up to 12.5A). From 12V, multiple DC-DC converters generate the other required voltages:</p>
+      <ul>
+        <li><strong>5V (3A):</strong> For the LCD display, USB host, and logic level shifters</li>
+        <li><strong>3.3V (1A):</strong> For the STM32 MCU, sensors, and digital ICs</li>
+        <li><strong>+15V / -15V (200mA each):</strong> For the precision analog circuitry (TIA, op-amps) — isolated to prevent digital switching noise from contaminating sensitive analog signals</li>
+      </ul>
+      <p>Total power consumption is approximately 65W during measurement and 20W in idle/standby mode.</p>
+
+      <h3>Connectivity</h3>
+      <p>The rear panel provides: <strong>USB 2.0 Type-B</strong> for data export and firmware update, <strong>RJ-45 Ethernet</strong> for HL7 connectivity to the LIS, and <strong>DB-9 RS-232</strong> for legacy LIS systems still common in Indian labs. A USB barcode reader port on the front panel accepts standard wired barcode scanners.</p>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     SECTION 6 — Bill of Materials & Indian Pricing
+     ═══════════════════════════════════════════════════ -->
+<div class="section" id="sec6">
+  <div class="section-header" onclick="toggleSection('sec6')">
+    <h2><span class="num">6</span> Bill of Materials &amp; Indian Pricing</h2>
+    <span class="arrow">&#9662;</span>
+  </div>
+  <div class="section-body">
+    <div class="section-content">
+
+      <h3>BOM Summary by Category</h3>
+      <p>The following table summarizes the direct material costs for one ESR Analyzer unit, based on Indian supplier pricing at a production volume of 500 units per year:</p>
+
+      <div class="table-wrap">
+        <table>
+          <tr><th>Category</th><th>Key Components</th><th>Cost (INR)</th><th>% of Total</th></tr>
+          <tr><td><strong>Mechanical Components</strong></td><td>CRS chassis, aluminum optical bench, brackets, hardware, covers, tube rack</td><td>₹7,977</td><td>29.5%</td></tr>
+          <tr><td><strong>Optical Components</strong></td><td>IR LED (880nm), photodiode, quartz flow cell, collimating/collecting lenses, bandpass filter, optical mount</td><td>₹2,595</td><td>9.6%</td></tr>
+          <tr><td><strong>Fluidic Components</strong></td><td>Peristaltic pump, silicone tubing, polypropylene manifold, 6-port valve, connectors, DI water reservoir, waste container</td><td>₹2,692</td><td>10.0%</td></tr>
+          <tr><td><strong>Electronic Components</strong></td><td>STM32F407, OPA128, OPA2134, LM317, A4988 drivers, passive components, connectors, 4-layer PCB</td><td>₹5,043</td><td>18.7%</td></tr>
+          <tr><td><strong>Motors &amp; Actuators</strong></td><td>NEMA 17 stepper, NEMA 11 stepper, GT2 belt + pulleys, leadscrew, Peltier TEC, fan, heat sink</td><td>₹1,025</td><td>3.8%</td></tr>
+          <tr><td><strong>Display &amp; UI</strong></td><td>5" TFT LCD (800×480), touch controller, bezels, membrane keypad, status LEDs, buzzer</td><td>₹4,351</td><td>16.1%</td></tr>
+          <tr><td><strong>Power Supply</strong></td><td>Mean Well LRS-150-12, DC-DC converters (5V, 3.3V, ±15V), IEC inlet, fuse holder, power switch</td><td>₹1,785</td><td>6.6%</td></tr>
+          <tr><td><strong>Consumables &amp; Packaging</strong></td><td>Barcode reader, USB cables, Ethernet cable, user manual, QC reagents, packaging box, foam inserts</td><td>₹1,530</td><td>5.7%</td></tr>
+          <tr style="background:#d0eded; font-weight:700;"><td><strong>TOTAL DIRECT MATERIALS</strong></td><td></td><td><strong>₹26,998</strong></td><td><strong>100%</strong></td></tr>
+        </table>
+      </div>
+
+      <h3>Total Cost of Goods Sold (COGS)</h3>
+      <div class="info-box">
+        <strong>COGS per unit at 500 units/year:</strong> ₹48,000 (approximately). This includes direct materials (₹26,998), direct labor (₹11,825 — assembly, testing, calibration), and manufacturing overhead (₹9,020 — facility, utilities, depreciation, QC staff). The COGS decreases at higher volumes due to better component pricing and fixed cost amortization.
+      </div>
+
+      <h3>Key Sourcing Notes</h3>
+      <ul>
+        <li><strong>STM32F407:</strong> Available from Mouser India, DigiKey, or authorized distributors like Arrow/Avnet. Lead time: 4–8 weeks. Alternate source: local distributors in Delhi (Lajpat Rai Market) for small quantities.</li>
+        <li><strong>Quartz Flow Cell:</strong> Custom-fabricated by Indian optical component manufacturers (e.g., Holmarc, Bengaluru) or imported from China. Lead time: 6–10 weeks for custom orders.</li>
+        <li><strong>OPA128:</strong> Specialty precision op-amp from Texas Instruments. May require import; plan for 8–12 week lead time. Consider maintaining safety stock.</li>
+        <li><strong>Mean Well Power Supply:</strong> Widely available in India through authorized distributors. UL/CE certified, medical-grade variants available.</li>
+        <li><strong>PCB Fabrication:</strong> Multiple capable Indian vendors (Technotronics, PCBPOWER, Rush PCB) offer 4-layer ENIG boards at competitive prices with 2–3 week turnaround.</li>
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     SECTION 7 — Firmware & Software Architecture
+     ═══════════════════════════════════════════════════ -->
+<div class="section" id="sec7">
+  <div class="section-header" onclick="toggleSection('sec7')">
+    <h2><span class="num">7</span> Firmware &amp; Software Architecture</h2>
+    <span class="arrow">&#9662;</span>
+  </div>
+  <div class="section-body">
+    <div class="section-content">
+
+      <h3>Operating System: FreeRTOS</h3>
+      <p>The firmware runs on <span class="jargon">FreeRTOS<span class="tip">A popular open-source real-time operating system (RTOS) for microcontrollers. It provides task scheduling, inter-task communication, timers, and memory management, allowing multiple tasks to run concurrently on a single processor.</span></span>, a real-time operating system that allows multiple firmware tasks to run concurrently on the STM32F407. FreeRTOS is open-source, has a small memory footprint (~10KB Flash, ~1KB RAM overhead), and is widely used in medical devices. It provides preemptive task scheduling, message queues, semaphores, and software timers.</p>
+
+      <h3>Task Architecture (8 Tasks)</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>Task</th><th>Priority</th><th>Stack (bytes)</th><th>Period</th><th>Responsibility</th></tr>
+          <tr><td><strong>Main Control</strong></td><td>High (5)</td><td>2048</td><td>Event-driven</td><td>State machine, coordinates all operations, error handling</td></tr>
+          <tr><td><strong>Optical Measurement</strong></td><td>Highest (6)</td><td>4096</td><td>1 ms (1 kHz)</td><td>ADC sampling, signal processing, curve fitting, ESR calculation</td></tr>
+          <tr><td><strong>Motor Control</strong></td><td>High (5)</td><td>1024</td><td>Event-driven</td><td>Stepper motor acceleration profiles, homing sequences, position tracking</td></tr>
+          <tr><td><strong>Temperature Control</strong></td><td>Medium (4)</td><td>1024</td><td>100 ms</td><td>PID loop for Peltier, temperature monitoring, over-temperature protection</td></tr>
+          <tr><td><strong>User Interface</strong></td><td>Medium (3)</td><td>4096</td><td>50 ms</td><td>LCD rendering, touch input handling, menu navigation, result display</td></tr>
+          <tr><td><strong>Communication</strong></td><td>Low (2)</td><td>2048</td><td>Event-driven</td><td>HL7 message formatting, USB data transfer, RS-232 protocol, barcode parsing</td></tr>
+          <tr><td><strong>QC / Calibration</strong></td><td>Medium (4)</td><td>2048</td><td>On-demand</td><td>Quality control sample processing, calibration routines, Westgard rules</td></tr>
+          <tr><td><strong>Idle / Housekeeping</strong></td><td>Lowest (1)</td><td>512</td><td>1 sec</td><td>Watchdog refresh, power management, sensor polling, data logging</td></tr>
+        </table>
+      </div>
+
+      <h3>Signal Processing Pipeline</h3>
+      <p>The optical measurement data goes through a multi-stage processing pipeline:</p>
+      <ol>
+        <li><strong>ADC Sampling:</strong> Raw 12-bit ADC values captured at 1 kHz (20,000 samples over 20 seconds)</li>
+        <li><strong>Optical Density Conversion:</strong> Raw ADC values are converted to optical density using: <code>OD = −log₁₀(V_sample / V_reference)</code></li>
+        <li><strong>Moving Average Filter:</strong> A 10-point moving average smooths the OD signal, reducing random noise while preserving the exponential decay shape</li>
+        <li><strong>Levenberg-Marquardt Fitting:</strong> The smoothed OD(t) curve is fit to the exponential model: <code>OD(t) = OD₀ + dOD × (1 − exp(−t/τ))</code>. The algorithm iterates (typically 15–30 iterations) until convergence (χ² change &lt; 0.001%)</li>
+        <li><strong>ESR Calculation:</strong> Fitted parameters are applied to the calibration equation: <code>ESR = a × τ + b × dOD + c</code></li>
+        <li><strong>Result Validation:</strong> Checks for: measurement quality (R² &gt; 0.95), result range (0–140 mm/hr), temperature within spec, and error flags</li>
+      </ol>
+
+      <h3>State Machine</h3>
+      <p>The main control task implements a state machine with these states:</p>
+      <p style="text-align:center; font-size:0.95rem; line-height:2;">
+        <strong style="color:var(--primary)">IDLE</strong> → <strong style="color:var(--accent)">SAMPLE_LOADING</strong> → <strong style="color:var(--accent)">ASPIRATING</strong> → <strong style="color:var(--accent)">MEASURING</strong> → <strong style="color:var(--green)">RESULT</strong> → <strong style="color:var(--orange)">CLEANING</strong> → back to <strong style="color:var(--primary)">IDLE</strong>
+      </p>
+      <p>Each state transition is guarded by preconditions (e.g., temperature must be stable before entering MEASURING). Any error condition (flow cell empty, motor stall, temperature out of range) triggers an immediate transition to an ERROR state with an appropriate alert on the display.</p>
+
+      <h3>Data Storage and Export</h3>
+      <ul>
+        <li><strong>On-board storage:</strong> Last 100 results stored in Flash memory (each result ~128 bytes: patient ID, ESR value, timestamp, QC flags, raw parameters)</li>
+        <li><strong>USB Export:</strong> Results can be exported as CSV files to a USB flash drive for offline analysis</li>
+        <li><strong>HL7 Integration:</strong> Results are transmitted to the LIS via <span class="jargon">HL7<span class="tip">Health Level 7 — a widely used international standard for electronic exchange of clinical and administrative data between healthcare information systems. HL7 v2.x messages use pipe-delimited segments.</span></span> v2.x messages over Ethernet (TCP/IP) or RS-232</li>
+        <li><strong>Firmware Update:</strong> A USB DFU (Device Firmware Update) bootloader allows field firmware updates without special programming hardware</li>
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     SECTION 8 — Step-by-Step Manufacturing Process
+     ═══════════════════════════════════════════════════ -->
+<div class="section" id="sec8">
+  <div class="section-header" onclick="toggleSection('sec8')">
+    <h2><span class="num">8</span> Step-by-Step Manufacturing Process</h2>
+    <span class="arrow">&#9662;</span>
+  </div>
+  <div class="section-body">
+    <div class="section-content">
+
+      <h3>Production Overview</h3>
+      <p>Manufacturing the ESR Analyzer involves 9 major stages. At a target production volume of 500–1,000 units per year, a batch size of 10–20 units is optimal, balancing efficiency with inventory management. Total manufacturing labor cost is approximately <strong>₹14,650 per unit</strong> (includes assembly, testing, calibration, and packaging).</p>
+
+      <h3>Stage 1: PCB Fabrication and Assembly</h3>
+      <p>For initial production, <strong>outsourced SMT assembly</strong> is recommended to ensure quality and avoid the high capital cost of pick-and-place equipment:</p>
+      <ul>
+        <li>PCB bare boards fabricated per Gerber files — 4-layer, ENIG, IPC Class 2</li>
+        <li>Bill of Materials and component reels provided to the contract manufacturer</li>
+        <li>SMT assembly with solder paste stencil, reflow oven profile, and AOI (Automated Optical Inspection)</li>
+        <li>Through-hole components (connectors, power components) soldered by hand or wave</li>
+        <li>In-Circuit Test (ICT) or Flying Probe test for each board</li>
+        <li>Functional test: MCU boots, all peripherals respond, ADC reads reference voltage correctly</li>
+      </ul>
+
+      <h3>Stage 2: Mechanical Component Fabrication</h3>
+      <ul>
+        <li><strong>Sheet metal (chassis):</strong> Laser cut, brake form, weld, powder coat. Outsource to local sheet metal vendor.</li>
+        <li><strong>Injection molding:</strong> Tube rack, probe guide, cosmetic trim pieces. Outsource to plastics vendor. Tooling cost ~₹3–5 lakh per mold (one-time).</li>
+        <li><strong>CNC machining:</strong> Optical bench from Aluminum 6061-T6 billet. Tight tolerance work — outsource to a precision CNC shop. Inspect with CMM (Coordinate Measuring Machine).</li>
+        <li><strong>Incoming inspection:</strong> Dimensional checks on all mechanical parts per engineering drawings.</li>
+      </ul>
+
+      <h3>Stage 3: Optical Bench Assembly (7 Steps)</h3>
+      <ol>
+        <li>Clean optical bench with isopropyl alcohol in a dust-free area</li>
+        <li>Install IR LED in its precision bore with thermal compound, connect leads</li>
+        <li>Install collimating lens in V-groove with optical adhesive (UV-cure)</li>
+        <li>Install quartz flow cell in the holder bracket, apply RTV silicone seal around fluid ports</li>
+        <li>Install collecting lens and bandpass filter in their respective mounts</li>
+        <li>Install photodiode in its precision bore, connect to TIA circuit</li>
+        <li><strong>Alignment verification:</strong> Using a laser alignment tool, verify that all optical components are collinear within ±0.1mm. Measure reference optical density using a neutral density filter — must match expected value within ±2%.</li>
+      </ol>
+
+      <h3>Stage 4: Fluidic System Assembly (6 Steps)</h3>
+      <ol>
+        <li>Assemble polypropylene manifold with O-ring seals on all ports</li>
+        <li>Install 6-port rotary valve and connect to stepper motor actuator</li>
+        <li>Mount peristaltic pump, install silicone tubing cassette</li>
+        <li>Connect all tubing runs: aspiration probe → manifold → flow cell → waste</li>
+        <li>Install DI water reservoir and waste container with level sensors</li>
+        <li><strong>Leak test:</strong> Pressurize the fluidic system to 1.5× operating pressure (approximately 1 bar) with DI water. Inspect all joints for leaks over 10 minutes. Zero leakage permitted.</li>
+      </ol>
+
+      <h3>Stage 5: Final Mechanical Integration</h3>
+      <p>Mount the optical bench assembly, fluidic system, tube rack mechanism, and sample handling motors into the main chassis. Install linear rails, GT2 belt system, and Z-axis leadscrew. Verify smooth motion on both axes — no binding, no excessive play. Install vibration isolation grommets between optical bench and chassis.</p>
+
+      <h3>Stage 6: Electronics Integration and Wiring (9 Steps)</h3>
+      <ol>
+        <li>Mount main PCB on standoffs inside chassis</li>
+        <li>Install Mean Well power supply and wire AC inlet with appropriate fusing</li>
+        <li>Connect motor cables (4-pin) to A4988 drivers</li>
+        <li>Connect optical signal cable (shielded) from photodiode circuit to main PCB</li>
+        <li>Connect temperature sensor (thermistor) and Peltier power leads</li>
+        <li>Connect Hall-effect sensors and capacitive liquid level sensor</li>
+        <li>Mount and connect 5" TFT LCD display and touch panel</li>
+        <li>Connect USB, Ethernet, and RS-232 ports to rear panel connectors</li>
+        <li><strong>Wiring inspection:</strong> Visual check of all connections, verify correct polarity, continuity test on critical power lines, and insulation resistance test at 500V DC (must be &gt; 10 MΩ).</li>
+      </ol>
+
+      <h3>Stage 7: Firmware Flashing and Configuration</h3>
+      <p>Flash the FreeRTOS firmware via the SWD (Serial Wire Debug) programming header using an ST-Link programmer. Set the serial number, manufacture date, and hardware revision in the configuration area of Flash. Run the built-in self-test (BIST) routine, which checks all peripherals, motors, sensors, display, and communication ports. The BIST takes approximately 3 minutes and provides a pass/fail report.</p>
+
+      <h3>Stage 8: Optical Calibration (6-Step Procedure)</h3>
+      <ol>
+        <li>Run 20 blood samples with known Westergren ESR values (covering the range 2–120 mm/hr)</li>
+        <li>For each sample, record the photometric parameters: τ (time constant) and dOD (optical density change)</li>
+        <li>Perform linear regression: ESR = a × τ + b × dOD + c to determine calibration constants</li>
+        <li>Verify: R² must be &gt; 0.95 and all residuals must be within ±15% or ±5 mm/hr (whichever is greater)</li>
+        <li>Store calibration constants in protected Flash memory area (CRC-protected)</li>
+        <li>Run 5 additional validation samples (not used in calibration) to confirm accuracy — all must be within ±10% of Westergren reference</li>
+      </ol>
+
+      <h3>Stage 9: Quality Control and Validation</h3>
+      <p>Each unit undergoes a comprehensive QC protocol before shipment:</p>
+      <ul>
+        <li><strong>Precision test:</strong> Run the same sample 20 times — CV must be &lt; 5%</li>
+        <li><strong>Linearity test:</strong> 5 samples across the clinical range — R² &gt; 0.99</li>
+        <li><strong>Carryover test:</strong> High sample followed by low sample — carryover &lt; 1%</li>
+        <li><strong>Temperature stress:</strong> Operate at 15°C, 25°C, and 35°C ambient — results must agree within ±5%</li>
+        <li><strong>Electrical safety:</strong> Earth continuity, insulation resistance, leakage current per IEC 60601-1</li>
+        <li><strong>Burn-in:</strong> 48-hour continuous operation to detect early failures</li>
+        <li><strong>Documentation:</strong> Generate test certificate, calibration certificate, and QC report</li>
+      </ul>
+
+      <div class="info-box success">
+        <strong>Production capacity:</strong> With a team of 4–6 technicians, this process yields 10–20 units per batch with a batch cycle time of 3–4 weeks. Annual capacity: 500–1,000 units. Labor cost: approximately ₹14,650 per unit.
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     SECTION 9 — Quality Control & Regulatory
+     ═══════════════════════════════════════════════════ -->
+<div class="section" id="sec9">
+  <div class="section-header" onclick="toggleSection('sec9')">
+    <h2><span class="num">9</span> Quality Control &amp; Regulatory</h2>
+    <span class="arrow">&#9662;</span>
+  </div>
+  <div class="section-body">
+    <div class="section-content">
+
+      <h3>Quality Management System (QMS)</h3>
+      <p>Manufacturing medical devices in India requires a robust <span class="jargon">QMS<span class="tip">Quality Management System — a formalized system of processes and procedures that ensures products consistently meet customer and regulatory requirements. ISO 13485 is the QMS standard specific to medical devices.</span></span>. The governing standard is <span class="jargon">ISO 13485:2016<span class="tip">The international standard for Quality Management Systems specific to medical devices. It covers design controls, risk management, purchasing, production, traceability, CAPA, and post-market surveillance.</span></span>, which is mandatory for CDSCO registration. Key elements include:</p>
+      <ul>
+        <li><strong>Design Controls:</strong> Design input → design output → verification → validation → design review → design transfer (to manufacturing)</li>
+        <li><strong>Risk Management:</strong> Per ISO 14971 — hazard analysis, risk estimation, risk evaluation, risk control, residual risk acceptance</li>
+        <li><strong>Document Control:</strong> Controlled documents with revision history, approval signatures, and distribution lists</li>
+        <li><strong>CAPA:</strong> Corrective and Preventive Action system for addressing nonconformities and continuous improvement</li>
+        <li><strong>Traceability:</strong> Every unit traceable from raw materials to final customer through serial numbers and lot numbers</li>
+      </ul>
+
+      <h3>Quality Control Stages</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>Stage</th><th>Abbreviation</th><th>What Is Checked</th><th>Acceptance Criteria</th></tr>
+          <tr><td><strong>Incoming QC</strong></td><td><span class="jargon">IQC<span class="tip">Incoming Quality Control — inspection and testing of raw materials and purchased components before they enter the production process.</span></span></td><td>Component specifications, PCB quality, mechanical dimensions, optical component parameters</td><td>Per component specifications and approved vendor quality agreements</td></tr>
+          <tr><td><strong>In-Process QC</strong></td><td><span class="jargon">IPQC<span class="tip">In-Process Quality Control — inspections and tests performed during the manufacturing process at critical checkpoints.</span></span></td><td>Optical alignment, leak testing, solder joint quality, motor function, electrical safety</td><td>Per manufacturing procedure documents at each stage gate</td></tr>
+          <tr><td><strong>Outgoing QC</strong></td><td><span class="jargon">OQC<span class="tip">Outgoing Quality Control — final inspection and testing of the finished product before it is released for shipment to the customer.</span></span></td><td>Full functional test, precision, accuracy, safety, cosmetic inspection</td><td>All CLSI EP criteria met, IEC 60601-1 safety, zero cosmetic defects</td></tr>
+        </table>
+      </div>
+
+      <h3>CLSI Performance Standards</h3>
+      <p>The analyzer must be validated against internationally recognized <span class="jargon">CLSI<span class="tip">Clinical and Laboratory Standards Institute — a global nonprofit that develops voluntary consensus standards for laboratory testing. CLSI documents are referenced by regulators worldwide.</span></span> standards:</p>
+      <div class="table-wrap">
+        <table>
+          <tr><th>CLSI Document</th><th>Title</th><th>What It Validates</th><th>Key Requirement</th></tr>
+          <tr><td>EP15-A3</td><td>User Verification of Precision</td><td>Within-run and between-run precision</td><td>CV &lt; 5% for normal and abnormal levels</td></tr>
+          <tr><td>EP06</td><td>Evaluation of Linearity</td><td>Measurement linearity across clinical range</td><td>R² &gt; 0.99, deviation &lt; 10% at each level</td></tr>
+          <tr><td>EP10</td><td>Preliminary Evaluation of Carryover</td><td>Sample-to-sample carryover</td><td>Carryover &lt; 1% (high-to-low)</td></tr>
+          <tr><td>H02-A5</td><td>ESR Reference Method</td><td>Correlation with Westergren method</td><td>r &gt; 0.95, slope 0.9–1.1, Bland-Altman within ±15%</td></tr>
+        </table>
+      </div>
+
+      <h3>Electrical Safety Standards</h3>
+      <ul>
+        <li><strong>IEC 60601-1:</strong> General requirements for basic safety and essential performance of medical electrical equipment. Covers insulation, grounding, leakage current, mechanical strength, and temperature limits.</li>
+        <li><strong>IEC 60601-1-2:</strong> Electromagnetic compatibility (EMC) requirements. The analyzer must not emit excessive electromagnetic interference and must be immune to external interference. Tests include radiated emissions, conducted emissions, electrostatic discharge, and surge immunity.</li>
+      </ul>
+
+      <h3>CDSCO Registration (Indian Regulatory)</h3>
+      <p>The ESR Analyzer is classified as a <strong>Class C medical device</strong> by <span class="jargon">CDSCO<span class="tip">Central Drugs Standard Control Organisation — the Indian regulatory body for medical devices, equivalent to the US FDA. CDSCO classifies devices into Classes A–D based on risk level and grants manufacturing/import licenses.</span></span> (Central Drugs Standard Control Organisation). The registration process involves:</p>
+
+      <div class="step"><span class="step-num">1</span><div><strong>Pre-submission:</strong> Prepare a Device Master File (DMF) containing: device description, intended use, design specifications, risk analysis, biocompatibility data (for blood-contacting components), software validation, performance data, and labeling.</div></div>
+      <div class="step"><span class="step-num">2</span><div><strong>Testing:</strong> Get the device tested at a <span class="jargon">BIS<span class="tip">Bureau of Indian Standards — the national standards body of India. BIS-recognized labs perform the IEC 60601 safety and EMC testing required for CDSCO registration.</span></span>-recognized laboratory for IEC 60601-1 (safety) and IEC 60601-1-2 (EMC). This typically costs ₹5–8 lakh and takes 3–6 months.</div></div>
+      <div class="step"><span class="step-num">3</span><div><strong>Application:</strong> Submit Form MD-14 to CDSCO with the DMF, test reports, QMS certificate (ISO 13485), clinical evidence, and prescribed fees.</div></div>
+      <div class="step"><span class="step-num">4</span><div><strong>Review:</strong> CDSCO reviews the application, may request additional data or site inspection. A Subject Expert Committee (SEC) evaluates the technical dossier.</div></div>
+      <div class="step"><span class="step-num">5</span><div><strong>Approval:</strong> Upon satisfactory review, CDSCO grants a manufacturing license. The entire process typically takes <strong>17–33 months</strong>.</div></div>
+
+      <h3>Regulatory Cost Estimate</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>Item</th><th>Cost (INR Lakhs)</th></tr>
+          <tr><td>IEC 60601-1 Safety Testing</td><td>3.0–5.0</td></tr>
+          <tr><td>IEC 60601-1-2 EMC Testing</td><td>2.0–3.0</td></tr>
+          <tr><td>ISO 13485 Certification (initial)</td><td>2.0–3.0</td></tr>
+          <tr><td>CDSCO Application Fees</td><td>0.5–1.0</td></tr>
+          <tr><td>Regulatory Consultancy</td><td>3.0–4.0</td></tr>
+          <tr><td>Clinical Evidence / Performance Study</td><td>1.25–1.75</td></tr>
+          <tr style="font-weight:700; background:#d0eded;"><td><strong>Total Regulatory Costs</strong></td><td><strong>11.75–17.75</strong></td></tr>
+        </table>
+      </div>
+
+      <h3>Validation Protocols</h3>
+      <p>Before commercial release, three validation stages must be completed:</p>
+      <ul>
+        <li><strong>IQ (Installation Qualification):</strong> Verifies that the analyzer is properly installed per specifications — correct power supply, environmental conditions, all accessories present.</li>
+        <li><strong>OQ (Operational Qualification):</strong> Verifies that the analyzer operates correctly under all specified conditions — temperature range, sample types, precision, accuracy, and error handling.</li>
+        <li><strong>PQ (Performance Qualification):</strong> Verifies that the analyzer performs consistently over time under actual-use conditions in a clinical laboratory setting.</li>
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     SECTION 10 — Indian Market Analysis
+     ═══════════════════════════════════════════════════ -->
+<div class="section" id="sec10">
+  <div class="section-header" onclick="toggleSection('sec10')">
+    <h2><span class="num">10</span> Indian Market Analysis</h2>
+    <span class="arrow">&#9662;</span>
+  </div>
+  <div class="section-body">
+    <div class="section-content">
+
+      <h3>India IVD Market Overview</h3>
+      <p>India's <span class="jargon">IVD<span class="tip">In Vitro Diagnostics — medical devices and reagents used to perform tests on biological samples (blood, urine, tissue) outside the body. The IVD industry includes chemistry analyzers, hematology analyzers, immunoassay systems, molecular diagnostics, and point-of-care devices.</span></span> (In Vitro Diagnostics) market is one of the fastest-growing in the world. The market was valued at approximately <strong>$1.94 billion (2026)</strong> and is expected to grow at a <strong>6.49% CAGR</strong> through 2030. Key growth drivers include increasing healthcare expenditure, growing middle class with health awareness, government programs like Ayushman Bharat, and expansion of diagnostic chains into Tier-2 and Tier-3 cities.</p>
+
+      <h3>ESR Testing Market Segment</h3>
+      <p>ESR testing represents approximately <strong>2–3% of the total IVD market</strong>, translating to a market size of approximately <strong>₹320–490 crore</strong> (instruments + consumables + reagents). An estimated <strong>600–800 ESR analyzers</strong> are sold annually in India, with the market shifting from manual Westergren to automated methods.</p>
+
+      <div class="fin-highlight">
+        <div class="fin-card"><div class="value">$1.94B</div><div class="label">India IVD Market (2026)</div></div>
+        <div class="fin-card"><div class="value">6.49%</div><div class="label">Market CAGR</div></div>
+        <div class="fin-card"><div class="value">₹320-490 Cr</div><div class="label">ESR Segment Size</div></div>
+        <div class="fin-card"><div class="value">600-800</div><div class="label">Analyzers Sold/Year</div></div>
+      </div>
+
+      <h3>Market Segments</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>Segment</th><th>Market Share</th><th>Key Characteristics</th><th>Price Sensitivity</th></tr>
+          <tr><td><strong>Hospital Labs</strong></td><td>40–45%</td><td>Government and private hospitals, high volume (50–200 tests/day), need HL7/LIS integration, prefer established brands</td><td>Moderate</td></tr>
+          <tr><td><strong>Diagnostic Chains</strong></td><td>35–40%</td><td>Dr. Lal PathLabs, SRL, Metropolis, Thyrocare — standardized procurement, high volume, strong technical evaluation</td><td>Moderate-High</td></tr>
+          <tr><td><strong>Stand-alone Pathology Labs</strong></td><td>10–15%</td><td>Small independent labs in Tier-2/3 cities, low-medium volume (10–50 tests/day), price-conscious, value simplicity</td><td>Very High</td></tr>
+          <tr><td><strong>Academic / Research</strong></td><td>5–10%</td><td>Medical colleges, research institutions, tender-based procurement, need advanced features</td><td>Low (tender-based)</td></tr>
+        </table>
+      </div>
+
+      <h3>Competitive Landscape</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>Company</th><th>Model</th><th>Technology</th><th>Market Share</th><th>Price (INR)</th><th>Speed</th><th>Throughput</th></tr>
+          <tr><td><strong>Transasia Erba</strong></td><td>iLine Microsed</td><td>Modified Westergren</td><td>25–30%</td><td>~₹1,35,000</td><td>20 min</td><td>20 samples/hr</td></tr>
+          <tr><td><strong>Beacon / V-Chem</strong></td><td>ESR Auto 20</td><td>Closed-tube gravity</td><td>15–20%</td><td>~₹80,000</td><td>30 min</td><td>20 samples/hr</td></tr>
+          <tr><td><strong>Alifax (Italy)</strong></td><td>TEST 1 TH</td><td>Photometric rheology</td><td>10–15%</td><td>~₹2,50,000</td><td>20 sec</td><td>180 samples/hr</td></tr>
+          <tr><td><strong>Alcor Scientific (USA)</strong></td><td>iSED</td><td>Photometric rheology</td><td>8–12%</td><td>~₹2,00,000+</td><td>20 sec</td><td>60 samples/hr</td></tr>
+          <tr><td><strong>Diesse (Italy)</strong></td><td>Ves-Matic Cube 80</td><td>Modified Westergren</td><td>8–10%</td><td>~₹1,50,000</td><td>20 min</td><td>80 samples/hr</td></tr>
+          <tr style="background:#d0eded; font-weight:600;"><td><strong>Levram (Target)</strong></td><td>ESR Analyzer</td><td>Photometric rheology</td><td>Target: 5–8%</td><td>₹1,20,000–1,50,000</td><td>20 sec</td><td>60–80 samples/hr</td></tr>
+        </table>
+      </div>
+
+      <div class="info-box success">
+        <strong>Levram Positioning:</strong> The Levram ESR Analyzer targets the "sweet spot" — <strong>photometric rheology technology at Indian price points</strong>. At ₹1.2–1.5 lakh, it undercuts the imported photometric analyzers (Alifax, Alcor) by 30–50% while offering the same 20-second measurement speed and full automation. This is a compelling value proposition for Indian labs wanting to upgrade from slow manual/gravity methods without paying import premiums.
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     SECTION 11 — Financial Analysis & COGS
+     ═══════════════════════════════════════════════════ -->
+<div class="section" id="sec11">
+  <div class="section-header" onclick="toggleSection('sec11')">
+    <h2><span class="num">11</span> Financial Analysis &amp; COGS</h2>
+    <span class="arrow">&#9662;</span>
+  </div>
+  <div class="section-body">
+    <div class="section-content">
+
+      <h3>COGS Breakdown (per unit at 500 units/year)</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>Cost Component</th><th>Amount (INR)</th><th>% of COGS</th></tr>
+          <tr><td>Direct Materials</td><td>₹26,998</td><td>56.4%</td></tr>
+          <tr><td>Direct Labor (assembly, testing, calibration)</td><td>₹11,825</td><td>24.7%</td></tr>
+          <tr><td>Manufacturing Overhead (facility, utilities, depreciation, QC staff)</td><td>₹9,020</td><td>18.9%</td></tr>
+          <tr style="background:#d0eded; font-weight:700;"><td><strong>Total COGS per Unit</strong></td><td><strong>₹47,843</strong></td><td><strong>100%</strong></td></tr>
+        </table>
+      </div>
+
+      <h3>Pricing Strategy</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>Parameter</th><th>Value</th></tr>
+          <tr><td>List Price (MRP)</td><td>₹1,50,000</td></tr>
+          <tr><td>Average Selling Price (with discounts)</td><td>₹1,35,000</td></tr>
+          <tr><td>COGS per Unit</td><td>₹47,843</td></tr>
+          <tr><td>Gross Profit per Unit</td><td>₹87,157</td></tr>
+          <tr style="font-weight:700;"><td>Gross Margin</td><td>64.6%</td></tr>
+        </table>
+      </div>
+
+      <h3>Break-Even Analysis</h3>
+      <p>With annual fixed costs of approximately ₹48.7 lakh (facility rent, salaries, insurance, regulatory maintenance) and a contribution margin of ₹87,157 per unit:</p>
+      <p style="text-align:center; font-size:1.1rem; font-weight:600; color:var(--primary); margin:16px 0;">
+        Break-even = ₹48,70,000 / ₹87,157 = <strong>~56 units/year</strong> (instrument sales only)
+      </p>
+      <p>Including <span class="jargon">AMC<span class="tip">Annual Maintenance Contract — a service agreement where the customer pays an annual fee for preventive maintenance, repairs, and consumable supply. AMC revenue is recurring and high-margin.</span></span> (Annual Maintenance Contract) and consumable revenue, the effective break-even is even lower.</p>
+
+      <h3>5-Year Revenue Projections</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>Year</th><th>Units Sold</th><th>Revenue (Cr)</th><th>COGS (Cr)</th><th>Gross Profit (Cr)</th><th>EBIT (Cr)</th><th>EBIT Margin</th></tr>
+          <tr><td>Year 1</td><td>50</td><td>₹0.60</td><td>₹0.24</td><td>₹0.36</td><td>−₹0.84</td><td>—</td></tr>
+          <tr><td>Year 2</td><td>150</td><td>₹2.03</td><td>₹0.72</td><td>₹1.31</td><td>₹0.04</td><td>~2%</td></tr>
+          <tr><td>Year 3</td><td>300</td><td>₹4.50</td><td>₹1.44</td><td>₹3.06</td><td>₹1.71</td><td>38%</td></tr>
+          <tr><td>Year 4</td><td>400</td><td>₹6.00</td><td>₹1.91</td><td>₹4.09</td><td>₹2.63</td><td>44%</td></tr>
+          <tr><td>Year 5</td><td>500</td><td>₹7.50</td><td>₹2.39</td><td>₹5.11</td><td>₹3.52</td><td>47%</td></tr>
+        </table>
+      </div>
+      <p><em>Note: Revenue includes instrument sales, consumables, and AMC. Year 2+ includes recurring AMC revenue from installed base.</em></p>
+
+      <h3>Key Financial Metrics</h3>
+      <div class="fin-highlight">
+        <div class="fin-card"><div class="value">₹1.23 Cr</div><div class="label">Initial Investment Required</div></div>
+        <div class="fin-card"><div class="value">3.1 yrs</div><div class="label">Payback Period</div></div>
+        <div class="fin-card"><div class="value">45%</div><div class="label">Internal Rate of Return</div></div>
+        <div class="fin-card"><div class="value">₹3.85 Cr</div><div class="label">NPV (5-Year, 15% WACC)</div></div>
+      </div>
+
+      <h3>Initial Investment Breakdown</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>Category</th><th>Amount (INR Lakhs)</th></tr>
+          <tr><td>Facility Setup (lease deposit, renovation, utilities)</td><td>25.0</td></tr>
+          <tr><td>Equipment (assembly tools, test equipment, calibration instruments)</td><td>18.0</td></tr>
+          <tr><td>Regulatory (ISO 13485, CDSCO, safety testing)</td><td>15.0</td></tr>
+          <tr><td>R&amp;D (prototype development, testing, iteration)</td><td>35.0</td></tr>
+          <tr><td>Working Capital (initial inventory, 3 months operating expenses)</td><td>30.0</td></tr>
+          <tr style="font-weight:700; background:#d0eded;"><td><strong>Total Initial Investment</strong></td><td><strong>123.0</strong></td></tr>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     SECTION 12 — Glossary
+     ═══════════════════════════════════════════════════ -->
+<div class="section" id="sec12">
+  <div class="section-header" onclick="toggleSection('sec12')">
+    <h2><span class="num">12</span> Glossary</h2>
+    <span class="arrow">&#9662;</span>
+  </div>
+  <div class="section-body">
+    <div class="section-content">
+
+      <input type="text" id="glossarySearch" placeholder="Search glossary terms..." oninput="filterGlossary()">
+
+      <div class="glossary-grid" id="glossaryGrid">
+
+        <div class="glossary-item"><span class="term">ESR (Erythrocyte Sedimentation Rate)</span><div class="def">The rate at which red blood cells settle in a standardized tube over one hour, measured in mm/hr. A non-specific marker of inflammation.</div></div>
+
+        <div class="glossary-item"><span class="term">Westergren Method</span><div class="def">The gold-standard reference method for ESR measurement, using a 200mm vertical glass tube with citrated blood, read after 60 minutes. Established by Alf Westergren in 1921.</div></div>
+
+        <div class="glossary-item"><span class="term">Photometric Rheology</span><div class="def">A technique that measures ESR by shining infrared light through blood and analyzing the rate of optical density change as red blood cells aggregate. Produces results in ~20 seconds.</div></div>
+
+        <div class="glossary-item"><span class="term">Rouleaux Formation</span><div class="def">The stacking of red blood cells into coin-like columns caused by elevated plasma proteins (fibrinogen, immunoglobulins). Rouleaux settle faster than individual RBCs, increasing ESR.</div></div>
+
+        <div class="glossary-item"><span class="term">Optical Density (OD)</span><div class="def">A logarithmic measure of light absorption/scattering by a sample: OD = -log10(Transmitted/Incident intensity). Higher OD means less light passes through.</div></div>
+
+        <div class="glossary-item"><span class="term">Transimpedance Amplifier (TIA)</span><div class="def">An electronic circuit that converts the tiny photocurrent from a photodiode (nanoamps) into a measurable voltage signal, using a high-value feedback resistor.</div></div>
+
+        <div class="glossary-item"><span class="term">Peltier Module (TEC)</span><div class="def">A thermoelectric cooler/heater that transfers heat from one side to the other when current flows through it. Used to maintain the flow cell at a precise temperature (25°C).</div></div>
+
+        <div class="glossary-item"><span class="term">FreeRTOS</span><div class="def">A popular open-source Real-Time Operating System for microcontrollers that provides task scheduling, inter-task communication, and timing services. Used in many medical devices.</div></div>
+
+        <div class="glossary-item"><span class="term">Levenberg-Marquardt Algorithm</span><div class="def">A numerical optimization method for fitting nonlinear equations to data. It combines gradient descent and Gauss-Newton approaches to find the best-fit parameters. Used here for exponential curve fitting.</div></div>
+
+        <div class="glossary-item"><span class="term">CDSCO</span><div class="def">Central Drugs Standard Control Organisation — India's national regulatory authority for medical devices and pharmaceuticals, responsible for device classification, registration, and market surveillance.</div></div>
+
+        <div class="glossary-item"><span class="term">ISO 13485</span><div class="def">The international quality management system standard specific to medical devices. Covers design controls, risk management, production controls, traceability, and post-market surveillance.</div></div>
+
+        <div class="glossary-item"><span class="term">CLSI</span><div class="def">Clinical and Laboratory Standards Institute — a global organization that develops consensus standards for laboratory testing methods, including precision, accuracy, linearity, and method comparison protocols.</div></div>
+
+        <div class="glossary-item"><span class="term">HL7</span><div class="def">Health Level Seven — an international standard for the electronic exchange of clinical and administrative data between healthcare information systems. HL7 v2.x uses pipe-delimited text messages.</div></div>
+
+        <div class="glossary-item"><span class="term">NABL</span><div class="def">National Accreditation Board for Testing and Calibration Laboratories — the Indian accreditation body that certifies testing and calibration laboratories per ISO/IEC 17025 and ISO 15189.</div></div>
+
+        <div class="glossary-item"><span class="term">BIS</span><div class="def">Bureau of Indian Standards — India's national standards body that publishes Indian Standards (IS) and recognizes testing laboratories for product certification and regulatory compliance.</div></div>
+
+        <div class="glossary-item"><span class="term">COGS</span><div class="def">Cost of Goods Sold — the total direct cost of manufacturing a product, including materials, direct labor, and allocated manufacturing overhead.</div></div>
+
+        <div class="glossary-item"><span class="term">AMC (Annual Maintenance Contract)</span><div class="def">A service agreement where the customer pays an annual fee for preventive maintenance, breakdown repairs, and consumable supply. AMC typically costs 8-12% of the instrument price per year.</div></div>
+
+        <div class="glossary-item"><span class="term">CER (Clinical Evaluation Report)</span><div class="def">A document that compiles and analyzes clinical data to demonstrate that a medical device is safe and performs as intended. Required for regulatory submissions.</div></div>
+
+        <div class="glossary-item"><span class="term">DMF (Device Master File)</span><div class="def">A comprehensive file containing all design, manufacturing, and quality information about a medical device. Submitted to regulatory authorities as part of the registration process.</div></div>
+
+        <div class="glossary-item"><span class="term">QMS (Quality Management System)</span><div class="def">A formalized system of policies, processes, and procedures for ensuring that products and services consistently meet customer and regulatory requirements.</div></div>
+
+        <div class="glossary-item"><span class="term">IQC (Incoming Quality Control)</span><div class="def">Inspection and testing of purchased raw materials and components before they enter the manufacturing process, to verify compliance with specifications.</div></div>
+
+        <div class="glossary-item"><span class="term">OQC (Outgoing Quality Control)</span><div class="def">Final inspection and testing of finished products before shipment, verifying that all specifications, safety requirements, and cosmetic standards are met.</div></div>
+
+        <div class="glossary-item"><span class="term">IPQC (In-Process Quality Control)</span><div class="def">Quality checks performed at critical stages during the manufacturing process to catch defects early and prevent them from propagating to later stages.</div></div>
+
+        <div class="glossary-item"><span class="term">CRP (C-Reactive Protein)</span><div class="def">An acute-phase protein measured in blood that rises rapidly during inflammation. Often ordered alongside ESR as a more specific and faster-responding inflammatory marker.</div></div>
+
+        <div class="glossary-item"><span class="term">CBC (Complete Blood Count)</span><div class="def">A comprehensive blood test measuring red blood cells, white blood cells, hemoglobin, hematocrit, and platelets. One of the most commonly ordered laboratory tests worldwide.</div></div>
+
+        <div class="glossary-item"><span class="term">EDTA</span><div class="def">Ethylenediaminetetraacetic acid — an anticoagulant used in blood collection tubes (purple/lavender top). EDTA chelates calcium ions to prevent blood clotting. Standard for ESR and CBC testing.</div></div>
+
+        <div class="glossary-item"><span class="term">LIS (Laboratory Information System)</span><div class="def">Software that manages all aspects of laboratory operations including test ordering, sample tracking, result reporting, quality control, and billing. Analyzers connect to LIS via HL7 or serial protocols.</div></div>
+
+        <div class="glossary-item"><span class="term">PID Control</span><div class="def">Proportional-Integral-Derivative control — a feedback control algorithm that continuously adjusts an output (e.g., Peltier current) to minimize the error between a measured value and a setpoint (e.g., 25°C).</div></div>
+
+        <div class="glossary-item"><span class="term">STM32</span><div class="def">A family of 32-bit ARM Cortex-M microcontrollers made by STMicroelectronics. Widely used in industrial and medical applications for their performance, peripherals, and ecosystem support.</div></div>
+
+        <div class="glossary-item"><span class="term">IVD (In Vitro Diagnostics)</span><div class="def">Medical devices and reagents used to perform diagnostic tests on biological samples outside the body. Includes analyzers, test kits, reagents, and point-of-care devices.</div></div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     YOUTUBE RESOURCES
+     ═══════════════════════════════════════════════════ -->
+<div class="section" id="secVideos">
+  <div class="section-header" onclick="toggleSection('secVideos')">
+    <h2><span class="num" style="background:var(--accent);">▶</span> Video Resources</h2>
+    <span class="arrow">&#9662;</span>
+  </div>
+  <div class="section-body">
+    <div class="section-content">
+      <p>The following YouTube search links will help you find educational videos on ESR testing, analyzer technology, and medical device manufacturing in India:</p>
+
+      <div class="video-grid">
+        <div class="video-card">
+          <a href="https://www.youtube.com/results?search_query=ESR+test+explained" target="_blank">What is ESR Test? — Explained</a>
+          <p>General explainer videos covering the basics of ESR testing, why it is ordered, and how to interpret results.</p>
+        </div>
+        <div class="video-card">
+          <a href="https://www.youtube.com/results?search_query=westergren+method+ESR" target="_blank">Westergren Method ESR</a>
+          <p>Demonstrations of the manual Westergren method — the gold standard reference method for ESR measurement.</p>
+        </div>
+        <div class="video-card">
+          <a href="https://www.youtube.com/results?search_query=automated+ESR+analyzer" target="_blank">Automated ESR Analyzer</a>
+          <p>Videos showing how modern automated ESR analyzers work, including sample loading, measurement, and result display.</p>
+        </div>
+        <div class="video-card">
+          <a href="https://www.youtube.com/results?search_query=photometric+rheology+ESR" target="_blank">Photometric Method ESR</a>
+          <p>Technical videos explaining the photometric rheology principle used in advanced ESR analyzers like Alifax and Alcor.</p>
+        </div>
+        <div class="video-card">
+          <a href="https://www.youtube.com/results?search_query=medical+device+manufacturing+india+CDSCO" target="_blank">Medical Device Manufacturing in India</a>
+          <p>Overview of the regulatory landscape, CDSCO registration process, and manufacturing requirements for medical devices in India.</p>
+        </div>
+        <div class="video-card">
+          <a href="https://www.youtube.com/results?search_query=IEC+60601+medical+device+testing" target="_blank">IEC 60601 Safety Testing</a>
+          <p>Videos explaining electrical safety testing requirements for medical devices under the IEC 60601 family of standards.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     FOOTER
+     ═══════════════════════════════════════════════════ -->
+<div style="text-align:center; padding:30px 0 10px; color:var(--gray); font-size:0.85rem;">
+  <p><strong>ESR Analyzer Manufacturing Guide</strong> — Levram Medical Devices</p>
+  <p>Photometric Rheology Technology for the Indian Diagnostic Market</p>
+  <p style="margin-top:8px; font-size:0.8rem;">This document is for internal educational purposes. All specifications, pricing, and market data are estimates subject to change.</p>
+</div>
+
+</div> <!-- /container -->
+
+<!-- ════════════════ JAVASCRIPT ════════════════ -->
+<script>
+function toggleSection(id) {
+  const el = document.getElementById(id);
+  if (el) el.classList.toggle('open');
+}
+
+function toggleAll(open) {
+  document.querySelectorAll('.section').forEach(s => {
+    if (open) s.classList.add('open');
+    else s.classList.remove('open');
+  });
+}
+
+function filterGlossary() {
+  const query = document.getElementById('glossarySearch').value.toLowerCase();
+  document.querySelectorAll('.glossary-item').forEach(item => {
+    const term = item.querySelector('.term').textContent.toLowerCase();
+    const def = item.querySelector('.def').textContent.toLowerCase();
+    item.style.display = (term.includes(query) || def.includes(query)) ? '' : 'none';
+  });
+}
+</script>
+</body>
+          </html>
