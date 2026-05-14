@@ -1,0 +1,1308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Colon Cancer Screening Test Manufacturing Guide — Beginner-Friendly</title>
+<style>
+  :root {
+    --primary: #8b2252;
+    --primary-light: #fdf2f6;
+    --primary-dark: #6b1a3f;
+    --accent: #a0306a;
+    --accent-light: #fef0f8;
+    --blue: #2980b9;
+    --blue-light: #eaf4fb;
+    --red: #c0392b;
+    --red-light: #fbeaea;
+    --green: #1a6b4a;
+    --green-light: #e8f5ee;
+    --orange: #e67e22;
+    --orange-light: #fef3e5;
+    --gray: #7f8c8d;
+    --bg: #fafbfc;
+    --card: #ffffff;
+    --text: #2c3e50;
+    --border: #e0c5d4;
+    --shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    font-size: 17px;
+  }
+
+  /* ── Hero ── */
+  .hero {
+    background: linear-gradient(135deg, #4a1030 0%, #8b2252 50%, #a0306a 100%);
+    color: white;
+    padding: 60px 24px 50px;
+    text-align: center;
+  }
+  .hero h1 { font-size: 2.2rem; margin-bottom: 12px; font-weight: 700; letter-spacing: -0.5px; }
+  .hero p { font-size: 1.1rem; opacity: 0.92; max-width: 700px; margin: 0 auto 18px; }
+  .hero .badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.18);
+    border: 1px solid rgba(255,255,255,0.35);
+    border-radius: 20px;
+    padding: 6px 18px;
+    font-size: 0.9rem;
+    margin: 4px;
+  }
+
+  /* ── Container ── */
+  .container { max-width: 920px; margin: 0 auto; padding: 24px 18px 60px; }
+
+  /* ── Controls ── */
+  .controls {
+    display: flex; gap: 10px; margin-bottom: 24px; flex-wrap: wrap;
+  }
+  .controls button {
+    background: var(--primary); color: white; border: none;
+    border-radius: 6px; padding: 8px 18px; font-size: 0.92rem;
+    cursor: pointer; transition: background 0.2s;
+  }
+  .controls button:hover { background: var(--primary-dark); }
+
+  /* ── Sections ── */
+  .section {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 16px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+  .section-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 22px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s;
+  }
+  .section-header:hover { background: var(--primary-light); }
+  .section-header h2 {
+    font-size: 1.15rem; font-weight: 600; color: var(--primary);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-header .num {
+    background: var(--primary);
+    color: white;
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.85rem; font-weight: 700;
+    flex-shrink: 0;
+  }
+  .section-header .arrow {
+    font-size: 1.3rem;
+    transition: transform 0.3s ease;
+    color: var(--primary);
+    flex-shrink: 0;
+  }
+  .section.open .section-header .arrow { transform: rotate(180deg); }
+  .section-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .section.open .section-body { max-height: 30000px; }
+  .section-content { padding: 6px 22px 26px; }
+
+  /* ── Typography ── */
+  h3 { color: var(--primary); font-size: 1.05rem; margin: 22px 0 10px; font-weight: 600; }
+  h4 { color: var(--accent); font-size: 0.98rem; margin: 16px 0 8px; font-weight: 600; }
+  p { margin-bottom: 12px; }
+  ul, ol { margin: 0 0 14px 22px; }
+  li { margin-bottom: 5px; }
+
+  /* ── Tables ── */
+  .table-wrap { overflow-x: auto; margin: 14px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.93rem; }
+  th {
+    background: var(--primary);
+    color: white;
+    padding: 10px 14px;
+    text-align: left;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); }
+  tr:nth-child(even) { background: var(--primary-light); }
+  tr:hover { background: #f0d5e2; }
+
+  /* ── Jargon tooltip ── */
+  .jargon {
+    border-bottom: 2px dotted var(--accent);
+    cursor: help;
+    position: relative;
+    font-weight: 500;
+  }
+  .jargon .tip {
+    display: none;
+    position: absolute;
+    bottom: 130%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #1a2a3a;
+    color: #fff;
+    padding: 8px 14px;
+    border-radius: 7px;
+    font-size: 0.82rem;
+    font-weight: 400;
+    width: max-content;
+    max-width: 320px;
+    line-height: 1.5;
+    z-index: 100;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+    pointer-events: none;
+  }
+  .jargon .tip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent;
+    border-top-color: #1a2a3a;
+  }
+  .jargon:hover .tip { display: block; }
+
+  /* ── Info boxes ── */
+  .info-box {
+    border-left: 4px solid var(--accent);
+    background: var(--accent-light);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    margin: 14px 0;
+    font-size: 0.95rem;
+  }
+  .info-box.warn {
+    border-left-color: var(--orange);
+    background: var(--orange-light);
+  }
+  .info-box.success {
+    border-left-color: var(--green);
+    background: var(--green-light);
+  }
+  .info-box strong { color: var(--primary); }
+
+  /* ── SVG diagrams ── */
+  .diagram-wrap {
+    margin: 18px 0;
+    text-align: center;
+    background: #fdf5f8;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+    overflow-x: auto;
+  }
+  .diagram-wrap svg { max-width: 100%; height: auto; }
+  .diagram-caption {
+    font-size: 0.85rem;
+    color: var(--gray);
+    margin-top: 8px;
+    font-style: italic;
+  }
+
+  /* ── Step numbers ── */
+  .step {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 14px;
+    align-items: flex-start;
+  }
+  .step-num {
+    background: var(--primary);
+    color: white;
+    min-width: 32px; height: 32px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  /* ── Financial highlight ── */
+  .fin-highlight {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    margin: 16px 0;
+  }
+  .fin-card {
+    background: var(--primary-light);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+  }
+  .fin-card .value { font-size: 1.5rem; font-weight: 700; color: var(--primary); }
+  .fin-card .label { font-size: 0.82rem; color: var(--gray); margin-top: 4px; }
+
+  /* ── Glossary search ── */
+  #glossarySearch {
+    width: 100%;
+    padding: 10px 16px;
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    font-size: 1rem;
+    margin-bottom: 16px;
+    transition: border-color 0.2s;
+  }
+  #glossarySearch:focus { outline: none; border-color: var(--primary); }
+  .glossary-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .glossary-item {
+    background: var(--primary-light);
+    padding: 12px 16px;
+    border-radius: 7px;
+    border-left: 3px solid var(--accent);
+  }
+  .glossary-item .term {
+    font-weight: 700;
+    color: var(--primary);
+    font-size: 0.95rem;
+  }
+  .glossary-item .def {
+    font-size: 0.9rem;
+    color: var(--text);
+    margin-top: 3px;
+  }
+
+  /* ── Print styles ── */
+  @media print {
+    .hero { padding: 30px 20px; break-after: avoid; }
+    .controls { display: none; }
+    .section { break-inside: avoid; border: 1px solid #ccc; }
+    .section-body { max-height: none !important; }
+    .section-header .arrow { display: none; }
+    .jargon .tip { display: none !important; }
+    body { font-size: 11pt; }
+    .diagram-wrap { break-inside: avoid; }
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 600px) {
+    .hero h1 { font-size: 1.5rem; }
+    .hero { padding: 40px 16px 30px; }
+    .section-content { padding: 6px 14px 20px; }
+    .section-header { padding: 14px 14px; }
+    th, td { padding: 7px 8px; font-size: 0.82rem; }
+    .fin-highlight { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ════════════════ HERO ════════════════ -->
+<div class="hero">
+  <h1>Colon Cancer Screening Test Manufacturing Guide</h1>
+  <p>A comprehensive, beginner-friendly guide to manufacturing a multitarget stool DNA test for colorectal cancer screening — from biomarker science and sample collection to PCR protocols, ELISA, quality control, and regulatory approval.</p>
+  <span class="badge">Molecular Diagnostics (qPCR &amp; ELISA)</span>
+  <span class="badge">Stool-Based Cancer Screening</span>
+  <span class="badge">11 Detailed Sections</span>
+</div>
+
+<!-- ════════════════ MAIN ════════════════ -->
+<div class="container">
+
+  <!-- Controls -->
+  <div class="controls">
+    <button onclick="toggleAll(true)">Expand All</button>
+    <button onclick="toggleAll(false)">Collapse All</button>
+    <button onclick="window.print()">Print Guide</button>
+  </div>
+
+<!-- ═══════════════════════════════════════════════════
+     SECTION 1 — Introduction & Market Opportunity
+     ═══════════════════════════════════════════════════ -->
+<div class="section open" id="sec1">
+  <div class="section-header" onclick="toggleSection('sec1')">
+    <h2><span class="num">1</span> Introduction &amp; Market Opportunity</h2>
+    <span class="arrow">&#9662;</span>
+  </div>
+  <div class="section-body">
+    <div class="section-content">
+
+      <h3>What Is a Stool DNA Screening Test?</h3>
+      <p>A stool DNA screening test is a non-invasive <span class="jargon">in-vitro diagnostic (IVD)<span class="tip">A medical device or test performed on biological samples (blood, urine, stool) outside the living body — "in glass" — to detect diseases, conditions, or infections.</span></span> that detects <span class="jargon">colorectal cancer (CRC)<span class="tip">Cancer that begins in the colon or rectum. It is the third most common cancer worldwide and develops through a slow adenoma-to-carcinoma progression over 10–15 years, making it highly suitable for early screening.</span></span> by analyzing DNA shed from tumour cells into a patient's stool sample. Unlike a colonoscopy, this test requires no bowel preparation, no sedation, and no hospital visit — the patient simply collects a stool sample at home and mails it to a laboratory.</p>
+
+      <p>The test works by detecting a panel of <span class="jargon">biomarkers<span class="tip">Measurable biological molecules (DNA methylation changes, gene mutations, or proteins) whose presence or level indicates a disease state. In CRC screening, multiple biomarkers are combined to improve sensitivity.</span></span> — including abnormal DNA methylation patterns, cancer-driving gene mutations, and hidden blood — that are characteristic of colorectal tumours and pre-cancerous growths called <span class="jargon">adenomas<span class="tip">Benign (non-cancerous) polyps in the colon lining that can develop into cancer over time. Advanced adenomas (&ge;1 cm, villous features, or high-grade dysplasia) carry the highest risk of malignant transformation.</span></span>.</p>
+
+      <h3>Why India Needs This Test</h3>
+      <p>Colorectal cancer is rising rapidly in India. Approximately 57,000 new cases are diagnosed each year, and the incidence is increasing at 3–5% annually — driven by urbanization, dietary shifts toward processed foods, and an aging population. Despite this trend, fewer than 10% of the target population undergoes any form of CRC screening. Most patients present with advanced-stage disease (Stage III/IV), when five-year survival drops below 15%.</p>
+
+      <div class="fin-highlight">
+        <div class="fin-card">
+          <div class="value">57,000+</div>
+          <div class="label">New CRC cases per year in India</div>
+        </div>
+        <div class="fin-card">
+          <div class="value">&lt;10%</div>
+          <div class="label">Current screening rate</div>
+        </div>
+        <div class="fin-card">
+          <div class="value">3–5%</div>
+          <div class="label">Annual incidence growth</div>
+        </div>
+        <div class="fin-card">
+          <div class="value">90%+</div>
+          <div class="label">5-year survival if caught early</div>
+        </div>
+      </div>
+
+      <div class="info-box success">
+        <strong>Key Insight:</strong> When CRC is detected at Stage I, the five-year survival rate exceeds 90%. A simple, at-home stool test that catches cancer early can save thousands of lives each year — and India currently has no domestically manufactured stool DNA screening test on the market.
+      </div>
+
+      <h3>Target Population</h3>
+      <p>The primary target is the <strong>average-risk population aged 45–75 years</strong>, estimated at roughly 200 million people in India. Secondary targets include individuals with family history of CRC, those with inflammatory bowel disease (IBD), and urban health-conscious consumers seeking preventive diagnostics. At even a modest 5% penetration, this represents a market of 10 million tests per year.</p>
+
+      <h3>How Does It Compare to Existing Methods?</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>Method</th><th>Invasiveness</th><th>CRC Sensitivity</th><th>Adenoma Detection</th><th>Cost (India)</th><th>Compliance</th></tr>
+          <tr><td>Colonoscopy</td><td>High (sedation, bowel prep)</td><td>95%</td><td>75–95%</td><td>&#8377;8,000–20,000</td><td>Low (~5%)</td></tr>
+          <tr><td>FIT (Fecal Immunochemical)</td><td>Non-invasive</td><td>74%</td><td>24%</td><td>&#8377;200–500</td><td>Moderate</td></tr>
+          <tr><td>gFOBT</td><td>Non-invasive</td><td>50–60%</td><td>10–20%</td><td>&#8377;100–300</td><td>Moderate</td></tr>
+          <tr><td><strong>Stool DNA Test (Proposed)</strong></td><td><strong>Non-invasive</strong></td><td><strong>&ge;85%</strong></td><td><strong>&ge;40%</strong></td><td><strong>&#8377;2,500–3,500</strong></td><td><strong>High</strong></td></tr>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     SECTION 2 — Competitive Landscape
+     ═══════════════════════════════════════════════════ -->
+<div class="section" id="sec2">
+  <div class="section-header" onclick="toggleSection('sec2')">
+    <h2><span class="num">2</span> Competitive Landscape</h2>
+    <span class="arrow">&#9662;</span>
+  </div>
+  <div class="section-body">
+    <div class="section-content">
+
+      <h3>Global Leaders in Stool-Based CRC Screening</h3>
+      <p>Several products dominate the global market for stool-based CRC screening. Understanding their technology, pricing, and limitations is essential for designing a competitive Indian product.</p>
+
+      <div class="table-wrap">
+        <table>
+          <tr><th>Product</th><th>Company</th><th>Technology</th><th>Key Biomarkers</th><th>CRC Sensitivity</th><th>Price (USD)</th></tr>
+          <tr><td><strong>Cologuard</strong></td><td>Exact Sciences (USA)</td><td>Multi-target stool DNA + FIT</td><td>NDRG4, BMP3, KRAS, &beta;-actin, Hb</td><td>92%</td><td>~$650</td></tr>
+          <tr><td>Epi proColon</td><td>Epigenomics (Germany)</td><td>Blood-based methylation</td><td>SEPT9 methylation</td><td>68–72%</td><td>~$200</td></tr>
+          <tr><td>ColoClear</td><td>New Horizon Health (China)</td><td>Stool DNA + FIT</td><td>SDC2 methylation + Hb</td><td>88%</td><td>~$120</td></tr>
+          <tr><td>ColoDefense</td><td>Creative Biosciences (China)</td><td>Stool DNA</td><td>SDC2 + SFRP2 methylation</td><td>88%</td><td>~$100</td></tr>
+        </table>
+      </div>
+
+      <h3>Cologuard — The Gold Standard</h3>
+      <p><span class="jargon">Cologuard<span class="tip">The first FDA-approved stool DNA test (2014), made by Exact Sciences. It combines methylation markers (NDRG4, BMP3), KRAS mutations, a DNA integrity assay (&beta;-actin), and fecal hemoglobin (FIT) into a single multi-target test.</span></span> is the market leader, with over 10 million tests completed since launch. Its strengths include outstanding CRC sensitivity (92%) and FDA/CMS backing. However, its weaknesses create an opening for Indian competitors: the test costs ~$650, requires a complex centralized lab, has a 13% false-positive rate, and is not optimized for tropical conditions (stool sample stability in hot climates).</p>
+
+      <h3>The Indian Market Gap</h3>
+      <p>India currently has <strong>no domestically manufactured stool DNA test</strong>. The few options available are imported and priced beyond the reach of most Indians. An indigenous test priced at &#8377;2,500–3,500 (vs. &#8377;50,000+ for imported Cologuard) that uses India-specific stabilization buffers and a hub-and-spoke processing model could transform CRC screening nationwide.</p>
+
+      <div class="info-box">
+        <strong>Market Opportunity:</strong> At a 5% penetration of the 200-million target population, the addressable market exceeds &#8377;25,000 crore per year. Even conservative scenarios (1–2% penetration) yield &#8377;5,000–10,000 crore annually.
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     SECTION 3 — Biomarker Panel Design
+     ═══════════════════════════════════════════════════ -->
+<div class="section" id="sec3">
+  <div class="section-header" onclick="toggleSection('sec3')">
+    <h2><span class="num">3</span> Biomarker Panel Design</h2>
+    <span class="arrow">&#9662;</span>
+  </div>
+  <div class="section-body">
+    <div class="section-content">
+
+      <h3>Why Multiple Biomarkers?</h3>
+      <p>No single biomarker can detect all colorectal cancers. Tumours are genetically diverse — some have heavy DNA <span class="jargon">methylation<span class="tip">A chemical modification where a methyl group (CH₃) is added to cytosine bases in DNA, typically at CpG sites. In cancer, certain gene promoters become abnormally hyper-methylated, silencing tumour-suppressor genes. This is detectable by bisulfite conversion + PCR.</span></span> changes, others carry <span class="jargon">KRAS mutations<span class="tip">KRAS is a proto-oncogene involved in cell growth signalling. Specific point mutations (like G12D, G12V, G13D) lock the protein in an "always on" state, driving uncontrolled cell proliferation. Found in ~40% of CRCs.</span></span>, and some mainly shed blood. A <strong>multitarget panel</strong> combining all three categories catches the widest range of tumours.</p>
+
+      <!-- SVG: Multitarget Detection Principle -->
+      <div class="diagram-wrap">
+        <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
+          <!-- Background -->
+          <rect x="0" y="0" width="800" height="400" fill="#fdf5f8" rx="8"/>
+          <!-- Title -->
+          <text x="400" y="35" text-anchor="middle" font-size="16" font-weight="700" fill="#8b2252">Multitarget Biomarker Detection Strategy</text>
+
+          <!-- Tumour circle -->
+          <circle cx="130" cy="200" r="80" fill="#f9e0eb" stroke="#8b2252" stroke-width="2"/>
+          <text x="130" y="185" text-anchor="middle" font-size="13" font-weight="600" fill="#8b2252">Colorectal</text>
+          <text x="130" y="205" text-anchor="middle" font-size="13" font-weight="600" fill="#8b2252">Tumour</text>
+          <text x="130" y="230" text-anchor="middle" font-size="10" fill="#666">Sheds DNA &amp;</text>
+          <text x="130" y="244" text-anchor="middle" font-size="10" fill="#666">blood into stool</text>
+
+          <!-- Arrow to panel -->
+          <line x1="215" y1="200" x2="290" y2="200" stroke="#8b2252" stroke-width="2" marker-end="url(#arrowCrimson)"/>
+          <defs>
+            <marker id="arrowCrimson" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-auto">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="#8b2252"/>
+            </marker>
+          </defs>
+
+          <!-- Three biomarker boxes -->
+          <!-- Methylation -->
+          <rect x="300" y="50" width="200" height="85" rx="8" fill="#e8d5f0" stroke="#7b2d8e" stroke-width="1.5"/>
+          <text x="400" y="75" text-anchor="middle" font-size="12" font-weight="700" fill="#7b2d8e">DNA Methylation Markers</text>
+          <text x="400" y="95" text-anchor="middle" font-size="11" fill="#555">NDRG4 · BMP3 · SDC2</text>
+          <text x="400" y="115" text-anchor="middle" font-size="10" fill="#777">Detected by: bisulfite + qMSP</text>
+          <text x="400" y="130" text-anchor="middle" font-size="10" fill="#1a6b4a">Catches ~70% of CRCs</text>
+
+          <!-- Mutations -->
+          <rect x="300" y="158" width="200" height="85" rx="8" fill="#fde8d8" stroke="#d35400" stroke-width="1.5"/>
+          <text x="400" y="183" text-anchor="middle" font-size="12" font-weight="700" fill="#d35400">KRAS Gene Mutations</text>
+          <text x="400" y="203" text-anchor="middle" font-size="11" fill="#555">G12D · G12V · G13D + 4 more</text>
+          <text x="400" y="223" text-anchor="middle" font-size="10" fill="#777">Detected by: allele-specific qPCR</text>
+          <text x="400" y="238" text-anchor="middle" font-size="10" fill="#1a6b4a">Catches ~40% of CRCs</text>
+
+          <!-- Hemoglobin -->
+          <rect x="300" y="266" width="200" height="85" rx="8" fill="#fce4e4" stroke="#c0392b" stroke-width="1.5"/>
+          <text x="400" y="291" text-anchor="middle" font-size="12" font-weight="700" fill="#c0392b">Fecal Hemoglobin</text>
+          <text x="400" y="311" text-anchor="middle" font-size="11" fill="#555">Human hemoglobin protein</text>
+          <text x="400" y="331" text-anchor="middle" font-size="10" fill="#777">Detected by: sandwich ELISA</text>
+          <text x="400" y="346" text-anchor="middle" font-size="10" fill="#1a6b4a">Catches bleeding lesions</text>
+
+          <!-- Arrows from panel to result -->
+          <line x1="505" y1="92" x2="580" y2="180" stroke="#7b2d8e" stroke-width="1.5" marker-end="url(#arrowCrimson)"/>
+          <line x1="505" y1="200" x2="580" y2="200" stroke="#d35400" stroke-width="1.5" marker-end="url(#arrowCrimson)"/>
+          <line x1="505" y1="308" x2="580" y2="220" stroke="#c0392b" stroke-width="1.5" marker-end="url(#arrowCrimson)"/>
+
+          <!-- Combined result -->
+          <rect x="590" y="150" width="180" height="100" rx="10" fill="#8b2252" stroke="#6b1a3f" stroke-width="2"/>
+          <text x="680" y="180" text-anchor="middle" font-size="13" font-weight="700" fill="white">Combined Algorithm</text>
+          <text x="680" y="200" text-anchor="middle" font-size="11" fill="#f9e0eb">CRC Sensitivity ≥85%</text>
+          <text x="680" y="218" text-anchor="middle" font-size="11" fill="#f9e0eb">Adenoma ≥40%</text>
+          <text x="680" y="236" text-anchor="middle" font-size="11" fill="#f9e0eb">Specificity ≥87%</text>
+        </svg>
+        <div class="diagram-caption">Figure 1 — Multitarget biomarker panel: combining methylation, mutation, and protein markers maximizes detection across the full range of CRC biology.</div>
+      </div>
+
+      <h3>The Five Biomarkers Explained</h3>
+
+      <h4>1. NDRG4 (N-myc Downstream Regulated Gene 4)</h4>
+      <p><span class="jargon">NDRG4<span class="tip">A tumour-suppressor gene normally active in the colon. When its promoter becomes hyper-methylated in cancer, the gene is silenced. This methylation event is detectable in stool DNA and is present in 70–90% of CRC cases.</span></span> is a tumour-suppressor gene that becomes silenced by abnormal methylation in 70–90% of colorectal cancers. It is one of the most sensitive single methylation markers for CRC, with high specificity (>90%) — meaning it rarely triggers false alarms in healthy people. This marker was selected as a core component of Cologuard and has been validated across multiple large clinical trials.</p>
+
+      <h4>2. BMP3 (Bone Morphogenetic Protein 3)</h4>
+      <p><span class="jargon">BMP3<span class="tip">A growth-factor gene in the TGF-&beta; signalling pathway. Hyper-methylation of BMP3 disrupts normal cell growth regulation and is found in 60–80% of CRCs and 40–50% of advanced adenomas, making it valuable for detecting pre-cancerous lesions.</span></span> regulates cell growth through the TGF-&beta; pathway. Its promoter is methylated in 60–80% of CRCs and, critically, in 40–50% of advanced adenomas — making it especially valuable for catching pre-cancerous growths before they become malignant.</p>
+
+      <h4>3. SDC2 (Syndecan-2)</h4>
+      <p><span class="jargon">SDC2<span class="tip">A cell-surface proteoglycan gene. Methylation of SDC2 is found in 80–90% of CRCs. It has been validated as a standalone biomarker in Asian populations and forms the backbone of the Chinese ColoClear test.</span></span> is methylated in 80–90% of CRCs and has been extensively validated in Asian populations. It serves as the backbone of China's ColoClear test and adds detection power for tumours that might be missed by NDRG4 or BMP3 alone. Its inclusion makes the panel particularly suitable for Indian populations.</p>
+
+      <h4>4. KRAS Mutations</h4>
+      <p>The <span class="jargon">KRAS<span class="tip">An oncogene encoding a signalling protein (GTPase) in the RAS-RAF-MEK-ERK pathway. Point mutations at codons 12 and 13 (e.g., G12D, G12V) permanently activate the protein, driving cancer cell proliferation. Found in ~40% of CRCs and ~25% of advanced adenomas.</span></span> gene is mutated in approximately 40% of colorectal cancers and 25% of advanced adenomas. The seven most common point mutations at codons 12 and 13 (G12D, G12V, G12C, G12S, G12A, G12R, G13D) are targeted using <span class="jargon">allele-specific PCR (ARMS)<span class="tip">Amplification-Refractory Mutation System — a PCR technique using primers that match perfectly to the mutant sequence but mismatch at the 3' end with wild-type DNA. Only mutant DNA is amplified, enabling detection of mutations present at very low levels (&lt;1% of total DNA).</span></span>. Since KRAS mutations occur through a different biological mechanism (point mutation vs. methylation), including them captures tumours that methylation markers would miss.</p>
+
+      <h4>5. Fecal Hemoglobin</h4>
+      <p>Tumours and large adenomas often bleed intermittently. Detecting human <span class="jargon">hemoglobin<span class="tip">The oxygen-carrying protein in red blood cells. When a tumour bleeds into the intestinal lumen, hemoglobin appears in stool. Unlike DNA markers, hemoglobin detects lesions through a physical mechanism (tissue bleeding), adding an independent detection axis to the panel.</span></span> in stool via <span class="jargon">ELISA<span class="tip">Enzyme-Linked Immunosorbent Assay — a plate-based technique where antibodies capture a target protein, which is then detected using an enzyme-linked secondary antibody that produces a measurable colour change. Used here to quantify hemoglobin in stool samples.</span></span> adds a completely independent detection mechanism. Even if a tumour has no methylation changes and no KRAS mutations, it may still bleed — so this protein marker acts as a "safety net" for the panel.</p>
+
+      <h3>Target Performance Specifications</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>Parameter</th><th>Target</th><th>Cologuard (Reference)</th></tr>
+          <tr><td>CRC sensitivity (all stages)</td><td>&ge;85%</td><td>92%</td></tr>
+          <tr><td>Stage I/II CRC sensitivity</td><td>&ge;75%</td><td>~82%</td></tr>
+          <tr><td>Advanced adenoma sensitivity</td><td>&ge;40%</td><td>42%</td></tr>
+          <tr><td>Specificity (true negative rate)</td><td>&ge;87%</td><td>87%</td></tr>
+          <tr><td>Sample adequacy rate</td><td>&ge;95%</td><td>~95%</td></tr>
+          <tr><td>Test turnaround time</td><td>&le;5 days</td><td>~7–14 days</td></tr>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     SECTION 4 — The Science: How Detection Works
+     ═══════════════════════════════════════════════════ -->
+<div class="section" id="sec4">
+  <div class="section-header" onclick="toggleSection('sec4')">
+    <h2><span class="num">4</span> The Science: How Detection Works</h2>
+    <span class="arrow">&#9662;</span>
+  </div>
+  <div class="section-body">
+    <div class="section-content">
+
+      <h3>The Adenoma-Carcinoma Sequence</h3>
+      <p>Colorectal cancer doesn't appear overnight. It follows a slow, stepwise progression called the <span class="jargon">adenoma-carcinoma sequence<span class="tip">The biological model describing how normal colon cells accumulate genetic and epigenetic changes over 10–15 years, progressing from normal mucosa → small adenoma → advanced adenoma → invasive carcinoma. Each stage involves different molecular alterations (APC, KRAS, methylation, TP53).</span></span>, taking 10–15 years on average. Each stage introduces different molecular changes, and our biomarker panel is designed to detect changes at every stage:</p>
+
+      <div class="diagram-wrap">
+        <svg viewBox="0 0 800 250" xmlns="http://www.w3.org/2000/svg">
+          <rect x="0" y="0" width="800" height="250" fill="#fdf5f8" rx="8"/>
+          <text x="400" y="30" text-anchor="middle" font-size="14" font-weight="700" fill="#8b2252">Adenoma-Carcinoma Progression &amp; Biomarker Detection Windows</text>
+
+          <!-- Stage boxes -->
+          <rect x="20" y="60" width="140" height="60" rx="8" fill="#e8f5ee" stroke="#1a6b4a" stroke-width="1.5"/>
+          <text x="90" y="85" text-anchor="middle" font-size="11" font-weight="600" fill="#1a6b4a">Normal Mucosa</text>
+          <text x="90" y="102" text-anchor="middle" font-size="9" fill="#666">APC mutation (gate)</text>
+
+          <line x1="165" y1="90" x2="195" y2="90" stroke="#8b2252" stroke-width="2" marker-end="url(#arrowCrimson)"/>
+
+          <rect x="200" y="60" width="140" height="60" rx="8" fill="#fef3e5" stroke="#e67e22" stroke-width="1.5"/>
+          <text x="270" y="85" text-anchor="middle" font-size="11" font-weight="600" fill="#e67e22">Early Adenoma</text>
+          <text x="270" y="102" text-anchor="middle" font-size="9" fill="#666">Methylation begins</text>
+
+          <line x1="345" y1="90" x2="375" y2="90" stroke="#8b2252" stroke-width="2" marker-end="url(#arrowCrimson)"/>
+
+          <rect x="380" y="60" width="155" height="60" rx="8" fill="#fde8d8" stroke="#d35400" stroke-width="1.5"/>
+          <text x="457" y="85" text-anchor="middle" font-size="11" font-weight="600" fill="#d35400">Advanced Adenoma</text>
+          <text x="457" y="102" text-anchor="middle" font-size="9" fill="#666">KRAS + methylation ↑</text>
+
+          <line x1="540" y1="90" x2="570" y2="90" stroke="#8b2252" stroke-width="2" marker-end="url(#arrowCrimson)"/>
+
+          <rect x="575" y="60" width="200" height="60" rx="8" fill="#fce4e4" stroke="#c0392b" stroke-width="1.5"/>
+          <text x="675" y="85" text-anchor="middle" font-size="11" font-weight="600" fill="#c0392b">Invasive Carcinoma</text>
+          <text x="675" y="102" text-anchor="middle" font-size="9" fill="#666">TP53 loss + bleeding</text>
+
+          <!-- Detection bars -->
+          <text x="20" y="150" font-size="10" font-weight="600" fill="#7b2d8e">Methylation (NDRG4/BMP3/SDC2):</text>
+          <rect x="280" y="140" width="495" height="14" rx="4" fill="#7b2d8e" opacity="0.7"/>
+          <text x="530" y="151" text-anchor="middle" font-size="9" fill="white" font-weight="600">Detectable from early adenoma onward</text>
+
+          <text x="20" y="175" font-size="10" font-weight="600" fill="#d35400">KRAS Mutations:</text>
+          <rect x="380" y="165" width="395" height="14" rx="4" fill="#d35400" opacity="0.7"/>
+          <text x="580" y="176" text-anchor="middle" font-size="9" fill="white" font-weight="600">Detectable from advanced adenoma onward</text>
+
+          <text x="20" y="200" font-size="10" font-weight="600" fill="#c0392b">Fecal Hemoglobin:</text>
+          <rect x="480" y="190" width="295" height="14" rx="4" fill="#c0392b" opacity="0.7"/>
+          <text x="630" y="201" text-anchor="middle" font-size="9" fill="white" font-weight="600">Bleeding in late adenoma/cancer</text>
+
+          <text x="400" y="235" text-anchor="middle" font-size="10" fill="#8b2252" font-style="italic">Timeline: approximately 10–15 years from normal to carcinoma</text>
+        </svg>
+        <div class="diagram-caption">Figure 2 — The adenoma-carcinoma sequence: each biomarker class detects changes at different stages, ensuring the panel catches lesions early.</div>
+      </div>
+
+      <h3>DNA Methylation Detection (qMSP)</h3>
+      <p>The process begins with <span class="jargon">bisulfite conversion<span class="tip">A chemical treatment where sodium bisulfite converts unmethylated cytosine (C) to uracil (U), while methylated cytosine (5mC) remains unchanged. After PCR amplification, the converted U becomes T, creating a sequence difference between methylated and unmethylated DNA that can be detected by methylation-specific primers.</span></span> — a chemical reaction that distinguishes methylated from unmethylated DNA. Sodium bisulfite converts unmethylated cytosine bases to uracil, while leaving methylated cytosines intact. This creates a detectable sequence difference.</p>
+      <p>After conversion, <span class="jargon">quantitative methylation-specific PCR (qMSP)<span class="tip">A real-time PCR technique using primers and probes specifically designed to amplify bisulfite-converted, methylated DNA sequences. The primers have cytosines at CpG positions (matching methylated templates) and won't bind efficiently to unmethylated (converted) sequences. TaqMan probes provide fluorescent readout.</span></span> amplifies only the methylated sequences. TaqMan probes with fluorescent reporters provide real-time quantification. Each methylation marker (NDRG4, BMP3, SDC2) runs in a separate reaction well with its own specific primers and probe.</p>
+
+      <h3>KRAS Mutation Detection (ARMS-qPCR)</h3>
+      <p><span class="jargon">ARMS (Amplification-Refractory Mutation System)<span class="tip">A PCR technique where the forward primer's 3' end is designed to perfectly match the mutant base but mismatch the wild-type base. DNA polymerase cannot efficiently extend mismatched 3' ends, so only mutant templates are amplified. Additional engineered mismatches near the 3' end can further improve specificity.</span></span> exploits a quirk of DNA polymerase: it cannot efficiently extend a primer whose 3' end mismatches the template. By designing primers that match perfectly to each specific KRAS mutation but mismatch normal DNA, only tumour-derived mutant DNA gets amplified — even when it represents less than 1% of the total DNA in the sample.</p>
+
+      <h3>Hemoglobin Detection (Sandwich ELISA)</h3>
+      <p>The <span class="jargon">sandwich ELISA<span class="tip">A two-antibody immunoassay: a "capture" antibody on the plate surface grabs the target protein; after washing, a second "detection" antibody (linked to an enzyme, usually HRP) binds from the other side, forming a "sandwich." Adding a substrate (TMB) produces a colour change proportional to the target's concentration.</span></span> uses two antibodies that recognize different parts of the hemoglobin molecule. The capture antibody is coated onto a 96-well microplate. When the stool sample is added, hemoglobin binds to these antibodies. After washing, a second HRP-conjugated antibody binds from the other side. Adding TMB substrate produces a blue colour whose intensity is proportional to the hemoglobin concentration, read by a microplate reader at 450 nm.</p>
+
+      <div class="info-box warn">
+        <strong>Technical Note:</strong> The ELISA for hemoglobin uses antibodies specific to <em>human</em> hemoglobin only. This means dietary meat (animal hemoglobin) does not cause false-positive results — unlike the older guaiac-based FOBT test, which cannot distinguish human from animal blood.
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     SECTION 5 — Sample Collection & Preservation
+     ═══════════════════════════════════════════════════ -->
+<div class="section" id="sec5">
+  <div class="section-header" onclick="toggleSection('sec5')">
+    <h2><span class="num">5</span> Sample Collection &amp; Preservation</h2>
+    <span class="arrow">&#9662;</span>
+  </div>
+  <div class="section-body">
+    <div class="section-content">
+
+      <h3>Collection Kit Components</h3>
+      <p>The patient receives a home collection kit with eight components designed for simple, hygienic sample collection:</p>
+
+      <div class="table-wrap">
+        <table>
+          <tr><th>#</th><th>Component</th><th>Purpose</th><th>Est. Cost</th></tr>
+          <tr><td>1</td><td>Collection container (500 mL, screw-cap)</td><td>Holds the stool sample in stabilization buffer</td><td>&#8377;30–50</td></tr>
+          <tr><td>2</td><td>Stabilization buffer (50 mL)</td><td>Preserves DNA &amp; hemoglobin; prevents degradation</td><td>&#8377;40–60</td></tr>
+          <tr><td>3</td><td>Collection probe (serrated spoon tip)</td><td>Transfers stool into the container</td><td>&#8377;8–12</td></tr>
+          <tr><td>4</td><td>Biohazard specimen bag</td><td>Secondary containment for safe shipping</td><td>&#8377;5–8</td></tr>
+          <tr><td>5</td><td>Absorbent pad</td><td>Absorbs any leakage during transit</td><td>&#8377;3–5</td></tr>
+          <tr><td>6</td><td>Instruction card (pictorial)</td><td>Multilingual step-by-step collection guide</td><td>&#8377;5–8</td></tr>
+          <tr><td>7</td><td>Patient info form &amp; barcode label</td><td>Sample identification and tracking</td><td>&#8377;4–6</td></tr>
+          <tr><td>8</td><td>Pre-paid shipping box (insulated)</td><td>Return shipping to laboratory</td><td>&#8377;25–30</td></tr>
+        </table>
+      </div>
+      <p><strong>Total kit cost:</strong> &#8377;120–180 per kit.</p>
+
+      <h3>Stabilization Buffer Formulation</h3>
+      <p>The buffer is critical — it must preserve both DNA and hemoglobin for up to 7 days at room temperature (including Indian summer conditions up to 45°C). The formulation contains:</p>
+
+      <div class="table-wrap">
+        <table>
+          <tr><th>Component</th><th>Concentration</th><th>Function</th></tr>
+          <tr><td><span class="jargon">Guanidinium thiocyanate (GuSCN)<span class="tip">A powerful chaotropic salt that denatures proteins (including DNA-degrading enzymes called DNases) and disrupts cell membranes. It is the primary agent for preserving DNA in stool — without it, bacterial and human enzymes would degrade tumour DNA within hours.</span></span></td><td>5 M</td><td>Denatures proteins &amp; DNases; primary DNA preservative</td></tr>
+          <tr><td><span class="jargon">EDTA<span class="tip">Ethylenediaminetetraacetic acid — a chelating agent that binds divalent metal ions (Mg²⁺, Ca²⁺) required by many nucleases (DNA-degrading enzymes). By sequestering these ions, EDTA prevents enzymatic DNA degradation.</span></span></td><td>25 mM</td><td>Chelates metal ions required by nucleases</td></tr>
+          <tr><td>Tris-HCl (pH 7.5)</td><td>20 mM</td><td>pH buffer — maintains stable pH during storage</td></tr>
+          <tr><td><span class="jargon">SDS<span class="tip">Sodium dodecyl sulphate — an anionic detergent that disrupts cell membranes and denatures proteins. In the buffer, it helps release DNA from exfoliated cells and inhibits protein-based enzymes.</span></span></td><td>1%</td><td>Detergent — lyses cells, denatures proteins</td></tr>
+          <tr><td><span class="jargon">DTT<span class="tip">Dithiothreitol — a reducing agent that breaks disulphide bonds in proteins. This helps denature nucleases and proteases, keeping both DNA and hemoglobin intact during sample storage and transport.</span></span></td><td>10 mM</td><td>Reducing agent — breaks disulphide bonds in enzymes</td></tr>
+        </table>
+      </div>
+
+      <div class="info-box success">
+        <strong>India-Specific Design:</strong> The 5 M GuSCN concentration is higher than Cologuard's formulation, specifically to ensure DNA stability in Indian ambient temperatures (35–45°C). Lab testing should validate stability for 7 days at 45°C as a critical QC parameter.
+      </div>
+
+      <h3>Sample Collection Workflow</h3>
+      <div class="step">
+        <div class="step-num">1</div>
+        <div><strong>Receive Kit:</strong> Patient receives kit at home or from a clinic. No dietary restrictions or bowel preparation required.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div><strong>Collect Sample:</strong> Using the serrated spoon, transfer approximately 10–20 g of stool into the container pre-filled with 50 mL stabilization buffer.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div><strong>Mix &amp; Seal:</strong> Close the screw cap tightly and shake the container for 30 seconds to distribute the buffer throughout the sample.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div><strong>Package:</strong> Place the sealed container into the biohazard bag with the absorbent pad. Insert into the insulated shipping box.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div><strong>Ship:</strong> Use the pre-paid return label to send the sample to the regional processing laboratory. Samples are stable for up to 7 days at ambient temperature.</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     SECTION 6 — DNA Extraction Process
+     ═══════════════════════════════════════════════════ -->
+<div class="section" id="sec6">
+  <div class="section-header" onclick="toggleSection('sec6')">
+    <h2><span class="num">6</span> DNA Extraction Process</h2>
+    <span class="arrow">&#9662;</span>
+  </div>
+  <div class="section-body">
+    <div class="section-content">
+
+      <h3>Why Stool DNA Extraction Is Challenging</h3>
+      <p>Stool is one of the most difficult biological matrices for DNA extraction. The challenges include: extremely high bacterial DNA background (human DNA is only 0.01–0.1% of total stool DNA), powerful <span class="jargon">PCR inhibitors<span class="tip">Substances in stool (bile salts, complex polysaccharides, bilirubin, degradation products) that interfere with DNA polymerase activity during PCR. If not removed during extraction, they can cause false-negative results by preventing DNA amplification.</span></span> such as bile salts and bilirubin, variable sample consistency, and the need to recover small amounts of tumour-shed DNA from a massive background.</p>
+
+      <h3>Magnetic Bead-Based Extraction</h3>
+      <p>The recommended approach uses <span class="jargon">magnetic bead extraction<span class="tip">A DNA purification method using silica-coated magnetic particles. DNA binds to the silica surface in high-salt/chaotropic conditions. A magnetic plate holds the beads while wash buffers remove contaminants. Finally, a low-salt elution buffer releases purified DNA. Fully automatable using instruments like KingFisher Apex.</span></span> on a <span class="jargon">KingFisher Apex<span class="tip">An automated magnetic particle processor by Thermo Fisher Scientific. It uses magnetic rods with disposable tip combs to move magnetic beads through a series of wash and elution steps in a 96-well deep-well plate. Processes 96 samples simultaneously in about 30 minutes.</span></span> instrument, which processes 96 samples simultaneously in approximately 30 minutes.</p>
+
+      <h4>Protocol Steps</h4>
+      <div class="step">
+        <div class="step-num">1</div>
+        <div><strong>Homogenize:</strong> Take a 2–4 mL aliquot of the stool-buffer mixture. Vortex vigorously for 60 seconds to ensure uniform distribution of DNA.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div><strong>Clarify:</strong> Centrifuge at 5,000 × g for 10 minutes. Transfer the clear supernatant (containing dissolved DNA) to a new tube, leaving behind solid debris.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div><strong>Bind:</strong> Add silica-coated magnetic beads and binding buffer (high-salt, chaotropic conditions). DNA adsorbs to the silica surface. Incubate for 10 minutes with gentle mixing.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div><strong>Wash (×3):</strong> Using the KingFisher's magnetic rod, transfer beads (with DNA) through three sequential wash wells — Wash 1 (guanidinium-based), Wash 2 (70% ethanol), Wash 3 (70% ethanol). Each wash removes PCR inhibitors and contaminants.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div><strong>Dry:</strong> Brief air-dry step (2–3 min) to evaporate residual ethanol, which would inhibit downstream PCR.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">6</div>
+        <div><strong>Elute:</strong> Transfer beads to elution buffer (10 mM Tris-HCl, pH 8.0, 50–100 &mu;L). At low salt, DNA releases from the silica beads into solution. This eluate is the purified DNA for PCR.</div>
+      </div>
+
+      <h3>Quality Thresholds</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>Parameter</th><th>Acceptable Range</th><th>Method</th></tr>
+          <tr><td>Total DNA yield</td><td>&ge;200 ng per extraction</td><td>Fluorometry (Qubit)</td></tr>
+          <tr><td>DNA purity (A260/A280)</td><td>1.7–2.0</td><td>Spectrophotometry (NanoDrop)</td></tr>
+          <tr><td>PCR inhibitor check</td><td>Internal control Ct &le;32</td><td>qPCR with spiked control</td></tr>
+          <tr><td>DNA integrity (DIN)</td><td>&ge;5.0</td><td>Fragment analyser or gel</td></tr>
+        </table>
+      </div>
+
+      <div class="info-box warn">
+        <strong>Critical QC Step:</strong> Every extraction batch must include a spiked internal control (e.g., &beta;-actin or an exogenous synthetic DNA sequence). If the internal control fails to amplify (Ct &gt;32), the sample is flagged as "inhibited" and re-extracted with additional purification steps.
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     SECTION 7 — PCR & Detection Protocols
+     ═══════════════════════════════════════════════════ -->
+<div class="section" id="sec7">
+  <div class="section-header" onclick="toggleSection('sec7')">
+    <h2><span class="num">7</span> PCR &amp; Detection Protocols</h2>
+    <span class="arrow">&#9662;</span>
+  </div>
+  <div class="section-body">
+    <div class="section-content">
+
+      <h3>Overview of the Detection Workflow</h3>
+      <!-- SVG: Testing Workflow -->
+      <div class="diagram-wrap">
+        <svg viewBox="0 0 800 320" xmlns="http://www.w3.org/2000/svg">
+          <rect x="0" y="0" width="800" height="320" fill="#fdf5f8" rx="8"/>
+          <text x="400" y="28" text-anchor="middle" font-size="14" font-weight="700" fill="#8b2252">Complete Testing Workflow: Sample to Result</text>
+
+          <!-- Step boxes -->
+          <rect x="20" y="55" width="110" height="70" rx="8" fill="#e8f5ee" stroke="#1a6b4a" stroke-width="1.5"/>
+          <text x="75" y="78" text-anchor="middle" font-size="10" font-weight="600" fill="#1a6b4a">Sample</text>
+          <text x="75" y="92" text-anchor="middle" font-size="10" font-weight="600" fill="#1a6b4a">Receipt</text>
+          <text x="75" y="110" text-anchor="middle" font-size="9" fill="#666">Barcode scan</text>
+          <text x="75" y="122" text-anchor="middle" font-size="9" fill="#666">LIMS entry</text>
+
+          <line x1="135" y1="90" x2="155" y2="90" stroke="#8b2252" stroke-width="2" marker-end="url(#arrowCrimson)"/>
+
+          <rect x="160" y="55" width="110" height="70" rx="8" fill="#eaf4fb" stroke="#2980b9" stroke-width="1.5"/>
+          <text x="215" y="78" text-anchor="middle" font-size="10" font-weight="600" fill="#2980b9">DNA</text>
+          <text x="215" y="92" text-anchor="middle" font-size="10" font-weight="600" fill="#2980b9">Extraction</text>
+          <text x="215" y="110" text-anchor="middle" font-size="9" fill="#666">KingFisher Apex</text>
+          <text x="215" y="122" text-anchor="middle" font-size="9" fill="#666">96 samples/batch</text>
+
+          <line x1="275" y1="90" x2="295" y2="90" stroke="#8b2252" stroke-width="2" marker-end="url(#arrowCrimson)"/>
+
+          <rect x="300" y="55" width="110" height="70" rx="8" fill="#f5f0fa" stroke="#7b2d8e" stroke-width="1.5"/>
+          <text x="355" y="78" text-anchor="middle" font-size="10" font-weight="600" fill="#7b2d8e">Bisulfite</text>
+          <text x="355" y="92" text-anchor="middle" font-size="10" font-weight="600" fill="#7b2d8e">Conversion</text>
+          <text x="355" y="110" text-anchor="middle" font-size="9" fill="#666">~4 hours</text>
+          <text x="355" y="122" text-anchor="middle" font-size="9" fill="#666">Column cleanup</text>
+
+          <!-- Branch to 3 paths -->
+          <line x1="355" y1="130" x2="355" y2="155" stroke="#8b2252" stroke-width="2"/>
+          <line x1="215" y1="155" x2="495" y2="155" stroke="#8b2252" stroke-width="2"/>
+
+          <!-- Path 1: Methylation qPCR -->
+          <line x1="215" y1="155" x2="215" y2="175" stroke="#7b2d8e" stroke-width="2" marker-end="url(#arrowCrimson)"/>
+          <rect x="140" y="180" width="150" height="75" rx="8" fill="#e8d5f0" stroke="#7b2d8e" stroke-width="1.5"/>
+          <text x="215" y="200" text-anchor="middle" font-size="10" font-weight="600" fill="#7b2d8e">Methylation qMSP</text>
+          <text x="215" y="216" text-anchor="middle" font-size="9" fill="#555">NDRG4 · BMP3 · SDC2</text>
+          <text x="215" y="232" text-anchor="middle" font-size="9" fill="#555">QuantStudio 5</text>
+          <text x="215" y="248" text-anchor="middle" font-size="9" fill="#777">~2 hrs, TaqMan probes</text>
+
+          <!-- Path 2: KRAS ARMS-qPCR -->
+          <line x1="355" y1="155" x2="355" y2="175" stroke="#d35400" stroke-width="2" marker-end="url(#arrowCrimson)"/>
+          <rect x="280" y="180" width="150" height="75" rx="8" fill="#fde8d8" stroke="#d35400" stroke-width="1.5"/>
+          <text x="355" y="200" text-anchor="middle" font-size="10" font-weight="600" fill="#d35400">KRAS ARMS-qPCR</text>
+          <text x="355" y="216" text-anchor="middle" font-size="9" fill="#555">7 mutations × qPCR</text>
+          <text x="355" y="232" text-anchor="middle" font-size="9" fill="#555">QuantStudio 5</text>
+          <text x="355" y="248" text-anchor="middle" font-size="9" fill="#777">~2 hrs, allele-specific</text>
+
+          <!-- Path 3: ELISA -->
+          <line x1="495" y1="155" x2="495" y2="175" stroke="#c0392b" stroke-width="2" marker-end="url(#arrowCrimson)"/>
+          <rect x="420" y="180" width="150" height="75" rx="8" fill="#fce4e4" stroke="#c0392b" stroke-width="1.5"/>
+          <text x="495" y="200" text-anchor="middle" font-size="10" font-weight="600" fill="#c0392b">Hemoglobin ELISA</text>
+          <text x="495" y="216" text-anchor="middle" font-size="9" fill="#555">Sandwich immunoassay</text>
+          <text x="495" y="232" text-anchor="middle" font-size="9" fill="#555">Microplate reader</text>
+          <text x="495" y="248" text-anchor="middle" font-size="9" fill="#777">~3 hrs, 450nm readout</text>
+
+          <!-- Converge to result -->
+          <line x1="215" y1="260" x2="215" y2="275" stroke="#7b2d8e" stroke-width="1.5"/>
+          <line x1="355" y1="260" x2="355" y2="275" stroke="#d35400" stroke-width="1.5"/>
+          <line x1="495" y1="260" x2="495" y2="275" stroke="#c0392b" stroke-width="1.5"/>
+          <line x1="215" y1="275" x2="495" y2="275" stroke="#8b2252" stroke-width="2"/>
+          <line x1="355" y1="275" x2="355" y2="288" stroke="#8b2252" stroke-width="2" marker-end="url(#arrowCrimson)"/>
+
+          <!-- Result box -->
+          <rect x="610" y="180" width="170" height="75" rx="10" fill="#8b2252"/>
+          <text x="695" y="205" text-anchor="middle" font-size="11" font-weight="700" fill="white">Combined Result</text>
+          <text x="695" y="222" text-anchor="middle" font-size="10" fill="#f9e0eb">Algorithm scoring</text>
+          <text x="695" y="238" text-anchor="middle" font-size="10" fill="#f9e0eb">Positive / Negative</text>
+          <text x="695" y="252" text-anchor="middle" font-size="10" fill="#f9e0eb">Report in ≤5 days</text>
+
+          <line x1="500" y1="275" x2="607" y2="220" stroke="#8b2252" stroke-width="2" marker-end="url(#arrowCrimson)"/>
+        </svg>
+        <div class="diagram-caption">Figure 3 — Complete testing workflow from sample receipt through extraction, bisulfite conversion, parallel detection assays, and combined result reporting.</div>
+      </div>
+
+      <h3>A. Bisulfite Conversion Protocol</h3>
+      <p>This is the essential first step for methylation detection. Sodium bisulfite treatment converts unmethylated cytosines to uracil, while methylated cytosines remain protected. Approximately 500 ng–1 &mu;g of extracted DNA is treated with bisulfite reagent, incubated at 95°C (denaturation) and 60°C (conversion) in thermal cycling steps over ~4 hours, then cleaned up using silica columns. Expected recovery is 60–80% of input DNA.</p>
+
+      <h3>B. Methylation qMSP Protocol</h3>
+      <p>Three separate reactions per sample, one for each methylation marker:</p>
+      <div class="table-wrap">
+        <table>
+          <tr><th>Component</th><th>Volume</th><th>Notes</th></tr>
+          <tr><td>2× TaqMan Master Mix</td><td>10 &mu;L</td><td>Hot-start polymerase, dNTPs, buffer</td></tr>
+          <tr><td>Forward primer (10 &mu;M)</td><td>0.8 &mu;L</td><td>Methylation-specific sequence</td></tr>
+          <tr><td>Reverse primer (10 &mu;M)</td><td>0.8 &mu;L</td><td>Methylation-specific sequence</td></tr>
+          <tr><td>TaqMan probe (5 &mu;M)</td><td>0.4 &mu;L</td><td>FAM/BHQ1 labelled</td></tr>
+          <tr><td>Bisulfite-converted DNA</td><td>5 &mu;L</td><td>~25–50 ng equivalent</td></tr>
+          <tr><td>Nuclease-free water</td><td>3 &mu;L</td><td>To 20 &mu;L total volume</td></tr>
+        </table>
+      </div>
+      <p><strong>Cycling conditions:</strong> 95°C × 10 min (activation) → 45 cycles of [95°C × 15 s, 60°C × 60 s (read fluorescence)].</p>
+      <p><strong>Interpretation:</strong> A Ct value below the validated cutoff (typically 35–38) for any methylation marker = positive for that marker.</p>
+
+      <h3>C. KRAS ARMS-qPCR Protocol</h3>
+      <p>Seven separate reactions per sample, one for each KRAS mutation (G12D, G12V, G12C, G12S, G12A, G12R, G13D) plus a wild-type control. Each reaction uses allele-specific forward primers with an engineered mismatch at position −2 from the 3' end to enhance specificity. Total reaction volume: 20 &mu;L with similar composition to qMSP but using mutation-specific primers and unconverted (genomic) DNA.</p>
+      <p><strong>Cycling conditions:</strong> 95°C × 10 min → 45 cycles of [95°C × 15 s, 62°C × 60 s (read)].</p>
+      <p><strong>Interpretation:</strong> &Delta;Ct (mutant Ct − wild-type Ct) below the validated threshold (typically &le;8) = positive for that KRAS mutation.</p>
+
+      <h3>D. Hemoglobin Sandwich ELISA Protocol</h3>
+      <div class="step">
+        <div class="step-num">1</div>
+        <div><strong>Coat Plate:</strong> Add anti-human hemoglobin capture antibody (2 &mu;g/mL in carbonate buffer, pH 9.6) to 96-well microplate. Incubate overnight at 4°C.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div><strong>Block:</strong> Add 1% BSA blocking buffer. Incubate 1 hour at 37°C. Wash ×3 with PBS-Tween.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div><strong>Add Samples:</strong> Add stool supernatant (diluted 1:10–1:100). Include hemoglobin standards (0–500 ng/mL). Incubate 2 hours at 37°C.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div><strong>Detection Antibody:</strong> Wash ×3. Add HRP-conjugated anti-hemoglobin antibody. Incubate 1 hour at 37°C.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div><strong>Develop:</strong> Wash ×5. Add TMB substrate. Incubate 15–20 min in the dark (blue colour develops).</div>
+      </div>
+      <div class="step">
+        <div class="step-num">6</div>
+        <div><strong>Read:</strong> Add stop solution (2N H₂SO₄ — turns yellow). Read absorbance at 450 nm. Hemoglobin &ge;50 ng/mL = positive.</div>
+      </div>
+
+      <h3>Cost Per Sample (Detection Phase)</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>Assay Component</th><th>Cost Per Sample (&#8377;)</th></tr>
+          <tr><td>Bisulfite conversion reagents</td><td>80–120</td></tr>
+          <tr><td>NDRG4 qMSP (primers, probe, master mix)</td><td>45–60</td></tr>
+          <tr><td>BMP3 qMSP</td><td>45–60</td></tr>
+          <tr><td>SDC2 qMSP</td><td>45–60</td></tr>
+          <tr><td>KRAS ARMS-qPCR (7 reactions)</td><td>75–110</td></tr>
+          <tr><td>Hemoglobin ELISA</td><td>50–80</td></tr>
+          <tr><td>DNA extraction consumables</td><td>65–100</td></tr>
+          <tr><td>Controls &amp; calibrators</td><td>25–35</td></tr>
+          <tr><td>Consumables (tips, plates, tubes)</td><td>25–35</td></tr>
+          <tr><td><strong>Total per sample</strong></td><td><strong>455–660</strong></td></tr>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     SECTION 8 — Equipment & Infrastructure
+     ═══════════════════════════════════════════════════ -->
+<div class="section" id="sec8">
+  <div class="section-header" onclick="toggleSection('sec8')">
+    <h2><span class="num">8</span> Equipment &amp; Infrastructure</h2>
+    <span class="arrow">&#9662;</span>
+  </div>
+  <div class="section-body">
+    <div class="section-content">
+
+      <h3>Core Laboratory Equipment</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>Equipment</th><th>Model (Recommended)</th><th>Purpose</th><th>Est. Cost (&#8377; Lakhs)</th></tr>
+          <tr><td>Automated DNA extractor</td><td>KingFisher Apex (Thermo Fisher)</td><td>96-well magnetic bead extraction</td><td>25–35</td></tr>
+          <tr><td>Real-time PCR system</td><td>QuantStudio 5 (Applied Biosystems)</td><td>qMSP &amp; ARMS-qPCR</td><td>30–40</td></tr>
+          <tr><td>Microplate reader</td><td>Multiskan SkyHigh (Thermo Fisher)</td><td>ELISA readout at 450 nm</td><td>8–15</td></tr>
+          <tr><td>Bisulfite conversion system</td><td>EZ DNA Methylation Kit (Zymo)</td><td>Bisulfite treatment + cleanup</td><td>Kit-based (consumable)</td></tr>
+          <tr><td>Fluorometer</td><td>Qubit 4 (Invitrogen)</td><td>DNA quantification</td><td>3–5</td></tr>
+          <tr><td>Spectrophotometer</td><td>NanoDrop One</td><td>DNA purity (A260/280)</td><td>5–8</td></tr>
+          <tr><td>Centrifuge (refrigerated)</td><td>Eppendorf 5430R</td><td>Sample processing</td><td>4–6</td></tr>
+          <tr><td>Microplate washer</td><td>BioTek 405 TS</td><td>ELISA plate washing</td><td>6–10</td></tr>
+          <tr><td>Biosafety cabinet (Class II)</td><td>Thermo 1300 Series</td><td>Sterile sample handling</td><td>4–8</td></tr>
+          <tr><td>PCR workstation (UV)</td><td>UVP PCR Cabinet</td><td>Contamination-free PCR setup</td><td>2–4</td></tr>
+          <tr><td>LIMS system</td><td>Custom / LabWare</td><td>Sample tracking &amp; data management</td><td>15–30</td></tr>
+        </table>
+      </div>
+
+      <h3>Facility Layout (10 Zones)</h3>
+      <p>A molecular diagnostics laboratory for stool DNA testing requires strict <span class="jargon">unidirectional workflow<span class="tip">A laboratory design principle where samples, reagents, and personnel move only in one direction — from clean (pre-PCR) to dirty (post-PCR) areas — to prevent amplified DNA from contaminating new samples. This is critical because even trace amounts of PCR product can cause false-positive results.</span></span> to prevent contamination. The facility requires approximately 2,000–3,000 sq ft divided into 10 distinct zones:</p>
+
+      <div class="diagram-wrap">
+        <svg viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg">
+          <rect x="0" y="0" width="800" height="450" fill="#fdf5f8" rx="8"/>
+          <text x="400" y="28" text-anchor="middle" font-size="14" font-weight="700" fill="#8b2252">Laboratory Facility Layout — 10 Zones (Unidirectional Flow)</text>
+
+          <!-- Row 1: Pre-PCR zones -->
+          <text x="30" y="60" font-size="11" font-weight="700" fill="#1a6b4a">PRE-PCR AREA (Clean Side)</text>
+
+          <rect x="30" y="70" width="145" height="80" rx="6" fill="#e8f5ee" stroke="#1a6b4a" stroke-width="1.5"/>
+          <text x="102" y="92" text-anchor="middle" font-size="10" font-weight="600" fill="#1a6b4a">Zone 1</text>
+          <text x="102" y="108" text-anchor="middle" font-size="9" fill="#555">Sample Receipt</text>
+          <text x="102" y="122" text-anchor="middle" font-size="9" fill="#555">&amp; Accessioning</text>
+          <text x="102" y="140" text-anchor="middle" font-size="8" fill="#888">BSC, barcode scanner</text>
+
+          <text x="185" y="110" font-size="14" fill="#8b2252">→</text>
+
+          <rect x="205" y="70" width="145" height="80" rx="6" fill="#eaf4fb" stroke="#2980b9" stroke-width="1.5"/>
+          <text x="277" y="92" text-anchor="middle" font-size="10" font-weight="600" fill="#2980b9">Zone 2</text>
+          <text x="277" y="108" text-anchor="middle" font-size="9" fill="#555">DNA Extraction</text>
+          <text x="277" y="122" text-anchor="middle" font-size="9" fill="#555">&amp; Purification</text>
+          <text x="277" y="140" text-anchor="middle" font-size="8" fill="#888">KingFisher, centrifuge</text>
+
+          <text x="360" y="110" font-size="14" fill="#8b2252">→</text>
+
+          <rect x="380" y="70" width="145" height="80" rx="6" fill="#f5f0fa" stroke="#7b2d8e" stroke-width="1.5"/>
+          <text x="452" y="92" text-anchor="middle" font-size="10" font-weight="600" fill="#7b2d8e">Zone 3</text>
+          <text x="452" y="108" text-anchor="middle" font-size="9" fill="#555">Bisulfite</text>
+          <text x="452" y="122" text-anchor="middle" font-size="9" fill="#555">Conversion</text>
+          <text x="452" y="140" text-anchor="middle" font-size="8" fill="#888">Thermal cycler, columns</text>
+
+          <text x="535" y="110" font-size="14" fill="#8b2252">→</text>
+
+          <rect x="555" y="70" width="145" height="80" rx="6" fill="#fef3e5" stroke="#e67e22" stroke-width="1.5"/>
+          <text x="627" y="92" text-anchor="middle" font-size="10" font-weight="600" fill="#e67e22">Zone 4</text>
+          <text x="627" y="108" text-anchor="middle" font-size="9" fill="#555">PCR Setup</text>
+          <text x="627" y="122" text-anchor="middle" font-size="9" fill="#555">(Master Mix)</text>
+          <text x="627" y="140" text-anchor="middle" font-size="8" fill="#888">UV PCR cabinet, pipettes</text>
+
+          <!-- Arrow down -->
+          <text x="627" y="170" text-anchor="middle" font-size="14" fill="#8b2252">↓</text>
+
+          <!-- Row 2: Post-PCR zones -->
+          <text x="30" y="195" font-size="11" font-weight="700" fill="#c0392b">POST-PCR AREA (Amplified DNA)</text>
+
+          <rect x="555" y="205" width="145" height="80" rx="6" fill="#fde8d8" stroke="#d35400" stroke-width="1.5"/>
+          <text x="627" y="227" text-anchor="middle" font-size="10" font-weight="600" fill="#d35400">Zone 5</text>
+          <text x="627" y="243" text-anchor="middle" font-size="9" fill="#555">PCR Amplification</text>
+          <text x="627" y="257" text-anchor="middle" font-size="9" fill="#555">&amp; Detection</text>
+          <text x="627" y="275" text-anchor="middle" font-size="8" fill="#888">QuantStudio 5</text>
+
+          <text x="535" y="245" font-size="14" fill="#8b2252">←</text>
+
+          <rect x="380" y="205" width="145" height="80" rx="6" fill="#fce4e4" stroke="#c0392b" stroke-width="1.5"/>
+          <text x="452" y="227" text-anchor="middle" font-size="10" font-weight="600" fill="#c0392b">Zone 6</text>
+          <text x="452" y="243" text-anchor="middle" font-size="9" fill="#555">ELISA Processing</text>
+          <text x="452" y="257" text-anchor="middle" font-size="9" fill="#555">(Hemoglobin)</text>
+          <text x="452" y="275" text-anchor="middle" font-size="8" fill="#888">Plate washer, reader</text>
+
+          <!-- Row 3: Support zones -->
+          <text x="30" y="315" font-size="11" font-weight="700" fill="#8b2252">SUPPORT AREAS</text>
+
+          <rect x="30" y="330" width="145" height="70" rx="6" fill="#fdf2f6" stroke="#8b2252" stroke-width="1.5"/>
+          <text x="102" y="352" text-anchor="middle" font-size="10" font-weight="600" fill="#8b2252">Zone 7</text>
+          <text x="102" y="368" text-anchor="middle" font-size="9" fill="#555">Reagent Storage</text>
+          <text x="102" y="386" text-anchor="middle" font-size="8" fill="#888">−20°C, 2–8°C, RT</text>
+
+          <rect x="205" y="330" width="145" height="70" rx="6" fill="#fdf2f6" stroke="#8b2252" stroke-width="1.5"/>
+          <text x="277" y="352" text-anchor="middle" font-size="10" font-weight="600" fill="#8b2252">Zone 8</text>
+          <text x="277" y="368" text-anchor="middle" font-size="9" fill="#555">QC &amp; Data</text>
+          <text x="277" y="386" text-anchor="middle" font-size="8" fill="#888">LIMS, analysis PCs</text>
+
+          <rect x="380" y="330" width="145" height="70" rx="6" fill="#fdf2f6" stroke="#8b2252" stroke-width="1.5"/>
+          <text x="452" y="352" text-anchor="middle" font-size="10" font-weight="600" fill="#8b2252">Zone 9</text>
+          <text x="452" y="368" text-anchor="middle" font-size="9" fill="#555">Waste &amp; Decon</text>
+          <text x="452" y="386" text-anchor="middle" font-size="8" fill="#888">Autoclave, waste bins</text>
+
+          <rect x="555" y="330" width="145" height="70" rx="6" fill="#fdf2f6" stroke="#8b2252" stroke-width="1.5"/>
+          <text x="627" y="352" text-anchor="middle" font-size="10" font-weight="600" fill="#8b2252">Zone 10</text>
+          <text x="627" y="368" text-anchor="middle" font-size="9" fill="#555">Admin &amp; Gowning</text>
+          <text x="627" y="386" text-anchor="middle" font-size="8" fill="#888">Office, change room</text>
+
+          <text x="400" y="435" text-anchor="middle" font-size="10" fill="#8b2252" font-style="italic">Total facility: 2,000–3,000 sq ft · Positive pressure in pre-PCR zones · Negative pressure in post-PCR zones</text>
+        </svg>
+        <div class="diagram-caption">Figure 4 — Laboratory layout showing 10 functional zones with unidirectional workflow from clean (pre-PCR) to amplified (post-PCR) areas.</div>
+      </div>
+
+      <div class="info-box">
+        <strong>Contamination Prevention:</strong> The single most important design principle is physical separation between pre-PCR and post-PCR areas. Dedicated lab coats, gloves, and shoes for each area. Positive air pressure in pre-PCR rooms prevents amplified DNA from drifting into clean zones. UV decontamination of surfaces and PCR cabinets between runs.
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     SECTION 9 — Supply Chain & Suppliers
+     ═══════════════════════════════════════════════════ -->
+<div class="section" id="sec9">
+  <div class="section-header" onclick="toggleSection('sec9')">
+    <h2><span class="num">9</span> Supply Chain &amp; Suppliers</h2>
+    <span class="arrow">&#9662;</span>
+  </div>
+  <div class="section-body">
+    <div class="section-content">
+
+      <h3>Critical Reagent Categories</h3>
+      <p>Manufacturing a stool DNA test requires reagents from five major categories, each with different sourcing strategies:</p>
+
+      <div class="table-wrap">
+        <table>
+          <tr><th>Category</th><th>Key Items</th><th>Major Suppliers</th><th>Lead Time</th></tr>
+          <tr><td>PCR reagents</td><td>Master mix, primers, TaqMan probes</td><td>Thermo Fisher, Roche, IDT, Eurofins</td><td>2–4 weeks</td></tr>
+          <tr><td>Bisulfite conversion</td><td>Sodium bisulfite kits, cleanup columns</td><td>Zymo Research, Qiagen, Promega</td><td>2–3 weeks</td></tr>
+          <tr><td>ELISA components</td><td>Antibodies, HRP conjugates, TMB substrate</td><td>Abcam, R&amp;D Systems, Sigma-Aldrich</td><td>3–6 weeks</td></tr>
+          <tr><td>DNA extraction</td><td>Magnetic beads, binding/wash buffers, plates</td><td>Thermo Fisher, Promega, Beckman Coulter</td><td>2–4 weeks</td></tr>
+          <tr><td>Buffer chemicals</td><td>GuSCN, EDTA, Tris-HCl, SDS, DTT</td><td>Sigma-Aldrich, SRL (India), HiMedia (India)</td><td>1–2 weeks</td></tr>
+        </table>
+      </div>
+
+      <h3>Sourcing Strategy</h3>
+      <p>A dual-vendor policy is recommended for all critical reagents — meaning at least two qualified suppliers for each key item. This protects against supply disruptions and provides negotiating leverage. Buffer chemicals (GuSCN, EDTA, Tris) can often be sourced domestically from Indian manufacturers like SRL, HiMedia, or Loba Chemie at 30–50% lower cost than imported alternatives.</p>
+
+      <h3>Cold Chain Requirements</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>Storage Condition</th><th>Items</th><th>Capacity Needed</th></tr>
+          <tr><td>−20°C freezer</td><td>Primers, probes, enzymes, antibodies</td><td>500–1,000 L</td></tr>
+          <tr><td>2–8°C refrigerator</td><td>Master mixes, buffers, TMB substrate</td><td>500–1,000 L</td></tr>
+          <tr><td>Room temperature</td><td>Plates, tips, collection kits, chemicals</td><td>Shelving + 100 sq ft</td></tr>
+        </table>
+      </div>
+
+      <div class="info-box warn">
+        <strong>Inventory Management:</strong> Keep a minimum of 3 months' stock for imported reagents (to buffer against international shipping delays) and 1 month's stock for domestically sourced items. Implement lot tracking and first-expiry-first-out (FEFO) rotation in the LIMS system.
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     SECTION 10 — Cost Analysis & Business Model
+     ═══════════════════════════════════════════════════ -->
+<div class="section" id="sec10">
+  <div class="section-header" onclick="toggleSection('sec10')">
+    <h2><span class="num">10</span> Cost Analysis &amp; Business Model</h2>
+    <span class="arrow">&#9662;</span>
+  </div>
+  <div class="section-body">
+    <div class="section-content">
+
+      <h3>Per-Test Cost Breakdown (COGS)</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>Component</th><th>Low Estimate (&#8377;)</th><th>High Estimate (&#8377;)</th></tr>
+          <tr><td>Collection kit</td><td>120</td><td>180</td></tr>
+          <tr><td>DNA extraction consumables</td><td>65</td><td>100</td></tr>
+          <tr><td>Bisulfite conversion</td><td>80</td><td>120</td></tr>
+          <tr><td>Methylation qPCR (3 markers)</td><td>135</td><td>180</td></tr>
+          <tr><td>KRAS ARMS-qPCR (7 reactions)</td><td>75</td><td>110</td></tr>
+          <tr><td>Hemoglobin ELISA</td><td>50</td><td>80</td></tr>
+          <tr><td>Controls &amp; calibrators</td><td>25</td><td>35</td></tr>
+          <tr><td>Consumables (tips, plates, tubes)</td><td>25</td><td>35</td></tr>
+          <tr><td>Shipping (patient → lab)</td><td>100</td><td>150</td></tr>
+          <tr><td>Labour &amp; overhead</td><td>125</td><td>210</td></tr>
+          <tr><td><strong>Total COGS per test</strong></td><td><strong>800</strong></td><td><strong>1,200</strong></td></tr>
+        </table>
+      </div>
+
+      <h3>Pricing &amp; Margins</h3>
+      <div class="fin-highlight">
+        <div class="fin-card">
+          <div class="value">&#8377;2,500–3,500</div>
+          <div class="label">List price per test</div>
+        </div>
+        <div class="fin-card">
+          <div class="value">&#8377;800–1,200</div>
+          <div class="label">COGS per test</div>
+        </div>
+        <div class="fin-card">
+          <div class="value">60–70%</div>
+          <div class="label">Gross margin</div>
+        </div>
+        <div class="fin-card">
+          <div class="value">50K–75K</div>
+          <div class="label">Break-even volume (tests/year)</div>
+        </div>
+      </div>
+
+      <h3>Capital Investment Summary</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>Category</th><th>Low (&#8377; Lakhs)</th><th>High (&#8377; Lakhs)</th></tr>
+          <tr><td>Equipment (instruments)</td><td>150</td><td>397</td></tr>
+          <tr><td>Facility (build-out, HVAC, utilities)</td><td>90</td><td>180</td></tr>
+          <tr><td>Initial inventory (reagents, kits)</td><td>62</td><td>118</td></tr>
+          <tr><td>Regulatory (clinical trials, submissions)</td><td>70</td><td>140</td></tr>
+          <tr><td>Personnel (first year)</td><td>74</td><td>140</td></tr>
+          <tr><td>Contingency (10%)</td><td>45</td><td>130</td></tr>
+          <tr><td><strong>Total capital required</strong></td><td><strong>491</strong></td><td><strong>1,105</strong></td></tr>
+        </table>
+      </div>
+
+      <h3>Personnel Requirements</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>Role</th><th>Headcount</th><th>Annual CTC (&#8377; Lakhs)</th></tr>
+          <tr><td>Lab Director (PhD/MD, Molecular Biology)</td><td>1</td><td>20–30</td></tr>
+          <tr><td>Lab Manager</td><td>1</td><td>12–18</td></tr>
+          <tr><td>Molecular Biologists</td><td>3–5</td><td>6–10 each</td></tr>
+          <tr><td>QC Specialist</td><td>1</td><td>8–12</td></tr>
+          <tr><td>IT / LIMS Administrator</td><td>1</td><td>8–12</td></tr>
+          <tr><td>Administrative / Logistics</td><td>2–3</td><td>4–6 each</td></tr>
+        </table>
+      </div>
+
+      <h3>Hub-and-Spoke Model for India</h3>
+      <p>Given India's size and logistics challenges, the recommended model is a <span class="jargon">hub-and-spoke<span class="tip">A centralized processing model where samples from multiple collection points ("spokes" — clinics, hospitals, pharmacies) are shipped to regional processing laboratories ("hubs") for analysis. This concentrates expensive equipment and trained personnel while keeping collection accessible.</span></span> network: collection kits are distributed through clinics, hospitals, and pharmacies (spokes) across a region, while samples are shipped to centralized processing laboratories (hubs) in major cities. Starting with 3–4 hubs (e.g., Mumbai, Delhi, Bengaluru, Kolkata) can cover most of India's urban and semi-urban population.</p>
+
+      <div class="info-box success">
+        <strong>Comparison:</strong> At &#8377;2,500–3,500, this test is priced at approximately 5–7% of the cost of an imported Cologuard test (~&#8377;50,000+) and approximately 25–40% of a colonoscopy (&#8377;8,000–20,000), while offering superior sensitivity to FIT (&#8377;200–500) and requiring no hospital visit.
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     SECTION 11 — QA, Regulatory & Glossary
+     ═══════════════════════════════════════════════════ -->
+<div class="section" id="sec11">
+  <div class="section-header" onclick="toggleSection('sec11')">
+    <h2><span class="num">11</span> Quality Assurance, Regulatory &amp; Glossary</h2>
+    <span class="arrow">&#9662;</span>
+  </div>
+  <div class="section-body">
+    <div class="section-content">
+
+      <h3>Quality Management System</h3>
+      <p>The manufacturing facility must operate under <span class="jargon">ISO 13485<span class="tip">The international quality management standard specifically for medical device and IVD manufacturers. It requires documented procedures, risk management, design controls, supplier qualification, traceability, and management reviews. CDSCO requires ISO 13485 certification for IVD manufacturing licenses.</span></span> quality management, which covers design controls, document management, risk analysis (<span class="jargon">ISO 14971<span class="tip">The international standard for applying risk management to medical devices and IVDs. Requires identifying hazards, estimating and evaluating risks, implementing controls, and monitoring residual risks throughout the product lifecycle.</span></span>), supplier qualification, equipment calibration, training records, corrective/preventive actions (CAPA), and management review.</p>
+
+      <h4>Key QC Checkpoints</h4>
+      <div class="table-wrap">
+        <table>
+          <tr><th>Stage</th><th>QC Test</th><th>Acceptance Criteria</th><th>Frequency</th></tr>
+          <tr><td>Incoming reagents</td><td>Certificate of Analysis review</td><td>All specs within range</td><td>Every lot</td></tr>
+          <tr><td>Buffer preparation</td><td>pH, conductivity, visual clarity</td><td>pH 7.5 ±0.2; clear solution</td><td>Every batch</td></tr>
+          <tr><td>DNA extraction</td><td>Yield, purity, inhibitor check</td><td>≥200 ng, A260/280 1.7–2.0, IC Ct ≤32</td><td>Every run</td></tr>
+          <tr><td>Bisulfite conversion</td><td>Conversion efficiency control</td><td>≥98% conversion</td><td>Every run</td></tr>
+          <tr><td>PCR amplification</td><td>Positive/negative controls</td><td>Pos Ct within ±2 of expected; Neg no amplification</td><td>Every plate</td></tr>
+          <tr><td>ELISA</td><td>Standard curve R², controls</td><td>R² ≥0.99; controls within ±20%</td><td>Every plate</td></tr>
+          <tr><td>Final result</td><td>Algorithm validation check</td><td>Control samples classified correctly</td><td>Every batch</td></tr>
+        </table>
+      </div>
+
+      <h3>CDSCO Regulatory Pathway (India)</h3>
+      <p>In India, IVD devices are regulated by the <span class="jargon">CDSCO<span class="tip">Central Drugs Standard Control Organisation — India's national regulatory authority for pharmaceuticals, medical devices, and IVDs. It operates under the Medical Device Rules 2017 and classifies IVDs into Classes A–D based on risk, with Class D being the highest risk category.</span></span> under the Medical Device Rules 2017. A stool DNA test for cancer screening is classified as <strong>Class C or Class D</strong> (high-risk IVD) and requires clinical validation before approval.</p>
+
+      <h4>Regulatory Timeline (18–30 months)</h4>
+      <div class="step">
+        <div class="step-num">1</div>
+        <div><strong>Pre-submission (Months 1–6):</strong> Establish ISO 13485 QMS. Prepare technical documentation — design history file, risk management file, performance evaluation plan. Apply for Form 28 (manufacturing licence).</div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div><strong>Clinical Investigation (Months 6–18):</strong> Apply for Form 44 (clinical investigation licence). Conduct clinical validation study with 500–1,000 subjects across 3–5 sites. Compare against colonoscopy as reference standard. Demonstrate required sensitivity and specificity.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div><strong>Submission &amp; Review (Months 18–24):</strong> Submit complete technical dossier to CDSCO, including clinical data, analytical performance data, stability data, and manufacturing documentation. CDSCO review typically takes 6–12 months.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div><strong>Approval &amp; Launch (Months 24–30):</strong> Receive marketing authorization. Begin commercial manufacturing. Initiate post-market surveillance as required.</div>
+      </div>
+
+      <h4>Clinical Validation Requirements</h4>
+      <div class="table-wrap">
+        <table>
+          <tr><th>Parameter</th><th>Requirement</th></tr>
+          <tr><td>Subjects enrolled</td><td>500–1,000 (average-risk, age 45–75)</td></tr>
+          <tr><td>Study sites</td><td>3–5 hospitals/centres</td></tr>
+          <tr><td>Reference standard</td><td>Colonoscopy within 90 days of stool collection</td></tr>
+          <tr><td>Primary endpoints</td><td>CRC sensitivity, specificity, advanced adenoma sensitivity</td></tr>
+          <tr><td>Expected CRC cases</td><td>15–30 (based on ~2% prevalence in screened population)</td></tr>
+          <tr><td>Ethics approval</td><td>Institutional Ethics Committee at each site</td></tr>
+          <tr><td>Informed consent</td><td>Written consent in local language</td></tr>
+        </table>
+      </div>
+
+      <div class="info-box">
+        <strong>Regulatory Tip:</strong> Engage CDSCO in a pre-submission consultation early (Month 3–4). This helps align clinical study design with regulatory expectations and can significantly reduce review delays. Budget &#8377;70–140 lakhs for the complete regulatory process including clinical trials.
+      </div>
+
+      <h3 style="margin-top:30px;">Searchable Glossary</h3>
+      <input type="text" id="glossarySearch" placeholder="Search glossary terms..." oninput="filterGlossary()">
+      <div class="glossary-grid">
+        <div class="glossary-item"><span class="term">Adenoma</span><div class="def">A benign polyp in the colon lining that can develop into cancer over time. Advanced adenomas (≥1 cm, villous features, or high-grade dysplasia) carry the highest risk.</div></div>
+        <div class="glossary-item"><span class="term">ARMS (Amplification-Refractory Mutation System)</span><div class="def">A PCR technique using primers designed to perfectly match a specific mutation at the 3' end, enabling selective amplification of mutant DNA even when vastly outnumbered by normal DNA.</div></div>
+        <div class="glossary-item"><span class="term">Biomarker</span><div class="def">A measurable biological molecule (DNA methylation, gene mutation, or protein) whose presence or level indicates a disease state.</div></div>
+        <div class="glossary-item"><span class="term">Bisulfite Conversion</span><div class="def">Chemical treatment with sodium bisulfite that converts unmethylated cytosine to uracil while leaving methylated cytosine unchanged, enabling PCR-based methylation detection.</div></div>
+        <div class="glossary-item"><span class="term">BMP3 (Bone Morphogenetic Protein 3)</span><div class="def">A growth-factor gene whose promoter becomes hyper-methylated in 60–80% of CRCs and 40–50% of advanced adenomas.</div></div>
+        <div class="glossary-item"><span class="term">CDSCO</span><div class="def">Central Drugs Standard Control Organisation — India's regulatory authority for pharmaceuticals, medical devices, and IVDs under the Medical Device Rules 2017.</div></div>
+        <div class="glossary-item"><span class="term">COGS (Cost of Goods Sold)</span><div class="def">The direct costs attributable to producing each test, including reagents, consumables, collection kit, shipping, and direct labour.</div></div>
+        <div class="glossary-item"><span class="term">Cologuard</span><div class="def">The first FDA-approved multi-target stool DNA test (Exact Sciences, 2014). Combines NDRG4, BMP3, KRAS, β-actin, and hemoglobin markers. The benchmark product in this category.</div></div>
+        <div class="glossary-item"><span class="term">CRC (Colorectal Cancer)</span><div class="def">Cancer of the colon or rectum — the third most common cancer worldwide. Develops through the adenoma-carcinoma sequence over 10–15 years.</div></div>
+        <div class="glossary-item"><span class="term">Ct (Cycle Threshold)</span><div class="def">In real-time PCR, the cycle number at which fluorescence crosses a set threshold. Lower Ct = more starting target DNA. Used to determine positive/negative results.</div></div>
+        <div class="glossary-item"><span class="term">DTT (Dithiothreitol)</span><div class="def">A reducing agent that breaks disulphide bonds in proteins. Used in the stabilization buffer to denature nucleases and proteases.</div></div>
+        <div class="glossary-item"><span class="term">EDTA</span><div class="def">Ethylenediaminetetraacetic acid — a chelating agent that binds divalent metal ions (Mg²⁺, Ca²⁺) required by DNA-degrading nucleases.</div></div>
+        <div class="glossary-item"><span class="term">ELISA (Enzyme-Linked Immunosorbent Assay)</span><div class="def">A plate-based immunoassay using antibodies to capture and detect a target protein. In this test, sandwich ELISA detects human hemoglobin in stool.</div></div>
+        <div class="glossary-item"><span class="term">FIT (Fecal Immunochemical Test)</span><div class="def">A stool test that uses antibodies to detect human hemoglobin. Simpler and cheaper than stool DNA testing but with lower sensitivity for CRC (74%) and much lower adenoma detection (24%).</div></div>
+        <div class="glossary-item"><span class="term">gFOBT (Guaiac Fecal Occult Blood Test)</span><div class="def">An older stool blood test using a chemical reaction (guaiac) to detect hemoglobin. Cannot distinguish human from animal blood and has low sensitivity (50–60%).</div></div>
+        <div class="glossary-item"><span class="term">GuSCN (Guanidinium Thiocyanate)</span><div class="def">A powerful chaotropic salt that denatures proteins and disrupts cell membranes. The primary DNA-preserving agent in the stool stabilization buffer (used at 5 M concentration).</div></div>
+        <div class="glossary-item"><span class="term">HRP (Horseradish Peroxidase)</span><div class="def">An enzyme conjugated to the detection antibody in ELISA. It catalyses the oxidation of TMB substrate to produce a measurable colour change.</div></div>
+        <div class="glossary-item"><span class="term">Hub-and-Spoke Model</span><div class="def">A logistics model where samples from distributed collection points (spokes) are shipped to centralized processing laboratories (hubs) — concentrating expensive equipment while keeping collection accessible.</div></div>
+        <div class="glossary-item"><span class="term">ISO 13485</span><div class="def">International quality management standard for medical device and IVD manufacturers. Required by CDSCO for Indian manufacturing licences.</div></div>
+        <div class="glossary-item"><span class="term">IVD (In-Vitro Diagnostic)</span><div class="def">A medical test performed on biological samples outside the living body to detect diseases, conditions, or infections.</div></div>
+        <div class="glossary-item"><span class="term">KingFisher Apex</span><div class="def">An automated magnetic particle processor (Thermo Fisher) that uses magnetic rods to move beads through 96-well plates for DNA extraction. Processes 96 samples in ~30 minutes.</div></div>
+        <div class="glossary-item"><span class="term">KRAS</span><div class="def">An oncogene encoding a GTPase signalling protein. Point mutations at codons 12 and 13 drive uncontrolled cell proliferation and are found in ~40% of CRCs.</div></div>
+        <div class="glossary-item"><span class="term">LIMS (Laboratory Information Management System)</span><div class="def">Software that tracks samples, results, quality data, and reagent lots through the entire laboratory workflow from receipt to reporting.</div></div>
+        <div class="glossary-item"><span class="term">Methylation</span><div class="def">Addition of a methyl group (CH₃) to DNA, typically at CpG sites. Abnormal hyper-methylation of tumour-suppressor gene promoters silences their expression and is a hallmark of cancer.</div></div>
+        <div class="glossary-item"><span class="term">NDRG4 (N-myc Downstream Regulated Gene 4)</span><div class="def">A tumour-suppressor gene silenced by methylation in 70–90% of CRCs. One of the most sensitive single methylation markers for colorectal cancer.</div></div>
+        <div class="glossary-item"><span class="term">PCR (Polymerase Chain Reaction)</span><div class="def">A technique that amplifies specific DNA sequences exponentially through repeated cycles of denaturation, annealing, and extension. Real-time (quantitative) PCR monitors amplification in real time using fluorescent probes.</div></div>
+        <div class="glossary-item"><span class="term">qMSP (Quantitative Methylation-Specific PCR)</span><div class="def">A real-time PCR method using primers and probes designed to specifically amplify methylated (bisulfite-converted) DNA sequences. Combines methylation specificity with quantitative readout.</div></div>
+        <div class="glossary-item"><span class="term">SDC2 (Syndecan-2)</span><div class="def">A cell-surface proteoglycan gene methylated in 80–90% of CRCs. Extensively validated in Asian populations and the backbone of China's ColoClear test.</div></div>
+        <div class="glossary-item"><span class="term">SDS (Sodium Dodecyl Sulphate)</span><div class="def">An anionic detergent that disrupts cell membranes and denatures proteins. Used in the stabilization buffer to lyse cells and release DNA.</div></div>
+        <div class="glossary-item"><span class="term">Sensitivity</span><div class="def">The proportion of true positives correctly identified by the test (true positives / [true positives + false negatives]). Higher sensitivity means fewer missed cancers.</div></div>
+        <div class="glossary-item"><span class="term">Specificity</span><div class="def">The proportion of true negatives correctly identified (true negatives / [true negatives + false positives]). Higher specificity means fewer false alarms.</div></div>
+        <div class="glossary-item"><span class="term">TaqMan Probe</span><div class="def">A fluorescently labelled oligonucleotide probe used in real-time PCR. It binds between the two primers and is cleaved by the polymerase during amplification, releasing a fluorescent signal proportional to the amount of target DNA.</div></div>
+        <div class="glossary-item"><span class="term">TMB (3,3',5,5'-Tetramethylbenzidine)</span><div class="def">A chromogenic substrate for HRP in ELISA. Turns blue when oxidised by HRP, then yellow when the reaction is stopped with acid. Absorbance at 450 nm is proportional to target concentration.</div></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     FOOTER
+     ═══════════════════════════════════════════════════ -->
+<div style="text-align:center; padding:30px 0 10px; color:var(--gray); font-size:0.85rem;">
+  <p><strong>Colon Cancer Screening Test Manufacturing Guide</strong></p>
+  <p>Multitarget Stool DNA Test — Molecular Diagnostics for Colorectal Cancer Screening</p>
+  <p style="margin-top:8px; font-size:0.8rem;">Based on a 110-page feasibility report covering biomarker science, manufacturing processes, equipment specifications, cost analysis, and regulatory requirements. This document is for educational purposes. All specifications, pricing, and market data are estimates subject to change.</p>
+</div>
+
+</div> <!-- /container -->
+
+<!-- ════════════════ JAVASCRIPT ════════════════ -->
+<script>
+function toggleSection(id) {
+  const el = document.getElementById(id);
+  if (el) el.classList.toggle('open');
+}
+
+function toggleAll(open) {
+  document.querySelectorAll('.section').forEach(s => {
+    if (open) s.classList.add('open');
+    else s.classList.remove('open');
+  });
+}
+
+function filterGlossary() {
+  const query = document.getElementById('glossarySearch').value.toLowerCase();
+  document.querySelectorAll('.glossary-item').forEach(item => {
+    const term = item.querySelector('.term').textContent.toLowerCase();
+    const def = item.querySelector('.def').textContent.toLowerCase();
+    item.style.display = (term.includes(query) || def.includes(query)) ? '' : 'none';
+  });
+}
+</script>
+</body>
+</html>
