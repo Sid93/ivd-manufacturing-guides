@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blood Culture Systems â Beginner-Friendly Guide</title>
+<style>
+  :root {
+    --primary: #8b2252;
+    --primary-light: #fdf0f5;
+    --primary-dark: #5c1637;
+    --accent: #e67e22;
+    --accent-light: #fef3e5;
+    --blue: #2980b9;
+    --blue-light: #eaf4fb;
+    --red: #c0392b;
+    --red-light: #fbeaea;
+    --green: #1a6b4a;
+    --green-light: #e8f5ee;
+    --gray: #7f8c8d;
+    --bg: #fafbfc;
+    --card: #ffffff;
+    --text: #2c3e50;
+    --border: #e0e4e8;
+    --shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    font-size: 17px;
+  }
+
+  /* ââ Hero ââ */
+  .hero {
+    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 60%, #c0392b 100%);
+    color: white;
+    padding: 60px 24px 50px;
+    text-align: center;
+  }
+  .hero h1 { font-size: 2.2rem; margin-bottom: 12px; font-weight: 700; }
+  .hero p { font-size: 1.1rem; opacity: 0.92; max-width: 680px; margin: 0 auto 18px; }
+  .hero .badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.35);
+    border-radius: 20px;
+    padding: 6px 18px;
+    font-size: 0.9rem;
+  }
+
+  /* ââ Container ââ */
+  .container { max-width: 900px; margin: 0 auto; padding: 24px 18px 60px; }
+
+  /* ââ Controls ââ */
+  .controls {
+    display: flex; gap: 10px; margin-bottom: 24px; flex-wrap: wrap;
+  }
+  .controls button {
+    background: var(--primary); color: white; border: none;
+    border-radius: 6px; padding: 8px 18px; font-size: 0.92rem;
+    cursor: pointer; transition: background 0.2s;
+  }
+  .controls button:hover { background: var(--primary-dark); }
+
+  /* ââ Sections ââ */
+  .section {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 16px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+  .section-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 22px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s;
+  }
+  .section-header:hover { background: var(--primary-light); }
+  .section-header h2 {
+    font-size: 1.15rem; font-weight: 600; color: var(--primary);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-header .num {
+    background: var(--primary);
+    color: white;
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.85rem; font-weight: 700;
+    flex-shrink: 0;
+  }
+  .section-header .arrow {
+    font-size: 1.3rem; color: var(--gray);
+    transition: transform 0.3s;
+  }
+  .section.open .section-header .arrow { transform: rotate(180deg); }
+  .section-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+  }
+  .section.open .section-body { max-height: 50000px; }
+  .section-content { padding: 0 22px 22px; }
+
+  /* ââ Callouts ââ */
+  .callout {
+    border-radius: 8px;
+    padding: 16px 18px;
+    margin: 16px 0;
+    font-size: 0.97rem;
+  }
+  .callout-why { background: var(--blue-light); border-left: 4px solid var(--blue); }
+  .callout-key { background: var(--accent-light); border-left: 4px solid var(--accent); }
+  .callout-warn { background: var(--red-light); border-left: 4px solid var(--red); }
+  .callout-tip { background: var(--green-light); border-left: 4px solid var(--green); }
+  .callout strong { display: block; margin-bottom: 4px; }
+
+  /* ââ Jargon tooltips ââ */
+  .jargon {
+    border-bottom: 2px dashed var(--blue);
+    cursor: help;
+    position: relative;
+  }
+  .jargon .tip {
+    display: none;
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: #2c3e50;
+    color: #fff;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    width: 280px;
+    z-index: 100;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+    text-align: left;
+    font-weight: normal;
+  }
+  .jargon:hover .tip { display: block; }
+
+  /* ââ Tables ââ */
+  .comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 0.93rem;
+  }
+  .comparison-table th {
+    background: var(--primary);
+    color: white;
+    padding: 10px 14px;
+    text-align: left;
+    font-weight: 600;
+  }
+  .comparison-table td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .comparison-table tr:nth-child(even) { background: #f8f9fa; }
+  .comparison-table tr:hover { background: var(--primary-light); }
+
+  /* ââ YouTube ââ */
+  .yt-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #c0392b;
+    color: white;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    margin: 4px 4px 4px 0;
+    transition: background 0.2s;
+  }
+  .yt-link:hover { background: #a93226; }
+  .yt-links { margin: 12px 0; display: flex; flex-wrap: wrap; gap: 6px; }
+
+  /* ââ SVG Diagrams ââ */
+  .diagram-container {
+    margin: 20px 0;
+    text-align: center;
+    overflow-x: auto;
+  }
+  .diagram-container svg { max-width: 100%; height: auto; }
+  .diagram-label {
+    font-size: 0.85rem; color: var(--gray);
+    text-align: center; margin-top: 6px;
+    font-style: italic;
+  }
+
+  /* ââ Glossary ââ */
+  .glossary-search {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    font-size: 1rem;
+    margin-bottom: 16px;
+    transition: border-color 0.2s;
+  }
+  .glossary-search:focus { outline: none; border-color: var(--primary); }
+  .glossary-item {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .glossary-item strong { color: var(--primary); }
+
+  /* ââ Timeline ââ */
+  .timeline {
+    position: relative;
+    padding-left: 30px;
+    margin: 20px 0;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 8px; top: 0; bottom: 0;
+    width: 3px;
+    background: var(--primary);
+    border-radius: 2px;
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 24px;
+    padding-left: 16px;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -26px; top: 6px;
+    width: 14px; height: 14px;
+    background: var(--primary);
+    border-radius: 50%;
+    border: 3px solid white;
+    box-shadow: 0 0 0 2px var(--primary);
+  }
+  .timeline-item .phase {
+    font-weight: 700;
+    color: var(--primary);
+    font-size: 1rem;
+    margin-bottom: 4px;
+  }
+
+  /* ââ Responsive ââ */
+  @media (max-width: 640px) {
+    .hero h1 { font-size: 1.6rem; }
+    .section-header { padding: 14px 16px; }
+    .section-content { padding: 0 16px 16px; }
+    .jargon .tip { width: 220px; }
+    .comparison-table { font-size: 0.82rem; }
+    .comparison-table th, .comparison-table td { padding: 8px 8px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- âââââââ HERO âââââââ -->
+<div class="hero">
+  <h1>Automated Blood Culture Systems</h1>
+  <p>A beginner-friendly guide to building an indigenous blood culture diagnostic system for India â from the biology of sepsis detection to manufacturing bottles and instruments.</p>
+  <div class="badge">Based on a 30-page technical blueprint &bull; College-level explanations</div>
+</div>
+
+<div class="container">
+
+<!-- Controls -->
+<div class="controls">
+  <button onclick="toggleAll(true)">Expand All</button>
+  <button onclick="toggleAll(false)">Collapse All</button>
+  <button onclick="document.getElementById('glossary-section').scrollIntoView({behavior:'smooth'})">Jump to Glossary</button>
+</div>
+
+<!-- âââââââ SECTION 1: The Big Picture âââââââ -->
+<div class="section open">
+  <div class="section-header" onclick="toggleSection(this)">
+    <h2><span class="num">1</span> The Big Picture â Why Blood Culture Matters</h2>
+    <span class="arrow">&#9660;</span>
+  </div>
+  <div class="section-body"><div class="section-content">
+    <p><strong>What is a blood culture?</strong> It's the gold-standard lab test for detecting bacteria or fungi in a patient's bloodstream. When someone develops a <span class="jargon">bloodstream infection (BSI)<span class="tip">When bacteria or fungi enter and multiply in the blood. This can lead to sepsis â a life-threatening condition where the body's response to infection damages its own organs.</span></span>, doctors need to know <em>which</em> organism is causing it so they can choose the right antibiotic. A blood culture does exactly that: a sample of blood is placed in a special bottle containing nutrient broth, and the bottle is incubated to see if anything grows.</p>
+
+    <div class="callout callout-warn">
+      <strong>The Sepsis Crisis in India</strong>
+      India reports roughly 2.9 million sepsis cases per year. Hospital-acquired bloodstream infections affect about 15% of ICU patients. Yet only ~30% of suspected sepsis cases in India actually receive blood culture testing (compared to >90% in developed countries). This massive "diagnostic gap" means many patients never get the right antibiotic in time.
+    </div>
+
+    <p><strong>The market problem:</strong> Right now, over 80% of Indian hospitals still rely on old-fashioned manual broth cultures â pouring blood into a flask and visually checking it every day. The automated systems that exist (BD BACTEC and bioMÃ©rieux BacT/ALERT) are imported, expensive, and mostly available only in Tier-1 city private hospitals.</p>
+
+    <table class="comparison-table">
+      <tr><th>What</th><th>Imported Price</th><th>Target Indian Price</th><th>Savings</th></tr>
+      <tr><td>Culture bottle</td><td>â¹350â600 each</td><td>â¹80â120 each</td><td>3â5Ã cheaper</td></tr>
+      <tr><td>Analyzer instrument</td><td>â¹25â60 lakh</td><td>â¹8â15 lakh</td><td>3â5Ã cheaper</td></tr>
+      <tr><td>Service contract</td><td>â¹3â5 lakh/year</td><td>â¹1â2 lakh/year</td><td>~60% cheaper</td></tr>
+    </table>
+
+    <p>The opportunity: build an indigenous, <span class="jargon">Make in India<span class="tip">Government initiative encouraging domestic manufacturing. Medical devices made in India get preferential treatment in government hospital tenders under the PPP-MII (Public Procurement - Make in India) Order.</span></span> automated blood culture system that brings this critical diagnostic to the 25,000+ district hospitals and thousands of labs that currently can't afford it.</p>
+
+    <div class="callout callout-key">
+      <strong>Market snapshot</strong>
+      The Indian blood culture market is estimated at â¹200â300 crore/year, growing 12â15% annually. About 3â4 million bottles are consumed each year, but automated system penetration is only 25â30% of hospitals (mostly private, Tier-1).
+    </div>
+
+    <div class="yt-links">
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=what+is+sepsis+explained+simple" target="_blank" rel="noopener">â¶ What is Sepsis?</a>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=blood+culture+test+explained" target="_blank" rel="noopener">â¶ Blood Culture Test Explained</a>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=india+sepsis+crisis+healthcare" target="_blank" rel="noopener">â¶ India's Sepsis Challenge</a>
+    </div>
+  </div></div>
+</div>
+
+<!-- âââââââ SECTION 2: The Science âââââââ -->
+<div class="section">
+  <div class="section-header" onclick="toggleSection(this)">
+    <h2><span class="num">2</span> The Science â How Automated Blood Culture Works</h2>
+    <span class="arrow">&#9660;</span>
+  </div>
+  <div class="section-body"><div class="section-content">
+    <p><strong>The core idea is beautifully simple:</strong> when bacteria or fungi grow, they eat nutrients and breathe out <span class="jargon">COâ<span class="tip">Carbon dioxide â the same gas you exhale. Microbes produce it as a metabolic byproduct when they consume nutrients. Detecting COâ buildup is how automated blood culture systems know something is growing.</span></span> (carbon dioxide), just like we do. An automated blood culture system continuously watches for COâ buildup inside the sealed bottle. If COâ starts rising, something is growing â that bottle is "positive."</p>
+
+    <div class="callout callout-why">
+      <strong>Why not just look at the bottle?</strong>
+      Manual methods require a lab technician to physically examine bottles once or twice a day, looking for visible turbidity (cloudiness). This means slow-growing organisms can be missed, and detection is delayed by hours or days. Automated systems check every bottle every 10 minutes â 144 readings per day â and can catch growth far earlier.
+    </div>
+
+    <p>There are two main ways to optically detect COâ inside the bottle:</p>
+
+    <h3 style="margin-top:20px; color: var(--primary);">Method 1: Colorimetric Detection (BacT/ALERT style) â Recommended for India</h3>
+    <p>A small <span class="jargon">sensor disc<span class="tip">A tiny circular membrane (8â10 mm diameter) embedded at the bottom of the bottle. It contains a pH-sensitive dye that changes color when exposed to COâ. Think of it like a tiny litmus paper permanently glued inside the bottle.</span></span> is bonded to the bottom of each bottle. This disc contains a <span class="jargon">pH-sensitive dye<span class="tip">A chemical (like cresol red or bromocresol purple) that changes color depending on how acidic the environment is. When COâ dissolves in water, it forms carbonic acid, which is acidic â making the dye change from green/blue to yellow.</span></span> embedded in a special membrane. Here's the chain reaction:</p>
+
+    <div class="diagram-container">
+      <svg viewBox="0 0 700 200" xmlns="http://www.w3.org/2000/svg">
+        <!-- Arrows and boxes for colorimetric chain -->
+        <rect x="10" y="70" width="120" height="60" rx="8" fill="#8b2252" />
+        <text x="70" y="97" text-anchor="middle" fill="white" font-size="13" font-weight="600">Bacteria</text>
+        <text x="70" y="115" text-anchor="middle" fill="white" font-size="13" font-weight="600">grow</text>
+        <path d="M135 100 L165 100" stroke="#555" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+        <rect x="170" y="70" width="110" height="60" rx="8" fill="#c0392b" />
+        <text x="225" y="97" text-anchor="middle" fill="white" font-size="13" font-weight="600">COâ</text>
+        <text x="225" y="115" text-anchor="middle" fill="white" font-size="13" font-weight="600">produced</text>
+        <path d="M285 100 L315 100" stroke="#555" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+        <rect x="320" y="70" width="110" height="60" rx="8" fill="#e67e22" />
+        <text x="375" y="97" text-anchor="middle" fill="white" font-size="12" font-weight="600">pH drops</text>
+        <text x="375" y="115" text-anchor="middle" fill="white" font-size="12" font-weight="600">(more acidic)</text>
+        <path d="M435 100 L465 100" stroke="#555" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+        <rect x="470" y="70" width="110" height="60" rx="8" fill="#2980b9" />
+        <text x="525" y="97" text-anchor="middle" fill="white" font-size="12" font-weight="600">Dye changes</text>
+        <text x="525" y="115" text-anchor="middle" fill="white" font-size="12" font-weight="600">color</text>
+        <path d="M585 100 L615 100" stroke="#555" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+        <rect x="620" y="70" width="70" height="60" rx="8" fill="#1a6b4a" />
+        <text x="655" y="97" text-anchor="middle" fill="white" font-size="12" font-weight="700">â </text>
+        <text x="655" y="115" text-anchor="middle" fill="white" font-size="11" font-weight="600">ALERT</text>
+
+        <defs><marker id="arrowhead" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#555"/></marker></defs>
+      </svg>
+      <div class="diagram-label">Colorimetric detection chain: bacteria â COâ â acid â color change â optical reading â alarm</div>
+    </div>
+
+    <p>The instrument shines a <span class="jargon">white LED<span class="tip">A Light Emitting Diode that produces white light. In this system, it shines onto the sensor disc through the bottom of the bottle, and a photodiode measures how much light bounces back (reflectance).</span></span> onto the sensor disc and measures the reflected light with a <span class="jargon">photodiode<span class="tip">A semiconductor device that converts light into an electrical current. The brighter the light hitting it, the more current it produces. The instrument measures this current to track how reflective the sensor disc is.</span></span>. As the dye darkens (COâ increasing), less light bounces back. The instrument tracks the <em>rate of change</em> of reflectance (ÎR/Ît) â not absolute values â to distinguish real growth from background drift.</p>
+
+    <h3 style="margin-top:24px; color: var(--primary);">Method 2: Fluorescence Detection (BACTEC style) â Phase 2 Upgrade</h3>
+    <p>Instead of a color-changing dye, BACTEC bottles use a <span class="jargon">fluorescent dye<span class="tip">A chemical (typically ruthenium-based) that glows when hit with blue light. When COâ is present, it "quenches" (dims) the fluorescence. More COâ = less glow. The instrument tracks this decreasing glow over time.</span></span> (ruthenium complex). The instrument excites it with a 470 nm blue LED and measures the glow at ~600 nm. As COâ increases, fluorescence <em>decreases</em> â called <span class="jargon">dynamic fluorescence quenching<span class="tip">A physics phenomenon where certain molecules glow less brightly when specific gases (like COâ) are nearby. The gas molecules absorb some of the energy that would otherwise be emitted as light.</span></span>.</p>
+
+    <div class="callout callout-tip">
+      <strong>Why start with colorimetric?</strong>
+      Colorimetric sensors use simpler chemistry (standard pH indicator dyes like cresol red â widely available in India), simpler optics (white LED + basic photodiode, no optical filters needed), and are easier to manufacture. Fluorescence detection requires synthesizing specialized ruthenium dyes and precise optical filtering â better saved for a Phase 2 upgrade.
+    </div>
+
+    <table class="comparison-table">
+      <tr><th>Parameter</th><th>Colorimetric (BacT/ALERT)</th><th>Fluorescence (BACTEC)</th></tr>
+      <tr><td>Detection molecule</td><td>pH-indicator dye (cresol red)</td><td>Fluorescent dye (ruthenium)</td></tr>
+      <tr><td>What the instrument reads</td><td>Reflectance (color darkening)</td><td>Fluorescence (glow dimming)</td></tr>
+      <tr><td>Light source</td><td>White LED (broad spectrum)</td><td>Blue LED (470â505 nm)</td></tr>
+      <tr><td>Detector</td><td>Photodiode (no filter)</td><td>Photodiode + emission filter</td></tr>
+      <tr><td>Time to detection</td><td>10â20 hours typical</td><td>8â18 hours typical</td></tr>
+      <tr><td>Manufacturing complexity</td><td>Moderate (emulsion coating)</td><td>High (dye synthesis)</td></tr>
+      <tr><td>Instrument cost</td><td>Lower</td><td>Higher</td></tr>
+      <tr><td>Recommended for India</td><td><strong>Phase 1 â</strong></td><td>Phase 2</td></tr>
+    </table>
+
+    <div class="yt-links">
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=blood+culture+system+how+it+works+bactec" target="_blank" rel="noopener">â¶ How Blood Culture Systems Work</a>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=colorimetric+sensor+pH+indicator+explained" target="_blank" rel="noopener">â¶ Colorimetric pH Sensors</a>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=fluorescence+quenching+explained+simple" target="_blank" rel="noopener">â¶ Fluorescence Quenching</a>
+    </div>
+  </div></div>
+</div>
+
+<!-- âââââââ SECTION 3: The Instrument (Analyzer) âââââââ -->
+<div class="section">
+  <div class="section-header" onclick="toggleSection(this)">
+    <h2><span class="num">3</span> The Instrument â Inside the Analyzer</h2>
+    <span class="arrow">&#9660;</span>
+  </div>
+  <div class="section-body"><div class="section-content">
+    <p>The analyzer is the big machine that sits in a hospital lab. Think of it as three things combined into one box: an <span class="jargon">incubator<span class="tip">A temperature-controlled chamber that keeps bottles at 35Â°C â the optimal temperature for most human pathogens to grow. Like a warm oven, but much more precisely controlled (Â±0.5Â°C).</span></span> (keeps bottles warm), an optical reader (checks each bottle for COâ), and a data manager (tracks results and raises alarms).</p>
+
+    <div class="diagram-container">
+      <svg viewBox="0 0 720 380" xmlns="http://www.w3.org/2000/svg">
+        <!-- Analyzer block diagram -->
+        <rect x="10" y="10" width="700" height="360" rx="12" fill="none" stroke="#8b2252" stroke-width="2" stroke-dasharray="6"/>
+        <text x="360" y="35" text-anchor="middle" font-size="14" font-weight="700" fill="#8b2252">ANALYZER INSTRUMENT</text>
+
+        <!-- Loading bay -->
+        <rect x="30" y="55" width="140" height="50" rx="8" fill="#8b2252"/>
+        <text x="100" y="78" text-anchor="middle" fill="white" font-size="11" font-weight="600">Bottle Loading Bay</text>
+        <text x="100" y="93" text-anchor="middle" fill="white" font-size="10">+ Barcode Scanner</text>
+
+        <path d="M175 80 L210 80" stroke="#555" stroke-width="2" marker-end="url(#arr2)"/>
+
+        <!-- Incubation -->
+        <rect x="215" y="55" width="150" height="50" rx="8" fill="#c0392b"/>
+        <text x="290" y="78" text-anchor="middle" fill="white" font-size="11" font-weight="600">Incubation Chamber</text>
+        <text x="290" y="93" text-anchor="middle" fill="white" font-size="10">35Â°C Â± 0.5Â°C + Agitation</text>
+
+        <path d="M290 110 L290 140" stroke="#555" stroke-width="2" marker-end="url(#arr2)"/>
+
+        <!-- Optical module -->
+        <rect x="215" y="145" width="150" height="50" rx="8" fill="#e67e22"/>
+        <text x="290" y="168" text-anchor="middle" fill="white" font-size="11" font-weight="600">Optical Reading</text>
+        <text x="290" y="183" text-anchor="middle" fill="white" font-size="10">LED + Photodiode per slot</text>
+
+        <path d="M290 200 L290 230" stroke="#555" stroke-width="2" marker-end="url(#arr2)"/>
+
+        <!-- Signal processing -->
+        <rect x="215" y="235" width="150" height="50" rx="8" fill="#2980b9"/>
+        <text x="290" y="258" text-anchor="middle" fill="white" font-size="11" font-weight="600">Signal Processing</text>
+        <text x="290" y="273" text-anchor="middle" fill="white" font-size="10">ARM Cortex-M4 + ADC</text>
+
+        <path d="M290 290 L290 310" stroke="#555" stroke-width="2" marker-end="url(#arr2)"/>
+
+        <!-- Algorithm -->
+        <rect x="215" y="315" width="150" height="40" rx="8" fill="#1a6b4a"/>
+        <text x="290" y="340" text-anchor="middle" fill="white" font-size="11" font-weight="600">Detection Algorithm</text>
+
+        <!-- Alarm -->
+        <path d="M370 335 L420 335" stroke="#555" stroke-width="2" marker-end="url(#arr2)"/>
+        <rect x="425" y="310" width="130" height="45" rx="8" fill="#8b2252"/>
+        <text x="490" y="330" text-anchor="middle" fill="white" font-size="11" font-weight="600">Alarm + Display</text>
+        <text x="490" y="345" text-anchor="middle" fill="white" font-size="10">Audio + Visual + LCD</text>
+
+        <!-- LIS -->
+        <path d="M560 333 L590 333" stroke="#555" stroke-width="2" marker-end="url(#arr2)"/>
+        <rect x="595" y="310" width="100" height="45" rx="8" fill="#7f8c8d"/>
+        <text x="645" y="330" text-anchor="middle" fill="white" font-size="11" font-weight="600">LIS Interface</text>
+        <text x="645" y="345" text-anchor="middle" fill="white" font-size="10">RS-232 / HL7</text>
+
+        <!-- Thermal management -->
+        <rect x="425" y="55" width="140" height="50" rx="8" fill="#e67e22"/>
+        <text x="495" y="78" text-anchor="middle" fill="white" font-size="11" font-weight="600">Thermal System</text>
+        <text x="495" y="93" text-anchor="middle" fill="white" font-size="10">PTC heater + PID ctrl</text>
+        <path d="M370 80 L420 80" stroke="#555" stroke-width="2" marker-end="url(#arr2)"/>
+
+        <!-- UPS -->
+        <rect x="600" y="55" width="100" height="50" rx="8" fill="#555"/>
+        <text x="650" y="78" text-anchor="middle" fill="white" font-size="11" font-weight="600">UPS Backup</text>
+        <text x="650" y="93" text-anchor="middle" fill="white" font-size="10">2-hour battery</text>
+
+        <!-- Capacity note -->
+        <rect x="425" y="145" width="265" height="70" rx="8" fill="#fdf0f5" stroke="#8b2252"/>
+        <text x="557" y="165" text-anchor="middle" font-size="11" font-weight="600" fill="#8b2252">Key Specs</text>
+        <text x="557" y="182" text-anchor="middle" font-size="10" fill="#333">60 / 120 / 240 bottle positions (modular)</text>
+        <text x="557" y="197" text-anchor="middle" font-size="10" fill="#333">150Wâ400W â¢ 230V AC â¢ ~65 kg</text>
+        <text x="557" y="210" text-anchor="middle" font-size="10" fill="#333">Mfg cost: ~â¹2.97 lakh â¢ Sells: â¹9â12 lakh</text>
+
+        <defs><marker id="arr2" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#555"/></marker></defs>
+      </svg>
+      <div class="diagram-label">Analyzer functional block diagram â from bottle insertion to alarm</div>
+    </div>
+
+    <h3 style="margin-top:16px;">How the detection algorithm works (step by step):</h3>
+    <ol style="margin: 12px 0 12px 20px; line-height: 2;">
+      <li><strong>Baseline:</strong> First 2 hours â establish each bottle's starting reflectance (Râ)</li>
+      <li><strong>Smoothing:</strong> A 6-point <span class="jargon">moving average<span class="tip">A statistical technique that smooths out noisy data by averaging the last 6 readings. This prevents random electrical noise from triggering false alarms.</span></span> filter reduces electrical noise</li>
+      <li><strong>Rate of change:</strong> Calculate ÎR/Ît over a 60-minute rolling window</li>
+      <li><strong>Threshold:</strong> If ÎR/Ît exceeds a calibrated threshold â "preliminary positive"</li>
+      <li><strong>Confirmation:</strong> Trend must continue for 30 more minutes to confirm</li>
+      <li><strong>Alarm:</strong> Audio alarm + LED at bottle position + display notification</li>
+      <li><strong>False positive check:</strong> Secondary algorithm rejects sudden step changes (e.g., someone bumped the bottle)</li>
+    </ol>
+
+    <div class="callout callout-key">
+      <strong>Agitation matters!</strong>
+      The bottles sit on orbital shaker platforms that gently rock at 150â200 RPM. This continuous gentle agitation maximizes gas exchange between the broth and the headspace, helping organisms grow faster and COâ reach the sensor sooner. It's one of the key advantages over manual cultures sitting still on a shelf.
+    </div>
+
+    <p><strong>The instrument housing:</strong> approximately 600Ã700Ã1200 mm (refrigerator-sized), ~65 kg, cold-rolled steel body with white/grey hospital aesthetic, 7" color touchscreen, and connectivity via USB, Ethernet, and RS-232 for connecting to the hospital's <span class="jargon">LIS<span class="tip">Laboratory Information System â the software hospitals use to manage all lab test orders, results, and patient records. The analyzer sends positive/negative results directly to this system via standard HL7 protocol.</span></span>.</p>
+
+    <div class="yt-links">
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=bactec+blood+culture+instrument+demo" target="_blank" rel="noopener">â¶ BACTEC Instrument Demo</a>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=PID+controller+temperature+explained+simple" target="_blank" rel="noopener">â¶ PID Temperature Control</a>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=photodiode+LED+sensor+how+it+works" target="_blank" rel="noopener">â¶ How LED + Photodiode Sensors Work</a>
+    </div>
+  </div></div>
+</div>
+
+<!-- âââââââ SECTION 4: The Bottle âââââââ -->
+<div class="section">
+  <div class="section-header" onclick="toggleSection(this)">
+    <h2><span class="num">4</span> The Bottle â Culture Media & Sensor Design</h2>
+    <span class="arrow">&#9660;</span>
+  </div>
+  <div class="section-body"><div class="section-content">
+    <p>The consumable bottle is where the real business lies (think razors and blades â the instrument is placed cheaply, and revenue comes from bottle sales). Each bottle is a sealed glass vial containing nutrient broth, a COâ sensor disc, and special additives.</p>
+
+    <h3 style="color: var(--primary);">Bottle types (3 SKUs to start)</h3>
+    <table class="comparison-table">
+      <tr><th>Bottle Type</th><th>Broth Base</th><th>Key Additives</th><th>Volume</th><th>Use Case</th></tr>
+      <tr><td>Aerobic Standard</td><td><span class="jargon">TSB<span class="tip">Tryptic Soy Broth â a general-purpose nutrient medium that supports growth of a wide variety of bacteria. Made from soybean meal and casein (milk protein) digested by enzymes. The workhorse of microbiology labs.</span></span> (Tryptic Soy Broth)</td><td><span class="jargon">SPS<span class="tip">Sodium Polyanethol Sulfonate (0.05%) â serves three purposes: (1) anticoagulant (keeps blood from clotting), (2) anti-complement (blocks immune system components that might kill bacteria), (3) anti-phagocytic (prevents white blood cells from eating bacteria). Essential for recovering organisms from blood.</span></span>, resin</td><td>40 mL</td><td>Adults, aerobic bacteria</td></tr>
+      <tr><td>Anaerobic Standard</td><td>Supplemented Peptone Broth</td><td>SPS, L-cysteine, COâ pre-filled</td><td>40 mL</td><td>Adults, <span class="jargon">anaerobic<span class="tip">Organisms that grow without oxygen â or are even killed by it. Examples include Bacteroides and Clostridium species. The anaerobic bottle has an oxygen-free headspace (filled with Nâ + COâ) and reducing agents like L-cysteine to maintain anaerobic conditions.</span></span> bacteria</td></tr>
+      <tr><td>Pediatric (Aerobic)</td><td><span class="jargon">BHI<span class="tip">Brain Heart Infusion â a richer nutrient broth made from brain and heart tissue extracts. Used for pediatric bottles because children produce smaller blood volumes, so you need a more nutritious medium to support growth from a smaller inoculum.</span></span> (Brain Heart Infusion)</td><td>SPS, resin</td><td>10â20 mL</td><td>Neonates, children</td></tr>
+    </table>
+
+    <h3 style="margin-top: 20px; color: var(--primary);">What's in the broth? (Aerobic Standard, per 1L batch)</h3>
+    <table class="comparison-table">
+      <tr><th>Ingredient</th><th>Amount</th><th>Why It's There</th></tr>
+      <tr><td>Tryptic Soy Broth powder</td><td>30 g/L</td><td>Nutrient base for most organisms</td></tr>
+      <tr><td>SPS</td><td>0.05% w/v</td><td>Anticoagulant + anti-complement + anti-phagocytic</td></tr>
+      <tr><td>Ion-exchange resin (XAD-4)</td><td>5â8 g/bottle</td><td>Neutralizes antibiotics the patient may be on</td></tr>
+      <tr><td>Sucrose</td><td>0.25%</td><td>Osmotic stabilizer, supports <span class="jargon">fastidious organisms<span class="tip">Bacteria that are picky eaters â they need special nutrients, specific gas conditions, or longer incubation times to grow. Examples: Haemophilus, Neisseria, nutritionally variant streptococci.</span></span></td></tr>
+      <tr><td>Hemin</td><td>5 mg/L</td><td>Supports Haemophilus, Neisseria</td></tr>
+      <tr><td>Pyridoxal HCl (Vitamin B6)</td><td>0.001%</td><td>Supports nutritionally variant streptococci</td></tr>
+      <tr><td>Sodium bicarbonate</td><td>1 g/L</td><td>pH buffer + COâ source for <span class="jargon">capnophiles<span class="tip">Organisms that require elevated levels of COâ (5â10%) to grow well. The sodium bicarbonate releases COâ when it contacts the acidic broth, creating the right atmosphere.</span></span></td></tr>
+      <tr><td>WFI-grade water</td><td>to 1 L</td><td>Solvent â must be ultra-pure</td></tr>
+      <tr><td>Final pH</td><td>7.3 Â± 0.2</td><td>Optimal for most pathogens</td></tr>
+    </table>
+
+    <h3 style="margin-top: 20px; color: var(--primary);">The sensor disc â the critical IP component</h3>
+    <p>This tiny 8 mm disc is what makes the whole system work. It's manufactured in several steps:</p>
+    <ol style="margin: 10px 0 10px 20px; line-height: 2;">
+      <li>Dissolve <span class="jargon">cresol red<span class="tip">A pH-indicator dye that changes color based on acidity. In neutral/basic conditions it's red/pink. In acidic conditions (when COâ is present) it turns yellow. It's the "eyes" of the system.</span></span> dye in ethanol (0.2% w/v)</li>
+      <li>Dip <span class="jargon">cellulose acetate<span class="tip">A transparent membrane material (0.45 Î¼m pore size) used as the carrier matrix for the dye. Think of it as a tiny sponge that soaks up and holds the dye solution.</span></span> membrane discs for 30 seconds</li>
+      <li>Dry at 40Â°C for 15 minutes</li>
+      <li>Laminate with 50 Î¼m silicone film (COâ can pass through; liquid cannot)</li>
+      <li>Apply silicone perimeter seal</li>
+      <li>QC test: expose to 5% COâ â must turn from red â yellow within 60 seconds</li>
+      <li>Store in nitrogen-purged foil pouches until assembly</li>
+    </ol>
+
+    <h3 style="margin-top: 20px; color: var(--primary);">Bottle construction</h3>
+    <table class="comparison-table">
+      <tr><th>Component</th><th>Material</th><th>Specification</th></tr>
+      <tr><td>Bottle body</td><td>Borosilicate glass (Type I)</td><td>100 mL nominal volume</td></tr>
+      <tr><td>Septum (stopper)</td><td>Bromobutyl rubber</td><td>20 mm, needle-penetrable</td></tr>
+      <tr><td>Crimp cap</td><td>Aluminum 1100 alloy</td><td>20 mm, tamper-evident</td></tr>
+      <tr><td>Sensor disc</td><td>Cellulose acetate + cresol red</td><td>8 mm diameter</td></tr>
+      <tr><td>Label</td><td>Pressure-sensitive polyester</td><td>Barcode + lot # + expiry</td></tr>
+    </table>
+
+    <div class="callout callout-tip">
+      <strong>Why borosilicate glass?</strong>
+      Phase 1 uses borosilicate glass (like Pyrex) because it offers excellent optical clarity for the sensor reading, withstands sterilization temperatures, and has an established supply chain in India (Borosil, Piramal). Phase 2 can transition to PET plastic for cost reduction.
+    </div>
+
+    <div class="yt-links">
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=blood+culture+bottle+types+aerobic+anaerobic" target="_blank" rel="noopener">â¶ Blood Culture Bottle Types</a>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=tryptic+soy+broth+microbiology+media" target="_blank" rel="noopener">â¶ What is TSB Media?</a>
+    </div>
+  </div></div>
+</div>
+
+<!-- âââââââ SECTION 5: Manufacturing âââââââ -->
+<div class="section">
+  <div class="section-header" onclick="toggleSection(this)">
+    <h2><span class="num">5</span> Manufacturing â How Bottles Are Made</h2>
+    <span class="arrow">&#9660;</span>
+  </div>
+  <div class="section-body"><div class="section-content">
+    <p>Manufacturing blood culture bottles is a multi-phase process that combines chemical preparation, precision assembly, and strict sterility controls. Here's the full pipeline:</p>
+
+    <div class="diagram-container">
+      <svg viewBox="0 0 720 300" xmlns="http://www.w3.org/2000/svg">
+        <!-- Manufacturing pipeline -->
+        <text x="360" y="20" text-anchor="middle" font-size="14" font-weight="700" fill="#8b2252">BOTTLE MANUFACTURING PIPELINE</text>
+
+        <!-- Phase A -->
+        <rect x="10" y="40" width="130" height="65" rx="8" fill="#8b2252"/>
+        <text x="75" y="62" text-anchor="middle" fill="white" font-size="11" font-weight="700">Phase A</text>
+        <text x="75" y="78" text-anchor="middle" fill="white" font-size="10">Sensor Disc</text>
+        <text x="75" y="92" text-anchor="middle" fill="white" font-size="10">Manufacturing</text>
+        <text x="75" y="120" text-anchor="middle" font-size="9" fill="#555">Dye prep â Dip â</text>
+        <text x="75" y="133" text-anchor="middle" font-size="9" fill="#555">Dry â Laminate â QC</text>
+
+        <!-- Phase B -->
+        <rect x="155" y="40" width="130" height="65" rx="8" fill="#c0392b"/>
+        <text x="220" y="62" text-anchor="middle" fill="white" font-size="11" font-weight="700">Phase B</text>
+        <text x="220" y="78" text-anchor="middle" fill="white" font-size="10">Media</text>
+        <text x="220" y="92" text-anchor="middle" fill="white" font-size="10">Preparation</text>
+        <text x="220" y="120" text-anchor="middle" font-size="9" fill="#555">Mix broth (1000 L) â</text>
+        <text x="220" y="133" text-anchor="middle" font-size="9" fill="#555">pH adjust â Filter</text>
+
+        <!-- Phase C -->
+        <rect x="300" y="40" width="130" height="65" rx="8" fill="#e67e22"/>
+        <text x="365" y="62" text-anchor="middle" fill="white" font-size="11" font-weight="700">Phase C</text>
+        <text x="365" y="78" text-anchor="middle" fill="white" font-size="10">Bottle</text>
+        <text x="365" y="92" text-anchor="middle" fill="white" font-size="10">Preparation</text>
+        <text x="365" y="120" text-anchor="middle" font-size="9" fill="#555">Wash â Depyro â</text>
+        <text x="365" y="133" text-anchor="middle" font-size="9" fill="#555">Bond sensor â Add resin</text>
+
+        <!-- Phase D -->
+        <rect x="445" y="40" width="130" height="65" rx="8" fill="#2980b9"/>
+        <text x="510" y="62" text-anchor="middle" fill="white" font-size="11" font-weight="700">Phase D</text>
+        <text x="510" y="78" text-anchor="middle" fill="white" font-size="10">Filling &</text>
+        <text x="510" y="92" text-anchor="middle" fill="white" font-size="10">Sealing</text>
+        <text x="510" y="120" text-anchor="middle" font-size="9" fill="#555">Fill broth â Gas â</text>
+        <text x="510" y="133" text-anchor="middle" font-size="9" fill="#555">Stopper â Crimp</text>
+
+        <!-- Phase E -->
+        <rect x="590" y="40" width="120" height="65" rx="8" fill="#1a6b4a"/>
+        <text x="650" y="62" text-anchor="middle" fill="white" font-size="11" font-weight="700">Phase E</text>
+        <text x="650" y="78" text-anchor="middle" fill="white" font-size="10">Sterilization</text>
+        <text x="650" y="92" text-anchor="middle" fill="white" font-size="10">& QC</text>
+        <text x="650" y="120" text-anchor="middle" font-size="9" fill="#555">Gamma irradiation â</text>
+        <text x="650" y="133" text-anchor="middle" font-size="9" fill="#555">Sterility + endotoxin test</text>
+
+        <!-- Arrows -->
+        <path d="M145 72 L150 72" stroke="#555" stroke-width="2" marker-end="url(#arr3)"/>
+        <path d="M290 72 L295 72" stroke="#555" stroke-width="2" marker-end="url(#arr3)"/>
+        <path d="M435 72 L440 72" stroke="#555" stroke-width="2" marker-end="url(#arr3)"/>
+        <path d="M580 72 L585 72" stroke="#555" stroke-width="2" marker-end="url(#arr3)"/>
+
+        <!-- Phase F output -->
+        <rect x="250" y="170" width="220" height="55" rx="8" fill="#8b2252"/>
+        <text x="360" y="192" text-anchor="middle" fill="white" font-size="11" font-weight="700">Phase F: Label & Package</text>
+        <text x="360" y="210" text-anchor="middle" fill="white" font-size="10">Label â Pouch â Carton â Ship (2â25Â°C)</text>
+        <path d="M650 110 L650 175 L475 197" stroke="#555" stroke-width="2" marker-end="url(#arr3)"/>
+
+        <!-- Cleanroom note -->
+        <rect x="150" y="240" width="420" height="50" rx="8" fill="#fdf0f5" stroke="#8b2252"/>
+        <text x="360" y="260" text-anchor="middle" font-size="11" font-weight="600" fill="#8b2252">Cleanroom Requirements</text>
+        <text x="360" y="278" text-anchor="middle" font-size="10" fill="#333">Sensor mfg: ISO 5 (Grade A) â¢ Filling: ISO 7 (Grade C) â¢ Media prep: ISO 8 (Grade D)</text>
+
+        <defs><marker id="arr3" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#555"/></marker></defs>
+      </svg>
+      <div class="diagram-label">Six-phase bottle manufacturing pipeline</div>
+    </div>
+
+    <div class="callout callout-why">
+      <strong>What is depyrogenation?</strong>
+      Before bottles can be used, they must be heated to 250Â°C for 30 minutes in a <span class="jargon">dry heat oven<span class="tip">An oven that uses very high temperatures (250Â°C) to destroy endotoxins â toxic fragments from dead bacteria that can cause fever and shock even if the bacteria themselves are dead. Regular autoclaving (121Â°C) kills bacteria but doesn't destroy endotoxins.</span></span>. This destroys <span class="jargon">endotoxins<span class="tip">Toxic lipopolysaccharide (LPS) molecules from the cell walls of dead gram-negative bacteria. Even tiny amounts (nanograms) can cause fever and shock in patients. Sterilization kills bacteria, but depyrogenation is needed to destroy these heat-stable toxins.</span></span> â toxic fragments from dead bacteria that can cause dangerous reactions. Regular autoclaving kills bacteria but doesn't remove endotoxins.
+    </div>
+
+    <p><strong>Terminal sterilization</strong> is done via <span class="jargon">gamma irradiation<span class="tip">Using gamma rays (from Cobalt-60 source) at a minimum dose of 25 kGy to sterilize the sealed, filled bottles. Unlike autoclaving, gamma rays don't affect broth pH or sensor chemistry. In India, this is outsourced to BRIT (Board of Radiation & Isotope Technology) at â¹2â4 per bottle.</span></span> (25 kGy minimum dose). This is preferred over autoclaving because gamma rays don't change the broth pH or damage the sensor disc chemistry.</p>
+
+    <h3 style="margin-top: 16px; color: var(--primary);">Post-sterilization QC (for every batch)</h3>
+    <table class="comparison-table">
+      <tr><th>Test</th><th>Standard</th><th>Acceptance Criteria</th></tr>
+      <tr><td>Sterility testing</td><td>USP &lt;71&gt;</td><td>14-day incubation at 35Â°C, 20 bottles/batch â zero growth</td></tr>
+      <tr><td>Endotoxin (LAL test)</td><td>USP &lt;85&gt;</td><td>&lt;0.5 EU/mL</td></tr>
+      <tr><td>Sensor functionality</td><td>Internal</td><td>10 bottles spiked with E. coli must signal positive within 8 hours</td></tr>
+      <tr><td>pH check</td><td>Internal</td><td>pH 7.3 Â± 0.2</td></tr>
+      <tr><td>Fill volume</td><td>Internal</td><td>40 Â± 1 mL</td></tr>
+    </table>
+
+    <div class="yt-links">
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=cleanroom+classification+ISO+explained" target="_blank" rel="noopener">â¶ Cleanroom Classifications</a>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=gamma+irradiation+sterilization+medical+devices" target="_blank" rel="noopener">â¶ Gamma Sterilization</a>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=endotoxin+LAL+test+explained" target="_blank" rel="noopener">â¶ Endotoxin (LAL) Testing</a>
+    </div>
+  </div></div>
+</div>
+
+<!-- âââââââ SECTION 6: Bill of Materials & Costs âââââââ -->
+<div class="section">
+  <div class="section-header" onclick="toggleSection(this)">
+    <h2><span class="num">6</span> Bill of Materials & Unit Economics</h2>
+    <span class="arrow">&#9660;</span>
+  </div>
+  <div class="section-body"><div class="section-content">
+    <p>This section breaks down exactly what goes into making each bottle and each analyzer, and what it costs.</p>
+
+    <h3 style="color: var(--primary);">Bottle BOM (per 1,000 aerobic bottles)</h3>
+    <p>Total raw material cost: ~â¹72,110 (~â¹72 per bottle). Add direct labor (â¹8/bottle) and overheads (â¹12/bottle) for a total <span class="jargon">COGS<span class="tip">Cost of Goods Sold â the total cost to manufacture one unit, including raw materials, direct labor, utilities, depreciation, and quality testing. This is the number you subtract from selling price to get gross profit.</span></span> of ~â¹92 per bottle.</p>
+
+    <div class="diagram-container">
+      <svg viewBox="0 0 700 250" xmlns="http://www.w3.org/2000/svg">
+        <text x="350" y="20" text-anchor="middle" font-size="14" font-weight="700" fill="#8b2252">BOTTLE COST BREAKDOWN (â¹92 COGS â Aerobic Standard)</text>
+
+        <!-- Stacked bar -->
+        <rect x="50" y="45" width="273" height="40" rx="4" fill="#8b2252"/>
+        <text x="186" y="70" text-anchor="middle" fill="white" font-size="12" font-weight="600">Raw Materials â¹72 (78%)</text>
+
+        <rect x="323" y="45" width="68" height="40" rx="4" fill="#c0392b"/>
+        <text x="357" y="70" text-anchor="middle" fill="white" font-size="11" font-weight="600">Labor â¹8</text>
+
+        <rect x="391" y="45" width="90" height="40" rx="4" fill="#e67e22"/>
+        <text x="436" y="70" text-anchor="middle" fill="white" font-size="11" font-weight="600">Overhead â¹12</text>
+
+        <!-- Sub-breakdown of raw materials -->
+        <text x="50" y="115" font-size="11" font-weight="600" fill="#333">Raw material sub-breakdown (per bottle):</text>
+
+        <rect x="50" y="130" width="120" height="25" rx="3" fill="#8b2252" opacity="0.9"/>
+        <text x="110" y="147" text-anchor="middle" fill="white" font-size="9">Glass bottle â¹12</text>
+
+        <rect x="175" y="130" width="100" height="25" rx="3" fill="#8b2252" opacity="0.75"/>
+        <text x="225" y="147" text-anchor="middle" fill="white" font-size="9">Sensor disc â¹23</text>
+
+        <rect x="280" y="130" width="80" height="25" rx="3" fill="#8b2252" opacity="0.6"/>
+        <text x="320" y="147" text-anchor="middle" fill="white" font-size="9">Resin â¹9</text>
+
+        <rect x="365" y="130" width="80" height="25" rx="3" fill="#8b2252" opacity="0.5"/>
+        <text x="405" y="147" text-anchor="middle" fill="white" font-size="9">Stopper â¹4.50</text>
+
+        <rect x="450" y="130" width="70" height="25" rx="3" fill="#8b2252" opacity="0.4"/>
+        <text x="485" y="147" text-anchor="middle" fill="white" font-size="9">Broth â¹7</text>
+
+        <rect x="525" y="130" width="80" height="25" rx="3" fill="#8b2252" opacity="0.3"/>
+        <text x="565" y="147" text-anchor="middle" fill="white" font-size="9">Other â¹16.50</text>
+
+        <!-- Comparison -->
+        <text x="50" y="195" font-size="12" font-weight="600" fill="#333">vs. Imported bottles:</text>
+        <rect x="50" y="205" width="600" height="30" rx="4" fill="#ddd"/>
+        <rect x="50" y="205" width="92" height="30" rx="4" fill="#1a6b4a"/>
+        <text x="96" y="225" text-anchor="middle" fill="white" font-size="10" font-weight="600">â¹92</text>
+        <text x="200" y="225" text-anchor="middle" fill="#555" font-size="11">Our COGS</text>
+
+        <rect x="350" y="205" width="300" height="30" rx="4" fill="#c0392b" opacity="0.7"/>
+        <text x="500" y="225" text-anchor="middle" fill="white" font-size="11" font-weight="600">â¹350â600 imported price</text>
+      </svg>
+      <div class="diagram-label">Our manufacturing cost is 3â5Ã cheaper than imported bottle prices</div>
+    </div>
+
+    <h3 style="margin-top: 20px; color: var(--primary);">All bottle SKU economics</h3>
+    <table class="comparison-table">
+      <tr><th>Bottle Type</th><th>Raw Material</th><th>Total COGS</th><th>Target MRP</th><th>Gross Margin</th></tr>
+      <tr><td>Aerobic Standard (40 mL)</td><td>â¹72</td><td>â¹92</td><td>â¹180â220</td><td>50â58%</td></tr>
+      <tr><td>Anaerobic Standard (40 mL)</td><td>â¹78</td><td>â¹98</td><td>â¹200â240</td><td>51â59%</td></tr>
+      <tr><td>Pediatric Aerobic (20 mL)</td><td>â¹65</td><td>â¹85</td><td>â¹160â200</td><td>47â57%</td></tr>
+      <tr><td>Mycobacterial/Fungal (40 mL)</td><td>â¹95</td><td>â¹118</td><td>â¹240â280</td><td>51â58%</td></tr>
+    </table>
+
+    <h3 style="margin-top: 20px; color: var(--primary);">Analyzer BOM (120-position unit)</h3>
+    <p>Manufacturing cost: ~â¹2.97 lakh. Target selling price: â¹9â12 lakh. Gross margin: 67â75%.</p>
+
+    <div class="callout callout-key">
+      <strong>The razor-and-blade model</strong>
+      Place instruments at low margin (or even subsidize them at â¹6â8 lakh) to drive recurring high-margin bottle sales. Each placed instrument generates ~â¹3â4 lakh/year in consumable revenue. With 200 instruments placed by Year 3, that's â¹6.8â8 crore in recurring bottle revenue alone.
+    </div>
+
+    <h3 style="margin-top: 20px; color: var(--primary);">Cost at scale (per bottle)</h3>
+    <table class="comparison-table">
+      <tr><th>Cost Component</th><th>100K bottles/yr</th><th>500K bottles/yr</th><th>1M bottles/yr</th></tr>
+      <tr><td>Raw materials</td><td>â¹72</td><td>â¹65</td><td>â¹58</td></tr>
+      <tr><td>Direct labor</td><td>â¹18</td><td>â¹12</td><td>â¹8</td></tr>
+      <tr><td>Utilities & consumables</td><td>â¹10</td><td>â¹7</td><td>â¹5</td></tr>
+      <tr><td>Sterilization</td><td>â¹4</td><td>â¹3</td><td>â¹2</td></tr>
+      <tr><td>QC & testing</td><td>â¹8</td><td>â¹5</td><td>â¹3</td></tr>
+      <tr><td>Packaging</td><td>â¹5</td><td>â¹4</td><td>â¹3.50</td></tr>
+      <tr><td>Depreciation (CapEx)</td><td>â¹15</td><td>â¹8</td><td>â¹5</td></tr>
+      <tr><td><strong>Total COGS</strong></td><td><strong>â¹136</strong></td><td><strong>â¹106</strong></td><td><strong>â¹86</strong></td></tr>
+    </table>
+
+    <div class="yt-links">
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=razor+blade+business+model+explained" target="_blank" rel="noopener">â¶ Razor & Blade Business Model</a>
+    </div>
+  </div></div>
+</div>
+
+<!-- âââââââ SECTION 7: Infrastructure âââââââ -->
+<div class="section">
+  <div class="section-header" onclick="toggleSection(this)">
+    <h2><span class="num">7</span> Infrastructure & Factory Setup</h2>
+    <span class="arrow">&#9660;</span>
+  </div>
+  <div class="section-body"><div class="section-content">
+    <p>Building this factory requires a 5,000â8,000 sq ft facility with multiple <span class="jargon">cleanroom<span class="tip">A specially designed room where the concentration of airborne particles is controlled to very low levels. Cleanrooms are classified by ISO standards: ISO 5 (Grade A) has â¤3,520 particles/mÂ³ â essentially dust-free. Critical for preventing contamination of sterile medical products.</span></span> zones, specialized equipment, and a QC laboratory.</p>
+
+    <h3 style="color: var(--primary);">Facility layout (~7,000 sq ft total)</h3>
+    <table class="comparison-table">
+      <tr><th>Zone</th><th>Area (sq ft)</th><th>Cleanroom Class</th><th>Function</th></tr>
+      <tr><td>Sensor disc manufacturing</td><td>500</td><td>ISO 5 (Grade A/B)</td><td>Disc impregnation, lamination, QC</td></tr>
+      <tr><td>Media preparation</td><td>800</td><td>ISO 8 (Grade D)</td><td>Broth compounding, filtration</td></tr>
+      <tr><td>Bottle washing & depyrogenation</td><td>600</td><td>ISO 8</td><td>Bottle prep</td></tr>
+      <tr><td>Filling & sealing</td><td>1,000</td><td>ISO 7 (Grade C)</td><td>Filling, gassing, stoppering, crimping</td></tr>
+      <tr><td>Sterilization staging</td><td>400</td><td>ISO 8</td><td>Pre/post gamma staging</td></tr>
+      <tr><td>QC laboratory</td><td>800</td><td>ISO 8</td><td>Sterility, endotoxin, sensor QC</td></tr>
+      <tr><td>Instrument assembly</td><td>1,200</td><td>Controlled (non-cleanroom)</td><td>Analyzer assembly, calibration</td></tr>
+      <tr><td>Warehousing</td><td>1,000</td><td>Ambient + cold room</td><td>Raw materials + finished goods (2â8Â°C)</td></tr>
+      <tr><td>Admin / R&D</td><td>700</td><td>â</td><td>Support functions</td></tr>
+    </table>
+
+    <h3 style="margin-top: 20px; color: var(--primary);">Phase 1 CapEx (300K bottles/year capacity)</h3>
+    <div class="diagram-container">
+      <svg viewBox="0 0 700 210" xmlns="http://www.w3.org/2000/svg">
+        <text x="350" y="20" text-anchor="middle" font-size="14" font-weight="700" fill="#8b2252">PHASE 1 CapEx BREAKDOWN â â¹4.5â6.8 Crore Total</text>
+
+        <!-- Horizontal stacked bar -->
+        <rect x="30" y="40" width="100" height="35" rx="3" fill="#8b2252"/>
+        <text x="80" y="62" text-anchor="middle" fill="white" font-size="9">Land/Building</text>
+        <text x="80" y="74" text-anchor="middle" fill="white" font-size="8">â¹80â120L</text>
+
+        <rect x="135" y="40" width="85" height="35" rx="3" fill="#c0392b"/>
+        <text x="177" y="62" text-anchor="middle" fill="white" font-size="9">Cleanroom</text>
+        <text x="177" y="74" text-anchor="middle" fill="white" font-size="8">â¹60â90L</text>
+
+        <rect x="225" y="40" width="80" height="35" rx="3" fill="#e67e22"/>
+        <text x="265" y="62" text-anchor="middle" fill="white" font-size="9">Filling Line</text>
+        <text x="265" y="74" text-anchor="middle" fill="white" font-size="8">â¹45â65L</text>
+
+        <rect x="310" y="40" width="65" height="35" rx="3" fill="#2980b9"/>
+        <text x="342" y="62" text-anchor="middle" fill="white" font-size="9">Media Eq.</text>
+        <text x="342" y="74" text-anchor="middle" fill="white" font-size="8">â¹35â50L</text>
+
+        <rect x="380" y="40" width="55" height="35" rx="3" fill="#1a6b4a"/>
+        <text x="407" y="62" text-anchor="middle" fill="white" font-size="9">QC Lab</text>
+        <text x="407" y="74" text-anchor="middle" fill="white" font-size="8">â¹30â45L</text>
+
+        <rect x="440" y="40" width="60" height="35" rx="3" fill="#7f8c8d"/>
+        <text x="470" y="62" text-anchor="middle" fill="white" font-size="9">Working</text>
+        <text x="470" y="74" text-anchor="middle" fill="white" font-size="8">â¹40â60L</text>
+
+        <rect x="505" y="40" width="55" height="35" rx="3" fill="#555"/>
+        <text x="532" y="62" text-anchor="middle" fill="white" font-size="9">Other</text>
+        <text x="532" y="74" text-anchor="middle" fill="white" font-size="8">â¹80â130L</text>
+
+        <!-- Phase 2 note -->
+        <rect x="30" y="100" width="530" height="40" rx="6" fill="#fdf0f5" stroke="#8b2252"/>
+        <text x="295" y="118" text-anchor="middle" font-size="11" font-weight="600" fill="#8b2252">Phase 2 Scale-Up (to 1M bottles/yr): Additional â¹4.4â7.15 Crore</text>
+        <text x="295" y="133" text-anchor="middle" font-size="10" fill="#333">2nd filling line, in-house gamma irradiation (Cobalt-60), cleanroom expansion, fluorescent sensor upgrade</text>
+
+        <rect x="30" y="155" width="530" height="35" rx="6" fill="#e8f5ee" stroke="#1a6b4a"/>
+        <text x="295" y="175" text-anchor="middle" font-size="11" font-weight="600" fill="#1a6b4a">Total Cumulative CapEx (Phase 1+2): â¹9â14 Crore</text>
+      </svg>
+    </div>
+
+    <div class="callout callout-tip">
+      <strong>Recommended location:</strong>
+      Medical Device Parks like AMTZ (Andhra Pradesh MedTech Zone) or Gujarat MedTech Zone offer subsidized land, shared utilities, common testing facilities, and regulatory support â significantly reducing setup costs and time.
+    </div>
+  </div></div>
+</div>
+
+<!-- âââââââ SECTION 8: Regulatory âââââââ -->
+<div class="section">
+  <div class="section-header" onclick="toggleSection(this)">
+    <h2><span class="num">8</span> Regulatory Pathway â CDSCO & Quality Standards</h2>
+    <span class="arrow">&#9660;</span>
+  </div>
+  <div class="section-body"><div class="section-content">
+    <p>Blood culture systems (both the analyzer and the bottles) are classified as <span class="jargon">Class C IVD<span class="tip">In-Vitro Diagnostic device, Class C = "moderate-high risk" under India's Medical Devices Rules, 2017. Class C requires full CDSCO registration including clinical performance evaluation data. Class A is lowest risk; Class D is highest.</span></span> medical devices under India's Medical Devices Rules, 2017.</p>
+
+    <h3 style="color: var(--primary);">The 5-step regulatory process</h3>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="phase">Step 1: Company Registration + ISO 13485 (Months 1â6)</div>
+        <p>Register company under Companies Act 2013. Implement <span class="jargon">ISO 13485<span class="tip">The international quality management system standard specifically for medical device manufacturers. It covers design controls, supplier management, production processes, traceability, complaint handling, and corrective actions. Mandatory for CDSCO licensing in India.</span></span> Quality Management System. Appoint a Regulatory Affairs Manager.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="phase">Step 2: Manufacturing License (Months 12â18)</div>
+        <p>Apply to State Licensing Authority (SLA) using Form MD-5. They inspect your facility for <span class="jargon">GMP<span class="tip">Good Manufacturing Practice â a set of standards ensuring products are consistently produced and controlled according to quality standards. Covers facility design, equipment calibration, documentation, training, and process validation.</span></span> compliance. Fee: â¹50,000â1,00,000. Timeline: 3â6 months.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="phase">Step 3: CDSCO Product Registration (Months 24â36)</div>
+        <p>Apply via Form MD-14 with: Technical File, Performance Evaluation Data (clinical study with â¥200 samples), test reports from <span class="jargon">NABL<span class="tip">National Accreditation Board for Testing and Calibration Laboratories â the Indian accreditation body. CDSCO requires test reports from NABL-accredited labs as part of the product registration dossier.</span></span>-accredited lab. Performance targets: â¥95% sensitivity, â¥98% specificity. Fee: â¹1â3 lakh. Timeline: 9â18 months.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="phase">Step 4: BIS Certification for Analyzer (Months 18â30)</div>
+        <p>The analyzer must comply with IS/IEC 61010-1 (electrical safety). Apply to Bureau of Indian Standards. Timeline: 6â12 months (can run in parallel with CDSCO).</p>
+      </div>
+      <div class="timeline-item">
+        <div class="phase">Step 5: Commercial Launch (Month 36â42)</div>
+        <p>With all approvals in hand, begin commercial manufacturing and sales.</p>
+      </div>
+    </div>
+
+    <h3 style="margin-top: 16px; color: var(--primary);">Key quality standards to comply with</h3>
+    <table class="comparison-table">
+      <tr><th>Standard</th><th>What It Covers</th><th>Requirement</th></tr>
+      <tr><td>ISO 13485:2016</td><td>Quality management system</td><td>Mandatory for CDSCO license</td></tr>
+      <tr><td>ISO 14971:2019</td><td>Risk management</td><td>Required in technical file</td></tr>
+      <tr><td>ISO 11137</td><td>Radiation sterilization</td><td>For gamma irradiation validation</td></tr>
+      <tr><td>CLSI M47</td><td>Blood culture principles</td><td>Performance standards</td></tr>
+      <tr><td>USP &lt;71&gt;</td><td>Sterility testing</td><td>Every batch</td></tr>
+      <tr><td>USP &lt;85&gt;</td><td>Endotoxin (LAL) testing</td><td>Every batch</td></tr>
+      <tr><td>BIS IS/IEC 61010-1</td><td>Electrical safety</td><td>Mandatory for analyzer</td></tr>
+    </table>
+  </div></div>
+</div>
+
+<!-- âââââââ SECTION 9: The Money âââââââ -->
+<div class="section">
+  <div class="section-header" onclick="toggleSection(this)">
+    <h2><span class="num">9</span> The Money â Financial Projections</h2>
+    <span class="arrow">&#9660;</span>
+  </div>
+  <div class="section-body"><div class="section-content">
+    <p>The financial model uses a <span class="jargon">razor-and-blade<span class="tip">A business model where the main product (razor/instrument) is sold at low margin or even at a loss, to drive recurring sales of high-margin consumables (blades/bottles). Think of how printer manufacturers sell printers cheaply but charge a lot for ink cartridges.</span></span> approach: instruments placed at modest margins drive recurring high-margin bottle sales.</p>
+
+    <h3 style="color: var(--primary);">5-Year P&L Projection</h3>
+    <table class="comparison-table">
+      <tr><th>Year</th><th>Instruments Placed</th><th>Bottles Sold</th><th>Revenue (â¹ Cr)</th><th>EBITDA (â¹ Cr)</th></tr>
+      <tr><td>Year 1</td><td>20</td><td>80,000</td><td>3.5</td><td style="color: var(--red);">-1.2</td></tr>
+      <tr><td>Year 2</td><td>60</td><td>250,000</td><td>7.8</td><td style="color: var(--green);">0.3</td></tr>
+      <tr><td>Year 3</td><td>120</td><td>600,000</td><td>15.5</td><td style="color: var(--green);">3.2</td></tr>
+      <tr><td>Year 4</td><td>200</td><td>1,100,000</td><td>26.2</td><td style="color: var(--green);">7.8</td></tr>
+      <tr><td>Year 5</td><td>300</td><td>1,800,000</td><td>40.5</td><td style="color: var(--green); font-weight:700;">14.2</td></tr>
+    </table>
+
+    <div class="callout callout-key">
+      <strong>Break-even point:</strong> ~420,000â480,000 bottles/year at â¹160â180 average selling price. This is expected around mid-Year 2 to early Year 3.
+    </div>
+
+    <h3 style="margin-top: 16px; color: var(--primary);">Target customer segments</h3>
+    <table class="comparison-table">
+      <tr><th>Segment</th><th>No. of Facilities</th><th>Willingness to Pay</th><th>Priority</th></tr>
+      <tr><td>Government medical colleges & AIIMS</td><td>700+</td><td>â¹120â180/bottle</td><td>High (volume)</td></tr>
+      <tr><td>Private hospitals (100+ beds)</td><td>4,000+</td><td>â¹180â250/bottle</td><td>High (ASP)</td></tr>
+      <tr><td>Standalone diagnostic labs (SRL, Dr. Lal)</td><td>3,000+</td><td>â¹150â200/bottle</td><td>Medium</td></tr>
+      <tr><td>District hospitals (PM-ABHIM)</td><td>25,000+</td><td>â¹80â120/bottle</td><td>Long-term</td></tr>
+      <tr><td>Export (Africa, SE Asia)</td><td>â</td><td>$3â6/bottle</td><td>Phase 3</td></tr>
+    </table>
+
+    <h3 style="margin-top: 16px; color: var(--primary);">Government incentives</h3>
+    <div class="callout callout-tip">
+      <strong>Make in India benefits:</strong>
+      <span class="jargon">PLI Scheme<span class="tip">Production-Linked Incentive scheme â the government offers a 5% incentive on incremental sales for 5 years for medical devices manufactured in India. Blood culture systems qualify under "high-priority medical devices."</span></span> (5% incentive on incremental sales for 5 years), <span class="jargon">PPP-MII<span class="tip">Public Procurement Preference to Make in India Order â government hospitals are mandated to prefer Indian-made medical devices in tenders. This gives domestic manufacturers a direct advantage over imported products.</span></span> Order (preference in government hospital tenders), DPIIT Startup Recognition (tax exemptions under Section 80-IAC), and Medical Device Parks (AMTZ) with subsidized infrastructure.
+    </div>
+  </div></div>
+</div>
+
+<!-- âââââââ SECTION 10: Competition âââââââ -->
+<div class="section">
+  <div class="section-header" onclick="toggleSection(this)">
+    <h2><span class="num">10</span> Competition & Differentiation Strategy</h2>
+    <span class="arrow">&#9660;</span>
+  </div>
+  <div class="section-body"><div class="section-content">
+    <p>The Indian blood culture market is currently a two-player duopoly dominated by multinational giants:</p>
+
+    <table class="comparison-table">
+      <tr><th>Feature</th><th>BD BACTEC</th><th>bioMÃ©rieux BacT/ALERT</th><th>Our System (Target)</th></tr>
+      <tr><td>Detection method</td><td>Fluorescence</td><td>Colorimetric</td><td>Colorimetric (Phase 1)</td></tr>
+      <tr><td>Bottle price</td><td>â¹400â500</td><td>â¹350â500</td><td><strong>â¹180â220</strong></td></tr>
+      <tr><td>Analyzer price</td><td>â¹40â60 lakh</td><td>â¹25â40 lakh</td><td><strong>â¹9â12 lakh</strong></td></tr>
+      <tr><td>Service contract</td><td>â¹3â5 lakh/yr</td><td>â¹3â5 lakh/yr</td><td><strong>â¹1â2 lakh/yr</strong></td></tr>
+      <tr><td>Service in Tier-2/3 cities</td><td>Poor</td><td>Poor</td><td><strong>Strong (local)</strong></td></tr>
+      <tr><td>Power tolerance</td><td>Standard</td><td>Standard</td><td><strong>180â260V AC (wide range)</strong></td></tr>
+      <tr><td>WhatsApp/SMS alerts</td><td>No</td><td>No</td><td><strong>Yes</strong></td></tr>
+      <tr><td>Offline capability</td><td>Limited</td><td>Limited</td><td><strong>Full (syncs when online)</strong></td></tr>
+      <tr><td>Manufacturing</td><td>Imported</td><td>Imported</td><td><strong>Made in India</strong></td></tr>
+    </table>
+
+    <h3 style="margin-top: 16px; color: var(--primary);">Key differentiators for the Indian market</h3>
+    <ol style="margin: 12px 0 12px 20px; line-height: 2;">
+      <li><strong>India-specific design:</strong> Optimized for 30Â°C ambient (no AC needed in incubation zone), wide voltage tolerance (180â260V), 2-hour UPS backup for power cuts</li>
+      <li><strong>WhatsApp/SMS integration:</strong> Positive results sent directly to the lab technician's phone â critical in rural hospitals with limited IT</li>
+      <li><strong>Offline-first:</strong> Instrument functions fully without internet; syncs when connected</li>
+      <li><strong>Local service network:</strong> Service centers in Tier-2/3 cities where BACTEC/BacT/ALERT have zero support</li>
+      <li><strong>Reagent rental model:</strong> Place instruments free with minimum 500â1,000 bottle/year commitment â eliminates capital barrier</li>
+    </ol>
+  </div></div>
+</div>
+
+<!-- âââââââ SECTION 11: Roadmap âââââââ -->
+<div class="section">
+  <div class="section-header" onclick="toggleSection(this)">
+    <h2><span class="num">11</span> Launch Roadmap â From Lab to Market</h2>
+    <span class="arrow">&#9660;</span>
+  </div>
+  <div class="section-body"><div class="section-content">
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="phase">Phase 1: Foundation (Months 1â18)</div>
+        <p>Register company, appoint regulatory & QA heads. Engage AMTZ or similar medical device park. Begin ISO 13485 implementation. Procure media preparation and QC equipment. Develop sensor disc formulation (3â4 months R&D). Source raw materials with dual suppliers. Apply for manufacturing license (Form MD-5). Manufacture 10 pilot batches (1,000 bottles each).</p>
+      </div>
+      <div class="timeline-item">
+        <div class="phase">Phase 2: Validation & Regulatory (Months 18â36)</div>
+        <p>Complete analytical validation (sensitivity, specificity, time-to-detection). Conduct clinical validation at 2â3 partner hospitals (200+ samples). Submit CDSCO registration (Form MD-14). Complete BIS certification for analyzer. Finalize analyzer design; manufacture 10 pre-production units. Beta test at partner hospitals. Train sales and service team.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="phase">Phase 3: Commercial Launch (Months 36â48)</div>
+        <p>Receive CDSCO approval; begin commercial manufacturing. Launch in 5 metro cities (Mumbai, Delhi, Bangalore, Chennai, Hyderabad). Target 50 instrument placements in Year 1. Participate in government tenders (CGHS, ESIC, state health departments). Apply for PLI scheme incentives. Begin export registration (CE marking for EU/Africa).</p>
+      </div>
+      <div class="timeline-item">
+        <div class="phase">Phase 4: Scale-Up (Months 48â72)</div>
+        <p>Install second filling line; scale to 1M bottles/year. Develop fluorescence-based bottle (Phase 2 technology). Expand to mycobacterial/fungal bottles. Explore OEM partnerships with hospital chains. R&D into next-generation molecular blood culture integration.</p>
+      </div>
+    </div>
+
+    <div class="callout callout-key">
+      <strong>Total timeline to commercial launch: 36â42 months</strong> from project initiation. The timeline is primarily driven by regulatory processes (CDSCO review takes 9â18 months) and clinical validation (200+ patient samples across 2â3 sites).
+    </div>
+  </div></div>
+</div>
+
+<!-- âââââââ GLOSSARY âââââââ -->
+<div class="section" id="glossary-section">
+  <div class="section-header" onclick="toggleSection(this)">
+    <h2><span class="num">G</span> Searchable Glossary</h2>
+    <span class="arrow">&#9660;</span>
+  </div>
+  <div class="section-body"><div class="section-content">
+    <input type="text" class="glossary-search" id="glossary-input" placeholder="Search terms (e.g. 'sensor', 'broth', 'CDSCO')..." oninput="filterGlossary()">
+    <div id="glossary-list">
+      <div class="glossary-item"><strong>ADC (Analog-to-Digital Converter)</strong> â A chip that converts a continuous electrical signal (from the photodiode) into digital numbers the microcontroller can process. 16-bit = 65,536 possible values, providing fine resolution for detecting subtle reflectance changes.</div>
+      <div class="glossary-item"><strong>Anaerobic</strong> â Organisms that grow without oxygen, or conditions that lack oxygen. Anaerobic bottles have oxygen-free headspace filled with Nâ + COâ and reducing agents like L-cysteine.</div>
+      <div class="glossary-item"><strong>ASP (Average Selling Price)</strong> â The average price at which a product is sold across all channels and customer segments.</div>
+      <div class="glossary-item"><strong>BHI (Brain Heart Infusion)</strong> â A rich nutrient broth made from brain and heart tissue extracts. Used in pediatric bottles because the smaller blood sample volume needs more nutritious media.</div>
+      <div class="glossary-item"><strong>BIS (Bureau of Indian Standards)</strong> â India's standards body that certifies products for electrical safety (IEC 61010-1) and other quality standards.</div>
+      <div class="glossary-item"><strong>Blood Culture</strong> â A laboratory test where a patient's blood is placed in nutrient broth and incubated to detect bacteria or fungi in the bloodstream. The gold standard for diagnosing bloodstream infections.</div>
+      <div class="glossary-item"><strong>Bloodstream Infection (BSI)</strong> â The presence of bacteria or fungi in the blood. Can lead to sepsis if not treated quickly with appropriate antibiotics.</div>
+      <div class="glossary-item"><strong>Borosilicate Glass</strong> â A type of glass (like Pyrex) with excellent thermal and chemical resistance. Used for blood culture bottles because of its optical clarity and ability to withstand sterilization.</div>
+      <div class="glossary-item"><strong>CapEx (Capital Expenditure)</strong> â One-time spending on physical assets like buildings, equipment, and cleanrooms. Phase 1 CapEx for this project is estimated at â¹4.5â6.8 crore.</div>
+      <div class="glossary-item"><strong>Capnophile</strong> â An organism that requires elevated COâ levels (5â10%) to grow. Sodium bicarbonate in the media provides this COâ.</div>
+      <div class="glossary-item"><strong>CDSCO (Central Drugs Standard Control Organisation)</strong> â India's national regulatory authority for pharmaceuticals, medical devices, and IVDs. Equivalent to the FDA in the US.</div>
+      <div class="glossary-item"><strong>Cleanroom</strong> â A controlled environment with very low levels of airborne particles. Classified by ISO standards: ISO 5 (Grade A) is the cleanest, ISO 8 (Grade D) is less strict. Required for manufacturing sterile medical products.</div>
+      <div class="glossary-item"><strong>COGS (Cost of Goods Sold)</strong> â Total manufacturing cost per unit including raw materials, labor, utilities, QC, packaging, and depreciation.</div>
+      <div class="glossary-item"><strong>Colorimetric</strong> â A detection method based on color change. In blood culture, a pH-sensitive dye changes color as COâ accumulates, indicating microbial growth.</div>
+      <div class="glossary-item"><strong>Cresol Red</strong> â A pH-indicator dye used in colorimetric blood culture sensors. It changes from red/pink to yellow as COâ (which forms carbonic acid) accumulates.</div>
+      <div class="glossary-item"><strong>Depyrogenation</strong> â Heating glass bottles to 250Â°C for 30 minutes to destroy endotoxins. Regular sterilization kills bacteria but doesn't eliminate these heat-stable toxins.</div>
+      <div class="glossary-item"><strong>EBITDA</strong> â Earnings Before Interest, Taxes, Depreciation, and Amortization â a measure of operating profitability.</div>
+      <div class="glossary-item"><strong>Endotoxin</strong> â Toxic lipopolysaccharide (LPS) molecules from gram-negative bacterial cell walls. Even nanogram quantities can cause fever and shock. Measured by the LAL test.</div>
+      <div class="glossary-item"><strong>Fastidious Organisms</strong> â Bacteria that need special nutrients, gas conditions, or extended incubation to grow. The broth includes supplements (hemin, vitamin B6, sucrose) specifically for these picky organisms.</div>
+      <div class="glossary-item"><strong>Fluorescence Quenching</strong> â A phenomenon where a fluorescent dye glows less brightly in the presence of certain molecules (like COâ). Used in BACTEC systems to detect microbial growth.</div>
+      <div class="glossary-item"><strong>Gamma Irradiation</strong> â Sterilization using gamma rays from a Cobalt-60 source (25 kGy minimum dose). Preferred for blood culture bottles because it doesn't affect broth chemistry or sensor function.</div>
+      <div class="glossary-item"><strong>GMP (Good Manufacturing Practice)</strong> â A system of standards ensuring products are consistently produced and controlled to quality standards appropriate for their intended use.</div>
+      <div class="glossary-item"><strong>ISO 13485</strong> â The international quality management system standard for medical device manufacturers. Mandatory for CDSCO licensing in India.</div>
+      <div class="glossary-item"><strong>IVD (In-Vitro Diagnostic)</strong> â A medical device used to perform tests on samples (blood, urine, tissue) taken from the body. Blood culture systems are classified as IVD medical devices.</div>
+      <div class="glossary-item"><strong>LAL Test (Limulus Amebocyte Lysate)</strong> â A test using horseshoe crab blood extract that clots in the presence of endotoxins. The standard method for detecting bacterial endotoxin contamination.</div>
+      <div class="glossary-item"><strong>LIS (Laboratory Information System)</strong> â Hospital software that manages lab orders, results, and patient records. The analyzer connects to it via HL7 protocol.</div>
+      <div class="glossary-item"><strong>Moving Average</strong> â A statistical technique that averages the last N data points to smooth out noise. The detection algorithm uses a 6-point moving average to prevent false alarms.</div>
+      <div class="glossary-item"><strong>NABL</strong> â National Accreditation Board for Testing and Calibration Laboratories. Test reports from NABL-accredited labs are required for CDSCO product registration.</div>
+      <div class="glossary-item"><strong>Orbital Shaker</strong> â A platform that moves in a circular orbit (25 mm diameter, 150â200 RPM) to gently agitate bottles. This improves gas exchange and speeds up organism detection.</div>
+      <div class="glossary-item"><strong>Photodiode</strong> â A semiconductor device that converts light into electrical current. In blood culture systems, it measures reflected light from the sensor disc.</div>
+      <div class="glossary-item"><strong>PID Controller</strong> â A Proportional-Integral-Derivative controller that precisely maintains temperature at 35Â°C by continuously adjusting heater power based on feedback from temperature sensors.</div>
+      <div class="glossary-item"><strong>PLI Scheme</strong> â Production-Linked Incentive scheme offering 5% incentive on incremental sales for 5 years for medical devices manufactured in India.</div>
+      <div class="glossary-item"><strong>Reflectance</strong> â The proportion of light that bounces back from a surface. As the sensor disc darkens (COâ causes color change), reflectance decreases â this is what the instrument measures.</div>
+      <div class="glossary-item"><strong>Sepsis</strong> â A life-threatening condition where the body's response to an infection damages its own organs. India reports ~2.9 million cases per year. Blood culture is the gold standard test for identifying the causative organism.</div>
+      <div class="glossary-item"><strong>Sensor Disc</strong> â A tiny 8mm membrane embedded in the bottle bottom, containing pH-sensitive dye. It changes color when COâ (from bacterial growth) is present.</div>
+      <div class="glossary-item"><strong>SPS (Sodium Polyanethol Sulfonate)</strong> â An anticoagulant added to blood culture broth at 0.05%. Also blocks the complement system and prevents white blood cells from engulfing bacteria, improving organism recovery.</div>
+      <div class="glossary-item"><strong>Transimpedance Amplifier (TIA)</strong> â An electronic circuit that converts the tiny current from a photodiode into a measurable voltage. Uses a 1 MÎ© feedback resistor in this design.</div>
+      <div class="glossary-item"><strong>TSB (Tryptic Soy Broth)</strong> â A general-purpose nutrient medium for growing bacteria. Made from enzymatically digested soybean meal and casein. The base broth for aerobic blood culture bottles.</div>
+      <div class="glossary-item"><strong>WFI (Water for Injection)</strong> â Ultra-pure water produced by reverse osmosis + electrodeionization + UV treatment. Required for all pharmaceutical/medical device manufacturing.</div>
+      <div class="glossary-item"><strong>XAD-4 Resin</strong> â An ion-exchange resin (Amberlite XAD-4) added to bottles to adsorb and neutralize antibiotics the patient may be taking, preventing them from killing bacteria in the culture.</div>
+      <div class="glossary-item"><strong>ÎR/Ît</strong> â Rate of change of reflectance over time. The detection algorithm calculates this over 60-minute windows. A sustained increase in ÎR/Ît indicates microbial growth.</div>
+    </div>
+  </div></div>
+</div>
+
+<!-- âââââââ Footer âââââââ -->
+<div style="text-align:center; padding: 30px 0; color: var(--gray); font-size: 0.85rem;">
+  Based on "Automated Blood Culture System: Complete Manufacturing & Business Plan for India" (April 2026)<br>
+  Transformed into a beginner-friendly interactive guide &bull; Not a substitute for professional regulatory or engineering advice
+</div>
+
+</div><!-- /container -->
+
+<script>
+function toggleSection(header) {
+  header.parentElement.classList.toggle('open');
+}
+
+function toggleAll(open) {
+  document.querySelectorAll('.section').forEach(s => {
+    if (open) s.classList.add('open');
+    else s.classList.remove('open');
+  });
+}
+
+function filterGlossary() {
+  const q = document.getElementById('glossary-input').value.toLowerCase();
+  document.querySelectorAll('.glossary-item').forEach(item => {
+    item.style.display = item.textContent.toLowerCase().includes(q) ? '' : 'none';
+  });
+}
+</script>
+</body>
+</html>
+
