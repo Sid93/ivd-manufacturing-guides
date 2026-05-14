@@ -18,6 +18,8 @@ h1 { color: #fff; text-align: center; font-size: 2.2em; margin-bottom: 10px; }
 .card .tag { display: inline-block; background: #e8f4fd; color: #1a5276; padding: 4px 12px; border-radius: 20px; font-size: 0.8em; margin-top: 12px; margin-right: 6px; }
 .card.blood-culture { border-left: 5px solid #8b2252; }
 .card.blood-grouping { border-left: 5px solid #1a5276; }
+.card.esr-analyzer { border-left: 5px solid #0d7377; }
+.card.esr-analyzer .tag { background: #e0f4f5; color: #0d7377; }
 footer { text-align: center; color: #7fb3d3; margin-top: 30px; font-size: 0.85em; }
 footer a { color: #a0c4e8; }
 </style>
@@ -26,6 +28,7 @@ footer a { color: #a0c4e8; }
 <div class="container">
 <h1>IVD Manufacturing Guides</h1>
 <p class="subtitle">Interactive beginner-friendly guides for In Vitro Diagnostic manufacturing</p>
+
 <a href="Blood_Culture_Guide.html" class="card blood-culture">
   <div class="card-icon">🩸</div>
   <h2>Blood Culture Systems Guide</h2>
@@ -34,6 +37,7 @@ footer a { color: #a0c4e8; }
   <span class="tag">Blood Culture</span>
   <span class="tag">Automated Systems</span>
 </a>
+
 <a href="Blood_Grouping_Guide.html" class="card blood-grouping">
   <div class="card-icon">🔬</div>
   <h2>Blood Grouping Test Development Guide</h2>
@@ -42,6 +46,16 @@ footer a { color: #a0c4e8; }
   <span class="tag">Monoclonal Antibodies</span>
   <span class="tag">Hybridoma Technology</span>
 </a>
+
+<a href="ESR_Analyzer_Guide.html" class="card esr-analyzer">
+  <div class="card-icon">⚗️</div>
+  <h2>ESR Analyzer Manufacturing Guide</h2>
+  <p>A complete technical guide to manufacturing a benchtop ESR analyzer for the Indian market — covering photometric rheology technology, optical and electronics design, STM32 firmware, BOM with Indian pricing, CDSCO regulatory pathway, and financial analysis.</p>
+  <span class="tag">Hematology</span>
+  <span class="tag">Photometric Rheology</span>
+  <span class="tag">Indian Market</span>
+</a>
+
 <footer>
   <p>Built with care for aspiring IVD manufacturers</p>
   <p style="margin-top:6px;">Source: <a href="https://github.com/Sid93/ivd-manufacturing-guides">GitHub Repository</a></p>
