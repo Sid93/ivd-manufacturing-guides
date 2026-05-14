@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Glucose Test Strip Manufacturing Guide — Beginner-Friendly</title>
+<style>
+  :root {
+    --primary: #b8860b;
+    --primary-light: #fdf6e3;
+    --primary-dark: #8b6508;
+    --accent: #d4881c;
+    --accent-light: #fef3e5;
+    --blue: #2980b9;
+    --blue-light: #eaf4fb;
+    --red: #c0392b;
+    --red-light: #fbeaea;
+    --green: #1a6b4a;
+    --green-light: #e8f5ee;
+    --orange: #e67e22;
+    --orange-light: #fef3e5;
+    --gray: #7f8c8d;
+    --bg: #fafbfc;
+    --card: #ffffff;
+    --text: #2c3e50;
+    --border: #e0d5c0;
+    --shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    font-size: 17px;
+  }
+
+  /* ── Hero ── */
+  .hero {
+    background: linear-gradient(135deg, #5a3e1b 0%, #b8860b 50%, #d4881c 100%);
+    color: white;
+    padding: 60px 24px 50px;
+    text-align: center;
+  }
+  .hero h1 { font-size: 2.2rem; margin-bottom: 12px; font-weight: 700; letter-spacing: -0.5px; }
+  .hero p { font-size: 1.1rem; opacity: 0.92; max-width: 700px; margin: 0 auto 18px; }
+  .hero .badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.18);
+    border: 1px solid rgba(255,255,255,0.35);
+    border-radius: 20px;
+    padding: 6px 18px;
+    font-size: 0.9rem;
+    margin: 4px;
+  }
+
+  /* ── Container ── */
+  .container { max-width: 920px; margin: 0 auto; padding: 24px 18px 60px; }
+
+  /* ── Controls ── */
+  .controls {
+    display: flex; gap: 10px; margin-bottom: 24px; flex-wrap: wrap;
+  }
+  .controls button {
+    background: var(--primary); color: white; border: none;
+    border-radius: 6px; padding: 8px 18px; font-size: 0.92rem;
+    cursor: pointer; transition: background 0.2s;
+  }
+  .controls button:hover { background: var(--primary-dark); }
+
+  /* ── Sections ── */
+  .section {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 16px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+  .section-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 22px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s;
+  }
+  .section-header:hover { background: var(--primary-light); }
+  .section-header h2 {
+    font-size: 1.15rem; font-weight: 600; color: var(--primary);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-header .num {
+    background: var(--primary);
+    color: white;
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.85rem; font-weight: 700;
+    flex-shrink: 0;
+  }
+  .section-header .arrow {
+    font-size: 1.3rem;
+    transition: transform 0.3s ease;
+    color: var(--primary);
+    flex-shrink: 0;
+  }
+  .section.open .section-header .arrow { transform: rotate(180deg); }
+  .section-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .section.open .section-body { max-height: 20000px; }
+  .section-content { padding: 6px 22px 26px; }
+
+  /* ── Typography ── */
+  h3 { color: var(--primary); font-size: 1.05rem; margin: 22px 0 10px; font-weight: 600; }
+  h4 { color: var(--accent); font-size: 0.98rem; margin: 16px 0 8px; font-weight: 600; }
+  p { margin-bottom: 12px; }
+  ul, ol { margin: 0 0 14px 22px; }
+  li { margin-bottom: 5px; }
+
+  /* ── Tables ── */
+  .table-wrap { overflow-x: auto; margin: 14px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.93rem; }
+  th {
+    background: var(--primary);
+    color: white;
+    padding: 10px 14px;
+    text-align: left;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); }
+  tr:nth-child(even) { background: var(--primary-light); }
+  tr:hover { background: #f0e6d0; }
+
+  /* ── Jargon tooltip ── */
+  .jargon {
+    border-bottom: 2px dotted var(--accent);
+    cursor: help;
+    position: relative;
+    font-weight: 500;
+  }
+  .jargon .tip {
+    display: none;
+    position: absolute;
+    bottom: 130%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #1a2a3a;
+    color: #fff;
+    padding: 8px 14px;
+    border-radius: 7px;
+    font-size: 0.82rem;
+    font-weight: 400;
+    width: max-content;
+    max-width: 320px;
+    line-height: 1.5;
+    z-index: 100;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+    pointer-events: none;
+  }
+  .jargon .tip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent;
+    border-top-color: #1a2a3a;
+  }
+  .jargon:hover .tip { display: block; }
+
+  /* ── Info boxes ── */
+  .info-box {
+    border-left: 4px solid var(--accent);
+    background: var(--accent-light);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    margin: 14px 0;
+    font-size: 0.95rem;
+  }
+  .info-box.warn {
+    border-left-color: var(--orange);
+    background: var(--orange-light);
+  }
+  .info-box.success {
+    border-left-color: var(--green);
+    background: var(--green-light);
+  }
+  .info-box strong { color: var(--primary); }
+
+  /* ── SVG diagrams ── */
+  .diagram-wrap {
+    margin: 18px 0;
+    text-align: center;
+    background: #fdf9f0;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+    overflow-x: auto;
+  }
+  .diagram-wrap svg { max-width: 100%; height: auto; }
+  .diagram-caption {
+    font-size: 0.85rem;
+    color: var(--gray);
+    margin-top: 8px;
+    font-style: italic;
+  }
+
+  /* ── Step numbers ── */
+  .step {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 14px;
+    align-items: flex-start;
+  }
+  .step-num {
+    background: var(--primary);
+    color: white;
+    min-width: 32px; height: 32px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  /* ── Financial highlight ── */
+  .fin-highlight {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    margin: 16px 0;
+  }
+  .fin-card {
+    background: var(--primary-light);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+  }
+  .fin-card .value { font-size: 1.5rem; font-weight: 700; color: var(--primary); }
+  .fin-card .label { font-size: 0.82rem; color: var(--gray); margin-top: 4px; }
+
+  /* ── Glossary search ── */
+  #glossarySearch {
+    width: 100%;
+    padding: 10px 16px;
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    font-size: 1rem;
+    margin-bottom: 16px;
+    transition: border-color 0.2s;
+  }
+  #glossarySearch:focus { outline: none; border-color: var(--primary); }
+  .glossary-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .glossary-item {
+    background: var(--primary-light);
+    padding: 12px 16px;
+    border-radius: 7px;
+    border-left: 3px solid var(--accent);
+  }
+  .glossary-item .term {
+    font-weight: 700;
+    color: var(--primary);
+    font-size: 0.95rem;
+  }
+  .glossary-item .def {
+    font-size: 0.9rem;
+    color: var(--text);
+    margin-top: 3px;
+  }
+
+  /* ── Print styles ── */
+  @media print {
+    .hero { padding: 30px 20px; break-after: avoid; }
+    .controls { display: none; }
+    .section { break-inside: avoid; border: 1px solid #ccc; }
+    .section-body { max-height: none !important; }
+    .section-header .arrow { display: none; }
+    .jargon .tip { display: none !important; }
+    body { font-size: 11pt; }
+    .diagram-wrap { break-inside: avoid; }
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 600px) {
+    .hero h1 { font-size: 1.5rem; }
+    .hero { padding: 40px 16px 30px; }
+    .section-content { padding: 6px 14px 20px; }
+    .section-header { padding: 14px 14px; }
+    th, td { padding: 7px 8px; font-size: 0.82rem; }
+    .fin-highlight { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ════════════════ HERO ════════════════ -->
+<div class="hero">
+  <h1>Glucose Test Strip Manufacturing Guide</h1>
+  <p>A comprehensive, beginner-friendly guide to in-house manufacturing of electrochemical glucose test strips — from layer architecture and ink chemistry to screen printing, quality control, and cost analysis.</p>
+  <span class="badge">Electrochemical Biosensors</span>
+  <span class="badge">Screen Printing Technology</span>
+  <span class="badge">11 Detailed Sections</span>
+</div>
+
+<!-- ════════════════ MAIN ════════════════ -->
+<div class="container">
+
+  <!-- Controls -->
+  <div class="controls">
+    <button onclick="toggleAll(true)">Expand All</button>
+    <button onclick="toggleAll(false)">Collapse All</button>
+    <button onclick="window.print()">Print Guide</button>
+  </div>
+
+<!-- ═══════════════════════════════════════════════════
+     SECTION 1 — Introduction & Market Overview
+     ═══════════════════════════════════════════════════ -->
+<div class="section open" id="sec1">
+  <div class="section-header" onclick="toggleSection('sec1')">
+    <h2><span class="num">1</span> Introduction &amp; Market Overview</h2>
+    <span class="arrow">&#9662;</span>
+  </div>
+  <div class="section-body">
+    <div class="section-content">
+
+      <h3>What Are Glucose Test Strips?</h3>
+      <p>Glucose test strips are small, disposable <span class="jargon">electrochemical biosensors<span class="tip">A device that converts a biological reaction (here, glucose oxidation by an enzyme) into a measurable electrical signal — typically a current proportional to glucose concentration.</span></span> that allow diabetic patients to measure their blood glucose levels at home. A tiny drop of blood (typically 0.3–1.0 &mu;L) is applied to the strip, which is inserted into a handheld meter. Within seconds the meter displays a glucose reading.</p>
+
+      <p>The technology traces back to 1962 when Clark and Lyons described the first enzyme electrode. Modern strips integrate multiple functional layers — substrate, electrodes, reagent, adhesive, and membrane — into a compact device manufactured by high-speed <span class="jargon">screen printing<span class="tip">A thick-film printing technique where ink is forced through a patterned mesh screen onto a substrate using a squeegee. It deposits films 10–50 &mu;m thick and is the dominant method for commercial glucose strip production.</span></span> technology.</p>
+
+      <h3>Market Scale</h3>
+      <div class="fin-highlight">
+        <div class="fin-card">
+          <div class="value">10 billion+</div>
+          <div class="label">Strips produced per year globally</div>
+        </div>
+        <div class="fin-card">
+          <div class="value">$36.7B</div>
+          <div class="label">Projected glucose monitoring market by 2026</div>
+        </div>
+        <div class="fin-card">
+          <div class="value">~1 million</div>
+          <div class="label">Strips per hour per production line</div>
+        </div>
+        <div class="fin-card">
+          <div class="value">$0.02–0.06</div>
+          <div class="label">Manufacturing cost per strip at volume</div>
+        </div>
+      </div>
+
+      <h3>How Does It Work?</h3>
+      <p>When blood contacts the reagent layer, an <span class="jargon">enzyme<span class="tip">A biological catalyst — a protein that speeds up a specific chemical reaction. In glucose strips, the enzyme selectively reacts with glucose and ignores other sugars.</span></span> (usually glucose oxidase or glucose dehydrogenase) selectively oxidises glucose. Electrons released during this reaction are transferred via a <span class="jargon">redox mediator<span class="tip">A small molecule that shuttles electrons from the enzyme's active site to the electrode surface. Common mediators include ferricyanide and ferrocene. Without a mediator, the enzyme cannot efficiently communicate with the electrode.</span></span> (such as ferricyanide) to a <span class="jargon">working electrode<span class="tip">The electrode where the electrochemical reaction of interest occurs. In glucose strips, it collects electrons from the mediator and the resulting current is proportional to glucose concentration.</span></span>. The meter applies a voltage and measures the resulting current, which is proportional to the glucose concentration.</p>
+
+      <div class="info-box">
+        <strong>Why In-House Manufacturing?</strong> Controlling your own strip production allows you to customise formulations, protect intellectual property, reduce supply-chain dependency, and potentially achieve significant cost savings at scale. Capital investment ranges from $300K for pilot production to $10M+ for a full commercial line.
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     SECTION 2 — Five-Layer Architecture
+     ═══════════════════════════════════════════════════ -->
+<div class="section" id="sec2">
+  <div class="section-header" onclick="toggleSection('sec2')">
+    <h2><span class="num">2</span> Five-Layer Strip Architecture</h2>
+    <span class="arrow">&#9662;</span>
+  </div>
+  <div class="section-body">
+    <div class="section-content">
+
+      <p>Every glucose test strip is built from five functional layers stacked on top of each other. Each layer has a specific job, and the materials plus fabrication method for each layer critically affect performance.</p>
+
+      <div class="diagram-wrap">
+        <svg viewBox="0 0 780 420" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, sans-serif">
+          <rect x="0" y="0" width="780" height="420" fill="#fdf9f0" rx="8"/>
+          <text x="390" y="28" text-anchor="middle" font-size="15" font-weight="700" fill="#b8860b">Five-Layer Glucose Test Strip Cross-Section</text>
+
+          <!-- Layer 5 - Membrane -->
+          <rect x="140" y="50" width="500" height="50" rx="6" fill="#a8d8ea" stroke="#5ba3c9" stroke-width="1.5"/>
+          <text x="390" y="72" text-anchor="middle" font-size="13" font-weight="600" fill="#2c3e50">Layer 5: Membrane / Cover</text>
+          <text x="390" y="90" text-anchor="middle" font-size="10.5" fill="#555">Controls sample volume &amp; diffusion | Cellulose, polycarbonate</text>
+
+          <!-- Layer 4 - Adhesive -->
+          <rect x="140" y="110" width="500" height="50" rx="6" fill="#f7dc6f" stroke="#d4ac0d" stroke-width="1.5"/>
+          <text x="390" y="132" text-anchor="middle" font-size="13" font-weight="600" fill="#2c3e50">Layer 4: Adhesive &amp; Spacer</text>
+          <text x="390" y="150" text-anchor="middle" font-size="10.5" fill="#555">Defines capillary channel &amp; seals strip | PSA tape, 50–100 &mu;m</text>
+
+          <!-- Layer 3 - Reagent -->
+          <rect x="140" y="170" width="500" height="60" rx="6" fill="#f1948a" stroke="#c0392b" stroke-width="1.5"/>
+          <text x="390" y="192" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">Layer 3: Reagent (Most Critical)</text>
+          <text x="390" y="210" text-anchor="middle" font-size="10.5" fill="#fff">Enzyme + Mediator + Polymer matrix</text>
+          <text x="390" y="224" text-anchor="middle" font-size="10" fill="#ffeaea">GOx 24mg/mL | Ferricyanide 200mg/mL | CMC + Alginate</text>
+
+          <!-- Layer 2 - Electrode -->
+          <rect x="140" y="240" width="500" height="55" rx="6" fill="#85929e" stroke="#566573" stroke-width="1.5"/>
+          <text x="390" y="262" text-anchor="middle" font-size="13" font-weight="600" fill="#fff">Layer 2: Electrodes</text>
+          <text x="390" y="280" text-anchor="middle" font-size="10.5" fill="#ddd">Working (carbon ink), Reference (Ag/AgCl), Counter | 10–50 &mu;m thick</text>
+
+          <!-- Layer 1 - Substrate -->
+          <rect x="140" y="305" width="500" height="50" rx="6" fill="#d5a76b" stroke="#8b6508" stroke-width="1.5"/>
+          <text x="390" y="327" text-anchor="middle" font-size="13" font-weight="600" fill="#fff">Layer 1: Substrate</text>
+          <text x="390" y="345" text-anchor="middle" font-size="10.5" fill="#ffeedd">Mechanical support | PET film, 0.25–0.4 mm thick</text>
+
+          <!-- Arrows and labels on the right -->
+          <text x="670" y="80" font-size="10" fill="#5ba3c9" font-weight="600">0.3–1.0 &mu;L</text>
+          <text x="670" y="140" font-size="10" fill="#d4ac0d" font-weight="600">Capillary gap</text>
+          <text x="670" y="205" font-size="10" fill="#c0392b" font-weight="600">Detection zone</text>
+          <text x="670" y="270" font-size="10" fill="#566573" font-weight="600">Screen-printed</text>
+          <text x="670" y="335" font-size="10" fill="#8b6508" font-weight="600">PET / Polyester</text>
+
+          <!-- Blood drop icon -->
+          <ellipse cx="100" cy="75" rx="18" ry="22" fill="#e74c3c" opacity="0.8"/>
+          <text x="100" y="80" text-anchor="middle" font-size="11" fill="#fff" font-weight="700">Blood</text>
+          <line x1="118" y1="75" x2="138" y2="75" stroke="#e74c3c" stroke-width="2" marker-end="url(#arrowRed)"/>
+          <defs><marker id="arrowRed" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#e74c3c"/></marker></defs>
+
+          <!-- Bottom annotation -->
+          <text x="390" y="390" text-anchor="middle" font-size="11" fill="#888">Total strip thickness: ~0.5–1.0 mm | Width: 5–7 mm | Length: 25–35 mm</text>
+          <text x="390" y="410" text-anchor="middle" font-size="10" fill="#aaa">Not to scale — layers exaggerated for clarity</text>
+        </svg>
+        <div class="diagram-caption">Cross-section of a typical electrochemical glucose test strip showing all five functional layers</div>
+      </div>
+
+      <h3>Layer 1: Substrate</h3>
+      <p>The substrate is the bottom-most layer providing mechanical support. <strong>PET (Polyethylene Terephthalate)</strong> is the most widely used material — it offers excellent dimensional stability, chemical resistance, and compatibility with screen printing. PET films are typically 0.25–0.4 mm thick and provide a smooth, non-porous surface for electrode deposition.</p>
+      <p>Alternatives include polyester films (suitable for <span class="jargon">roll-to-roll<span class="tip">A continuous manufacturing process where a flexible substrate (like PET film) is unwound from a roll, processed through various stations (printing, drying, lamination), and rewound — enabling very high throughput.</span></span> manufacturing), paper substrates (ultra-low-cost, capillary-driven), and FR4 boards with gold plating for premium strips.</p>
+
+      <h3>Layer 2: Electrodes</h3>
+      <p>The electrode layer comprises working, counter, and reference electrodes screen-printed onto the substrate. <strong>Carbon-based inks</strong> are the most common working electrode material — low cost, wide potential window, and compatible with enzyme immobilisation. <strong>Ag/AgCl (silver/silver chloride)</strong> provides a stable reference potential. Silver conductive inks form the traces connecting electrodes to contact pads.</p>
+
+      <h3>Layer 3: Reagent (Most Critical)</h3>
+      <p>This layer contains the enzyme, mediator, and polymer matrix. It is the heart of the sensor and determines sensitivity, linearity, and shelf life. The validated GOx-ferricyanide formulation is the industry standard (detailed in Section 5).</p>
+
+      <h3>Layer 4: Adhesive &amp; Spacer</h3>
+      <p><span class="jargon">Pressure-sensitive adhesive (PSA)<span class="tip">An adhesive that bonds when pressure is applied, without needing heat, water, or solvent. Double-sided PSA tapes are die-cut with a gap that forms the capillary channel in the strip.</span></span> tapes serve double duty: they seal the strip and their die-cut gap defines the capillary channel through which blood flows to the electrodes. The spacer thickness (typically 50–100 &mu;m) directly controls sample volume.</p>
+
+      <h3>Layer 5: Membrane / Cover</h3>
+      <p>The top cover controls the precise blood volume (0.3–1.0 &mu;L) that contacts the electrode, limits diffusion to extend the linear range, and can exclude interferents like ascorbic acid and uric acid. Common materials include cellulose and polycarbonate membranes.</p>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     SECTION 3 — Electrode Ink Formulations
+     ═══════════════════════════════════════════════════ -->
+<div class="section" id="sec3">
+  <div class="section-header" onclick="toggleSection('sec3')">
+    <h2><span class="num">3</span> Electrode Ink Formulations</h2>
+    <span class="arrow">&#9662;</span>
+  </div>
+  <div class="section-body">
+    <div class="section-content">
+
+      <p>Screen-printable inks are the foundation of high-volume glucose strip manufacturing. Ink formulations must balance <span class="jargon">rheological properties<span class="tip">The flow and deformation characteristics of a material — viscosity (how thick it is), thixotropy (how it thins when stirred), and yield stress. These determine how well ink transfers through the screen mesh.</span></span> (viscosity, thixotropy), electrical performance (conductivity, electrochemical activity), and processing requirements (drying time, curing temperature).</p>
+
+      <h3>Carbon Inks (Working Electrode)</h3>
+      <p>Carbon inks consist of conductive carbon particles dispersed in a polymer binder with solvent. They come in two main types:</p>
+
+      <div class="table-wrap">
+        <table>
+          <tr><th>Property</th><th>Water-Based Carbon Ink</th><th>Organic Solvent-Based</th></tr>
+          <tr><td>Conductive filler</td><td>Graphite / carbon black</td><td>Graphite + MWCNTs</td></tr>
+          <tr><td>Binder</td><td>Water-soluble polymer</td><td>Polyurethane (PU)</td></tr>
+          <tr><td>Solvent</td><td>Water</td><td>Tetrahydrofuran (THF)</td></tr>
+          <tr><td>Advantages</td><td>Environmentally friendly; can incorporate enzyme directly</td><td>Higher conductivity; better adhesion</td></tr>
+          <tr><td>Typical use</td><td>Integrated enzyme-ink sensors; research</td><td>Commercial high-performance strips</td></tr>
+        </table>
+      </div>
+
+      <h4>Enhanced Carbon Inks</h4>
+      <p>Carbon inks can be modified with <span class="jargon">electrocatalysts<span class="tip">Materials that lower the energy barrier for an electrochemical reaction. Adding electrocatalysts to carbon ink means you can detect glucose at lower voltages, reducing interference from other blood components.</span></span> or nanoparticles to improve performance:</p>
+      <ul>
+        <li><strong>Iridium nanoparticles</strong> — enable low-potential H&#8322;O&#8322; detection</li>
+        <li><strong>Cupric-hexacyanoferrate</strong> — operates at -0.1V vs Ag/AgCl, eliminating anti-interference membranes</li>
+        <li><strong>Palladium particles</strong> — decreases overvoltage for H&#8322;O&#8322; oxidation by &gt;0.5V</li>
+        <li><strong>MWCNTs (Multi-Walled Carbon Nanotubes)</strong> — enhance electron transfer and increase surface area</li>
+        <li><strong>Prussian blue</strong> — selective H&#8322;O&#8322; detection at low potentials</li>
+        <li><strong>Graphene inks</strong> — superior conductivity, compatible with stencil printing</li>
+      </ul>
+
+      <h3>Silver &amp; Ag/AgCl Inks (Reference Electrode)</h3>
+      <p>Silver inks provide high electrical conductivity for traces and counter electrodes. The reference electrode uses <strong>Ag/AgCl</strong>, applied either as pre-mixed commercial ink or by printing silver paste followed by chloride treatment.</p>
+
+      <h3>Insulator Inks</h3>
+      <p>Insulator inks define the exposed electrode area, prevent electrical shorting, and create channel walls. Options include UV-curable inks (rapid curing, excellent precision) and PVC-based plastisol inks (cure at 149–166&deg;C).</p>
+
+      <div class="info-box">
+        <strong>Emerging:</strong> <span class="jargon">PEDOT:PSS<span class="tip">Poly(3,4-ethylenedioxythiophene):poly(styrenesulfonate) — a conductive polymer used for flexible, transparent electrodes. Optimal formulations contain 5% ethylene glycol for improved electrical properties.</span></span> conductive polymer inks enable flexible, transparent electrodes for wearable glucose sensors. Polyaniline (PANi) nanoparticle inks can be inkjet-printed for next-generation biosensor applications.
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     SECTION 4 — Enzyme & Mediator Systems
+     ═══════════════════════════════════════════════════ -->
+<div class="section" id="sec4">
+  <div class="section-header" onclick="toggleSection('sec4')">
+    <h2><span class="num">4</span> Enzyme &amp; Mediator Systems</h2>
+    <span class="arrow">&#9662;</span>
+  </div>
+  <div class="section-body">
+    <div class="section-content">
+
+      <p>The enzyme-mediator combination is the most critical design choice in a glucose strip. The enzyme provides specificity (reacting only with glucose), while the mediator shuttles electrons to the electrode.</p>
+
+      <h3>Enzyme Options</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>Enzyme</th><th>Source</th><th>O&#8322; Dependent?</th><th>Key Advantage</th><th>Key Limitation</th></tr>
+          <tr>
+            <td><strong>Glucose Oxidase (GOx)</strong></td>
+            <td><em>Aspergillus niger</em></td>
+            <td>Yes</td>
+            <td>Highest specificity; most widely validated; low cost</td>
+            <td>Oxygen interferes with measurement</td>
+          </tr>
+          <tr>
+            <td><strong>FAD-GDH</strong></td>
+            <td>Bacterial / fungal</td>
+            <td>No</td>
+            <td>Oxygen-independent; works at 0.3V with 0.4 &mu;L sample</td>
+            <td>May cross-react with maltose/galactose</td>
+          </tr>
+          <tr>
+            <td><strong>Ferrocene-modified GOx</strong></td>
+            <td>Chemically modified</td>
+            <td>Yes</td>
+            <td>Integrated enzyme-mediator; simplifies manufacturing</td>
+            <td>Higher enzyme cost; complex synthesis</td>
+          </tr>
+        </table>
+      </div>
+
+      <h3>Mediator Options</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>Mediator</th><th>Operating Potential</th><th>Used With</th><th>Notes</th></tr>
+          <tr>
+            <td><strong>Ferricyanide K&#8323;[Fe(CN)&#8326;]</strong></td>
+            <td>+0.3 to +0.4V</td>
+            <td>GOx, GDH</td>
+            <td>Industry standard; 200 mg/mL typical concentration</td>
+          </tr>
+          <tr>
+            <td><strong>Ferrocene derivatives</strong></td>
+            <td>+0.1 to +0.3V</td>
+            <td>GOx</td>
+            <td>Stable, reversible redox; can be covalently bound to enzyme</td>
+          </tr>
+          <tr>
+            <td><strong>Osmium complexes</strong></td>
+            <td>0.0 to -0.2V</td>
+            <td>GOx</td>
+            <td>Excellent selectivity; low interference from ascorbate/urate</td>
+          </tr>
+          <tr>
+            <td><strong>Prussian blue</strong></td>
+            <td>-0.1 to +0.1V</td>
+            <td>GOx</td>
+            <td>Inorganic electrocatalyst; good for H&#8322;O&#8322; detection</td>
+          </tr>
+          <tr>
+            <td><strong>Cobalt phthalocyanine</strong></td>
+            <td>+0.2 to +0.4V</td>
+            <td>GOx</td>
+            <td>Can be integrated directly into carbon ink</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="diagram-wrap">
+        <svg viewBox="0 0 780 300" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, sans-serif">
+          <rect x="0" y="0" width="780" height="300" fill="#fdf9f0" rx="8"/>
+          <text x="390" y="25" text-anchor="middle" font-size="14" font-weight="700" fill="#b8860b">Electrochemical Detection Principle</text>
+
+          <!-- Glucose molecule -->
+          <rect x="30" y="70" width="130" height="60" rx="10" fill="#f7dc6f" stroke="#d4ac0d" stroke-width="2"/>
+          <text x="95" y="98" text-anchor="middle" font-size="13" font-weight="600" fill="#5a3e1b">Glucose</text>
+          <text x="95" y="118" text-anchor="middle" font-size="10" fill="#8b6508">in blood sample</text>
+
+          <!-- Arrow 1 -->
+          <line x1="160" y1="100" x2="210" y2="100" stroke="#b8860b" stroke-width="2" marker-end="url(#arrowGold)"/>
+
+          <!-- Enzyme -->
+          <circle cx="280" cy="100" r="55" fill="#e8f5ee" stroke="#1a6b4a" stroke-width="2"/>
+          <text x="280" y="90" text-anchor="middle" font-size="12" font-weight="700" fill="#1a6b4a">Enzyme</text>
+          <text x="280" y="108" text-anchor="middle" font-size="10" fill="#1a6b4a">(GOx/GDH)</text>
+          <text x="280" y="138" text-anchor="middle" font-size="9" fill="#888">Oxidises glucose</text>
+
+          <!-- Arrow 2 with e- label -->
+          <line x1="335" y1="100" x2="395" y2="100" stroke="#c0392b" stroke-width="2" marker-end="url(#arrowGold)"/>
+          <text x="365" y="90" text-anchor="middle" font-size="10" font-weight="700" fill="#c0392b">e&#8315;</text>
+
+          <!-- Mediator -->
+          <rect x="395" y="60" width="120" height="80" rx="10" fill="#fbeaea" stroke="#c0392b" stroke-width="2"/>
+          <text x="455" y="90" text-anchor="middle" font-size="12" font-weight="700" fill="#c0392b">Mediator</text>
+          <text x="455" y="108" text-anchor="middle" font-size="10" fill="#c0392b">(Ferricyanide)</text>
+          <text x="455" y="125" text-anchor="middle" font-size="9" fill="#888">Shuttles electrons</text>
+
+          <!-- Arrow 3 -->
+          <line x1="515" y1="100" x2="575" y2="100" stroke="#2980b9" stroke-width="2" marker-end="url(#arrowGold)"/>
+          <text x="545" y="90" text-anchor="middle" font-size="10" font-weight="700" fill="#2980b9">e&#8315;</text>
+
+          <!-- Electrode -->
+          <rect x="575" y="55" width="160" height="90" rx="10" fill="#85929e" stroke="#566573" stroke-width="2"/>
+          <text x="655" y="85" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">Working</text>
+          <text x="655" y="103" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">Electrode</text>
+          <text x="655" y="125" text-anchor="middle" font-size="10" fill="#ddd">(Carbon ink)</text>
+
+          <!-- Meter -->
+          <rect x="610" y="185" width="120" height="60" rx="8" fill="#b8860b" stroke="#8b6508" stroke-width="2"/>
+          <text x="670" y="212" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">Meter</text>
+          <text x="670" y="232" text-anchor="middle" font-size="10" fill="#ffeedd">Measures current</text>
+          <line x1="655" y1="145" x2="655" y2="185" stroke="#566573" stroke-width="2" marker-end="url(#arrowGold)"/>
+
+          <!-- Product -->
+          <rect x="30" y="180" width="130" height="50" rx="10" fill="#e0f4f5" stroke="#0d7377" stroke-width="2"/>
+          <text x="95" y="203" text-anchor="middle" font-size="12" font-weight="600" fill="#0d7377">Gluconolactone</text>
+          <text x="95" y="220" text-anchor="middle" font-size="10" fill="#0d7377">(product)</text>
+          <line x1="280" y1="155" x2="160" y2="200" stroke="#1a6b4a" stroke-width="1.5" stroke-dasharray="4" marker-end="url(#arrowGold)"/>
+
+          <!-- Bottom summary -->
+          <text x="390" y="275" text-anchor="middle" font-size="11" fill="#888">Current (I) is proportional to glucose concentration &rarr; I = k &times; [Glucose]</text>
+
+          <defs><marker id="arrowGold" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#b8860b"/></marker></defs>
+        </svg>
+        <div class="diagram-caption">Electron flow from glucose through enzyme and mediator to the electrode — the meter measures the resulting current</div>
+      </div>
+
+      <h3>Polymer Matrices &amp; Binders</h3>
+      <p>The enzyme and mediator are held in place by a polymer matrix that must allow glucose to diffuse in while stabilising the enzyme:</p>
+      <ul>
+        <li><strong>CMC (Carboxymethylcellulose)</strong> — 10 mg/mL; viscosity modifier and enzyme stabiliser</li>
+        <li><strong>Alginate</strong> — 25 mg/mL; forms a gel matrix for immobilisation</li>
+        <li><strong>Chitosan</strong> — biocompatible; used in inkjet-printed sensors</li>
+        <li><strong>Nafion</strong> — perfluorinated membrane; excludes interferents, entraps enzyme</li>
+        <li><strong>Sol-gel silica</strong> — excellent long-term enzyme stability</li>
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     SECTION 5 — Reagent Layer Formulations
+     ═══════════════════════════════════════════════════ -->
+<div class="section" id="sec5">
+  <div class="section-header" onclick="toggleSection('sec5')">
+    <h2><span class="num">5</span> Reagent Layer Formulations</h2>
+    <span class="arrow">&#9662;</span>
+  </div>
+  <div class="section-body">
+    <div class="section-content">
+
+      <p>The reagent layer formulation critically determines sensor performance, stability, and shelf life. Here are the key validated recipes.</p>
+
+      <h3>The Industry-Standard GOx-Ferricyanide Formulation</h3>
+      <div class="info-box success">
+        <strong>Validated Recipe (Zolotukhina et al.):</strong> This is the most widely replicated and validated formulation for screen-printed glucose strips. It provides excellent sensitivity and shelf life.
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <tr><th>Component</th><th>Concentration</th><th>Function</th></tr>
+          <tr><td><strong>Glucose oxidase (GOx)</strong></td><td>24 mg/mL</td><td>Enzyme catalyst — selectively oxidises glucose</td></tr>
+          <tr><td><strong>Potassium ferricyanide</strong></td><td>200 mg/mL</td><td>Electron mediator — shuttles electrons to electrode</td></tr>
+          <tr><td><strong>CMC</strong></td><td>10 mg/mL</td><td>Viscosity modifier &amp; enzyme stabiliser</td></tr>
+          <tr><td><strong>Alginate</strong></td><td>25 mg/mL</td><td>Gel matrix former — immobilises components</td></tr>
+          <tr><td><strong>Citrate buffer</strong></td><td>pH 6</td><td>Maintains optimal pH for enzyme activity</td></tr>
+        </table>
+      </div>
+      <p>This formulation is applied by screen printing or jet dispensing onto carbon working electrodes. Drying conditions and reagent volume are critical for performance.</p>
+
+      <h3>Alternative Formulations</h3>
+
+      <h4>GOx-Ferrocene System (Inkjet-Printable)</h4>
+      <ul>
+        <li>Glucose oxidase + ferrocene complex as mediator + chitosan binder</li>
+        <li>Operating potential: 0.25V vs. PEDOT:PSS reference electrode</li>
+        <li>Detection range: 28 &mu;M to 0.85 mM (suitable for saliva glucose)</li>
+        <li>Fully inkjet-printable on paper substrates</li>
+      </ul>
+
+      <h4>FAD-GDH-Ferricyanide System (Oxygen-Independent)</h4>
+      <ul>
+        <li>FAD-GDH enzyme + ferricyanide mediator on palladium electrodes</li>
+        <li>Operating potential: 0.3V; sample volume: only 0.4 &mu;L</li>
+        <li>Eliminates oxygen interference — important for venous blood samples</li>
+      </ul>
+
+      <h4>Non-Enzymatic Approach (Enzyme-Free)</h4>
+      <ul>
+        <li>Copper oxide (CuO) electrodes with cellulose microfluidic pH boosting</li>
+        <li>No enzyme or mediator needed — simplified manufacturing</li>
+        <li>Better long-term stability since no protein degradation</li>
+        <li>Still experimental; lower specificity for glucose</li>
+      </ul>
+
+      <div class="info-box warn">
+        <strong>Critical Drying Parameters:</strong> After reagent deposition, drying at 30–40&deg;C with controlled humidity preserves enzyme activity. Over-drying can denature enzymes (reducing sensitivity); under-drying shortens shelf life. Most commercial strips achieve 18–24 month shelf life with optimised drying protocols.
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     SECTION 6 — Manufacturing Process Flow
+     ═══════════════════════════════════════════════════ -->
+<div class="section" id="sec6">
+  <div class="section-header" onclick="toggleSection('sec6')">
+    <h2><span class="num">6</span> Manufacturing Process Flow</h2>
+    <span class="arrow">&#9662;</span>
+  </div>
+  <div class="section-body">
+    <div class="section-content">
+
+      <p>Manufacturing follows a sequential process of printing, depositing, drying, and assembling. The diagram below shows the complete flow:</p>
+
+      <div class="diagram-wrap">
+        <svg viewBox="0 0 780 500" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, sans-serif">
+          <rect x="0" y="0" width="780" height="500" fill="#fdf9f0" rx="8"/>
+          <text x="390" y="28" text-anchor="middle" font-size="15" font-weight="700" fill="#b8860b">Manufacturing Process Flow</text>
+
+          <!-- Step 1 -->
+          <rect x="30" y="50" width="200" height="65" rx="10" fill="#d5a76b" stroke="#8b6508" stroke-width="2"/>
+          <text x="130" y="75" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">1. Substrate Prep</text>
+          <text x="130" y="95" text-anchor="middle" font-size="10" fill="#ffeedd">PET film unwind, clean,</text>
+          <text x="130" y="108" text-anchor="middle" font-size="10" fill="#ffeedd">surface treat, cut</text>
+
+          <!-- Arrow -->
+          <line x1="230" y1="82" x2="280" y2="82" stroke="#b8860b" stroke-width="2" marker-end="url(#arrowProc)"/>
+
+          <!-- Step 2 -->
+          <rect x="280" y="50" width="200" height="65" rx="10" fill="#85929e" stroke="#566573" stroke-width="2"/>
+          <text x="380" y="75" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">2. Electrode Printing</text>
+          <text x="380" y="95" text-anchor="middle" font-size="10" fill="#ddd">Screen print: Ag traces,</text>
+          <text x="380" y="108" text-anchor="middle" font-size="10" fill="#ddd">Ag/AgCl ref, carbon WE</text>
+
+          <!-- Arrow -->
+          <line x1="480" y1="82" x2="530" y2="82" stroke="#b8860b" stroke-width="2" marker-end="url(#arrowProc)"/>
+
+          <!-- Step 3 -->
+          <rect x="530" y="50" width="220" height="65" rx="10" fill="#e67e22" stroke="#d35400" stroke-width="2"/>
+          <text x="640" y="75" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">3. Ink Drying / Curing</text>
+          <text x="640" y="95" text-anchor="middle" font-size="10" fill="#ffeedd">50–60&deg;C for 60 min;</text>
+          <text x="640" y="108" text-anchor="middle" font-size="10" fill="#ffeedd">UV cure for insulator</text>
+
+          <!-- Arrow down -->
+          <line x1="640" y1="115" x2="640" y2="155" stroke="#b8860b" stroke-width="2" marker-end="url(#arrowProc)"/>
+
+          <!-- Step 4 -->
+          <rect x="530" y="155" width="220" height="65" rx="10" fill="#85929e" stroke="#566573" stroke-width="2"/>
+          <text x="640" y="180" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">4. Insulator Printing</text>
+          <text x="640" y="200" text-anchor="middle" font-size="10" fill="#ddd">Define electrode apertures,</text>
+          <text x="640" y="213" text-anchor="middle" font-size="10" fill="#ddd">prevent short circuits</text>
+
+          <!-- Arrow left -->
+          <line x1="530" y1="187" x2="480" y2="187" stroke="#b8860b" stroke-width="2" marker-end="url(#arrowProc)"/>
+
+          <!-- Step 5 -->
+          <rect x="280" y="155" width="200" height="65" rx="10" fill="#f1948a" stroke="#c0392b" stroke-width="2"/>
+          <text x="380" y="180" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">5. Reagent Deposition</text>
+          <text x="380" y="200" text-anchor="middle" font-size="10" fill="#fff">Jet dispense enzyme +</text>
+          <text x="380" y="213" text-anchor="middle" font-size="10" fill="#fff">mediator onto WE</text>
+
+          <!-- Arrow left -->
+          <line x1="280" y1="187" x2="230" y2="187" stroke="#b8860b" stroke-width="2" marker-end="url(#arrowProc)"/>
+
+          <!-- Step 6 -->
+          <rect x="30" y="155" width="200" height="65" rx="10" fill="#e67e22" stroke="#d35400" stroke-width="2"/>
+          <text x="130" y="180" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">6. Reagent Drying</text>
+          <text x="130" y="200" text-anchor="middle" font-size="10" fill="#ffeedd">30–40&deg;C, controlled</text>
+          <text x="130" y="213" text-anchor="middle" font-size="10" fill="#ffeedd">humidity (critical!)</text>
+
+          <!-- Arrow down -->
+          <line x1="130" y1="220" x2="130" y2="260" stroke="#b8860b" stroke-width="2" marker-end="url(#arrowProc)"/>
+
+          <!-- Step 7 -->
+          <rect x="30" y="260" width="200" height="65" rx="10" fill="#f7dc6f" stroke="#d4ac0d" stroke-width="2"/>
+          <text x="130" y="285" text-anchor="middle" font-size="12" font-weight="700" fill="#5a3e1b">7. Lamination</text>
+          <text x="130" y="305" text-anchor="middle" font-size="10" fill="#8b6508">Apply PSA spacer +</text>
+          <text x="130" y="318" text-anchor="middle" font-size="10" fill="#8b6508">cover membrane</text>
+
+          <!-- Arrow right -->
+          <line x1="230" y1="292" x2="280" y2="292" stroke="#b8860b" stroke-width="2" marker-end="url(#arrowProc)"/>
+
+          <!-- Step 8 -->
+          <rect x="280" y="260" width="200" height="65" rx="10" fill="#a8d8ea" stroke="#5ba3c9" stroke-width="2"/>
+          <text x="380" y="285" text-anchor="middle" font-size="12" font-weight="700" fill="#2c3e50">8. Cutting &amp; Singulation</text>
+          <text x="380" y="305" text-anchor="middle" font-size="10" fill="#555">Laser or die cutting into</text>
+          <text x="380" y="318" text-anchor="middle" font-size="10" fill="#555">individual strips</text>
+
+          <!-- Arrow right -->
+          <line x1="480" y1="292" x2="530" y2="292" stroke="#b8860b" stroke-width="2" marker-end="url(#arrowProc)"/>
+
+          <!-- Step 9 -->
+          <rect x="530" y="260" width="220" height="65" rx="10" fill="#1a6b4a" stroke="#0d5a3a" stroke-width="2"/>
+          <text x="640" y="285" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">9. Quality Control</text>
+          <text x="640" y="305" text-anchor="middle" font-size="10" fill="#c8e6d0">Electrical test, electrochemical</text>
+          <text x="640" y="318" text-anchor="middle" font-size="10" fill="#c8e6d0">test, visual inspection</text>
+
+          <!-- Arrow down -->
+          <line x1="640" y1="325" x2="640" y2="365" stroke="#b8860b" stroke-width="2" marker-end="url(#arrowProc)"/>
+
+          <!-- Step 10 -->
+          <rect x="430" y="365" width="320" height="65" rx="10" fill="#b8860b" stroke="#8b6508" stroke-width="2"/>
+          <text x="590" y="390" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">10. Packaging &amp; Labelling</text>
+          <text x="590" y="410" text-anchor="middle" font-size="10" fill="#ffeedd">Individual strip packaging, desiccant,</text>
+          <text x="590" y="423" text-anchor="middle" font-size="10" fill="#ffeedd">lot coding, sealed vials</text>
+
+          <!-- Legend -->
+          <text x="390" y="475" text-anchor="middle" font-size="11" fill="#888">Typical production rate: &gt;1 million strips/hour on rotary press lines</text>
+
+          <defs><marker id="arrowProc" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#b8860b"/></marker></defs>
+        </svg>
+        <div class="diagram-caption">Complete manufacturing process flow from substrate preparation to packaged strips</div>
+      </div>
+
+      <h3>Key Process Details</h3>
+
+      <h4>Electrode Printing (Step 2)</h4>
+      <p>Screen printing deposits thick films (10–50 &mu;m) with excellent reproducibility. A fine mesh screen coated with photosensitive emulsion is exposed through a photomask to create the electrode pattern. Ink is forced through openings using a <span class="jargon">squeegee<span class="tip">A flexible blade (usually polyurethane) that sweeps across the screen surface, pushing ink through the open mesh areas onto the substrate below.</span></span>. Multiple passes deposit working, reference, counter electrodes, and insulator layers — each layer requires drying before the next.</p>
+
+      <h4>Reagent Deposition (Step 5)</h4>
+      <p>This is the most critical step. Precision jet dispensers (such as the Nordson ASYMTEK DJ-9000) deposit controlled volumes of enzyme solution. Typical dispensed volume is about 0.45 mg GOx onto the reaction zone. Drop-on-demand systems with volume feedback and vision alignment ensure precise placement.</p>
+
+      <h4>Cutting Methods (Step 8)</h4>
+      <div class="table-wrap">
+        <table>
+          <tr><th>Method</th><th>Precision</th><th>Speed</th><th>Cost</th><th>Best For</th></tr>
+          <tr><td><strong>Laser cutting</strong></td><td>Very high</td><td>Medium-high</td><td>$10K–$500K</td><td>Production &amp; patterning</td></tr>
+          <tr><td><strong>Die cutting/stamping</strong></td><td>High</td><td>Very high</td><td>Medium</td><td>High-volume roll-to-roll</td></tr>
+          <tr><td><strong>Plotter cutting</strong></td><td>Medium</td><td>Low</td><td>Low</td><td>Prototyping &amp; R&amp;D</td></tr>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     SECTION 7 — Equipment & Infrastructure
+     ═══════════════════════════════════════════════════ -->
+<div class="section" id="sec7">
+  <div class="section-header" onclick="toggleSection('sec7')">
+    <h2><span class="num">7</span> Equipment &amp; Infrastructure</h2>
+    <span class="arrow">&#9662;</span>
+  </div>
+  <div class="section-body">
+    <div class="section-content">
+
+      <h3>Capital Equipment Requirements</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>Equipment Category</th><th>Cost Range (USD)</th><th>Key Models / Notes</th></tr>
+          <tr><td>Flatbed Screen Printer</td><td>$15,000 – $50,000</td><td>DEK 1202; SCF-550 (Eickmeyer); &#177;25 &mu;m registration</td></tr>
+          <tr><td>Rotary Screen Printer</td><td>$100,000 – $500,000</td><td>High-speed web printing; &gt;10&#8310; strips/hr</td></tr>
+          <tr><td>Jet Dispensing System</td><td>$50,000 – $150,000</td><td>Nordson ASYMTEK X-1020; DJ-9000 valve; &#177;2% accuracy</td></tr>
+          <tr><td>CO&#8322; Laser Cutter</td><td>$10,000 – $50,000</td><td>Epilog Mini-24 (30W); cutting &amp; ablation</td></tr>
+          <tr><td>Femtosecond Laser</td><td>$200,000 – $500,000</td><td>Clark MXR CPA 2010; high-precision patterning</td></tr>
+          <tr><td>Lamination Equipment</td><td>$20,000 – $100,000</td><td>Heat lamination; PSA application</td></tr>
+          <tr><td>Drying Ovens (each)</td><td>$5,000 – $20,000</td><td>30–200&deg;C range; forced air; multiple needed</td></tr>
+          <tr><td>Potentiostat (QC)</td><td>$10,000 – $30,000</td><td>Gamry; Metrohm Autolab; for CV &amp; amperometry</td></tr>
+          <tr><td>Reference Analyzer</td><td>$5,000 – $15,000</td><td>YSI Stat 2300 — gold standard for glucose</td></tr>
+          <tr><td>Microscopy &amp; Imaging</td><td>$20,000 – $100,000</td><td>SEM (Phenom); optical (Leica DM-4000); profilometry</td></tr>
+          <tr><td>Cleanroom Setup</td><td>$50,000 – $500,000</td><td>ISO Class 7/8; HEPA; temp &amp; humidity control</td></tr>
+        </table>
+      </div>
+
+      <h3>Total Capital Investment</h3>
+      <div class="fin-highlight">
+        <div class="fin-card">
+          <div class="value">$300K–$800K</div>
+          <div class="label">Pilot / Research Scale</div>
+        </div>
+        <div class="fin-card">
+          <div class="value">$0.8M–$2M</div>
+          <div class="label">Small Production Scale</div>
+        </div>
+        <div class="fin-card">
+          <div class="value">$2M–$10M+</div>
+          <div class="label">Commercial Scale</div>
+        </div>
+      </div>
+
+      <h3>Cleanroom Requirements</h3>
+      <p>Controlled assembly and packaging environments are essential for reproducible reagent stability:</p>
+      <ul>
+        <li><strong>ISO Class 7 or 8</strong> (10,000 or 100,000 particles/ft&sup3;)</li>
+        <li>HEPA filtration systems with positive pressure differential</li>
+        <li>Temperature: 20–25&deg;C; Humidity: 30–50% RH</li>
+        <li>UV curing systems (365 nm) for UV-curable inks</li>
+      </ul>
+
+      <h3>Printing Method Comparison</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>Method</th><th>Film Thickness</th><th>Speed</th><th>Capital Cost</th><th>Best For</th></tr>
+          <tr><td><strong>Screen Printing</strong></td><td>10–50 &mu;m</td><td>~10&#8310; strips/hr</td><td>$$</td><td>Commercial production (50% of market)</td></tr>
+          <tr><td><strong>Inkjet Printing</strong></td><td>0.1–5 &mu;m</td><td>Medium</td><td>$$$</td><td>Precise deposition; R&amp;D</td></tr>
+          <tr><td><strong>Flexographic</strong></td><td>1–10 &mu;m</td><td>Very high</td><td>$$$</td><td>High-volume roll-to-roll</td></tr>
+          <tr><td><strong>Laser Engraving</strong></td><td>N/A (bulk)</td><td>Medium</td><td>$$$$</td><td>Graphene electrodes; no inks needed</td></tr>
+          <tr><td><strong>Vapour Deposition</strong></td><td>0.01–1 &mu;m</td><td>Medium</td><td>$$$$</td><td>Thin-metal electrodes (50% of market)</td></tr>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     SECTION 8 — Suppliers & Materials Sourcing
+     ═══════════════════════════════════════════════════ -->
+<div class="section" id="sec8">
+  <div class="section-header" onclick="toggleSection('sec8')">
+    <h2><span class="num">8</span> Suppliers &amp; Materials Sourcing</h2>
+    <span class="arrow">&#9662;</span>
+  </div>
+  <div class="section-body">
+    <div class="section-content">
+
+      <p>Establishing reliable supply chains is critical for sustainable manufacturing. Here are key suppliers by category:</p>
+
+      <h3>Enzymes</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>Supplier</th><th>Product</th><th>Specs</th></tr>
+          <tr><td><strong>Sigma-Aldrich (Merck)</strong></td><td>Glucose Oxidase (GOx)</td><td>100–300 U/mg; from <em>A. niger</em>; &gt;90% purity</td></tr>
+          <tr><td><strong>Toyobo</strong></td><td>GOx &amp; GDH enzymes</td><td>Biosensor-grade; bulk quantities available</td></tr>
+          <tr><td><strong>Specialised suppliers</strong></td><td>Ferrocene-modified GOx</td><td>Integrated enzyme-mediator conjugates</td></tr>
+        </table>
+      </div>
+
+      <h3>Inks &amp; Chemicals</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>Supplier</th><th>Products</th></tr>
+          <tr><td><strong>Acheson (Henkel)</strong></td><td>Electrodag 421 SS — water-based carbon ink for screen printing</td></tr>
+          <tr><td><strong>Sigma-Aldrich</strong></td><td>Ferricyanide, ferrocene, cobalt phthalocyanine, CMC, alginate, Nafion</td></tr>
+          <tr><td><strong>Angstrom Materials</strong></td><td>Nano graphene platelets (N008-100-05)</td></tr>
+          <tr><td><strong>DuPont</strong></td><td>Nafion membrane solutions</td></tr>
+          <tr><td><strong>Commercial ink suppliers</strong></td><td>Silver, Ag/AgCl, insulator screen-printing inks</td></tr>
+        </table>
+      </div>
+
+      <h3>Equipment Manufacturers</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>Category</th><th>Manufacturer</th><th>Key Product</th></tr>
+          <tr><td>Screen Printers</td><td>DEK (ASM); Eickmeyer</td><td>DEK 1202; SCF-550</td></tr>
+          <tr><td>Dispensing</td><td>Nordson ASYMTEK</td><td>X-1020 Axiom; DJ-9000 valve</td></tr>
+          <tr><td>Laser Systems</td><td>Epilog; Clark MXR; HighQ</td><td>Mini-24 CO&#8322;; CPA 2010 fs; IC-355-800 ps</td></tr>
+          <tr><td>Potentiostats</td><td>Gamry; Metrohm</td><td>Gamry series; Autolab PSTAT 10</td></tr>
+          <tr><td>Reference Analysers</td><td>YSI (Xylem)</td><td>Stat 2300 glucose analyser</td></tr>
+          <tr><td>Microscopy</td><td>FEI (Thermo); Leica; Sensofar</td><td>Phenom SEM; DM-4000; PL&mu; 2300</td></tr>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     SECTION 9 — Cost Analysis
+     ═══════════════════════════════════════════════════ -->
+<div class="section" id="sec9">
+  <div class="section-header" onclick="toggleSection('sec9')">
+    <h2><span class="num">9</span> Cost Analysis &amp; Economics</h2>
+    <span class="arrow">&#9662;</span>
+  </div>
+  <div class="section-body">
+    <div class="section-content">
+
+      <h3>Per-Strip Material Costs at Volume</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>Component</th><th>Estimated Cost/Strip</th><th>Notes</th></tr>
+          <tr><td>PET substrate</td><td>&lt; $0.005</td><td>Fraction of a cent at volume</td></tr>
+          <tr><td>Carbon + Ag/AgCl inks</td><td>&lt; $0.01</td><td>Dominant material cost driver</td></tr>
+          <tr><td>Enzyme (GOx)</td><td>$0.005–$0.02</td><td>Most expensive reagent component</td></tr>
+          <tr><td>Mediator (ferricyanide)</td><td>&lt; $0.01</td><td>Low cost at bulk pricing</td></tr>
+          <tr><td>Polymers (CMC, alginate)</td><td>&lt; $0.005</td><td>Inexpensive binders</td></tr>
+          <tr><td>Adhesives &amp; cover film</td><td>&lt; $0.01</td><td>PSA tapes, membrane materials</td></tr>
+          <tr><td>Individual packaging</td><td>$0.01–$0.02</td><td>Foil pouch + desiccant</td></tr>
+          <tr><td><strong>Total per strip</strong></td><td><strong>$0.02–$0.06</strong></td><td><strong>At millions of strips/year</strong></td></tr>
+        </table>
+      </div>
+
+      <h3>Scale-Dependent Economics</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>Production Stage</th><th>Volume</th><th>Cost/Strip</th><th>Typical Setup</th></tr>
+          <tr><td>Prototyping / R&amp;D</td><td>Hundreds</td><td>$1–$10</td><td>Manual processes; single lab</td></tr>
+          <tr><td>Pilot Production</td><td>Thousands–100K</td><td>$0.10–$1.00</td><td>Semi-automatic equipment</td></tr>
+          <tr><td>Commercial Production</td><td>Millions+</td><td>$0.02–$0.06</td><td>Fully automated rotary lines</td></tr>
+        </table>
+      </div>
+
+      <h3>Pricing Chain</h3>
+      <div class="fin-highlight">
+        <div class="fin-card">
+          <div class="value">$0.02–0.06</div>
+          <div class="label">Manufacturing cost</div>
+        </div>
+        <div class="fin-card">
+          <div class="value">$0.10–0.30</div>
+          <div class="label">Wholesale price</div>
+        </div>
+        <div class="fin-card">
+          <div class="value">$0.50–1.50</div>
+          <div class="label">Retail price per strip</div>
+        </div>
+      </div>
+
+      <div class="info-box">
+        <strong>Razor-and-Blade Model:</strong> Glucose meters are typically sold at $7–10 (some up to $90 for premium models), often at a loss or given away free. All profit comes from recurring strip sales — a patient using 3 strips/day purchases over 1,000 strips/year. Break-even for in-house manufacturing typically requires 10–50 million strips per year.
+      </div>
+
+      <h3>Cost Reduction Strategies</h3>
+      <ul>
+        <li>Use standard thermal-cure inks (UV inks cost up to 3x more)</li>
+        <li>Water-based formulations are generally cheaper than organic-solvent inks</li>
+        <li>Non-enzymatic sensors eliminate enzyme costs entirely (but are still experimental)</li>
+        <li>Paper substrates offer ultra-low-cost alternatives for resource-limited settings</li>
+        <li>Wax screen printing eliminates need for $2,500+ wax printers (screens cost &lt;$5)</li>
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     SECTION 10 — Quality Assurance & Regulatory
+     ═══════════════════════════════════════════════════ -->
+<div class="section" id="sec10">
+  <div class="section-header" onclick="toggleSection('sec10')">
+    <h2><span class="num">10</span> Quality Assurance &amp; Regulatory</h2>
+    <span class="arrow">&#9662;</span>
+  </div>
+  <div class="section-body">
+    <div class="section-content">
+
+      <h3>Quality Control Methods</h3>
+
+      <h4>Electrical Testing</h4>
+      <p>Automated testers check every strip for resistance and electrode integrity using the <span class="jargon">4-wire Kelvin method<span class="tip">A precision resistance measurement technique that uses four wires — two to carry current and two to measure voltage — eliminating the resistance of the connecting wires from the measurement. Essential for measuring low electrode resistances accurately.</span></span>. Equipment: NI PXI-4130 Source Measure Unit with automated test fixtures.</p>
+
+      <h4>Electrochemical Testing</h4>
+      <p>Functional testing verifies glucose response using potentiostats (Gamry, Metrohm Autolab) with standard glucose solutions across the clinical range (20–600 mg/dL). Cyclic voltammetry and chronoamperometry verify electrode behaviour and calibration.</p>
+
+      <h4>Visual Inspection</h4>
+      <p>CCD camera systems with image-processing software detect print defects, misalignment, reagent coverage issues, and contamination. Automated rejection systems remove defective strips from the production line.</p>
+
+      <h4>Reference Testing</h4>
+      <p>Glucose readings from manufactured strips are verified against the <strong>YSI Stat 2300</strong> — the gold-standard laboratory glucose analyser. Statistical comparison ensures accuracy meets regulatory requirements.</p>
+
+      <h3>Regulatory Pathways</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>Standard / Regulation</th><th>Scope</th><th>Key Requirements</th></tr>
+          <tr><td><strong>ISO 13485</strong></td><td>Quality management</td><td>Comprehensive QMS for medical device manufacturing</td></tr>
+          <tr><td><strong>ISO 15197:2013</strong></td><td>Performance standards</td><td>Accuracy: &plusmn;15 mg/dL (&lt;100 mg/dL) or &plusmn;15% (&ge;100 mg/dL) for 95% of results</td></tr>
+          <tr><td><strong>FDA 510(k)</strong></td><td>US market access</td><td>Substantial equivalence to predicate device</td></tr>
+          <tr><td><strong>CE Marking (IVDR)</strong></td><td>EU market access</td><td>Conformity assessment per EU IVD Regulation 2017/746</td></tr>
+          <tr><td><strong>CDSCO (India)</strong></td><td>Indian market access</td><td>Class C IVD device; Form 28 manufacturing licence</td></tr>
+        </table>
+      </div>
+
+      <div class="info-box warn">
+        <strong>ISO 15197 Performance Criteria:</strong> At least 95% of results must fall within &plusmn;15 mg/dL of reference for glucose &lt;100 mg/dL, or within &plusmn;15% for glucose &ge;100 mg/dL. Additionally, 99% of results must fall within clinically acceptable zones (Zone A+B of a consensus error grid). Clinical validation typically requires testing with &ge;600 capillary blood samples from &ge;100 subjects.
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     SECTION 11 — Future Directions & Glossary
+     ═══════════════════════════════════════════════════ -->
+<div class="section" id="sec11">
+  <div class="section-header" onclick="toggleSection('sec11')">
+    <h2><span class="num">11</span> Future Directions &amp; Glossary</h2>
+    <span class="arrow">&#9662;</span>
+  </div>
+  <div class="section-body">
+    <div class="section-content">
+
+      <h3>Emerging Technologies</h3>
+
+      <h4>Advanced Materials</h4>
+      <ul>
+        <li><strong>Laser-engraved graphene (LEG)</strong> — CO&#8322; laser scribing of polyimide films creates porous graphene electrodes without inks. Decorated with copper nanocubes for enhanced sensitivity.</li>
+        <li><strong>Carbon nanotubes &amp; metal nanoparticles</strong> — enhance sensitivity and reduce operating potentials</li>
+        <li><strong>Conductive polymers (PEDOT:PSS, polyaniline)</strong> — enable flexible, wearable glucose sensors</li>
+      </ul>
+
+      <h4>Alternative Fabrication</h4>
+      <ul>
+        <li><strong>Fully inkjet-printed sensors</strong> — all-printed systems on paper for ultra-low cost</li>
+        <li><strong>3D printing</strong> — rapid prototyping of customised sensor geometries</li>
+        <li><strong>Roll-to-roll flexographic printing</strong> — fast commercial production with 500 &mu;m microfluidic channels</li>
+      </ul>
+
+      <h4>Next-Generation Approaches</h4>
+      <ul>
+        <li><strong>Non-enzymatic sensors</strong> — CuO or noble metal electrodes eliminate enzyme stability concerns</li>
+        <li><strong>Wearable/continuous monitoring</strong> — flexible substrates, sweat glucose analysis, wireless communication</li>
+        <li><strong>Multi-analyte strips</strong> — twin-enzyme strips detecting glucose + lactate or other metabolites; 4-in-1 strips in development</li>
+        <li><strong>Paper-based microfluidics</strong> — capillary-driven flow eliminates pumps; suitable for resource-limited settings</li>
+      </ul>
+
+      <h3>Searchable Glossary</h3>
+      <input type="text" id="glossarySearch" placeholder="Search terms..." oninput="filterGlossary()">
+
+      <div class="glossary-grid">
+        <div class="glossary-item"><span class="term">Amperometry</span><div class="def">Electrochemical technique where a constant potential is applied and the resulting current is measured. The current is proportional to the analyte concentration.</div></div>
+        <div class="glossary-item"><span class="term">Biosensor</span><div class="def">An analytical device that combines a biological recognition element (enzyme, antibody) with a transducer to produce a measurable signal proportional to the target analyte concentration.</div></div>
+        <div class="glossary-item"><span class="term">Capillary Channel</span><div class="def">A narrow gap (50–100 &mu;m) formed between the adhesive spacer layer and the cover membrane. Surface tension draws the blood sample into the channel and onto the electrode by capillary action.</div></div>
+        <div class="glossary-item"><span class="term">Chronoamperometry</span><div class="def">A technique where a voltage step is applied and current is measured as a function of time. Used to characterise and calibrate glucose sensors.</div></div>
+        <div class="glossary-item"><span class="term">CMC (Carboxymethylcellulose)</span><div class="def">A water-soluble cellulose derivative used as a viscosity modifier and enzyme stabiliser in the reagent layer at typical concentrations of 10 mg/mL.</div></div>
+        <div class="glossary-item"><span class="term">Counter Electrode</span><div class="def">Completes the electrochemical circuit. Current flows between the working electrode and counter electrode. Often made of carbon or silver ink.</div></div>
+        <div class="glossary-item"><span class="term">Cyclic Voltammetry (CV)</span><div class="def">An electrochemical technique where the potential is swept linearly back and forth between two values while current is measured. Used to characterise electrode reactions and mediator behaviour.</div></div>
+        <div class="glossary-item"><span class="term">Electrochemical Biosensor</span><div class="def">A biosensor where the biological reaction produces an electrical signal (current, voltage, or impedance change) that is measured by electrodes. Glucose test strips are amperometric electrochemical biosensors.</div></div>
+        <div class="glossary-item"><span class="term">FAD-GDH</span><div class="def">Flavin Adenine Dinucleotide-Glucose Dehydrogenase. An oxygen-independent enzyme alternative to GOx that eliminates oxygen interference in glucose measurements.</div></div>
+        <div class="glossary-item"><span class="term">Ferricyanide</span><div class="def">Potassium ferricyanide K&#8323;[Fe(CN)&#8326;] — the most widely used redox mediator in commercial glucose strips. Used at ~200 mg/mL concentration.</div></div>
+        <div class="glossary-item"><span class="term">Ferrocene</span><div class="def">An organometallic compound with stable, reversible redox behaviour at low potentials. Used as a mediator either dissolved in the reagent or covalently bound to the enzyme.</div></div>
+        <div class="glossary-item"><span class="term">GOx (Glucose Oxidase)</span><div class="def">An enzyme (from Aspergillus niger) that selectively catalyses the oxidation of glucose to gluconolactone. The most widely used enzyme in glucose biosensors. Typical concentration: 24 mg/mL.</div></div>
+        <div class="glossary-item"><span class="term">ISO 15197</span><div class="def">International standard specifying requirements for blood glucose monitoring systems used by patients for self-testing. Defines accuracy criteria (&plusmn;15 mg/dL or &plusmn;15%) for regulatory compliance.</div></div>
+        <div class="glossary-item"><span class="term">Lamination</span><div class="def">The process of bonding layers together using pressure-sensitive adhesive (PSA) tapes or heat. Creates the sealed strip structure with defined capillary channels.</div></div>
+        <div class="glossary-item"><span class="term">Mediator (Redox)</span><div class="def">A small molecule that shuttles electrons between the enzyme active site and the electrode surface. Enables detection at lower potentials than direct H&#8322;O&#8322; oxidation. Examples: ferricyanide, ferrocene, osmium complexes.</div></div>
+        <div class="glossary-item"><span class="term">MWCNT</span><div class="def">Multi-Walled Carbon Nanotubes — cylindrical nanostructures of carbon with multiple concentric walls. Added to inks to enhance conductivity and electrochemical surface area.</div></div>
+        <div class="glossary-item"><span class="term">Nafion</span><div class="def">A perfluorinated sulfonated polymer membrane (by DuPont) that allows cations to pass but blocks anions and large molecules. Used to exclude interferents like ascorbic acid from the electrode surface.</div></div>
+        <div class="glossary-item"><span class="term">Overpotential</span><div class="def">The extra voltage beyond the thermodynamic minimum needed to drive an electrochemical reaction at a useful rate. Electrocatalysts and mediators reduce overpotential.</div></div>
+        <div class="glossary-item"><span class="term">PET (Polyethylene Terephthalate)</span><div class="def">The most common substrate material for glucose strips — a thermoplastic polymer with excellent dimensional stability, chemical resistance, and compatibility with screen printing. Thickness: 0.25–0.4 mm.</div></div>
+        <div class="glossary-item"><span class="term">Potentiostat</span><div class="def">An electronic instrument that controls the voltage between working and reference electrodes while measuring the current. Essential for electrochemical testing and QC of glucose strips.</div></div>
+        <div class="glossary-item"><span class="term">PSA (Pressure-Sensitive Adhesive)</span><div class="def">An adhesive that bonds on contact with light pressure, no heat or solvent needed. Die-cut PSA tapes define the capillary channel geometry in glucose strips.</div></div>
+        <div class="glossary-item"><span class="term">Prussian Blue</span><div class="def">An inorganic pigment (iron hexacyanoferrate) used as an electrocatalyst for selective H&#8322;O&#8322; detection at low potentials, reducing interference from ascorbic acid and uric acid.</div></div>
+        <div class="glossary-item"><span class="term">Reference Electrode</span><div class="def">An electrode with a stable, known potential against which other electrode potentials are measured. In glucose strips, Ag/AgCl (silver/silver chloride) is the standard reference material.</div></div>
+        <div class="glossary-item"><span class="term">Roll-to-Roll (R2R)</span><div class="def">A continuous manufacturing process where flexible substrate is unwound from a roll, processed through printing/coating/cutting stations, and rewound. Enables very high throughput (&gt;10&#8310; strips/hour).</div></div>
+        <div class="glossary-item"><span class="term">Screen Printing</span><div class="def">A thick-film printing technique where ink is forced through a patterned mesh screen using a squeegee. Deposits 10–50 &mu;m films with excellent reproducibility. Dominates commercial glucose strip production (~50% of market).</div></div>
+        <div class="glossary-item"><span class="term">Squeegee</span><div class="def">A flexible blade (typically polyurethane) used in screen printing to sweep ink across the screen, forcing it through open mesh areas onto the substrate below.</div></div>
+        <div class="glossary-item"><span class="term">Thick Film</span><div class="def">A film deposited by screen printing, typically 10–50 &mu;m thick. Contrasted with thin films (&lt;1 &mu;m) made by vapour deposition or sputtering.</div></div>
+        <div class="glossary-item"><span class="term">Working Electrode</span><div class="def">The electrode where the electrochemical reaction of interest occurs. In glucose strips, it is typically made of carbon ink and is where the mediator transfers electrons, generating the measured current.</div></div>
+        <div class="glossary-item"><span class="term">YSI Stat 2300</span><div class="def">A laboratory glucose analyser by Yellow Springs Instruments — the gold-standard reference instrument for verifying glucose strip accuracy during quality control testing.</div></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     FOOTER
+     ═══════════════════════════════════════════════════ -->
+<div style="text-align:center; padding:30px 0 10px; color:var(--gray); font-size:0.85rem;">
+  <p><strong>Glucose Test Strip Manufacturing Guide</strong></p>
+  <p>Electrochemical Biosensor Technology for In-House Production</p>
+  <p style="margin-top:8px; font-size:0.8rem;">Based on 354 peer-reviewed publications. This document is for educational purposes. All specifications, pricing, and market data are estimates subject to change.</p>
+</div>
+
+</div> <!-- /container -->
+
+<!-- ════════════════ JAVASCRIPT ════════════════ -->
+<script>
+function toggleSection(id) {
+  const el = document.getElementById(id);
+  if (el) el.classList.toggle('open');
+}
+
+function toggleAll(open) {
+  document.querySelectorAll('.section').forEach(s => {
+    if (open) s.classList.add('open');
+    else s.classList.remove('open');
+  });
+}
+
+function filterGlossary() {
+  const query = document.getElementById('glossarySearch').value.toLowerCase();
+  document.querySelectorAll('.glossary-item').forEach(item => {
+    const term = item.querySelector('.term').textContent.toLowerCase();
+    const def = item.querySelector('.def').textContent.toLowerCase();
+    item.style.display = (term.includes(query) || def.includes(query)) ? '' : 'none';
+  });
+}
+</script>
+</body>
+</html>
