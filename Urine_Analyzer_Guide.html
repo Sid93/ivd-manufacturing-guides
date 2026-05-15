@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Urine Dipstick Analyzer &#8211; Manufacturing Guide</title>
+<style>
+:root{
+  --primary:#0097A7;--primary-dark:#00796B;--primary-light:#E0F7FA;
+  --accent:#FF6F00;--accent-light:#FFF8E1;
+  --bg:#F5FAFA;--surface:#FFFFFF;--text:#263238;--gray:#607D8B;
+  --border:#B2DFDB;--success:#2E7D32;--warning:#F57F17;--danger:#C62828;
+  --radius:12px;--shadow:0 2px 12px rgba(0,0,0,.08);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;padding:0}
+a{color:var(--primary-dark);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* HEADER */
+.hero{background:linear-gradient(135deg,var(--primary-dark) 0%,var(--primary) 60%,#26C6DA 100%);color:#fff;padding:48px 24px 40px;text-align:center;position:relative;overflow:hidden}
+.hero::after{content:'';position:absolute;bottom:-40px;left:-10%;width:120%;height:80px;background:var(--bg);border-radius:50% 50% 0 0}
+.hero h1{font-size:clamp(1.6rem,4vw,2.4rem);font-weight:800;margin-bottom:8px;letter-spacing:-.5px}
+.hero .sub{font-size:clamp(.9rem,2vw,1.15rem);opacity:.92;max-width:700px;margin:0 auto}
+
+/* NAV */
+.toc{max-width:900px;margin:-20px auto 28px;padding:0 16px;position:relative;z-index:2}
+.toc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.toc-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:12px 16px;cursor:pointer;transition:.2s;display:flex;align-items:center;gap:10px;font-size:.88rem;font-weight:600;color:var(--primary-dark)}
+.toc-card:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:var(--primary)}
+.toc-card .num{background:var(--primary);color:#fff;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:.78rem;flex-shrink:0}
+
+/* SEARCH */
+.search-wrap{max-width:900px;margin:0 auto 24px;padding:0 16px}
+.search-wrap input{width:100%;padding:14px 20px 14px 48px;border:2px solid var(--border);border-radius:var(--radius);font-size:1rem;background:var(--surface) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='%2390A4AE' viewBox='0 0 24 24'%3E%3Cpath d='M15.5 14h-.79l-.28-.27A6.47 6.47 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'/%3E%3C/svg%3E") 16px center no-repeat;transition:.2s}
+.search-wrap input:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(0,151,167,.15)}
+
+/* SECTIONS */
+.content{max-width:900px;margin:0 auto;padding:0 16px 60px}
+.section{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:18px;overflow:hidden;box-shadow:var(--shadow)}
+.section-header{padding:18px 22px;cursor:pointer;display:flex;align-items:center;gap:14px;transition:.15s;user-select:none}
+.section-header:hover{background:var(--primary-light)}
+.section-header .icon{font-size:1.5rem;flex-shrink:0}
+.section-header h2{font-size:1.08rem;font-weight:700;color:var(--primary-dark);flex:1}
+.section-header .arrow{transition:.3s;font-size:1.2rem;color:var(--gray)}
+.section.open .section-header .arrow{transform:rotate(180deg)}
+.section-body{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.section.open .section-body{max-height:none}
+.section-inner{padding:4px 22px 22px}
+
+/* CONTENT ELEMENTS */
+h3{color:var(--primary-dark);font-size:1rem;margin:20px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--primary-light)}
+h4{color:var(--primary);font-size:.92rem;margin:16px 0 8px}
+p,.list-item{font-size:.9rem;margin-bottom:10px}
+ul,ol{padding-left:22px;margin-bottom:12px}
+li{font-size:.88rem;margin-bottom:5px}
+
+/* TABLES */
+.table-wrap{overflow-x:auto;margin:14px 0;border-radius:8px;border:1px solid var(--border)}
+table{width:100%;border-collapse:collapse;font-size:.84rem}
+th{background:var(--primary);color:#fff;padding:10px 14px;text-align:left;font-weight:600;white-space:nowrap}
+td{padding:9px 14px;border-bottom:1px solid var(--border)}
+tr:nth-child(even){background:var(--primary-light)}
+tr:hover{background:#B2EBF2}
+
+/* CALLOUTS */
+.callout{border-radius:8px;padding:14px 18px;margin:14px 0;font-size:.88rem;display:flex;gap:10px;align-items:flex-start}
+.callout.info{background:#E0F7FA;border-left:4px solid var(--primary)}
+.callout.warn{background:#FFF8E1;border-left:4px solid var(--accent)}
+.callout.tip{background:#E8F5E9;border-left:4px solid var(--success)}
+.callout.danger{background:#FFEBEE;border-left:4px solid var(--danger)}
+.callout .icon{font-size:1.2rem;flex-shrink:0}
+
+/* TOOLTIP */
+.jargon{border-bottom:2px dotted var(--primary);cursor:help;position:relative;font-weight:600;color:var(--primary-dark)}
+.jargon .tip{visibility:hidden;opacity:0;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:#263238;color:#fff;padding:10px 14px;border-radius:8px;font-size:.8rem;font-weight:400;width:280px;z-index:100;transition:.2s;pointer-events:none;line-height:1.5;box-shadow:0 4px 20px rgba(0,0,0,.25)}
+.jargon .tip::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#263238}
+.jargon:hover .tip{visibility:visible;opacity:1}
+
+/* VIDEO GRID */
+.vid-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin:14px 0}
+.vid-card{background:var(--primary-light);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.vid-card .vid-wrap{position:relative;padding-bottom:56.25%;height:0}
+.vid-card iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none;border-radius:10px 10px 0 0}
+.vid-card .vid-info{padding:12px 14px}
+.vid-card .vid-info strong{color:var(--primary-dark);font-size:.9rem}
+.vid-card .vid-info p{font-size:.8rem;color:var(--gray);margin:4px 0 0}
+
+/* COMPARISON CARDS */
+.compare-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin:14px 0}
+.compare-card{background:var(--surface);border:2px solid var(--border);border-radius:var(--radius);padding:18px;text-align:center}
+.compare-card.highlight{border-color:var(--primary);background:var(--primary-light)}
+.compare-card h4{margin-top:0;font-size:1rem}
+.compare-card .price{font-size:1.4rem;font-weight:800;color:var(--primary-dark);margin:8px 0}
+.compare-card ul{text-align:left;list-style:none;padding:0}
+.compare-card li{padding:4px 0;font-size:.84rem;border-bottom:1px solid var(--border)}
+.compare-card li::before{content:"\2713 ";color:var(--success);font-weight:700}
+
+/* SVG DIAGRAMS */
+.diagram-wrap{margin:18px 0;text-align:center}
+.diagram-wrap svg{max-width:100%;height:auto;border-radius:8px}
+
+/* GLOSSARY */
+.glossary-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin:14px 0}
+.glossary-item{background:var(--primary-light);border:1px solid var(--border);border-radius:8px;padding:14px}
+.glossary-item dt{font-weight:700;color:var(--primary-dark);font-size:.9rem;margin-bottom:4px}
+.glossary-item dd{font-size:.82rem;color:var(--text)}
+
+/* TIMELINE */
+.timeline{position:relative;padding-left:30px;margin:14px 0}
+.timeline::before{content:'';position:absolute;left:12px;top:0;bottom:0;width:3px;background:var(--primary);border-radius:2px}
+.timeline-item{position:relative;margin-bottom:18px}
+.timeline-item::before{content:'';position:absolute;left:-24px;top:6px;width:14px;height:14px;background:var(--primary);border:3px solid #fff;border-radius:50%;box-shadow:0 0 0 2px var(--primary)}
+.timeline-item h4{margin:0 0 4px;font-size:.9rem}
+.timeline-item p{font-size:.84rem;color:var(--gray)}
+
+/* FOOTER */
+.footer{background:var(--primary-dark);color:rgba(255,255,255,.85);text-align:center;padding:28px 16px;font-size:.82rem;margin-top:40px}
+.footer a{color:#80DEEA}
+
+/* RESPONSIVE */
+@media(max-width:600px){
+  .hero{padding:32px 16px 28px}
+  .section-header{padding:14px 16px}
+  .section-inner{padding:4px 16px 16px}
+  .toc-grid{grid-template-columns:1fr}
+  .vid-grid{grid-template-columns:1fr}
+}
+
+/* PRINT */
+@media print{
+  .section-body{max-height:none!important}
+  .hero::after{display:none}
+  .search-wrap,.toc{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <h1>&#128300; Urine Dipstick Analyzer</h1>
+  <p class="sub">Complete Manufacturing Guide &#8212; Benchtop Reflectance Photometry System for Levram Life Sciences</p>
+</div>
+
+<!-- TABLE OF CONTENTS -->
+<nav class="toc"><div class="toc-grid">
+  <div class="toc-card" onclick="openSection(0)"><span class="num">1</span>Executive Summary</div>
+  <div class="toc-card" onclick="openSection(1)"><span class="num">2</span>Technology Overview</div>
+  <div class="toc-card" onclick="openSection(2)"><span class="num">3</span>Strip Chemistry</div>
+  <div class="toc-card" onclick="openSection(3)"><span class="num">4</span>Optical &amp; Electronic Design</div>
+  <div class="toc-card" onclick="openSection(4)"><span class="num">5</span>Mechanical Design</div>
+  <div class="toc-card" onclick="openSection(5)"><span class="num">6</span>Bill of Materials</div>
+  <div class="toc-card" onclick="openSection(6)"><span class="num">7</span>Manufacturing Process</div>
+  <div class="toc-card" onclick="openSection(7)"><span class="num">8</span>Calibration &amp; QC</div>
+  <div class="toc-card" onclick="openSection(8)"><span class="num">9</span>Infrastructure</div>
+  <div class="toc-card" onclick="openSection(9)"><span class="num">10</span>Regulatory (CDSCO)</div>
+  <div class="toc-card" onclick="openSection(10)"><span class="num">11</span>Market Analysis</div>
+  <div class="toc-card" onclick="openSection(11)"><span class="num">12</span>Go-to-Market Strategy</div>
+  <div class="toc-card" onclick="openSection(12)"><span class="num">13</span>Cost &amp; Pricing</div>
+  <div class="toc-card" onclick="openSection(13)"><span class="num">14</span>Glossary &amp; References</div>
+</div></nav>
+
+<!-- SEARCH -->
+<div class="search-wrap">
+  <input type="text" id="searchBox" placeholder="Search topics... (e.g. reflectance, STM32, calibration, CDSCO)" oninput="filterSections(this.value)">
+</div>
+
+<div class="content">
+
+<!-- ==================== SECTION 1: EXECUTIVE SUMMARY ==================== -->
+<div class="section open" id="sec-0">
+  <div class="section-header" onclick="toggleSection(this)">
+    <span class="icon">&#127919;</span>
+    <h2>1. Executive Summary</h2>
+    <span class="arrow">&#9660;</span>
+  </div>
+  <div class="section-body"><div class="section-inner">
+
+    <p>This guide covers the complete manufacturing pathway for a <strong>benchtop urine dipstick analyzer</strong> using <span class="jargon">reflectance photometry<span class="tip">A technique that measures the intensity of light reflected from a colored test pad on a dipstick strip. The amount of reflected light is inversely proportional to the analyte concentration.</span></span>. The instrument reads color changes on reagent test strips dipped in urine, converting them into semiquantitative clinical results.</p>
+
+    <div class="callout info"><span class="icon">&#128161;</span><div><strong>Two Models Planned:</strong> A basic <strong>2P Analyzer</strong> (Glucose + Protein) for small clinics, and a full <strong>10P Analyzer</strong> (10 parameters) for hospital laboratories. Both use the same core optical platform.</div></div>
+
+    <h3>Key Specifications at a Glance</h3>
+    <div class="table-wrap"><table>
+      <tr><th>Feature</th><th>2P Analyzer</th><th>10P Analyzer</th></tr>
+      <tr><td>Parameters</td><td>Glucose, Protein</td><td>10 urinalysis parameters</td></tr>
+      <tr><td>Read Time</td><td>&lt; 60 seconds</td><td>&lt; 60 seconds</td></tr>
+      <tr><td>MCU</td><td>STM32F103 (Cortex-M3)</td><td>STM32F407 (Cortex-M4)</td></tr>
+      <tr><td>Display</td><td>16&#215;2 LCD</td><td>3.5&#8221; TFT Color LCD</td></tr>
+      <tr><td>Target COGS</td><td>&#8377;4,200&#8211;5,500</td><td>&#8377;14,500&#8211;18,500</td></tr>
+      <tr><td>Target MRP</td><td>&#8377;24,999</td><td>&#8377;64,999</td></tr>
+      <tr><td>Connectivity</td><td>USB</td><td>USB + Bluetooth + RS232</td></tr>
+    </table></div>
+
+    <div class="callout tip"><span class="icon">&#127793;</span><div><strong>Market Opportunity:</strong> India has 101 million diabetics and CKD affects ~17% of adults. The urinalysis market is growing at 14&#8211;16% CAGR, valued at &#8377;450&#8211;600 crore.</div></div>
+
+    <h3>Watch: Urine Analyzer Overview</h3>
+    <div class="vid-grid">
+      <div class="vid-card">
+        <div class="vid-wrap"><iframe src="https://www.youtube.com/embed/h9KnHL-S3Oo" title="Siemens CLINITEK Status+ Urine Analyzer" allowfullscreen loading="lazy"></iframe></div>
+        <div class="vid-info"><strong>Siemens CLINITEK Status+ Demo</strong><p>See how a commercial benchtop urine analyzer works &#8212; the same category of instrument this guide helps you build.</p></div>
+      </div>
+      <div class="vid-card">
+        <div class="vid-wrap"><iframe src="https://www.youtube.com/embed/6TCIOB1vUvI" title="How to Perform Urinalysis Using Clinitek" allowfullscreen loading="lazy"></iframe></div>
+        <div class="vid-info"><strong>Performing Urinalysis on Clinitek</strong><p>Step-by-step operation of an automated urine analyzer in a clinical lab setting.</p></div>
+      </div>
+    </div>
+
+  </div></div>
+</div>
+
+<!-- ==================== SECTION 2: TECHNOLOGY OVERVIEW ==================== -->
+<div class="section" id="sec-1">
+  <div class="section-header" onclick="toggleSection(this)">
+    <span class="icon">&#128300;</span>
+    <h2>2. Technology Overview &amp; Principles</h2>
+    <span class="arrow">&#9660;</span>
+  </div>
+  <div class="section-body"><div class="section-inner">
+
+    <h3>How Reflectance Photometry Works</h3>
+    <p>When urine is applied to a reagent strip pad, a chemical reaction produces a color change. The analyzer shines <span class="jargon">multispectral LED light<span class="tip">LEDs at multiple wavelengths (Green 525nm, Red 660nm, Blue 450nm, IR 850nm) illuminate the strip pad. Different analytes absorb different wavelengths, enabling precise identification.</span></span> onto each pad and measures the reflected light intensity using a <span class="jargon">photodetector<span class="tip">A semiconductor device (photodiode) that converts light into electrical current. The current is proportional to the intensity of reflected light hitting the sensor.</span></span>.</p>
+
+    <div class="callout info"><span class="icon">&#128218;</span><div><strong>Kubelka-Munk Equation:</strong> The theoretical foundation relating reflectance (R) to concentration. K/S = (1&#8211;R)&#178; / 2R, where K = absorption coefficient and S = scattering coefficient. Higher analyte concentration &#8594; more absorption &#8594; lower reflectance.</div></div>
+
+    <h3>Optical Architecture</h3>
+
+    <!-- SVG Diagram: Optical Path -->
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 700 280" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="ah" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#0097A7"/></marker>
+          <linearGradient id="lg1" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#00BCD4"/><stop offset="100%" style="stop-color:#0097A7"/></linearGradient>
+        </defs>
+        <rect x="0" y="0" width="700" height="280" rx="12" fill="#E0F7FA"/>
+        <!-- LED Array -->
+        <rect x="30" y="60" width="110" height="100" rx="10" fill="#0097A7" opacity=".9"/>
+        <text x="85" y="100" fill="#fff" font-size="13" font-weight="700" text-anchor="middle">Multispectral</text>
+        <text x="85" y="118" fill="#fff" font-size="13" font-weight="700" text-anchor="middle">LED Array</text>
+        <text x="85" y="140" fill="#B2EBF2" font-size="10" text-anchor="middle">525/660/450/850nm</text>
+        <!-- Arrow to fiber -->
+        <line x1="140" y1="110" x2="195" y2="110" stroke="#0097A7" stroke-width="3" marker-end="url(#ah)"/>
+        <!-- Fiber bundle -->
+        <rect x="200" y="75" width="90" height="70" rx="8" fill="#26C6DA"/>
+        <text x="245" y="107" fill="#fff" font-size="12" font-weight="600" text-anchor="middle">Optical Fiber</text>
+        <text x="245" y="122" fill="#fff" font-size="12" font-weight="600" text-anchor="middle">Bundle</text>
+        <!-- Arrow to strip -->
+        <line x1="290" y1="110" x2="345" y2="110" stroke="#0097A7" stroke-width="3" marker-end="url(#ah)"/>
+        <!-- Strip pad -->
+        <rect x="350" y="70" width="100" height="80" rx="8" fill="#FF6F00"/>
+        <text x="400" y="105" fill="#fff" font-size="13" font-weight="700" text-anchor="middle">Reagent</text>
+        <text x="400" y="123" fill="#fff" font-size="13" font-weight="700" text-anchor="middle">Strip Pad</text>
+        <!-- Reflected light arrow -->
+        <line x1="400" y1="150" x2="400" y2="195" stroke="#FF6F00" stroke-width="3" marker-end="url(#ah)"/>
+        <text x="430" y="180" fill="#FF6F00" font-size="10" font-weight="600">Reflected Light</text>
+        <!-- Photodetector -->
+        <rect x="350" y="200" width="100" height="50" rx="8" fill="#00796B"/>
+        <text x="400" y="230" fill="#fff" font-size="12" font-weight="700" text-anchor="middle">Photodetector</text>
+        <!-- Arrow to TIA -->
+        <line x1="450" y1="225" x2="505" y2="225" stroke="#00796B" stroke-width="3" marker-end="url(#ah)"/>
+        <!-- TIA -->
+        <rect x="510" y="200" width="80" height="50" rx="8" fill="#0097A7"/>
+        <text x="550" y="222" fill="#fff" font-size="11" font-weight="600" text-anchor="middle">TIA +</text>
+        <text x="550" y="237" fill="#fff" font-size="11" font-weight="600" text-anchor="middle">ADC</text>
+        <!-- Arrow to MCU -->
+        <line x1="590" y1="225" x2="620" y2="225" stroke="#0097A7" stroke-width="3" marker-end="url(#ah)"/>
+        <!-- MCU -->
+        <rect x="625" y="195" width="60" height="60" rx="8" fill="#263238"/>
+        <text x="655" y="222" fill="#26C6DA" font-size="12" font-weight="700" text-anchor="middle">STM32</text>
+        <text x="655" y="238" fill="#80DEEA" font-size="10" text-anchor="middle">MCU</text>
+        <!-- Title -->
+        <text x="350" y="30" fill="#00796B" font-size="16" font-weight="800" text-anchor="middle">Optical Signal Path</text>
+      </svg>
+    </div>
+
+    <h3>Signal Processing Pipeline</h3>
+    <ol>
+      <li><strong>Dark Subtraction:</strong> Measure with LEDs off to get baseline noise; subtract from all readings</li>
+      <li><strong>Ratiometric Measurement:</strong> Calculate R = (Signal &#8211; Dark) / (Reference &#8211; Dark) to cancel LED drift</li>
+      <li><strong>Temperature Compensation:</strong> Apply correction: Corrected_R = Measured_R &#215; (1 + &#945; &#215; (T &#8211; T_ref))</li>
+      <li><strong>Calibration Lookup:</strong> Map reflectance to concentration via polynomial curve stored in flash</li>
+      <li><strong>Classification:</strong> Convert continuous values to semiquantitative clinical categories (Negative, Trace, 1+, 2+, 3+)</li>
+    </ol>
+
+    <h3>Watch: Optical Measurement &amp; Signal Processing</h3>
+    <div class="vid-grid">
+      <div class="vid-card">
+        <div class="vid-wrap"><iframe src="https://www.youtube.com/embed/3YHYKFyPdvA" title="How to Make a Reflectance Measurement" allowfullscreen loading="lazy"></iframe></div>
+        <div class="vid-info"><strong>How to Make a Reflectance Measurement</strong><p>Understand the fundamentals of reflectance measurement systems used in analytical instruments.</p></div>
+      </div>
+      <div class="vid-card">
+        <div class="vid-wrap"><iframe src="https://www.youtube.com/embed/Q-AZpagmtCw" title="How to Design Transimpedance Amplifier Circuits" allowfullscreen loading="lazy"></iframe></div>
+        <div class="vid-info"><strong>Transimpedance Amplifier Design (TI)</strong><p>The TIA converts photodetector current to voltage &#8212; a critical front-end circuit in the urine analyzer.</p></div>
+      </div>
+    </div>
+
+  </div></div>
+</div>
+
+<!-- ==================== SECTION 3: STRIP CHEMISTRY ==================== -->
+<div class="section" id="sec-2">
+  <div class="section-header" onclick="toggleSection(this)">
+    <span class="icon">&#129514;</span>
+    <h2>3. Strip Chemistry &amp; Parameters</h2>
+    <span class="arrow">&#9660;</span>
+  </div>
+  <div class="section-body"><div class="section-inner">
+
+    <p>Each reagent strip pad contains specific chemicals that react with urinary analytes to produce color changes. The analyzer reads these color changes at precise time intervals (typically 60 seconds after dipping).</p>
+
+    <h3>10-Parameter Strip Chemistry</h3>
+    <div class="table-wrap"><table>
+      <tr><th>Parameter</th><th>Reagent Chemistry</th><th>Color Change</th><th>Clinical Significance</th></tr>
+      <tr><td><strong>Glucose</strong></td><td>Glucose oxidase / Peroxidase</td><td>Yellow &#8594; Green-Brown</td><td>Diabetes screening</td></tr>
+      <tr><td><strong>Protein (Albumin)</strong></td><td>Tetrabromophenol blue (pH indicator)</td><td>Yellow &#8594; Green-Blue</td><td>Kidney disease, CKD</td></tr>
+      <tr><td><strong>pH</strong></td><td>Methyl red + Bromothymol blue</td><td>Orange &#8594; Blue</td><td>Acid-base status, UTI</td></tr>
+      <tr><td><strong>Specific Gravity</strong></td><td>Polyelectrolyte + Bromothymol blue</td><td>Blue &#8594; Yellow-Green</td><td>Hydration, kidney concentration</td></tr>
+      <tr><td><strong>Ketones</strong></td><td>Sodium nitroprusside (Legal test)</td><td>Buff &#8594; Maroon</td><td>Diabetic ketoacidosis, fasting</td></tr>
+      <tr><td><strong>Bilirubin</strong></td><td>Diazonium salt coupling</td><td>Tan &#8594; Pink-Violet</td><td>Liver disease, bile duct obstruction</td></tr>
+      <tr><td><strong>Urobilinogen</strong></td><td>Ehrlich aldehyde reaction</td><td>Light pink &#8594; Dark pink</td><td>Liver function, hemolytic anemia</td></tr>
+      <tr><td><strong>Blood/Hemoglobin</strong></td><td>Pseudoperoxidase activity</td><td>Yellow &#8594; Green-Dark blue</td><td>Kidney stones, infection, cancer</td></tr>
+      <tr><td><strong>Nitrite</strong></td><td>Griess reaction (Arsanilic acid)</td><td>White &#8594; Pink</td><td>Bacterial UTI</td></tr>
+      <tr><td><strong>Leukocytes</strong></td><td>Esterase hydrolysis &#8594; Diazo coupling</td><td>Off-white &#8594; Violet</td><td>Inflammation, UTI</td></tr>
+    </table></div>
+
+    <div class="callout warn"><span class="icon">&#9888;&#65039;</span><div><strong>2P Model:</strong> Uses only the first two pads (Glucose + Protein). This is sufficient for basic diabetes and CKD screening in small clinics and PHCs.</div></div>
+
+    <h3>Strip Procurement Strategy</h3>
+    <p><strong>Phase 1 (Launch):</strong> Source OEM strips from established Chinese manufacturers (e.g., Changchun Wancheng, Dirui) at &#8377;3.50&#8211;5.00/strip. <strong>Phase 2 (Scale-up):</strong> Transition to in-house strip manufacturing for cost reduction to &#8377;2.00&#8211;3.00/strip and supply chain control.</p>
+
+    <h3>Watch: Understanding Urine Test Strips</h3>
+    <div class="vid-grid">
+      <div class="vid-card">
+        <div class="vid-wrap"><iframe src="https://www.youtube.com/embed/TCOyzgOxcPg" title="How to Read a Urine Testing Strip 10 Parameters" allowfullscreen loading="lazy"></iframe></div>
+        <div class="vid-info"><strong>Reading a 10-Parameter Urine Strip</strong><p>Practical demonstration of reading all 10 parameters on a urinalysis test strip.</p></div>
+      </div>
+      <div class="vid-card">
+        <div class="vid-wrap"><iframe src="https://www.youtube.com/embed/Kg-8D7_3R3w" title="Urinalysis Dipstick Test OSCE Guide" allowfullscreen loading="lazy"></iframe></div>
+        <div class="vid-info"><strong>Urinalysis Dipstick Test &#8211; OSCE Guide</strong><p>Clinical guide to performing and interpreting urine dipstick tests in practice.</p></div>
+      </div>
+      <div class="vid-card">
+        <div class="vid-wrap"><iframe src="https://www.youtube.com/embed/vt7cxyY45nQ" title="How To Read Urine Test Strips" allowfullscreen loading="lazy"></iframe></div>
+        <div class="vid-info"><strong>How To Read Urine Test Strips</strong><p>Quick visual guide covering all common urinalysis strip parameters and their interpretation.</p></div>
+      </div>
+    </div>
+
+  </div></div>
+</div>
+
+<!-- ==================== SECTION 4: OPTICAL & ELECTRONIC DESIGN ==================== -->
+<div class="section" id="sec-3">
+  <div class="section-header" onclick="toggleSection(this)">
+    <span class="icon">&#128161;</span>
+    <h2>4. Optical &amp; Electronic System Design</h2>
+    <span class="arrow">&#9660;</span>
+  </div>
+  <div class="section-body"><div class="section-inner">
+
+    <h3>LED Selection &amp; Wavelengths</h3>
+    <div class="table-wrap"><table>
+      <tr><th>Wavelength</th><th>Color</th><th>Primary Use</th><th>LED Part (Example)</th></tr>
+      <tr><td>525 nm</td><td>Green</td><td>Glucose, Protein, Blood</td><td>Kingbright APHG1005 or Cree C503B</td></tr>
+      <tr><td>660 nm</td><td>Red</td><td>pH, Bilirubin, Urobilinogen</td><td>Vishay VLCS5131 or Cree C503B-RAN</td></tr>
+      <tr><td>450 nm</td><td>Blue</td><td>Nitrite, Leukocytes, Ketones</td><td>Kingbright APHB1005 or Cree C503B-BAN</td></tr>
+      <tr><td>850 nm</td><td>IR</td><td>Reference channel &amp; Sp. Gravity</td><td>Vishay VSLY5850 or Everlight IR333</td></tr>
+    </table></div>
+
+    <div class="callout info"><span class="icon">&#128161;</span><div><strong>Why Multispectral?</strong> Different analyte-reagent reactions produce different colors. Using 4 wavelengths allows the system to distinguish between analytes and improves accuracy through ratiometric measurement.</div></div>
+
+    <h3>Electronic System Architecture</h3>
+
+    <!-- SVG: Electronics Block Diagram -->
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 700 320" xmlns="http://www.w3.org/2000/svg">
+        <defs><marker id="ah2" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#0097A7"/></marker></defs>
+        <rect x="0" y="0" width="700" height="320" rx="12" fill="#E0F7FA"/>
+        <text x="350" y="28" fill="#00796B" font-size="15" font-weight="800" text-anchor="middle">Electronics Block Diagram</text>
+        <!-- Power Supply -->
+        <rect x="20" y="50" width="100" height="55" rx="8" fill="#FF6F00"/>
+        <text x="70" y="75" fill="#fff" font-size="11" font-weight="700" text-anchor="middle">SMPS</text>
+        <text x="70" y="90" fill="#FFF8E1" font-size="9" text-anchor="middle">12V/5V/3.3V</text>
+        <!-- MCU -->
+        <rect x="280" y="45" width="140" height="65" rx="8" fill="#263238"/>
+        <text x="350" y="72" fill="#26C6DA" font-size="13" font-weight="700" text-anchor="middle">STM32F407</text>
+        <text x="350" y="88" fill="#80DEEA" font-size="10" text-anchor="middle">Cortex-M4 168MHz</text>
+        <text x="350" y="100" fill="#546E7A" font-size="9" text-anchor="middle">(F103 for 2P model)</text>
+        <!-- LED Driver -->
+        <rect x="20" y="140" width="100" height="50" rx="8" fill="#0097A7"/>
+        <text x="70" y="163" fill="#fff" font-size="11" font-weight="600" text-anchor="middle">LED Driver</text>
+        <text x="70" y="177" fill="#B2EBF2" font-size="9" text-anchor="middle">PWM via GPIO</text>
+        <!-- Photodetector + TIA -->
+        <rect x="20" y="220" width="100" height="50" rx="8" fill="#00796B"/>
+        <text x="70" y="242" fill="#fff" font-size="10" font-weight="600" text-anchor="middle">Photodiode</text>
+        <text x="70" y="256" fill="#B2DFDB" font-size="9" text-anchor="middle">+ TIA (OPA380)</text>
+        <!-- ADC -->
+        <rect x="160" y="220" width="80" height="50" rx="8" fill="#0097A7"/>
+        <text x="200" y="242" fill="#fff" font-size="11" font-weight="600" text-anchor="middle">ADS1115</text>
+        <text x="200" y="256" fill="#B2EBF2" font-size="9" text-anchor="middle">16-bit ADC</text>
+        <!-- Display -->
+        <rect x="490" y="45" width="100" height="55" rx="8" fill="#26C6DA"/>
+        <text x="540" y="70" fill="#fff" font-size="11" font-weight="600" text-anchor="middle">Display</text>
+        <text x="540" y="85" fill="#E0F7FA" font-size="9" text-anchor="middle">3.5&#8221; TFT / LCD</text>
+        <!-- Connectivity -->
+        <rect x="490" y="140" width="100" height="50" rx="8" fill="#607D8B"/>
+        <text x="540" y="162" fill="#fff" font-size="10" font-weight="600" text-anchor="middle">Connectivity</text>
+        <text x="540" y="176" fill="#CFD8DC" font-size="9" text-anchor="middle">USB/BT/RS232</text>
+        <!-- Storage -->
+        <rect x="490" y="220" width="100" height="50" rx="8" fill="#607D8B"/>
+        <text x="540" y="242" fill="#fff" font-size="10" font-weight="600" text-anchor="middle">Storage</text>
+        <text x="540" y="256" fill="#CFD8DC" font-size="9" text-anchor="middle">SD Card + Flash</text>
+        <!-- Temp Sensor -->
+        <rect x="280" y="140" width="140" height="45" rx="8" fill="#0097A7" opacity=".8"/>
+        <text x="350" y="164" fill="#fff" font-size="10" font-weight="600" text-anchor="middle">Temp Sensor (DS18B20)</text>
+        <text x="350" y="177" fill="#B2EBF2" font-size="9" text-anchor="middle">Temperature Compensation</text>
+        <!-- Arrows -->
+        <line x1="120" y1="77" x2="278" y2="77" stroke="#0097A7" stroke-width="2" marker-end="url(#ah2)"/>
+        <line x1="120" y1="165" x2="278" y2="165" stroke="#0097A7" stroke-width="2" marker-end="url(#ah2)"/>
+        <line x1="120" y1="245" x2="158" y2="245" stroke="#0097A7" stroke-width="2" marker-end="url(#ah2)"/>
+        <line x1="240" y1="245" x2="278" y2="245" stroke="#0097A7" stroke-width="2" marker-end="url(#ah2)"/>
+        <line x1="350" y1="185" x2="350" y2="218" stroke="#0097A7" stroke-width="2" marker-end="url(#ah2)" stroke-dasharray="4"/>
+        <line x1="420" y1="77" x2="488" y2="77" stroke="#0097A7" stroke-width="2" marker-end="url(#ah2)"/>
+        <line x1="420" y1="165" x2="488" y2="165" stroke="#0097A7" stroke-width="2" marker-end="url(#ah2)"/>
+        <line x1="420" y1="245" x2="488" y2="245" stroke="#0097A7" stroke-width="2" marker-end="url(#ah2)"/>
+        <!-- Labels -->
+        <text x="200" y="67" fill="#607D8B" font-size="8">Power</text>
+        <text x="200" y="157" fill="#607D8B" font-size="8">GPIO/PWM</text>
+        <text x="300" y="237" fill="#607D8B" font-size="8">I&#178;C</text>
+        <text x="455" y="67" fill="#607D8B" font-size="8">SPI/Parallel</text>
+        <text x="455" y="157" fill="#607D8B" font-size="8">UART</text>
+        <text x="455" y="237" fill="#607D8B" font-size="8">SPI/SDIO</text>
+        <!-- Bottom note -->
+        <text x="350" y="305" fill="#607D8B" font-size="10" font-style="italic" text-anchor="middle">Optical front-end (left) &#8594; Digital processing (center) &#8594; Output interfaces (right)</text>
+      </svg>
+    </div>
+
+    <h3>Key Component Details</h3>
+    <ul>
+      <li><strong>Photodetector:</strong> Silicon photodiode (e.g., BPW34 or Hamamatsu S1223-01) with spectral response covering 400&#8211;1000 nm</li>
+      <li><strong>Transimpedance Amplifier:</strong> OPA380 (TI) &#8212; converts photodiode nanoamp-level current to measurable voltage</li>
+      <li><strong>ADC:</strong> ADS1115 (TI) &#8212; 16-bit, 4-channel, I&#178;C interface, 860 SPS. Provides &#177;0.01% accuracy</li>
+      <li><strong>Optical Fiber Bundle:</strong> Bifurcated bundle &#8212; one leg delivers LED light, other leg collects reflected light. Core diameter ~1mm, NA &#8776; 0.5</li>
+      <li><strong>Temperature Sensor:</strong> DS18B20 (1-Wire) for real-time temperature compensation</li>
+    </ul>
+
+    <h3>Watch: PCB Design &amp; STM32 Development</h3>
+    <div class="vid-grid">
+      <div class="vid-card">
+        <div class="vid-wrap"><iframe src="https://www.youtube.com/embed/aVUqaB0IMh4" title="KiCad 6 STM32 PCB Design - Phil's Lab" allowfullscreen loading="lazy"></iframe></div>
+        <div class="vid-info"><strong>KiCad STM32 PCB Design &#8211; Phil&#8217;s Lab</strong><p>Complete PCB design walkthrough using KiCad for an STM32-based board &#8212; the same MCU family used in this analyzer.</p></div>
+      </div>
+      <div class="vid-card">
+        <div class="vid-wrap"><iframe src="https://www.youtube.com/embed/dRKSs3wms4U" title="STM32 Board Bring-Up - Phil's Lab" allowfullscreen loading="lazy"></iframe></div>
+        <div class="vid-info"><strong>STM32 Board Bring-Up (Firmware &amp; Test)</strong><p>Firmware bring-up and testing of a custom STM32 PCB &#8212; essential for the analyzer&#8217;s development phase.</p></div>
+      </div>
+    </div>
+
+  </div></div>
+</div>
+
+<!-- ==================== SECTION 5: MECHANICAL DESIGN ==================== -->
+<div class="section" id="sec-4">
+  <div class="section-header" onclick="toggleSection(this)">
+    <span class="icon">&#9881;&#65039;</span>
+    <h2>5. Mechanical Design &amp; Housing</h2>
+    <span class="arrow">&#9660;</span>
+  </div>
+  <div class="section-body"><div class="section-inner">
+
+    <h3>Housing Specifications</h3>
+    <div class="table-wrap"><table>
+      <tr><th>Feature</th><th>2P Model</th><th>10P Model</th></tr>
+      <tr><td>Material</td><td>ABS plastic, injection molded</td><td>ABS plastic, injection molded</td></tr>
+      <tr><td>Dimensions</td><td>~200 &#215; 120 &#215; 80 mm</td><td>~280 &#215; 180 &#215; 100 mm</td></tr>
+      <tr><td>Weight</td><td>~500 g</td><td>~1.2 kg</td></tr>
+      <tr><td>IP Rating</td><td>IP21 (drip-proof)</td><td>IP21 (drip-proof)</td></tr>
+      <tr><td>Color</td><td>Medical white/gray</td><td>Medical white/gray</td></tr>
+    </table></div>
+
+    <h3>Critical Mechanical Features</h3>
+    <ul>
+      <li><strong>Strip Insertion Channel:</strong> Precision-molded guide rail ensures consistent strip positioning relative to the optical head. Alignment tolerance: &#177;0.2 mm</li>
+      <li><strong>Optical Head Assembly:</strong> CNC-machined aluminum block holds the fiber bundle, LEDs, and photodetector in a fixed, light-tight configuration</li>
+      <li><strong>Light Seal:</strong> Critical to prevent ambient light interference. Black anodized interior surfaces + silicone gaskets around optical window</li>
+      <li><strong>Thermal Management:</strong> Passive cooling with ventilation grilles; temperature sensor monitors internal environment</li>
+      <li><strong>Strip Detection Sensor:</strong> IR proximity sensor at the channel entrance detects strip insertion and triggers the measurement sequence</li>
+    </ul>
+
+    <div class="callout tip"><span class="icon">&#128736;&#65039;</span><div><strong>Prototyping Tip:</strong> Use FDM 3D printing (Creality Ender 3) for initial housing prototypes at &#8377;15,000&#8211;25,000. Transition to injection molding only after design freeze. Tooling cost: &#8377;1.5&#8211;3 lakh per mold.</div></div>
+
+  </div></div>
+</div>
+
+<!-- ==================== SECTION 6: BOM ==================== -->
+<div class="section" id="sec-5">
+  <div class="section-header" onclick="toggleSection(this)">
+    <span class="icon">&#128230;</span>
+    <h2>6. Bill of Materials &amp; COGS</h2>
+    <span class="arrow">&#9660;</span>
+  </div>
+  <div class="section-body"><div class="section-inner">
+
+    <h3>2P Analyzer BOM Summary</h3>
+    <div class="table-wrap"><table>
+      <tr><th>Category</th><th>Key Components</th><th>Est. Cost (INR)</th></tr>
+      <tr><td>PCB + Electronics</td><td>STM32F103, ADS1115, OPA380, passives</td><td>&#8377;1,200&#8211;1,800</td></tr>
+      <tr><td>Optical Module</td><td>2 LEDs, photodiode, fiber bundle</td><td>&#8377;600&#8211;1,000</td></tr>
+      <tr><td>Display</td><td>16&#215;2 character LCD</td><td>&#8377;150&#8211;300</td></tr>
+      <tr><td>Housing</td><td>ABS injection molded (2 parts)</td><td>&#8377;400&#8211;700</td></tr>
+      <tr><td>Power Supply</td><td>12V SMPS adapter + regulators</td><td>&#8377;250&#8211;400</td></tr>
+      <tr><td>Connectors &amp; Misc</td><td>USB, buttons, cables, fasteners</td><td>&#8377;300&#8211;500</td></tr>
+      <tr style="font-weight:700;background:#B2EBF2"><td>Total COGS (100 units)</td><td></td><td>~&#8377;5,500</td></tr>
+      <tr style="font-weight:700;background:#B2EBF2"><td>Total COGS (1,000 units)</td><td></td><td>~&#8377;4,200</td></tr>
+    </table></div>
+
+    <h3>10P Analyzer BOM Summary</h3>
+    <div class="table-wrap"><table>
+      <tr><th>Category</th><th>Key Components</th><th>Est. Cost (INR)</th></tr>
+      <tr><td>PCB + Electronics</td><td>STM32F407, ADS1115, OPA380, BT module</td><td>&#8377;3,500&#8211;5,000</td></tr>
+      <tr><td>Optical Module</td><td>4 LEDs, photodiode, bifurcated fiber</td><td>&#8377;2,000&#8211;3,500</td></tr>
+      <tr><td>Display</td><td>3.5&#8221; TFT color LCD + touch</td><td>&#8377;800&#8211;1,500</td></tr>
+      <tr><td>Housing</td><td>ABS injection molded (multi-part)</td><td>&#8377;600&#8211;1,000</td></tr>
+      <tr><td>Power + Connectivity</td><td>SMPS, USB, Bluetooth, RS232</td><td>&#8377;800&#8211;1,200</td></tr>
+      <tr><td>Misc</td><td>SD card, cables, thermal printer port</td><td>&#8377;500&#8211;800</td></tr>
+      <tr style="font-weight:700;background:#B2EBF2"><td>Total COGS (100 units)</td><td></td><td>~&#8377;18,500</td></tr>
+      <tr style="font-weight:700;background:#B2EBF2"><td>Total COGS (1,000 units)</td><td></td><td>~&#8377;14,500</td></tr>
+    </table></div>
+
+    <div class="callout info"><span class="icon">&#128200;</span><div><strong>Scale Economics:</strong> Moving from 100 to 1,000 units reduces COGS by ~24% (2P) and ~22% (10P) through volume pricing on PCBs, injection mold amortization, and bulk component procurement.</div></div>
+
+  </div></div>
+</div>
+
+<!-- ==================== SECTION 7: MANUFACTURING PROCESS ==================== -->
+<div class="section" id="sec-6">
+  <div class="section-header" onclick="toggleSection(this)">
+    <span class="icon">&#127981;</span>
+    <h2>7. Manufacturing Process</h2>
+    <span class="arrow">&#9660;</span>
+  </div>
+  <div class="section-body"><div class="section-inner">
+
+    <h3>6-Phase Manufacturing Flow</h3>
+    <div class="timeline">
+      <div class="timeline-item">
+        <h4>Phase 1: PCB Fabrication &amp; Assembly</h4>
+        <p>Order 2-layer (2P) or 4-layer (10P) PCBs from local fabricators. SMD components placed via pick-and-place or hand soldering. Reflow solder in oven. ICT (In-Circuit Test) for shorts/opens.</p>
+      </div>
+      <div class="timeline-item">
+        <h4>Phase 2: Optical Module Assembly</h4>
+        <p>Mount LEDs on small PCB with precise alignment jig. Polish fiber bundle ends to optical finish. Assemble into CNC-machined aluminum optical head. Characterize each LED/photodiode pair.</p>
+      </div>
+      <div class="timeline-item">
+        <h4>Phase 3: Mechanical Assembly</h4>
+        <p>Install strip channel guide with alignment pins. Mount PCB to housing with M3 standoffs. Route cables with ties. Install display, SMPS, front panel buttons. Light-leak inspection in darkened room.</p>
+      </div>
+      <div class="timeline-item">
+        <h4>Phase 4: Firmware Development &amp; Loading</h4>
+        <p>Flash STM32 firmware via ST-Link V2 programmer (&#8377;300&#8211;600). Modules: init, LED driver, ADC sampling, optical processing, calibration, display, communication, storage, self-test.</p>
+      </div>
+      <div class="timeline-item">
+        <h4>Phase 5: Calibration &amp; Validation</h4>
+        <p>White reference calibration, dark reference, multilevel analyte standards, strip lot calibration, temperature compensation. See Section 8 for detailed protocol.</p>
+      </div>
+      <div class="timeline-item">
+        <h4>Phase 6: Final QC &amp; Packaging</h4>
+        <p>Full self-test routine. Test with 3 control samples (Neg, Low, High). Verify all parameters. Record serial/lot/calibration data. Apply CE/BIS labels. Package with accessories.</p>
+      </div>
+    </div>
+
+    <h3>Firmware Module Architecture</h3>
+    <div class="table-wrap"><table>
+      <tr><th>Module</th><th>File</th><th>Function</th></tr>
+      <tr><td>Main</td><td>main.c</td><td>Program entry, task scheduler</td></tr>
+      <tr><td>Hardware Init</td><td>init.c</td><td>Clock, GPIO, peripheral initialization</td></tr>
+      <tr><td>LED Control</td><td>led_control.c</td><td>PWM-based LED intensity control</td></tr>
+      <tr><td>ADC Driver</td><td>adc_driver.c</td><td>ADS1115 sampling, averaging, DMA</td></tr>
+      <tr><td>Optical Processing</td><td>optical.c</td><td>Dark subtraction, ratiometric calculation</td></tr>
+      <tr><td>Temperature</td><td>temp_comp.c</td><td>DS18B20 reading, compensation coefficients</td></tr>
+      <tr><td>Calibration</td><td>calibration.c</td><td>Polynomial curve storage &amp; lookup</td></tr>
+      <tr><td>Classification</td><td>classify.c</td><td>Concentration &#8594; clinical category mapping</td></tr>
+      <tr><td>Display</td><td>display.c</td><td>LCD/TFT driver, UI state machine</td></tr>
+      <tr><td>Communication</td><td>comm.c</td><td>USB, Bluetooth, RS232 protocols</td></tr>
+      <tr><td>Storage</td><td>storage.c</td><td>SD card logging, result history</td></tr>
+      <tr><td>Self-Test</td><td>selftest.c</td><td>Startup diagnostics, error detection</td></tr>
+    </table></div>
+
+    <h3>Watch: Embedded Development &amp; Firmware</h3>
+    <div class="vid-grid">
+      <div class="vid-card">
+        <div class="vid-wrap"><iframe src="https://www.youtube.com/embed/2rKaz3DnTsw" title="How Professionals Start Embedded Systems with STM32" allowfullscreen loading="lazy"></iframe></div>
+        <div class="vid-info"><strong>Professional STM32 Setup Guide</strong><p>Step-by-step STM32 development environment setup used by embedded professionals.</p></div>
+      </div>
+      <div class="vid-card">
+        <div class="vid-wrap"><iframe src="https://www.youtube.com/embed/qouKhFiJc9o" title="Flashing Firmware in Embedded Systems" allowfullscreen loading="lazy"></iframe></div>
+        <div class="vid-info"><strong>Flashing Firmware in Embedded Systems</strong><p>Practical guide to firmware flashing across microcontroller platforms including STM32.</p></div>
+      </div>
+    </div>
+
+  </div></div>
+</div>
+
+<!-- ==================== SECTION 8: CALIBRATION & QC ==================== -->
+<div class="section" id="sec-7">
+  <div class="section-header" onclick="toggleSection(this)">
+    <span class="icon">&#9989;</span>
+    <h2>8. Calibration &amp; Quality Control</h2>
+    <span class="arrow">&#9660;</span>
+  </div>
+  <div class="section-body"><div class="section-inner">
+
+    <h3>Calibration Philosophy</h3>
+    <p>Calibration maps the raw reflectance signal (R) to semiquantitative results. It must account for four key variation sources:</p>
+    <ol>
+      <li><strong>Lot-to-lot strip variation</strong> &#8212; different reagent batches absorb differently</li>
+      <li><strong>Instrument-to-instrument optical variation</strong> &#8212; LED intensity, fiber transmission differences</li>
+      <li><strong>Temperature effects</strong> &#8212; reaction rates change with temperature</li>
+      <li><strong>Aging effects</strong> &#8212; LED intensity drifts over time</li>
+    </ol>
+
+    <h3>Factory Calibration Protocol (5 Steps)</h3>
+    <div class="timeline">
+      <div class="timeline-item">
+        <h4>Step 1: White Reference Calibration</h4>
+        <p>Measure reflectance of a NIST-traceable white ceramic tile (R = 100%). Store as factory baseline in MCU flash for all channels.</p>
+      </div>
+      <div class="timeline-item">
+        <h4>Step 2: Dark Reference</h4>
+        <p>Measure photodetector output with all LEDs off. Store as dark offset; subtract from all subsequent measurements.</p>
+      </div>
+      <div class="timeline-item">
+        <h4>Step 3: Multilevel Calibration with Aqueous Standards</h4>
+        <p>Prepare 5&#8211;7 concentration levels per analyte using certified reference materials. Measure reflectance at each level. Fit polynomial: R = f(concentration). Store coefficients in flash.</p>
+      </div>
+      <div class="timeline-item">
+        <h4>Step 4: Strip Lot Calibration</h4>
+        <p>Each strip lot has a calibration code (on bottle). Operator enters lot code; instrument loads appropriate offset. Compensates for inter-lot reagent variation.</p>
+      </div>
+      <div class="timeline-item">
+        <h4>Step 5: Temperature Compensation</h4>
+        <p>Measure at 15&#176;C, 25&#176;C, 35&#176;C. Derive linear correction coefficients per analyte: Corrected_R = Measured_R &#215; (1 + &#945; &#215; (T &#8211; T_ref))</p>
+      </div>
+    </div>
+
+    <h3>Quality Control Program</h3>
+    <div class="table-wrap"><table>
+      <tr><th>QC Level</th><th>Frequency</th><th>Method</th><th>Pass Criteria</th></tr>
+      <tr><td>Daily QC</td><td>Every day of use</td><td>Negative + Positive control strips</td><td>All parameters within &#177;1 grade</td></tr>
+      <tr><td>Lot-to-Lot</td><td>Each new strip lot</td><td>Run 3 controls from new lot</td><td>CV &lt; 10% vs. previous lot</td></tr>
+      <tr><td>Linearity</td><td>Monthly</td><td>5-point dilution series (glucose, protein)</td><td>R&#178; &gt; 0.99</td></tr>
+      <tr><td>Precision</td><td>Weekly</td><td>Repeat 10&#215; on same control</td><td>CV &lt; 5%</td></tr>
+      <tr><td>Accuracy</td><td>Quarterly</td><td>Compare vs. reference lab (Cobas/Clinitek)</td><td>&#8805;90% agreement</td></tr>
+      <tr><td>Instrument QC</td><td>Annual</td><td>Full factory recalibration</td><td>Per manufacturer specs</td></tr>
+    </table></div>
+
+    <h3>Analytical Performance Targets</h3>
+    <div class="table-wrap"><table>
+      <tr><th>Parameter</th><th>Sensitivity</th><th>Specificity</th><th>Precision (CV)</th></tr>
+      <tr><td>Glucose</td><td>&#8805;95%</td><td>&#8805;90%</td><td>&lt;8%</td></tr>
+      <tr><td>Protein</td><td>&#8805;90%</td><td>&#8805;85%</td><td>&lt;10%</td></tr>
+      <tr><td>Blood</td><td>&#8805;95%</td><td>&#8805;88%</td><td>&lt;8%</td></tr>
+      <tr><td>Nitrite</td><td>&#8805;90%</td><td>&#8805;95%</td><td>&lt;8%</td></tr>
+      <tr><td>Leukocytes</td><td>&#8805;85%</td><td>&#8805;90%</td><td>&lt;12%</td></tr>
+      <tr><td>pH</td><td>&#177;0.5 pH units</td><td>&#8212;</td><td>&lt;5%</td></tr>
+      <tr><td>Specific Gravity</td><td>&#177;0.005 SG units</td><td>&#8212;</td><td>&lt;5%</td></tr>
+    </table></div>
+
+    <div class="callout warn"><span class="icon">&#128203;</span><div><strong>User-Level QC:</strong> Daily QC (Neg + Pos control strips every morning), Lot calibration (enter new lot code with each new bottle), and Annual factory recalibration are essential for reliable results.</div></div>
+
+  </div></div>
+</div>
+
+<!-- ==================== SECTION 9: INFRASTRUCTURE ==================== -->
+<div class="section" id="sec-8">
+  <div class="section-header" onclick="toggleSection(this)">
+    <span class="icon">&#127959;&#65039;</span>
+    <h2>9. Infrastructure &amp; Equipment</h2>
+    <span class="arrow">&#9660;</span>
+  </div>
+  <div class="section-body"><div class="section-inner">
+
+    <h3>Manufacturing Facility Requirements</h3>
+    <div class="table-wrap"><table>
+      <tr><th>Area</th><th>Size (sq ft)</th><th>Requirements</th></tr>
+      <tr><td>Clean Assembly Area</td><td>200</td><td>Dust-controlled, positive pressure preferred</td></tr>
+      <tr><td>PCB Storage &amp; Components</td><td>100</td><td>ESD-safe, humidity controlled</td></tr>
+      <tr><td>Testing &amp; QC Lab</td><td>150</td><td>Temperature controlled (20&#8211;25&#176;C), calibration equipment</td></tr>
+      <tr><td>Packaging &amp; Dispatch</td><td>100</td><td>Clean, organized workspace</td></tr>
+      <tr><td><strong>Total</strong></td><td><strong>500&#8211;800</strong></td><td>Expandable as production scales</td></tr>
+    </table></div>
+
+    <div class="callout info"><span class="icon">&#127777;&#65039;</span><div><strong>Environmental Controls:</strong> Temperature: 20&#8211;25&#176;C (air conditioning). Humidity: 40&#8211;60% RH (dehumidifier if needed). ESD protection: anti-static flooring, wrist straps, ESD mats at all workstations.</div></div>
+
+    <h3>Key Equipment Investment</h3>
+    <div class="table-wrap"><table>
+      <tr><th>Equipment</th><th>Purpose</th><th>Cost (INR)</th></tr>
+      <tr><td>Soldering Station (Hakko FX-888D)</td><td>PCB assembly</td><td>&#8377;8,000&#8211;15,000</td></tr>
+      <tr><td>Digital Multimeter (Fluke 87V)</td><td>Testing</td><td>&#8377;12,000&#8211;18,000</td></tr>
+      <tr><td>Oscilloscope (100 MHz, 2-ch)</td><td>Electronics debug</td><td>&#8377;15,000&#8211;35,000</td></tr>
+      <tr><td>CNC Milling Machine</td><td>Optical block prototyping</td><td>&#8377;50,000&#8211;1,50,000</td></tr>
+      <tr><td>3D Printer (FDM)</td><td>Housing prototypes</td><td>&#8377;15,000&#8211;25,000</td></tr>
+      <tr><td>Spectrophotometer (UV-Vis)</td><td>Reagent/strip validation</td><td>&#8377;40,000&#8211;80,000</td></tr>
+      <tr><td>Laptop + KiCad/STM32CubeIDE</td><td>PCB design + firmware dev</td><td>&#8377;60,000&#8211;1,20,000</td></tr>
+      <tr style="font-weight:700;background:#B2EBF2"><td colspan="2">Total Equipment Investment</td><td>&#8377;2.76&#8211;5.94 lakh</td></tr>
+    </table></div>
+
+    <h3>Human Resources (8 People)</h3>
+    <div class="table-wrap"><table>
+      <tr><th>Role</th><th>Qualification</th><th>Count</th><th>Monthly Salary</th></tr>
+      <tr><td>Electronics Engineer</td><td>B.E./B.Tech Electronics</td><td>1</td><td>&#8377;35,000&#8211;55,000</td></tr>
+      <tr><td>Embedded Firmware Dev</td><td>B.E. + C/C++ experience</td><td>1</td><td>&#8377;40,000&#8211;65,000</td></tr>
+      <tr><td>Mechanical/Optical Engineer</td><td>B.E. Mechanical/Optical</td><td>1</td><td>&#8377;30,000&#8211;50,000</td></tr>
+      <tr><td>QC Technician</td><td>B.Sc. / Diploma</td><td>1</td><td>&#8377;18,000&#8211;28,000</td></tr>
+      <tr><td>Assembly Technicians</td><td>ITI / Diploma</td><td>2</td><td>&#8377;12,000&#8211;18,000 each</td></tr>
+      <tr><td>Regulatory Affairs</td><td>M.Sc./M.Pharm + RA exp</td><td>1</td><td>&#8377;30,000&#8211;45,000</td></tr>
+      <tr style="font-weight:700;background:#B2EBF2"><td colspan="2">Total Monthly Payroll</td><td>8</td><td>&#8377;1,77,000&#8211;2,79,000</td></tr>
+    </table></div>
+
+    <h3>Software &amp; Development Tools</h3>
+    <div class="table-wrap"><table>
+      <tr><th>Tool</th><th>Purpose</th><th>Cost</th></tr>
+      <tr><td>KiCad (EDA)</td><td>PCB schematic + layout</td><td>Free</td></tr>
+      <tr><td>STM32CubeIDE</td><td>Firmware development</td><td>Free</td></tr>
+      <tr><td>SolidWorks / FreeCAD</td><td>Mechanical design</td><td>Free&#8211;&#8377;2.5 lakh/yr</td></tr>
+      <tr><td>MATLAB / Python</td><td>Calibration algorithm dev</td><td>Free (Python)</td></tr>
+      <tr><td>Git + GitHub</td><td>Version control</td><td>Free</td></tr>
+    </table></div>
+
+  </div></div>
+</div>
+
+<!-- ==================== SECTION 10: REGULATORY ==================== -->
+<div class="section" id="sec-9">
+  <div class="section-header" onclick="toggleSection(this)">
+    <span class="icon">&#128220;</span>
+    <h2>10. Regulatory Pathway (CDSCO / MDR 2017)</h2>
+    <span class="arrow">&#9660;</span>
+  </div>
+  <div class="section-body"><div class="section-inner">
+
+    <h3>Regulatory Classification</h3>
+    <p>Under the <strong>Medical Devices Rules (MDR) 2017</strong>, a urine dipstick analyzer is classified as an <span class="jargon">In Vitro Diagnostic (IVD) device<span class="tip">A medical device intended to examine specimens derived from the human body (blood, urine, tissue) to provide information for diagnosis, monitoring, or treatment.</span></span>.</p>
+    <div class="table-wrap"><table>
+      <tr><th>Component</th><th>Classification</th><th>Risk Level</th></tr>
+      <tr><td>Urine Analyzer (Instrument)</td><td>Class B IVD device</td><td>Moderate risk</td></tr>
+      <tr><td>Reagent Strips</td><td>Class B IVD device</td><td>Moderate risk</td></tr>
+    </table></div>
+
+    <div class="callout danger"><span class="icon">&#9888;&#65039;</span><div><strong>Both the instrument and the strips require separate CDSCO registration before commercial sale in India.</strong></div></div>
+
+    <h3>5-Step Regulatory Pathway</h3>
+    <div class="timeline">
+      <div class="timeline-item">
+        <h4>Step 1: Manufacturing License (SLA)</h4>
+        <p>Apply to State Licensing Authority under Form MD-3 (Class B). Requires GMP-compliant facility inspection. Fee: ~&#8377;3,000&#8211;5,000. Timeline: 3&#8211;6 months.</p>
+      </div>
+      <div class="timeline-item">
+        <h4>Step 2: CDSCO Device Registration</h4>
+        <p>File on SUGAM portal (cdsco.gov.in). Submit Device Master File (DMF): design specs, manufacturing process, Risk Management File (ISO 14971), Performance Evaluation Data, Biocompatibility (ISO 10993), Labeling/IFU, QMS certificate (ISO 13485). Form MD-7. Fee: &#8377;2,500/device. Timeline: 6&#8211;12 months.</p>
+      </div>
+      <div class="timeline-item">
+        <h4>Step 3: ISO 13485 Certification</h4>
+        <p>Quality Management System certification. Required for export and preferred by institutional buyers. Certification bodies: BSI, T&#220;V S&#220;D, Bureau Veritas. Cost: &#8377;3&#8211;8 lakh. Timeline: 6&#8211;12 months.</p>
+      </div>
+      <div class="timeline-item">
+        <h4>Step 4: BIS Certification (If Applicable)</h4>
+        <p>Bureau of Indian Standards mark may be required. Check mandatory BIS list for IVD devices. Apply under IS/IEC 61010-1 (safety for lab equipment).</p>
+      </div>
+      <div class="timeline-item">
+        <h4>Step 5: Labeling Requirements</h4>
+        <p>Per MDR 2017 Schedule V: Device name, model, lot number, serial number, manufacturer details, manufacturing date, shelf life, &#8220;For In Vitro Diagnostic Use Only&#8221;, CDSCO registration number, storage conditions, ISO 15223-1 symbols.</p>
+      </div>
+    </div>
+
+    <h3>Regulatory Timeline &amp; Budget</h3>
+    <div class="table-wrap"><table>
+      <tr><th>Activity</th><th>Duration</th><th>Approx. Cost</th></tr>
+      <tr><td>Manufacturing License (SLA)</td><td>3&#8211;6 months</td><td>&#8377;5,000&#8211;15,000</td></tr>
+      <tr><td>CDSCO Device Registration</td><td>6&#8211;12 months</td><td>&#8377;25,000&#8211;75,000</td></tr>
+      <tr><td>ISO 13485 QMS Certification</td><td>6&#8211;12 months</td><td>&#8377;3&#8211;8 lakh</td></tr>
+      <tr><td>Performance Validation Studies</td><td>3&#8211;6 months</td><td>&#8377;2&#8211;5 lakh</td></tr>
+      <tr style="font-weight:700;background:#B2EBF2"><td>Total</td><td>12&#8211;24 months</td><td>&#8377;6&#8211;14 lakh</td></tr>
+    </table></div>
+
+    <div class="callout warn"><span class="icon">&#128203;</span><div><strong>Post-Market Requirements:</strong> Maintain vigilance and adverse event reporting. Annual manufacturing license renewal. Periodic device re-registration. Maintain complaint log and corrective action records.</div></div>
+
+  </div></div>
+</div>
+
+<!-- ==================== SECTION 11: MARKET ANALYSIS ==================== -->
+<div class="section" id="sec-10">
+  <div class="section-header" onclick="toggleSection(this)">
+    <span class="icon">&#128200;</span>
+    <h2>11. Indian Market Analysis &amp; Competition</h2>
+    <span class="arrow">&#9660;</span>
+  </div>
+  <div class="section-body"><div class="section-inner">
+
+    <h3>Market Overview</h3>
+    <div class="callout info"><span class="icon">&#128202;</span><div>
+      <strong>Market Size (2024):</strong> ~&#8377;450&#8211;600 crore (instruments + strips)<br>
+      <strong>Growth Rate:</strong> ~14&#8211;16% CAGR<br>
+      <strong>Key Drivers:</strong> 101M diabetics in India (IDF 2021), CKD affects ~17% of adults, Ayushman Bharat PM-JAY expanding diagnostics access, growing diagnostic lab chains
+    </div></div>
+
+    <h3>Competitive Landscape</h3>
+    <div class="table-wrap"><table>
+      <tr><th>Competitor</th><th>Model</th><th>Price (INR)</th><th>Strip Cost</th><th>Position</th></tr>
+      <tr><td><strong>Siemens</strong></td><td>Clinitek Status+</td><td>&#8377;1,20,000&#8211;2,50,000</td><td>&#8377;25&#8211;45/strip</td><td>Premium, large hospitals</td></tr>
+      <tr><td><strong>Mission</strong></td><td>U120, U500</td><td>&#8377;45,000&#8211;1,20,000</td><td>&#8377;12&#8211;22/strip</td><td>Mid-market, strong in India</td></tr>
+      <tr><td><strong>Roche</strong></td><td>Cobas u 411</td><td>&#8377;1,80,000&#8211;3,00,000</td><td>&#8377;30&#8211;55/strip</td><td>Premium, large hospitals</td></tr>
+      <tr><td><strong>Dirui</strong></td><td>H-100, H-500</td><td>&#8377;30,000&#8211;80,000</td><td>&#8377;8&#8211;15/strip</td><td>Budget, growing segment</td></tr>
+      <tr><td><strong>URIT</strong></td><td>URIT-500B</td><td>&#8377;25,000&#8211;60,000</td><td>&#8377;6&#8211;12/strip</td><td>Budget segment</td></tr>
+      <tr><td><strong>Erba Mannheim</strong></td><td>UriScan Pro</td><td>&#8377;50,000&#8211;1,00,000</td><td>&#8377;10&#8211;20/strip</td><td>Mid-market</td></tr>
+      <tr style="background:#E0F7FA;font-weight:700"><td>Levram (Target)</td><td>2P/10P Benchtop</td><td>&#8377;25,000&#8211;80,000</td><td>&#8377;5&#8211;10/strip</td><td>Value-for-money, India-made</td></tr>
+    </table></div>
+
+    <h3>Target Segments (Priority Order)</h3>
+    <ol>
+      <li><strong>Small-to-medium diagnostic labs</strong> (Tier 2/3 cities) &#8212; highest volume, price-sensitive</li>
+      <li><strong>Nursing homes and clinics</strong> &#8212; need simple, reliable 2P or 10P device</li>
+      <li><strong>Government health centers</strong> (PHC/CHC) &#8212; GeM portal procurement, tender-driven</li>
+      <li><strong>Corporate health screening</strong> &#8212; bulk purchase, annual contracts</li>
+      <li><strong>Large hospital labs</strong> &#8212; longer sales cycle, need ISO 13485 and performance data</li>
+    </ol>
+
+    <h3>Levram&#8217;s Competitive Advantages</h3>
+    <ul>
+      <li><strong>&#8220;Make in India&#8221; Positioning:</strong> Growing preference for domestic products in government tenders (GeM portal)</li>
+      <li><strong>Lower Strip Cost:</strong> OEM sourcing from China + eventual in-house manufacturing can undercut imports by 30&#8211;50%</li>
+      <li><strong>Service Network:</strong> Existing distribution network enables faster after-sales service vs. imports</li>
+      <li><strong>Customization:</strong> Vernacular language UI, India-specific report formats, local HIS/LIS integration</li>
+      <li><strong>Price Point:</strong> 30&#8211;50% below Siemens/Mission for comparable performance</li>
+    </ul>
+
+  </div></div>
+</div>
+
+<!-- ==================== SECTION 12: GO-TO-MARKET ==================== -->
+<div class="section" id="sec-11">
+  <div class="section-header" onclick="toggleSection(this)">
+    <span class="icon">&#128640;</span>
+    <h2>12. Go-to-Market Strategy</h2>
+    <span class="arrow">&#9660;</span>
+  </div>
+  <div class="section-body"><div class="section-inner">
+
+    <h3>3-Tier Distribution Strategy</h3>
+    <div class="compare-grid">
+      <div class="compare-card">
+        <h4>&#127760; Tier 1: Direct Distribution</h4>
+        <p style="font-size:.84rem;color:var(--gray)">Leverage existing distributor network</p>
+        <ul>
+          <li>Train top 5 distributors per region</li>
+          <li>Provide demo units for hands-on trials</li>
+          <li>20&#8211;25% distributor margin on instruments</li>
+          <li>30&#8211;35% margin on strips</li>
+        </ul>
+      </div>
+      <div class="compare-card highlight">
+        <h4>&#128176; Tier 2: Reagent Rental Model</h4>
+        <p style="font-size:.84rem;color:var(--gray)">Recommended for market penetration</p>
+        <ul>
+          <li>Instrument free or at &#8377;5,000&#8211;10,000 deposit</li>
+          <li>Lock customer to min. 200 strips/month</li>
+          <li>Revenue: &#8377;16,800&#8211;28,800/year per customer</li>
+          <li>Used successfully by Siemens &amp; Mission</li>
+        </ul>
+      </div>
+      <div class="compare-card">
+        <h4>&#127963;&#65039; Tier 3: Government/Tender</h4>
+        <p style="font-size:.84rem;color:var(--gray)">GeM portal &amp; CMSS tenders</p>
+        <ul>
+          <li>Register on GeM e-Marketplace</li>
+          <li>Target CMSS and NHM procurement</li>
+          <li>Requires CDSCO + ISO 13485</li>
+          <li>Large volume, competitive pricing</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>Launch Plan</h3>
+    <div class="table-wrap"><table>
+      <tr><th>Phase</th><th>Timeline</th><th>Activities</th></tr>
+      <tr><td><strong>Phase 1: Development</strong></td><td>Month 1&#8211;12</td><td>Prototype development, firmware, optical validation</td></tr>
+      <tr><td><strong>Phase 2: Regulatory</strong></td><td>Month 6&#8211;18</td><td>CDSCO filing, ISO 13485, performance studies</td></tr>
+      <tr><td><strong>Phase 3: Pilot Launch</strong></td><td>Month 18&#8211;24</td><td>50 units to key accounts, clinical feedback</td></tr>
+      <tr><td><strong>Phase 4: Commercial</strong></td><td>Month 24&#8211;30</td><td>Full distribution rollout, GeM registration, marketing</td></tr>
+      <tr><td><strong>Phase 5: Scale-Up</strong></td><td>Month 30+</td><td>In-house strip manufacturing, export markets</td></tr>
+    </table></div>
+
+    <h3>Marketing &amp; Promotion</h3>
+    <ul>
+      <li><strong>KOL Engagement:</strong> Partner with pathologists and lab directors in Tier 2/3 cities</li>
+      <li><strong>CME Programs:</strong> Sponsor continuing medical education for lab technicians</li>
+      <li><strong>Trade Shows:</strong> MEDLAB India, Lab Asia, NABL-accredited lab conferences</li>
+      <li><strong>Digital Marketing:</strong> LinkedIn, WhatsApp groups for lab professionals, YouTube demos</li>
+      <li><strong>NABL Labs:</strong> Target NABL-accredited labs first &#8212; they need documented, validated equipment</li>
+    </ul>
+
+  </div></div>
+</div>
+
+<!-- ==================== SECTION 13: COST & PRICING ==================== -->
+<div class="section" id="sec-12">
+  <div class="section-header" onclick="toggleSection(this)">
+    <span class="icon">&#128176;</span>
+    <h2>13. Cost of Goods &amp; Pricing Strategy</h2>
+    <span class="arrow">&#9660;</span>
+  </div>
+  <div class="section-body"><div class="section-inner">
+
+    <h3>Pricing Summary</h3>
+    <div class="compare-grid">
+      <div class="compare-card">
+        <h4>2P Analyzer</h4>
+        <div class="price">&#8377;24,999</div>
+        <ul>
+          <li>COGS (1,000 units): &#8377;4,200</li>
+          <li>Distributor price (40% off): &#8377;14,999</li>
+          <li>Gross margin at distributor: ~68%</li>
+          <li>Strip MRP: &#8377;4.50/strip</li>
+          <li>Strip COGS: &#8377;3.50</li>
+        </ul>
+      </div>
+      <div class="compare-card highlight">
+        <h4>10P Analyzer</h4>
+        <div class="price">&#8377;64,999</div>
+        <ul>
+          <li>COGS (1,000 units): &#8377;14,500</li>
+          <li>Distributor price (40% off): &#8377;38,999</li>
+          <li>Gross margin at distributor: ~59%</li>
+          <li>Strip MRP: &#8377;9.50/strip</li>
+          <li>Strip COGS: &#8377;3.50 (10P)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout tip"><span class="icon">&#128161;</span><div><strong>vs. Competition:</strong> Levram 10P at &#8377;64,999 + &#8377;9.50/strip vs. Mission U120 at &#8377;75,000 + &#8377;18/strip &#8594; <strong>47% cheaper strips than Mission!</strong></div></div>
+
+    <h3>Break-Even Analysis (10P Model)</h3>
+    <div class="table-wrap"><table>
+      <tr><th>Metric</th><th>Value</th></tr>
+      <tr><td>Fixed Costs (Annual)</td><td>~&#8377;36&#8211;55 lakh (salaries + rent + utilities + regulatory + depreciation)</td></tr>
+      <tr><td>Contribution per unit (at distributor price)</td><td>&#8377;38,999 &#8211; &#8377;16,000 = &#8377;22,999</td></tr>
+      <tr><td>Break-even volume</td><td>~196 units/year</td></tr>
+      <tr><td>Break-even scenario</td><td>20 distributors &#215; 10 units/year each</td></tr>
+    </table></div>
+
+    <h3>Recurring Revenue Model (Strips)</h3>
+    <div class="callout info"><span class="icon">&#128184;</span><div>
+      <strong>The real profit is in consumables (strips), not instruments:</strong><br>
+      &#8226; A lab running 20 tests/day &#215; 300 days = 6,000 strips/year<br>
+      &#8226; At &#8377;9.50 MRP and &#8377;3.50 COGS = <strong>&#8377;36,000/year gross profit per installed instrument</strong><br>
+      &#8226; With 500 installed instruments = <strong>&#8377;1.8 crore/year in strip revenue</strong><br>
+      &#8226; This is the &#8220;razor-and-blade&#8221; model used by Siemens and Mission
+    </div></div>
+
+  </div></div>
+</div>
+
+<!-- ==================== SECTION 14: GLOSSARY ==================== -->
+<div class="section" id="sec-13">
+  <div class="section-header" onclick="toggleSection(this)">
+    <span class="icon">&#128214;</span>
+    <h2>14. Glossary &amp; References</h2>
+    <span class="arrow">&#9660;</span>
+  </div>
+  <div class="section-body"><div class="section-inner">
+
+    <h3>Key Terms</h3>
+    <div class="glossary-grid">
+      <div class="glossary-item"><dt>Reflectance Photometry</dt><dd>Measurement technique that quantifies analyte concentration by measuring the intensity of light reflected from a colored reagent pad.</dd></div>
+      <div class="glossary-item"><dt>Kubelka-Munk (K-M)</dt><dd>Mathematical model relating reflectance to absorption and scattering coefficients: K/S = (1-R)&#178;/2R. Foundation of strip-based colorimetric analysis.</dd></div>
+      <div class="glossary-item"><dt>Transimpedance Amplifier (TIA)</dt><dd>An op-amp circuit that converts the tiny photocurrent from a photodiode into a measurable voltage signal. Critical analog front-end component.</dd></div>
+      <div class="glossary-item"><dt>ADS1115</dt><dd>A 16-bit, 4-channel analog-to-digital converter by TI with I&#178;C interface. Provides high-resolution digitization of the TIA output signal.</dd></div>
+      <div class="glossary-item"><dt>STM32</dt><dd>A family of ARM Cortex-M microcontrollers by STMicroelectronics. F103 (Cortex-M3) for 2P model, F407 (Cortex-M4 with FPU) for 10P model.</dd></div>
+      <div class="glossary-item"><dt>Semiquantitative</dt><dd>Results expressed in discrete categories (Negative, Trace, 1+, 2+, 3+) rather than exact numeric concentrations. Standard for dipstick urinalysis.</dd></div>
+      <div class="glossary-item"><dt>CDSCO</dt><dd>Central Drugs Standard Control Organisation &#8212; India&#8217;s national regulatory authority for drugs and medical devices under the Ministry of Health.</dd></div>
+      <div class="glossary-item"><dt>MDR 2017</dt><dd>Medical Devices Rules 2017 &#8212; Indian regulation governing manufacturing, import, sale, and distribution of medical devices including IVDs.</dd></div>
+      <div class="glossary-item"><dt>ISO 13485</dt><dd>International quality management system standard specifically for medical device manufacturers. Required for export and institutional sales.</dd></div>
+      <div class="glossary-item"><dt>IVD Device</dt><dd>In Vitro Diagnostic device &#8212; medical device used to examine specimens from the human body (blood, urine) for diagnostic purposes.</dd></div>
+      <div class="glossary-item"><dt>Ratiometric Measurement</dt><dd>Calculating the ratio of signal to reference channels to cancel out common-mode noise like LED drift and power supply variation.</dd></div>
+      <div class="glossary-item"><dt>Bifurcated Fiber Bundle</dt><dd>An optical fiber bundle split into two legs: one delivers illumination light, the other collects reflected light. Enables compact optical head design.</dd></div>
+      <div class="glossary-item"><dt>GeM Portal</dt><dd>Government e-Marketplace &#8212; India&#8217;s online platform for government procurement. Registration enables sales to government hospitals and health centers.</dd></div>
+      <div class="glossary-item"><dt>CV (Coefficient of Variation)</dt><dd>A measure of precision: (Standard Deviation / Mean) &#215; 100%. Lower CV = more consistent, reproducible results.</dd></div>
+      <div class="glossary-item"><dt>Reagent Rental Model</dt><dd>Business model where the instrument is provided free/subsidized in exchange for a minimum consumable (strip) purchase commitment. &#8220;Razor-and-blade&#8221; model.</dd></div>
+      <div class="glossary-item"><dt>NABL</dt><dd>National Accreditation Board for Testing and Calibration Laboratories &#8212; Indian accreditation body for clinical labs. NABL labs require validated equipment.</dd></div>
+    </div>
+
+    <h3>References</h3>
+    <ol style="font-size:.84rem">
+      <li>Cabo, J., &amp; Favresse, J. (2023). Application of analytical performance specifications for urine test strip methods. <em>Clinica Chimica Acta</em>, 548, 117534.</li>
+      <li>Liu, G., et al. (2018). A portable analyzer based on a novel optical structure for urine dry-chemistry analysis. <em>Journal of Instrumentation</em>, 13(7), T07002.</li>
+      <li>Liu, G. (2016). Optical fiber-based dry chemical analyzing device and analyzing method for urine. Patent Publication.</li>
+      <li>Lee, D.-S., et al. (2010). Novel optical absorbance-based multi-analytes detection module using tri-chromatic LED. <em>IEEE Sensors Conference</em>.</li>
+      <li>Ziegler, F. (2003). Reflection-photometric analytical system. Patent US6590651B2.</li>
+      <li>Medical Devices Rules (MDR) 2017, Government of India &#8212; CDSCO.</li>
+      <li>ISO 13485:2016 &#8212; Quality management systems for medical devices.</li>
+    </ol>
+
+  </div></div>
+</div>
+
+</div><!-- .content -->
+
+<!-- FOOTER -->
+<div class="footer">
+  <p>Urine Dipstick Analyzer Manufacturing Guide &#8212; Prepared for Levram Life Sciences, May 2026</p>
+  <p style="margin-top:6px">Part of the <a href="index.html">IVD Manufacturing Guides</a> collection</p>
+</div>
+
+<script>
+// Toggle sections
+function toggleSection(header){
+  const sec=header.parentElement;
+  sec.classList.toggle('open');
+}
+function openSection(i){
+  const sec=document.getElementById('sec-'+i);
+  if(sec){
+    sec.classList.add('open');
+    sec.scrollIntoView({behavior:'smooth',block:'start'});
+  }
+}
+
+// Search
+function filterSections(q){
+  q=q.toLowerCase().trim();
+  document.querySelectorAll('.section').forEach(sec=>{
+    if(!q){sec.style.display='';return}
+    const text=sec.textContent.toLowerCase();
+    sec.style.display=text.includes(q)?'':'none';
+  });
+}
+
+// Open first section on load
+document.addEventListener('DOMContentLoaded',()=>{
+  document.getElementById('sec-0').classList.add('open');
+});
+</script>
+
+</body>
+</html>
