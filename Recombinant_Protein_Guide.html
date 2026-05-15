@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recombinant Protein Purification Guide | IVD Manufacturing</title>
+<style>
+:root {
+  --primary: #6A1B9A;
+  --primary-dark: #4A148C;
+  --primary-light: #CE93D8;
+  --accent: #00BFA5;
+  --accent-dark: #00897B;
+  --bg: #f5f0fa;
+  --card-bg: #ffffff;
+  --text: #2d2d2d;
+  --text-light: #666;
+  --border: #e0d4ec;
+  --highlight: #f3e5f5;
+  --success: #43A047;
+  --warning: #FB8C00;
+  --info: #1565C0;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+
+/* Header */
+.hero {
+  background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 50%, #7B1FA2 100%);
+  color: white; padding: 50px 20px; text-align: center;
+}
+.hero h1 { font-size: 2.4em; margin-bottom: 10px; }
+.hero .subtitle { font-size: 1.15em; opacity: 0.9; max-width: 700px; margin: 0 auto 20px; }
+.hero .badge { display: inline-block; background: rgba(255,255,255,0.2); padding: 6px 16px; border-radius: 20px; font-size: 0.85em; margin: 4px; }
+
+/* Navigation */
+.nav-bar {
+  background: var(--primary-dark); padding: 0; position: sticky; top: 0; z-index: 100;
+  overflow-x: auto; white-space: nowrap; box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+.nav-bar a {
+  display: inline-block; color: rgba(255,255,255,0.8); text-decoration: none;
+  padding: 14px 18px; font-size: 0.85em; transition: all 0.2s; border-bottom: 3px solid transparent;
+}
+.nav-bar a:hover, .nav-bar a.active { color: white; background: rgba(255,255,255,0.1); border-bottom-color: var(--accent); }
+
+/* Main Content */
+.container { max-width: 900px; margin: 0 auto; padding: 30px 20px; }
+
+/* Sections */
+.section {
+  background: var(--card-bg); border-radius: 14px; margin-bottom: 24px;
+  box-shadow: 0 2px 12px rgba(106,27,154,0.08); border: 1px solid var(--border); overflow: hidden;
+}
+.section-header {
+  padding: 20px 24px; cursor: pointer; display: flex; align-items: center; gap: 14px;
+  transition: background 0.2s; user-select: none;
+}
+.section-header:hover { background: var(--highlight); }
+.section-header .icon { font-size: 1.8em; flex-shrink: 0; }
+.section-header h2 { font-size: 1.25em; color: var(--primary-dark); flex: 1; }
+.section-header .chevron {
+  width: 24px; height: 24px; transition: transform 0.3s; flex-shrink: 0;
+  border: 2px solid var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center;
+}
+.section-header .chevron::after { content: '\25BC'; font-size: 0.7em; color: var(--primary); }
+.section.open .section-header .chevron { transform: rotate(180deg); }
+.section-body { padding: 0 24px 24px; display: none; }
+.section.open .section-body { display: block; }
+
+/* Content Elements */
+h3 { color: var(--primary); font-size: 1.1em; margin: 24px 0 12px; padding-bottom: 6px; border-bottom: 2px solid var(--highlight); }
+h4 { color: var(--primary-dark); font-size: 1em; margin: 18px 0 8px; }
+p { margin-bottom: 12px; }
+ul, ol { margin: 8px 0 16px 24px; }
+li { margin-bottom: 6px; }
+
+/* Info boxes */
+.info-box {
+  background: var(--highlight); border-left: 4px solid var(--primary);
+  padding: 16px 20px; border-radius: 0 10px 10px 0; margin: 16px 0;
+}
+.info-box.tip { background: #e8f5e9; border-left-color: var(--success); }
+.info-box.warning { background: #fff3e0; border-left-color: var(--warning); }
+.info-box.info { background: #e3f2fd; border-left-color: var(--info); }
+.info-box strong { display: block; margin-bottom: 4px; }
+
+/* Tables */
+table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.92em; }
+th { background: var(--primary); color: white; padding: 10px 14px; text-align: left; font-weight: 600; }
+td { padding: 10px 14px; border-bottom: 1px solid var(--border); }
+tr:nth-child(even) { background: #faf5ff; }
+tr:hover { background: var(--highlight); }
+
+/* Video */
+.video-container { margin: 20px 0; }
+.video-container h4 { color: var(--primary); margin-bottom: 10px; }
+.video-wrapper {
+  position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;
+  border-radius: 10px; box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+}
+.video-wrapper iframe {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 10px;
+}
+
+/* SVG Diagrams */
+.diagram-container {
+  margin: 20px 0; background: white; border-radius: 12px; padding: 20px;
+  border: 1px solid var(--border); text-align: center; overflow-x: auto;
+}
+.diagram-container h4 { text-align: left; margin-top: 0; }
+
+/* Tags */
+.tag { display: inline-block; background: var(--highlight); color: var(--primary-dark); padding: 3px 10px; border-radius: 12px; font-size: 0.8em; margin: 2px; }
+.tag.green { background: #e8f5e9; color: #2e7d32; }
+.tag.blue { background: #e3f2fd; color: #1565c0; }
+.tag.orange { background: #fff3e0; color: #e65100; }
+
+/* Comparison boxes */
+.comparison { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0; }
+.comparison .box {
+  background: var(--highlight); padding: 16px; border-radius: 10px; border: 1px solid var(--border);
+}
+.comparison .box h4 { margin-top: 0; color: var(--primary-dark); }
+@media (max-width: 600px) { .comparison { grid-template-columns: 1fr; } }
+
+/* Protocol steps */
+.protocol-step {
+  display: flex; gap: 14px; margin: 12px 0; padding: 14px; background: #faf5ff;
+  border-radius: 10px; border-left: 4px solid var(--primary);
+}
+.protocol-step .step-num {
+  background: var(--primary); color: white; width: 32px; height: 32px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0;
+}
+.protocol-step .step-content { flex: 1; }
+
+/* Footer */
+footer {
+  background: var(--primary-dark); color: rgba(255,255,255,0.8); text-align: center;
+  padding: 30px 20px; margin-top: 40px;
+}
+footer a { color: var(--primary-light); }
+
+/* Back to top */
+.back-to-top {
+  position: fixed; bottom: 30px; right: 30px; background: var(--primary); color: white;
+  width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center;
+  justify-content: center; text-decoration: none; box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  opacity: 0; transition: opacity 0.3s; font-size: 1.4em; z-index: 99;
+}
+.back-to-top.visible { opacity: 1; }
+
+/* Progress bar */
+.progress-bar {
+  position: fixed; top: 0; left: 0; height: 3px; background: var(--accent);
+  z-index: 200; transition: width 0.1s;
+}
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+
+<div class="hero">
+  <h1>&#129516; Recombinant Protein Purification Guide</h1>
+  <p class="subtitle">A comprehensive interactive guide to recombinant protein production for IVD diagnostic test kit manufacturing &mdash; from plasmid design to GMP-compliant scale-up</p>
+  <div>
+    <span class="badge">&#127981; For Levram Life Sciences</span>
+    <span class="badge">&#129514; Plasmid Technology</span>
+    <span class="badge">&#128300; IVD Diagnostics</span>
+    <span class="badge">&#9878;&#65039; GMP Compliance</span>
+  </div>
+</div>
+
+<nav class="nav-bar" id="navBar">
+  <a href="#section1">Plasmid Basics</a>
+  <a href="#section2">Clone Handling</a>
+  <a href="#section3">Expression &amp; Purification</a>
+  <a href="#section4">Mammalian Systems</a>
+  <a href="#section5">Quality Control</a>
+  <a href="#section6">Cost &amp; Scale-up</a>
+  <a href="#section7">Diagnostic Applications</a>
+  <a href="#section8">Troubleshooting</a>
+  <a href="#section9">References</a>
+</nav>
+
+<div class="container">
+
+<!-- ==================== SECTION 1 ==================== -->
+<div class="section open" id="section1">
+  <div class="section-header" onclick="toggleSection(this)">
+    <span class="icon">&#129514;</span>
+    <h2>1. Recombinant Plasmid Technology Basics</h2>
+    <span class="chevron"></span>
+  </div>
+  <div class="section-body">
+    <p>Recombinant protein technology allows scientists to produce specific proteins by inserting the gene of interest into an expression vector (plasmid) and transforming it into a host organism. This is the foundation of modern IVD diagnostic reagent manufacturing.</p>
+
+    <div class="video-container">
+      <h4>&#127909; Recombinant Protein Expression in E. coli (Part 1)</h4>
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/KnFVCEAeO34" allowfullscreen loading="lazy"></iframe>
+      </div>
+    </div>
+
+    <h3>Key Components of Expression Vectors</h3>
+    <table>
+      <tr><th>Component</th><th>Function</th><th>Example</th></tr>
+      <tr><td>Origin of Replication (ori)</td><td>Enables autonomous plasmid replication</td><td>pBR322 ori, ColE1</td></tr>
+      <tr><td>Promoter</td><td>Controls transcription of gene of interest</td><td>T7 (IPTG-inducible), CMV</td></tr>
+      <tr><td>Multiple Cloning Site (MCS)</td><td>Contains restriction enzyme sites for gene insertion</td><td>NdeI, BamHI, XhoI sites</td></tr>
+      <tr><td>Selection Marker</td><td>Antibiotic resistance for selection</td><td>Ampicillin (bla), Kanamycin (kan)</td></tr>
+      <tr><td>Affinity Tag</td><td>Facilitates purification of expressed protein</td><td>His6, MBP, GST</td></tr>
+      <tr><td>Terminator</td><td>Signals end of transcription</td><td>T7 terminator</td></tr>
+    </table>
+
+    <h3>Common pET Vector Systems</h3>
+    <div class="comparison">
+      <div class="box">
+        <h4>pET24a(+)</h4>
+        <p><strong>Tag:</strong> C-terminal His6</p>
+        <p><strong>Resistance:</strong> Kanamycin</p>
+        <p><strong>Best for:</strong> Simple, small-to-medium proteins where native N-terminus is important</p>
+        <span class="tag green">Simple</span>
+      </div>
+      <div class="box">
+        <h4>pET28b(+)</h4>
+        <p><strong>Tag:</strong> N- and C-terminal His6 (thrombin-cleavable)</p>
+        <p><strong>Resistance:</strong> Kanamycin</p>
+        <p><strong>Best for:</strong> Flexible purification with optional tag removal</p>
+        <span class="tag blue">Versatile</span>
+      </div>
+    </div>
+    <div class="comparison">
+      <div class="box">
+        <h4>pET32b(+)</h4>
+        <p><strong>Tag:</strong> Thioredoxin + His6 fusion</p>
+        <p><strong>Resistance:</strong> Ampicillin</p>
+        <p><strong>Best for:</strong> Difficult proteins that form inclusion bodies; enhances solubility</p>
+        <span class="tag orange">Solubility</span>
+      </div>
+      <div class="box">
+        <h4>Dual-Tag Systems</h4>
+        <p><strong>Tag:</strong> His6-MBP or His6-GST fusions</p>
+        <p><strong>Resistance:</strong> Varies</p>
+        <p><strong>Best for:</strong> Difficult-to-express proteins; two-step purification</p>
+        <span class="tag">Advanced</span>
+      </div>
+    </div>
+
+    <h3>Affinity Tag Comparison</h3>
+    <table>
+      <tr><th>Tag</th><th>Size</th><th>Purification Method</th><th>Advantages</th><th>Limitations</th></tr>
+      <tr><td>His6</td><td>~0.84 kDa</td><td>IMAC (Ni-NTA)</td><td>Small, minimal effect on folding, works under denaturing conditions</td><td>Non-specific binding with host proteins</td></tr>
+      <tr><td>MBP</td><td>~42 kDa</td><td>Amylose resin</td><td>Dramatically enhances solubility</td><td>Large tag may affect protein function</td></tr>
+      <tr><td>GST</td><td>~26 kDa</td><td>Glutathione resin</td><td>Enhances solubility, well-characterized</td><td>Can dimerize, large size</td></tr>
+      <tr><td>SUMO</td><td>~11 kDa</td><td>Ni-NTA (via His6-SUMO)</td><td>Enhances solubility, clean cleavage</td><td>Requires SUMO protease</td></tr>
+    </table>
+
+    <div class="info-box tip">
+      <strong>&#128161; Beginner Tip</strong>
+      Start with pET28b(+) and His6 tag for most diagnostic antigens. The His-tag is small enough that it rarely interferes with protein function, and IMAC purification is straightforward and cost-effective.
+    </div>
+
+    <div class="video-container">
+      <h4>&#127909; Recombinant Protein Expression using T7/pET System</h4>
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/kJgY6JRs_Ck" allowfullscreen loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SECTION 2 ==================== -->
+<div class="section" id="section2">
+  <div class="section-header" onclick="toggleSection(this)">
+    <span class="icon">&#129440;</span>
+    <h2>2. Clone Handling &amp; Preparation</h2>
+    <span class="chevron"></span>
+  </div>
+  <div class="section-body">
+    <p>Proper handling of plasmid clones, glycerol stocks, and transformation into expression hosts is critical for reproducible protein production.</p>
+
+    <div class="video-container">
+      <h4>&#127909; E. coli Transformation with Plasmid DNA</h4>
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/slY4qrnZIM8" allowfullscreen loading="lazy"></iframe>
+      </div>
+    </div>
+
+    <h3>E. coli Expression Host Strains</h3>
+    <table>
+      <tr><th>Strain</th><th>Key Feature</th><th>Best For</th></tr>
+      <tr><td>BL21(DE3)</td><td>Standard T7 expression, lon/ompT protease-deficient</td><td>Most soluble proteins</td></tr>
+      <tr><td>BL21(DE3) pLysS</td><td>Tighter T7 control, reduced basal expression</td><td>Toxic proteins</td></tr>
+      <tr><td>Rosetta(DE3)</td><td>Supplies rare tRNAs (AGA, AGG, AUA, CUA, GGA, CCC)</td><td>Eukaryotic genes with rare codons</td></tr>
+      <tr><td>SHuffle T7</td><td>Cytoplasmic disulfide bond formation</td><td>Proteins requiring disulfide bonds</td></tr>
+      <tr><td>C41(DE3)/C43(DE3)</td><td>Tolerant of toxic/membrane proteins</td><td>Membrane proteins</td></tr>
+      <tr><td>ArcticExpress</td><td>Cold-active chaperonins (Cpn10/Cpn60)</td><td>Proteins prone to aggregation</td></tr>
+    </table>
+
+    <h3>Glycerol Stock Protocol</h3>
+    <div class="protocol-step">
+      <div class="step-num">1</div>
+      <div class="step-content"><strong>Prepare culture:</strong> Grow confirmed clone overnight in LB + appropriate antibiotic at 37&deg;C with 200 rpm shaking</div>
+    </div>
+    <div class="protocol-step">
+      <div class="step-num">2</div>
+      <div class="step-content"><strong>Mix with glycerol:</strong> Combine 500 &mu;L overnight culture with 500 &mu;L sterile 50% glycerol (final 25% glycerol)</div>
+    </div>
+    <div class="protocol-step">
+      <div class="step-num">3</div>
+      <div class="step-content"><strong>Flash freeze:</strong> Mix gently, flash-freeze in liquid nitrogen</div>
+    </div>
+    <div class="protocol-step">
+      <div class="step-num">4</div>
+      <div class="step-content"><strong>Store:</strong> Transfer to -80&deg;C freezer. Make 3-5 replicates per clone. Label clearly with protein name, vector, strain, date</div>
+    </div>
+
+    <div class="info-box warning">
+      <strong>&#9888;&#65039; Important</strong>
+      Never repeatedly freeze-thaw glycerol stocks! Use a sterile loop or pipette tip to scrape frozen stock without thawing. Each freeze-thaw cycle reduces viability by 20-50%.
+    </div>
+
+    <h3>Heat-Shock Transformation Protocol</h3>
+    <div class="protocol-step">
+      <div class="step-num">1</div>
+      <div class="step-content"><strong>Thaw competent cells:</strong> Thaw BL21(DE3) competent cells on ice for 20-30 minutes</div>
+    </div>
+    <div class="protocol-step">
+      <div class="step-num">2</div>
+      <div class="step-content"><strong>Add plasmid:</strong> Add 1-5 &mu;L (10-100 ng) plasmid DNA; gently flick to mix. Incubate on ice 30 minutes</div>
+    </div>
+    <div class="protocol-step">
+      <div class="step-num">3</div>
+      <div class="step-content"><strong>Heat shock:</strong> Transfer to 42&deg;C water bath for exactly 45 seconds, then immediately back on ice for 2 minutes</div>
+    </div>
+    <div class="protocol-step">
+      <div class="step-num">4</div>
+      <div class="step-content"><strong>Recovery:</strong> Add 950 &mu;L SOC medium, shake at 37&deg;C for 1 hour at 250 rpm</div>
+    </div>
+    <div class="protocol-step">
+      <div class="step-num">5</div>
+      <div class="step-content"><strong>Plate:</strong> Spread 50-200 &mu;L on LB agar + antibiotic plates. Incubate overnight at 37&deg;C</div>
+    </div>
+
+    <h3>Clone Verification</h3>
+    <p>Before proceeding to expression, always verify your clone:</p>
+    <ul>
+      <li><strong>Colony PCR:</strong> Quick screening of transformants using vector-specific primers</li>
+      <li><strong>Restriction digest:</strong> Digest miniprep DNA with diagnostic restriction enzymes</li>
+      <li><strong>Sanger sequencing:</strong> Full insert sequencing using T7 promoter and terminator primers</li>
+      <li><strong>Small-scale expression test:</strong> 5-10 mL culture to verify protein expression before scale-up</li>
+    </ul>
+
+    <div class="info-box tip">
+      <strong>&#128161; Best Practice</strong>
+      Always sequence-verify your constructs before large-scale expression. A single frameshift or mutation can produce non-functional protein, wasting time and resources.
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SECTION 3 ==================== -->
+<div class="section" id="section3">
+  <div class="section-header" onclick="toggleSection(this)">
+    <span class="icon">&#9879;&#65039;</span>
+    <h2>3. E. coli Expression &amp; IMAC Purification</h2>
+    <span class="chevron"></span>
+  </div>
+  <div class="section-body">
+    <p>E. coli-based expression with His-tag IMAC purification is the most cost-effective approach for producing diagnostic antigens, achieving purities &gt;90-95% and yields of 10-90 &mu;g/mL culture.</p>
+
+    <div class="diagram-container">
+      <h4>IMAC Purification Workflow</h4>
+      <svg viewBox="0 0 800 200" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;">
+        <defs>
+          <linearGradient id="pg1" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#6A1B9A;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#AB47BC;stop-opacity:1" />
+          </linearGradient>
+          <marker id="arrowP" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#6A1B9A"/></marker>
+        </defs>
+        <!-- Steps -->
+        <rect x="10" y="40" width="110" height="70" rx="10" fill="url(#pg1)" opacity="0.9"/>
+        <text x="65" y="70" text-anchor="middle" fill="white" font-size="11" font-weight="bold">Cell Lysis</text>
+        <text x="65" y="88" text-anchor="middle" fill="white" font-size="9">Sonication/</text>
+        <text x="65" y="100" text-anchor="middle" fill="white" font-size="9">French Press</text>
+
+        <line x1="125" y1="75" x2="150" y2="75" stroke="#6A1B9A" stroke-width="2" marker-end="url(#arrowP)"/>
+
+        <rect x="155" y="40" width="110" height="70" rx="10" fill="url(#pg1)" opacity="0.85"/>
+        <text x="210" y="70" text-anchor="middle" fill="white" font-size="11" font-weight="bold">Clarification</text>
+        <text x="210" y="88" text-anchor="middle" fill="white" font-size="9">Centrifuge</text>
+        <text x="210" y="100" text-anchor="middle" fill="white" font-size="9">15,000 x g</text>
+
+        <line x1="270" y1="75" x2="295" y2="75" stroke="#6A1B9A" stroke-width="2" marker-end="url(#arrowP)"/>
+
+        <rect x="300" y="40" width="110" height="70" rx="10" fill="url(#pg1)" opacity="0.8"/>
+        <text x="355" y="65" text-anchor="middle" fill="white" font-size="11" font-weight="bold">Column</text>
+        <text x="355" y="80" text-anchor="middle" fill="white" font-size="11" font-weight="bold">Loading</text>
+        <text x="355" y="98" text-anchor="middle" fill="white" font-size="9">Ni-NTA resin</text>
+
+        <line x1="415" y1="75" x2="440" y2="75" stroke="#6A1B9A" stroke-width="2" marker-end="url(#arrowP)"/>
+
+        <rect x="445" y="40" width="110" height="70" rx="10" fill="url(#pg1)" opacity="0.75"/>
+        <text x="500" y="70" text-anchor="middle" fill="white" font-size="11" font-weight="bold">Wash</text>
+        <text x="500" y="88" text-anchor="middle" fill="white" font-size="9">20-40 mM</text>
+        <text x="500" y="100" text-anchor="middle" fill="white" font-size="9">imidazole</text>
+
+        <line x1="560" y1="75" x2="585" y2="75" stroke="#6A1B9A" stroke-width="2" marker-end="url(#arrowP)"/>
+
+        <rect x="590" y="40" width="110" height="70" rx="10" fill="#00BFA5" opacity="0.9"/>
+        <text x="645" y="70" text-anchor="middle" fill="white" font-size="11" font-weight="bold">Elution</text>
+        <text x="645" y="88" text-anchor="middle" fill="white" font-size="9">250-500 mM</text>
+        <text x="645" y="100" text-anchor="middle" fill="white" font-size="9">imidazole</text>
+
+        <!-- Buffer exchange note -->
+        <rect x="300" y="140" width="250" height="40" rx="8" fill="#E8F5E9" stroke="#43A047" stroke-width="1"/>
+        <text x="425" y="165" text-anchor="middle" fill="#2E7D32" font-size="11">&#8594; Buffer Exchange (Dialysis/Desalting)</text>
+      </svg>
+    </div>
+
+    <div class="video-container">
+      <h4>&#127909; His-Tag Protein Purification with IMAC</h4>
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/oX0KAJWnuog" allowfullscreen loading="lazy"></iframe>
+      </div>
+    </div>
+
+    <h3>Expression Protocol (Shake Flask)</h3>
+    <div class="protocol-step">
+      <div class="step-num">1</div>
+      <div class="step-content"><strong>Starter culture:</strong> Inoculate a single colony into 10 mL LB + antibiotic. Grow overnight at 37&deg;C, 200 rpm</div>
+    </div>
+    <div class="protocol-step">
+      <div class="step-num">2</div>
+      <div class="step-content"><strong>Scale up:</strong> Dilute 1:100 into fresh medium (e.g., 10 mL into 1L). Grow at 37&deg;C until OD600 = 0.4-0.8</div>
+    </div>
+    <div class="protocol-step">
+      <div class="step-num">3</div>
+      <div class="step-content"><strong>Induce:</strong> Add IPTG to 0.1-1.0 mM final concentration. For soluble expression, reduce temperature to 18-25&deg;C</div>
+    </div>
+    <div class="protocol-step">
+      <div class="step-num">4</div>
+      <div class="step-content"><strong>Express:</strong> Continue shaking for 4-6 hours (37&deg;C) or 16-20 hours (18&deg;C overnight)</div>
+    </div>
+    <div class="protocol-step">
+      <div class="step-num">5</div>
+      <div class="step-content"><strong>Harvest:</strong> Centrifuge at 6,000 x g for 15 minutes. Discard supernatant. Cell pellet can be stored at -80&deg;C</div>
+    </div>
+
+    <h3>Optimization Parameters</h3>
+    <table>
+      <tr><th>Parameter</th><th>Standard</th><th>Optimized for Solubility</th></tr>
+      <tr><td>Induction temperature</td><td>37&deg;C</td><td>18-25&deg;C</td></tr>
+      <tr><td>IPTG concentration</td><td>1.0 mM</td><td>0.1-0.4 mM</td></tr>
+      <tr><td>Induction duration</td><td>4-6 hours</td><td>16-20 hours (overnight)</td></tr>
+      <tr><td>Media</td><td>LB</td><td>TB or auto-induction media</td></tr>
+      <tr><td>OD600 at induction</td><td>0.6-0.8</td><td>0.4-0.6</td></tr>
+    </table>
+
+    <div class="info-box">
+      <strong>&#128218; Why Lower Temperature?</strong>
+      Reducing temperature to 18&deg;C slows translation, giving the protein more time to fold correctly. This dramatically reduces inclusion body formation and can increase yields of soluble, active protein by 5-10 fold.
+    </div>
+
+    <h3>IMAC Buffer Recipes</h3>
+    <table>
+      <tr><th>Buffer</th><th>Composition</th></tr>
+      <tr><td>Lysis Buffer</td><td>50 mM sodium phosphate pH 8.0, 300 mM NaCl, 10 mM imidazole, 1 mg/mL lysozyme, 1 mM PMSF, 1x protease inhibitors</td></tr>
+      <tr><td>Binding Buffer</td><td>50 mM sodium phosphate pH 8.0, 300 mM NaCl, 10-20 mM imidazole</td></tr>
+      <tr><td>Wash Buffer</td><td>50 mM sodium phosphate pH 8.0, 300 mM NaCl, 20-40 mM imidazole</td></tr>
+      <tr><td>Elution Buffer</td><td>50 mM sodium phosphate pH 8.0, 300 mM NaCl, 250-500 mM imidazole</td></tr>
+      <tr><td>Storage Buffer</td><td>20 mM Tris-HCl pH 7.4 or PBS pH 7.4, 150 mM NaCl, 10-20% glycerol</td></tr>
+    </table>
+
+    <div class="video-container">
+      <h4>&#127909; IMAC Theory &amp; Practice</h4>
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/JpWJraFcFp4" allowfullscreen loading="lazy"></iframe>
+      </div>
+    </div>
+
+    <h3>Complementary Purification Methods</h3>
+    <div class="comparison">
+      <div class="box">
+        <h4>Ion Exchange (IEX)</h4>
+        <p>Separates by surface charge. Anion exchange (Q column) or cation exchange (S column) based on protein pI.</p>
+        <p><strong>When to use:</strong> After IMAC to remove co-eluting impurities</p>
+        <span class="tag blue">Polishing Step</span>
+      </div>
+      <div class="box">
+        <h4>Size Exclusion (SEC)</h4>
+        <p>Separates by molecular size. Also removes aggregates and enables buffer exchange.</p>
+        <p><strong>When to use:</strong> Final polishing; assessing monomer/aggregate ratio</p>
+        <span class="tag green">Final Polish</span>
+      </div>
+    </div>
+
+    <div class="video-container">
+      <h4>&#127909; Protein Chromatography Overview (Affinity, IEX, SEC)</h4>
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/MRIVrlObarY" allowfullscreen loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SECTION 4 ==================== -->
+<div class="section" id="section4">
+  <div class="section-header" onclick="toggleSection(this)">
+    <span class="icon">&#129516;</span>
+    <h2>4. Mammalian Expression Systems (CHO &amp; HEK293)</h2>
+    <span class="chevron"></span>
+  </div>
+  <div class="section-body">
+    <p>For complex proteins requiring post-translational modifications (glycosylation, disulfide bonds), mammalian expression systems are essential. CHO and HEK293 cells are the gold standard for producing antibodies and complex viral antigens for diagnostics.</p>
+
+    <div class="video-container">
+      <h4>&#127909; CHO Expression Platform: The Workhorse of Protein Expression</h4>
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/hlsVwjG3c68" allowfullscreen loading="lazy"></iframe>
+      </div>
+    </div>
+
+    <h3>CHO vs HEK293: Choosing the Right System</h3>
+    <table>
+      <tr><th>Feature</th><th>CHO Cells</th><th>HEK293/Expi293F</th></tr>
+      <tr><td>Primary Use</td><td>Antibodies, complex glycoproteins</td><td>Viral antigens, rapid development</td></tr>
+      <tr><td>Timeline</td><td>Transient: 2-3 weeks; Stable: 3-6 months</td><td>Transient: 2-3 weeks</td></tr>
+      <tr><td>Antibody Yield</td><td>140 mg/L (transient), 1-10 g/L (stable)</td><td>100-500 mg/L (transient)</td></tr>
+      <tr><td>Glycosylation</td><td>Human-like but no sialic acid &#945;2,6</td><td>Most human-like glycosylation</td></tr>
+      <tr><td>Scalability</td><td>Excellent (industrial: 1,000-20,000L)</td><td>Good (up to 500L)</td></tr>
+      <tr><td>Regulatory Track Record</td><td>Most approved biologics use CHO</td><td>Growing acceptance</td></tr>
+      <tr><td>Best for IVD</td><td>Large-scale antibody production</td><td>Early development, antigens</td></tr>
+    </table>
+
+    <h3>CHO Cell Transient Expression Protocol</h3>
+    <div class="protocol-step">
+      <div class="step-num">1</div>
+      <div class="step-content"><strong>Cell preparation:</strong> Maintain ExpiCHO-S cells in ExpiCHO Expression Medium at 37&deg;C, 8% CO2, 125 rpm. Seed at 6 &times; 10&#8310; cells/mL one day before transfection</div>
+    </div>
+    <div class="protocol-step">
+      <div class="step-num">2</div>
+      <div class="step-content"><strong>Transfection:</strong> Prepare DNA-lipid complexes using ExpiFectamine CHO reagent. Add to cells at density of 7-10 &times; 10&#8310; cells/mL</div>
+    </div>
+    <div class="protocol-step">
+      <div class="step-num">3</div>
+      <div class="step-content"><strong>Feed and enhance:</strong> Add ExpiCHO Enhancer and Feed on Day 1. Add second Feed on Day 5</div>
+    </div>
+    <div class="protocol-step">
+      <div class="step-num">4</div>
+      <div class="step-content"><strong>Optional hypothermic shift:</strong> Shift to 30-32&deg;C after Day 1 feed to increase protein quality and yield (up to 10.9-fold increase)</div>
+    </div>
+    <div class="protocol-step">
+      <div class="step-num">5</div>
+      <div class="step-content"><strong>Harvest:</strong> Collect supernatant on Day 8-14. Clarify by centrifugation and 0.22 &mu;m filtration</div>
+    </div>
+
+    <div class="info-box tip">
+      <strong>&#128161; Hypothermic Culture Boost</strong>
+      Shifting CHO cultures to 30-32&deg;C and supplementing with valproic acid (VPA) and betaine after Day 1 can increase protein yields up to 10.9-fold. This is because lower temperature slows cell growth but extends the viable production phase.
+    </div>
+
+    <h3>Stable Cell Line Development (GS Selection System)</h3>
+    <p>For long-term, high-volume production, stable cell lines are developed using the Glutamine Synthetase (GS) system:</p>
+    <ol>
+      <li>Clone gene of interest into GS expression vector</li>
+      <li>Transfect CHO-K1 cells and select in glutamine-free medium + methionine sulfoximine (MSX)</li>
+      <li>Screen surviving colonies for high-expression clones</li>
+      <li>Expand top clones and perform single-cell cloning</li>
+      <li>Characterize growth, productivity, and product quality</li>
+      <li>Establish Master Cell Bank (MCB) and Working Cell Bank (WCB)</li>
+    </ol>
+
+    <h3>Antibody Purification from Mammalian Systems</h3>
+    <p>For antibodies produced in CHO/HEK293, Protein A/G affinity chromatography replaces IMAC as the primary capture step:</p>
+    <table>
+      <tr><th>Step</th><th>Method</th><th>Purpose</th></tr>
+      <tr><td>Capture</td><td>Protein A/G affinity</td><td>Primary purification, >95% pure in one step</td></tr>
+      <tr><td>Polish</td><td>Ion exchange (IEX)</td><td>Remove aggregates, HCP, DNA</td></tr>
+      <tr><td>Final polish</td><td>Size exclusion (SEC)</td><td>Remove aggregates, buffer exchange</td></tr>
+      <tr><td>Viral clearance</td><td>Low pH hold + nanofiltration</td><td>Required for regulatory compliance</td></tr>
+    </table>
+
+    <div class="video-container">
+      <h4>&#127909; Bioprocess Scale-Up: Bench to Production</h4>
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/dsCwSXN12Kc" allowfullscreen loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SECTION 5 ==================== -->
+<div class="section" id="section5">
+  <div class="section-header" onclick="toggleSection(this)">
+    <span class="icon">&#9989;</span>
+    <h2>5. Quality Control &amp; Regulatory</h2>
+    <span class="chevron"></span>
+  </div>
+  <div class="section-body">
+    <p>Comprehensive quality control ensures that recombinant proteins meet the stringent requirements for use in IVD diagnostic assays. Each batch must be tested for identity, purity, potency, and safety.</p>
+
+    <h3>Essential QC Testing Panel</h3>
+    <table>
+      <tr><th>Test</th><th>Method</th><th>Acceptance Criteria</th><th>Purpose</th></tr>
+      <tr><td>Identity</td><td>SDS-PAGE, Western Blot</td><td>Correct molecular weight band</td><td>Confirm correct protein</td></tr>
+      <tr><td>Purity</td><td>SDS-PAGE densitometry</td><td>&ge;90% (research), &ge;95% (diagnostic)</td><td>Assess contaminants</td></tr>
+      <tr><td>Concentration</td><td>Bradford/BCA assay</td><td>Within spec range</td><td>Determine yield</td></tr>
+      <tr><td>Activity</td><td>Functional ELISA, binding assay</td><td>EC50 within reference range</td><td>Verify biological function</td></tr>
+      <tr><td>Endotoxin</td><td>LAL assay</td><td>&lt;1-10 EU/mg protein</td><td>E. coli-derived safety</td></tr>
+      <tr><td>Aggregation</td><td>SEC-HPLC</td><td>&lt;5% aggregates</td><td>Product stability</td></tr>
+      <tr><td>Host Cell Protein</td><td>HCP ELISA</td><td>&lt;100 ng/mg (GMP)</td><td>Process-related impurity</td></tr>
+      <tr><td>Sterility</td><td>Bioburden test</td><td>No growth (14 days)</td><td>Microbial safety</td></tr>
+    </table>
+
+    <div class="video-container">
+      <h4>&#127909; SDS-PAGE: Step-by-Step Guide</h4>
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/w5XPd4ytpRE" allowfullscreen loading="lazy"></iframe>
+      </div>
+    </div>
+
+    <div class="video-container">
+      <h4>&#127909; Western Blot Protocol Explained</h4>
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/qT_AqI-MKJc" allowfullscreen loading="lazy"></iframe>
+      </div>
+    </div>
+
+    <h3>Advanced Characterization</h3>
+    <ul>
+      <li><strong>Mass Spectrometry (MALDI-TOF / LC-MS):</strong> Exact molecular weight, post-translational modifications, sequence verification</li>
+      <li><strong>Circular Dichroism (CD):</strong> Secondary structure assessment (alpha-helix, beta-sheet content)</li>
+      <li><strong>Dynamic Light Scattering (DLS):</strong> Particle size distribution, aggregation monitoring</li>
+      <li><strong>Differential Scanning Calorimetry (DSC):</strong> Thermal stability, melting temperature (Tm)</li>
+    </ul>
+
+    <h3>GMP Compliance Framework</h3>
+    <div class="diagram-container">
+      <h4>GMP Implementation Pillars</h4>
+      <svg viewBox="0 0 800 280" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;">
+        <!-- Base -->
+        <rect x="50" y="230" width="700" height="40" rx="8" fill="#4A148C"/>
+        <text x="400" y="255" text-anchor="middle" fill="white" font-size="14" font-weight="bold">GMP Foundation: Documentation &amp; Change Control</text>
+
+        <!-- Pillars -->
+        <rect x="70" y="60" width="120" height="160" rx="8" fill="#7B1FA2"/>
+        <text x="130" y="100" text-anchor="middle" fill="white" font-size="12" font-weight="bold">Facility</text>
+        <text x="130" y="120" text-anchor="middle" fill="white" font-size="10">Clean rooms</text>
+        <text x="130" y="136" text-anchor="middle" fill="white" font-size="10">HVAC systems</text>
+        <text x="130" y="152" text-anchor="middle" fill="white" font-size="10">Environmental</text>
+        <text x="130" y="168" text-anchor="middle" fill="white" font-size="10">monitoring</text>
+        <text x="130" y="190" text-anchor="middle" fill="white" font-size="10">Pest control</text>
+
+        <rect x="210" y="60" width="120" height="160" rx="8" fill="#8E24AA"/>
+        <text x="270" y="100" text-anchor="middle" fill="white" font-size="12" font-weight="bold">Equipment</text>
+        <text x="270" y="120" text-anchor="middle" fill="white" font-size="10">IQ/OQ/PQ</text>
+        <text x="270" y="136" text-anchor="middle" fill="white" font-size="10">Calibration</text>
+        <text x="270" y="152" text-anchor="middle" fill="white" font-size="10">Maintenance</text>
+        <text x="270" y="168" text-anchor="middle" fill="white" font-size="10">schedules</text>
+        <text x="270" y="190" text-anchor="middle" fill="white" font-size="10">Cleaning valid.</text>
+
+        <rect x="350" y="60" width="120" height="160" rx="8" fill="#9C27B0"/>
+        <text x="410" y="100" text-anchor="middle" fill="white" font-size="12" font-weight="bold">Process</text>
+        <text x="410" y="120" text-anchor="middle" fill="white" font-size="10">SOPs</text>
+        <text x="410" y="136" text-anchor="middle" fill="white" font-size="10">Batch records</text>
+        <text x="410" y="152" text-anchor="middle" fill="white" font-size="10">In-process</text>
+        <text x="410" y="168" text-anchor="middle" fill="white" font-size="10">controls</text>
+        <text x="410" y="190" text-anchor="middle" fill="white" font-size="10">Deviation mgmt</text>
+
+        <rect x="490" y="60" width="120" height="160" rx="8" fill="#AB47BC"/>
+        <text x="550" y="100" text-anchor="middle" fill="white" font-size="12" font-weight="bold">Personnel</text>
+        <text x="550" y="120" text-anchor="middle" fill="white" font-size="10">Training</text>
+        <text x="550" y="136" text-anchor="middle" fill="white" font-size="10">Competency</text>
+        <text x="550" y="152" text-anchor="middle" fill="white" font-size="10">Hygiene &amp;</text>
+        <text x="550" y="168" text-anchor="middle" fill="white" font-size="10">gowning</text>
+        <text x="550" y="190" text-anchor="middle" fill="white" font-size="10">Health checks</text>
+
+        <rect x="630" y="60" width="120" height="160" rx="8" fill="#CE93D8"/>
+        <text x="690" y="100" text-anchor="middle" fill="#4A148C" font-size="12" font-weight="bold">Quality</text>
+        <text x="690" y="120" text-anchor="middle" fill="#4A148C" font-size="10">QA/QC labs</text>
+        <text x="690" y="136" text-anchor="middle" fill="#4A148C" font-size="10">Stability testing</text>
+        <text x="690" y="152" text-anchor="middle" fill="#4A148C" font-size="10">Release testing</text>
+        <text x="690" y="168" text-anchor="middle" fill="#4A148C" font-size="10">CAPA system</text>
+        <text x="690" y="190" text-anchor="middle" fill="#4A148C" font-size="10">Annual review</text>
+
+        <!-- Roof -->
+        <polygon points="40,55 400,10 760,55" fill="#00BFA5"/>
+        <text x="400" y="42" text-anchor="middle" fill="white" font-size="13" font-weight="bold">Regulatory Compliance (FDA, EU IVDR, CDSCO, ISO 13485)</text>
+      </svg>
+    </div>
+
+    <div class="video-container">
+      <h4>&#127909; Good Manufacturing Practice (GMP) Explained</h4>
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/mFwA2KTiPwI" allowfullscreen loading="lazy"></iframe>
+      </div>
+    </div>
+
+    <h3>Equipment Qualification (IQ/OQ/PQ)</h3>
+    <table>
+      <tr><th>Phase</th><th>Full Name</th><th>What It Covers</th></tr>
+      <tr><td>IQ</td><td>Installation Qualification</td><td>Equipment installed correctly per specifications, utilities connected, documentation complete</td></tr>
+      <tr><td>OQ</td><td>Operational Qualification</td><td>Equipment operates within specified ranges under test conditions</td></tr>
+      <tr><td>PQ</td><td>Performance Qualification</td><td>Equipment performs consistently under actual production conditions over extended period</td></tr>
+    </table>
+
+    <h3>Process Analytical Technology (PAT)</h3>
+    <p>Real-time monitoring tools for ensuring consistent protein quality:</p>
+    <ul>
+      <li><strong>In-line pH/DO sensors:</strong> Continuous monitoring of culture conditions</li>
+      <li><strong>NIR spectroscopy:</strong> Real-time biomass and metabolite monitoring</li>
+      <li><strong>Raman spectroscopy:</strong> Multi-analyte monitoring (glucose, lactate, amino acids)</li>
+      <li><strong>UV absorbance (A280):</strong> Real-time protein concentration monitoring during chromatography</li>
+    </ul>
+
+    <h3>Regulatory Pathways</h3>
+    <table>
+      <tr><th>Region</th><th>Authority</th><th>Framework</th></tr>
+      <tr><td>United States</td><td>FDA CDRH</td><td>21 CFR 820 (QSR), 510(k) or PMA</td></tr>
+      <tr><td>European Union</td><td>Notified Bodies</td><td>EU IVDR (2017/746)</td></tr>
+      <tr><td>India</td><td>CDSCO</td><td>MDR 2017, In Vitro Diagnostic Rules</td></tr>
+      <tr><td>International</td><td>ISO</td><td>ISO 13485 (QMS), ISO 17025 (Lab)</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ==================== SECTION 6 ==================== -->
+<div class="section" id="section6">
+  <div class="section-header" onclick="toggleSection(this)">
+    <span class="icon">&#128176;</span>
+    <h2>6. Cost Analysis &amp; Scalability</h2>
+    <span class="chevron"></span>
+  </div>
+  <div class="section-body">
+    <p>Understanding the economics of recombinant protein production is essential for building a sustainable IVD manufacturing operation. Costs vary dramatically based on the expression system, scale, and intended application.</p>
+
+    <h3>Production Cost Comparison</h3>
+    <table>
+      <tr><th>System</th><th>Lab Scale ($/g)</th><th>Industrial Scale ($/g)</th><th>Timeline</th></tr>
+      <tr><td>E. coli (simple antigens)</td><td>$50 - $200</td><td>$10 - $50</td><td>2-4 weeks</td></tr>
+      <tr><td>E. coli (complex/refolded)</td><td>$200 - $500</td><td>$50 - $150</td><td>4-8 weeks</td></tr>
+      <tr><td>CHO transient</td><td>$500 - $2,000</td><td>$100 - $500</td><td>2-4 weeks</td></tr>
+      <tr><td>CHO stable (antibodies)</td><td>$2,000 - $5,000</td><td>$50 - $200</td><td>6-12 months</td></tr>
+      <tr><td>HEK293 transient</td><td>$500 - $2,000</td><td>$200 - $800</td><td>2-3 weeks</td></tr>
+    </table>
+
+    <h3>Cost Breakdown: E. coli Production</h3>
+    <div class="diagram-container">
+      <h4>Typical Cost Distribution</h4>
+      <svg viewBox="0 0 600 250" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;">
+        <!-- Bar chart -->
+        <rect x="60" y="30" width="80" height="160" rx="4" fill="#6A1B9A"/>
+        <text x="100" y="210" text-anchor="middle" fill="#333" font-size="10">Media &amp;</text>
+        <text x="100" y="222" text-anchor="middle" fill="#333" font-size="10">Reagents</text>
+        <text x="100" y="22" text-anchor="middle" fill="#6A1B9A" font-size="12" font-weight="bold">35%</text>
+
+        <rect x="170" y="70" width="80" height="120" rx="4" fill="#8E24AA"/>
+        <text x="210" y="210" text-anchor="middle" fill="#333" font-size="10">Chromat.</text>
+        <text x="210" y="222" text-anchor="middle" fill="#333" font-size="10">Resins</text>
+        <text x="210" y="62" text-anchor="middle" fill="#8E24AA" font-size="12" font-weight="bold">25%</text>
+
+        <rect x="280" y="100" width="80" height="90" rx="4" fill="#AB47BC"/>
+        <text x="320" y="210" text-anchor="middle" fill="#333" font-size="10">Labor</text>
+        <text x="320" y="92" text-anchor="middle" fill="#AB47BC" font-size="12" font-weight="bold">20%</text>
+
+        <rect x="390" y="140" width="80" height="50" rx="4" fill="#CE93D8"/>
+        <text x="430" y="210" text-anchor="middle" fill="#333" font-size="10">Equipment</text>
+        <text x="430" y="222" text-anchor="middle" fill="#333" font-size="10">Deprec.</text>
+        <text x="430" y="132" text-anchor="middle" fill="#9C27B0" font-size="12" font-weight="bold">12%</text>
+
+        <rect x="500" y="154" width="80" height="36" rx="4" fill="#E1BEE7"/>
+        <text x="540" y="210" text-anchor="middle" fill="#333" font-size="10">QC</text>
+        <text x="540" y="222" text-anchor="middle" fill="#333" font-size="10">Testing</text>
+        <text x="540" y="146" text-anchor="middle" fill="#9C27B0" font-size="12" font-weight="bold">8%</text>
+
+        <!-- Y-axis -->
+        <line x1="50" y1="190" x2="590" y2="190" stroke="#ccc" stroke-width="1"/>
+      </svg>
+    </div>
+
+    <h3>Scale-Up Milestones</h3>
+    <table>
+      <tr><th>Scale</th><th>Volume</th><th>Purpose</th><th>Equipment</th></tr>
+      <tr><td>Lab / R&amp;D</td><td>100 mL - 2L</td><td>Proof of concept, optimization</td><td>Shake flasks, small bioreactor</td></tr>
+      <tr><td>Benchtop</td><td>5 - 20L</td><td>Process validation, pilot batches</td><td>Benchtop bioreactor (stirred tank)</td></tr>
+      <tr><td>Pilot</td><td>100 - 500L</td><td>Clinical trial material, tech transfer</td><td>Pilot-scale bioreactor</td></tr>
+      <tr><td>Industrial</td><td>1,000 - 10,000L</td><td>Commercial manufacturing</td><td>Industrial bioreactors, continuous systems</td></tr>
+    </table>
+
+    <h3>Chromatography Scale-Up Principles</h3>
+    <ul>
+      <li><strong>Column diameter:</strong> Scales with production volume (1 cm lab &rarr; 10-50 cm industrial)</li>
+      <li><strong>Column height:</strong> Maintained constant (10-20 cm bed height)</li>
+      <li><strong>Linear flow rate:</strong> Kept constant across scales (100-300 cm/hour)</li>
+      <li><strong>Resin volume:</strong> Scales proportionally with protein load</li>
+      <li><strong>Resin reuse:</strong> Ni-NTA resin can be reused 50-200 cycles with proper CIP protocols</li>
+    </ul>
+
+    <h3>Cost Reduction Strategies</h3>
+    <div class="info-box tip">
+      <strong>&#128161; Key Cost Savings</strong>
+      <ul>
+        <li><strong>Continuous manufacturing:</strong> 3-5x productivity increase, 30-50% facility cost reduction</li>
+        <li><strong>Single-use technologies:</strong> Eliminate cleaning validation, reduce cross-contamination risk</li>
+        <li><strong>Resin reuse protocols:</strong> 50-200 cycles per resin batch dramatically reduce purification costs</li>
+        <li><strong>Fed-batch culture:</strong> Higher cell densities = more protein per batch</li>
+        <li><strong>Auto-induction media:</strong> No need for OD monitoring or manual IPTG addition</li>
+      </ul>
+    </div>
+
+    <h3>Scalability Validation</h3>
+    <p>Process validation for diagnostic protein manufacturing involves three key elements:</p>
+    <ol>
+      <li><strong>Process Performance Qualification (PPQ):</strong> Three consecutive production batches meeting all quality specifications</li>
+      <li><strong>Continued Process Verification:</strong> Ongoing monitoring of process performance and product quality</li>
+      <li><strong>Scale-Down Models:</strong> Developing small-scale models that accurately predict large-scale performance, enabling optimization without consuming large quantities of materials</li>
+    </ol>
+
+    <div class="video-container">
+      <h4>&#127909; Fermentation Process Design and Scale-Up</h4>
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/TUz_pECCX3o" allowfullscreen loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SECTION 7 ==================== -->
+<div class="section" id="section7">
+  <div class="section-header" onclick="toggleSection(this)">
+    <span class="icon">&#128300;</span>
+    <h2>7. Diagnostic Applications</h2>
+    <span class="chevron"></span>
+  </div>
+  <div class="section-body">
+    <p>Recombinant proteins serve as critical reagents in IVD diagnostics, primarily as antigens for ELISA and lateral flow immunoassays. The quality of these proteins directly determines assay sensitivity and specificity.</p>
+
+    <h3>ELISA Antigen Requirements</h3>
+    <table>
+      <tr><th>Parameter</th><th>Specification</th><th>Rationale</th></tr>
+      <tr><td>Purity</td><td>&ge;95%</td><td>Minimize non-specific binding</td></tr>
+      <tr><td>Coating concentration</td><td>1 &mu;g/mL typical</td><td>Optimal signal-to-noise ratio</td></tr>
+      <tr><td>Endotoxin</td><td>&lt;10 EU/mg</td><td>Prevent interference with results</td></tr>
+      <tr><td>Activity</td><td>Confirmed by known positive sera</td><td>Ensure correct epitope presentation</td></tr>
+      <tr><td>Batch-to-batch consistency</td><td>CV &lt;15%</td><td>Reproducible kit performance</td></tr>
+      <tr><td>Stability</td><td>&ge;12 months at -20&deg;C</td><td>Commercial shelf life</td></tr>
+    </table>
+
+    <div class="video-container">
+      <h4>&#127909; ELISA (Enzyme-Linked Immunosorbent Assay) Explained</h4>
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/ERk0hwqhyDw" allowfullscreen loading="lazy"></iframe>
+      </div>
+    </div>
+
+    <h3>Lateral Flow Immunoassay (LFIA)</h3>
+    <p>For point-of-care rapid tests, recombinant proteins are conjugated to colloidal gold or latex particles:</p>
+    <ul>
+      <li><strong>Antigen conjugation:</strong> Recombinant antigen coupled to 40 nm colloidal gold nanoparticles</li>
+      <li><strong>Test line:</strong> Anti-human IgG/IgM antibodies capture patient antibodies bound to antigen-gold conjugate</li>
+      <li><strong>Control line:</strong> Anti-species antibodies ensure test strip validity</li>
+      <li><strong>Protein requirements:</strong> &ge;95% purity, proper folding, maintained epitope structure</li>
+    </ul>
+
+    <div class="video-container">
+      <h4>&#127909; How Lateral Flow Assays Work</h4>
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/oYYTAPlwDE4" allowfullscreen loading="lazy"></iframe>
+      </div>
+    </div>
+
+    <h3>Diagnostic Application Examples</h3>
+    <table>
+      <tr><th>Disease</th><th>Recombinant Antigen</th><th>Expression System</th><th>Assay Format</th></tr>
+      <tr><td>COVID-19</td><td>SARS-CoV-2 Spike RBD</td><td>CHO / HEK293</td><td>ELISA, LFIA</td></tr>
+      <tr><td>Hepatitis C</td><td>NS3, NS4, NS5, Core</td><td>E. coli</td><td>ELISA</td></tr>
+      <tr><td>Dengue</td><td>NS1 protein</td><td>E. coli</td><td>ELISA, LFIA</td></tr>
+      <tr><td>Hydatid disease</td><td>EgB8/2 protein</td><td>E. coli</td><td>ELISA</td></tr>
+      <tr><td>Brucellosis</td><td>rOMP16</td><td>E. coli</td><td>Indirect ELISA</td></tr>
+      <tr><td>Malaria</td><td>ICAM-1 receptor</td><td>HEK293</td><td>Functional assay</td></tr>
+    </table>
+
+    <div class="info-box">
+      <strong>&#128218; Sensitivity &amp; Specificity</strong>
+      Recombinant antigens produced in E. coli achieve diagnostic sensitivities of 95-100% and specificities of 95-100% in ELISA applications when properly optimized. This makes them suitable replacements for native antigens in most diagnostic applications.
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SECTION 8 ==================== -->
+<div class="section" id="section8">
+  <div class="section-header" onclick="toggleSection(this)">
+    <span class="icon">&#128295;</span>
+    <h2>8. Troubleshooting Guide</h2>
+    <span class="chevron"></span>
+  </div>
+  <div class="section-body">
+    <h3>Low Expression Yield</h3>
+    <table>
+      <tr><th>Possible Cause</th><th>Solution</th></tr>
+      <tr><td>Incorrect reading frame</td><td>Verify plasmid sequence and reading frame alignment</td></tr>
+      <tr><td>Suboptimal E. coli strain</td><td>Test BL21, Rosetta, SHuffle strains</td></tr>
+      <tr><td>Poor induction conditions</td><td>Optimize IPTG concentration (0.1-1 mM), temperature (18-37&deg;C), duration</td></tr>
+      <tr><td>Rare codons in gene</td><td>Try codon optimization or Rosetta strain with rare tRNAs</td></tr>
+      <tr><td>Low cell density</td><td>Use fed-batch culture or richer media (TB, 2xYT)</td></tr>
+    </table>
+
+    <h3>Protein in Inclusion Bodies</h3>
+    <table>
+      <tr><th>Possible Cause</th><th>Solution</th></tr>
+      <tr><td>Expression too fast</td><td>Reduce induction temperature to 18-25&deg;C</td></tr>
+      <tr><td>Too much IPTG</td><td>Reduce IPTG to 0.1-0.4 mM</td></tr>
+      <tr><td>Protein misfolding</td><td>Co-express molecular chaperones (GroEL/ES, DnaK)</td></tr>
+      <tr><td>No disulfide bonds forming</td><td>Use SHuffle strain for cytoplasmic disulfide formation</td></tr>
+      <tr><td>Inherently insoluble</td><td>Try MBP or SUMO fusion tags; consider refolding protocols</td></tr>
+    </table>
+
+    <h3>Low Purification Yield</h3>
+    <table>
+      <tr><th>Possible Cause</th><th>Solution</th></tr>
+      <tr><td>His-tag buried/inaccessible</td><td>Try N-terminal vs C-terminal tag placement</td></tr>
+      <tr><td>Insufficient cell lysis</td><td>Optimize sonication time, add lysozyme, try French press</td></tr>
+      <tr><td>Non-specific binding</td><td>Increase imidazole in wash buffer (20 &rarr; 40 mM)</td></tr>
+      <tr><td>Resin overloaded</td><td>Verify resin binding capacity is not exceeded (typically 5-10 mg/mL resin)</td></tr>
+      <tr><td>Protease degradation</td><td>Add more protease inhibitors, work at 4&deg;C, reduce processing time</td></tr>
+    </table>
+
+    <h3>High Endotoxin Levels</h3>
+    <table>
+      <tr><th>Possible Cause</th><th>Solution</th></tr>
+      <tr><td>E. coli-derived contamination</td><td>Add additional high-salt wash steps</td></tr>
+      <tr><td>Incomplete removal</td><td>Use Triton X-114 phase separation for endotoxin removal</td></tr>
+      <tr><td>Persistent contamination</td><td>Add ion exchange chromatography as polishing step</td></tr>
+      <tr><td>Very high levels</td><td>Use endotoxin-removal columns (e.g., Detoxi-Gel)</td></tr>
+    </table>
+
+    <div class="info-box warning">
+      <strong>&#9888;&#65039; Endotoxin Warning</strong>
+      E. coli-derived proteins inherently contain endotoxin (LPS). For diagnostic applications, endotoxin must be reduced to &lt;10 EU/mg. High endotoxin levels can interfere with cell-based assays and cause false results.
+    </div>
+
+    <div class="video-container">
+      <h4>&#127909; Protein Expression &amp; Purification Overview</h4>
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/YJr_Xtji5NE" allowfullscreen loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SECTION 9 ==================== -->
+<div class="section" id="section9">
+  <div class="section-header" onclick="toggleSection(this)">
+    <span class="icon">&#128218;</span>
+    <h2>9. Recommended Equipment &amp; References</h2>
+    <span class="chevron"></span>
+  </div>
+  <div class="section-body">
+    <h3>Essential Equipment: Bacterial Expression</h3>
+    <table>
+      <tr><th>Equipment</th><th>Specification</th></tr>
+      <tr><td>Shaking incubator</td><td>37&deg;C and 18-30&deg;C temperature range, 200-250 rpm</td></tr>
+      <tr><td>Benchtop centrifuge</td><td>15,000 &times; g capacity</td></tr>
+      <tr><td>Sonicator / French press</td><td>For cell lysis</td></tr>
+      <tr><td>FPLC / &Auml;KTA system</td><td>Chromatography system for purification</td></tr>
+      <tr><td>Ni-NTA affinity resin</td><td>Ni-Sepharose or equivalent</td></tr>
+      <tr><td>SDS-PAGE system</td><td>Electrophoresis and gel documentation</td></tr>
+      <tr><td>Spectrophotometer</td><td>UV-Vis (A280, A600) measurements</td></tr>
+      <tr><td>-80&deg;C freezer</td><td>For cell bank and protein storage</td></tr>
+    </table>
+
+    <h3>Essential Equipment: Mammalian Expression</h3>
+    <table>
+      <tr><th>Equipment</th><th>Specification</th></tr>
+      <tr><td>CO2 incubator</td><td>37&deg;C, 5-8% CO2, humidity control</td></tr>
+      <tr><td>Biosafety cabinet</td><td>Class II biological safety cabinet</td></tr>
+      <tr><td>Benchtop bioreactor</td><td>5-50L capacity, stirred tank</td></tr>
+      <tr><td>Protein A/G system</td><td>Affinity chromatography for antibodies</td></tr>
+      <tr><td>Cell counter / Flow cytometer</td><td>Cell viability and density monitoring</td></tr>
+      <tr><td>Sterile filtration units</td><td>0.22 &mu;m membrane filters</td></tr>
+    </table>
+
+    <h3>Quality Control Equipment</h3>
+    <table>
+      <tr><th>Equipment</th><th>Application</th></tr>
+      <tr><td>HPLC system</td><td>SEC, RP, IEX chromatography</td></tr>
+      <tr><td>Mass spectrometer</td><td>MALDI-TOF or LC-MS for protein ID</td></tr>
+      <tr><td>Capillary electrophoresis</td><td>Purity and charge variant analysis</td></tr>
+      <tr><td>LAL endotoxin kit</td><td>Endotoxin testing</td></tr>
+      <tr><td>ELISA plate reader</td><td>Functional activity assays</td></tr>
+    </table>
+
+    <h3>Key Literature References</h3>
+    <p>This guide is based on an SOP prepared for Levram Life Sciences (May 2026), supported by 78 peer-reviewed references. Key foundational papers include:</p>
+    <ul>
+      <li>Merlin et al. (2014) &mdash; Comparative evaluation of recombinant protein production in different biofactories</li>
+      <li>Loughran &amp; Walls (2017, 2023) &mdash; Purification of polyhistidine-tagged proteins using IMAC</li>
+      <li>Johari et al. (2021) &mdash; Production of trimeric SARS-CoV-2 spike protein by CHO cells</li>
+      <li>Nag et al. (2023) &mdash; Cost-effective purification process for biosimilars</li>
+      <li>Niazi (2025) &mdash; Continuous manufacturing of recombinant drugs: cost reduction strategies</li>
+      <li>Jayakrishnan et al. (2024) &mdash; Evolving paradigms of recombinant protein production</li>
+    </ul>
+
+    <div class="info-box info">
+      <strong>&#128214; Document Control</strong>
+      <p>Prepared by: Research &amp; Development Team, Levram Life Sciences</p>
+      <p>Reviewed by: Quality Assurance</p>
+      <p>Effective Date: May 15, 2026 | Next Review: May 15, 2027</p>
+    </div>
+  </div>
+</div>
+
+</div><!-- /container -->
+
+<footer>
+  <p>Recombinant Protein Purification Guide &mdash; Interactive Edition</p>
+  <p style="margin-top:6px;">Part of the <a href="index.html">IVD Manufacturing Guides</a> collection</p>
+  <p style="margin-top:6px;">Based on Levram Life Sciences SOP &mdash; May 2026</p>
+</footer>
+
+<a href="#" class="back-to-top" id="backToTop">&#8593;</a>
+
+<script>
+// Toggle sections
+function toggleSection(header) {
+  const section = header.parentElement;
+  section.classList.toggle('open');
+}
+
+// Scroll progress bar
+window.addEventListener('scroll', function() {
+  const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+  const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (winScroll / height) * 100;
+  document.getElementById('progressBar').style.width = scrolled + '%';
+
+  // Back to top button
+  const btn = document.getElementById('backToTop');
+  if (winScroll > 400) { btn.classList.add('visible'); } else { btn.classList.remove('visible'); }
+});
+
+// Active nav highlighting
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('.nav-bar a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop - 100;
+    if (window.scrollY >= sectionTop) { current = section.getAttribute('id'); }
+  });
+  navLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + current) { link.classList.add('active'); }
+  });
+});
+
+// Smooth scroll for nav links
+document.querySelectorAll('.nav-bar a, .back-to-top').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      const section = target.closest('.section') || target;
+      if (!section.classList.contains('open')) { section.classList.add('open'); }
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  });
+});
+</script>
+</body>
+</html>
